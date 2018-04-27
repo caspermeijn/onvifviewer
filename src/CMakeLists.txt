@@ -38,5 +38,6 @@ add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_connect
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Quick KF5::Kirigami2 KDSoap::kdsoap)
 
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
