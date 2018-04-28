@@ -13,7 +13,7 @@ build:
     - git clone https://github.com/caspermeijn/KDSoap.git
     - mkdir build-kdsoap
     - cd build-kdsoap
-    - cmake -DCMAKE_BUILD_TYPE=Release ../KDSoap
+    - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/ ../KDSoap
     - make install
     - cd ..
     - git clone --branch v5.44.0 https://github.com/KDE/extra-cmake-modules.git
