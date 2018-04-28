@@ -2,6 +2,6 @@
 
 project(onvifviewer VERSION "0.1")
 SET(CMAKE_CXX_STANDARD 11)
-set(QT_MIN_VERSION "5.8.0")
+set(QT_MIN_VERSION "5.7.0")
 
 add_subdirectory(src)
