@@ -16,7 +16,7 @@ build:
     - cmake -DCMAKE_BUILD_TYPE=Release ../KDSoap
     - make install
     - cd ..
-    - git clone https://github.com/KDE/kirigami.git
+    - git clone --branch v5.44.0 https://github.com/KDE/kirigami.git
     - mkdir build-kirigami
     - cd build-kirigami
     - cmake -DCMAKE_BUILD_TYPE=Release ../kirigami
