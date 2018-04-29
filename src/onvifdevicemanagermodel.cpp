@@ -13,7 +13,7 @@ OnvifDeviceManagerModel::OnvifDeviceManagerModel(const OnvifDeviceManager *devic
     deviceListChanged();
 }
 
-int OnvifDeviceManagerModel::rowCount(const QModelIndex &parent) const
+int OnvifDeviceManagerModel::rowCount(const QModelIndex &) const
 {
     return m_deviceManager->deviceList().count();
 }
@@ -41,11 +41,13 @@ QVariant OnvifDeviceManagerModel::data(const QModelIndex &index, int role) const
     } else {
         qDebug() << "OnvifDeviceManagerModel" << "Unknown role" << index << role;
     }
+    return QVariant();
 }
 
 QVariant OnvifDeviceManagerModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     qDebug() << "headerData" << section << orientation << role;
+    return QVariant();
 }
 
 QHash<int, QByteArray> OnvifDeviceManagerModel::roleNames() const

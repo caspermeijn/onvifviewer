@@ -161,7 +161,8 @@ void OnvifMediaService::getStreamUriError(const KDSoapMessage &fault)
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }
 
-OnvifMediaProfile::OnvifMediaProfile()
+OnvifMediaProfile::OnvifMediaProfile() :
+    m_fixed(false)
 {
 }
 
