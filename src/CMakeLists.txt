@@ -9,8 +9,23 @@ find_package(KF5Kirigami2 REQUIRED)
 find_package(Qt5Widgets)
 find_package(KDSoap REQUIRED)
 
+find_package(ECM 5.38.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
+set(ENABLE_CLAZY TRUE)
+include(ECMQMLModules)
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+
+ecm_find_qmlmodule(QtQuick 2.9 REQUIRED)
+ecm_find_qmlmodule(QtQuick.Controls 1.4 REQUIRED)
+#TODO: figure out why QtQuick.Controls 2.0 is not foun
+#ecm_find_qmlmodule(QtQuick.Controls 2.0 REQUIRED)
+ecm_find_qmlmodule(QtQuick.Layouts 1.3 REQUIRED)
+ecm_find_qmlmodule(QtQml.Models 2.1 REQUIRED)
+ecm_find_qmlmodule(org.kde.kirigami 2.0 REQUIRED)
+
 include(FeatureSummary)
-include(GNUInstallDirs)
 
 set(KSWSDL2CPP_OPTION -namespace OnvifSoapDevicemgmt)
 KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver10/device/wsdl/devicemgmt.wsdl)
@@ -38,6 +53,6 @@ add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_connect
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Quick KF5::Kirigami2 KDSoap::kdsoap)
 
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

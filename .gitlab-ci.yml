@@ -35,7 +35,7 @@ build:
     - make
   artifacts:
     paths:
-      - build/src/OnvifViewer
+      - build/src/onvifviewer
   # depending on your build setup it's most likely a good idea to cache outputs to reduce the build time
   # cache:
   #   paths:
