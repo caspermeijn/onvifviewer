@@ -39,7 +39,6 @@ public:
 signals:
     void servicesAvailable();
     void errorStringChanged(const QString& errorString);
-    void nameChanged(const QString& name);
 
 private slots:
     void getServicesDone( const OnvifSoapDevicemgmt::TDS__GetServicesResponse& parameters );
@@ -48,6 +47,7 @@ private slots:
     void getCapabilitiesError( const KDSoapMessage& fault );
 
 private:
+    void checkServicesAvailable();
     void updateUsernameToken(KDSoapClientInterface * clientInterface);
     void updateKDSoapAuthentication(KDSoapClientInterface * clientInterface);
     class Private;

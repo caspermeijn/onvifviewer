@@ -53,24 +53,28 @@ void OnvifDevice::servicesAvailable()
 {
     OnvifDeviceConnection * device = qobject_cast<OnvifDeviceConnection *>(sender());
     Q_ASSERT(device);
-    Q_ASSERT(device->getDeviceService());
-    Q_ASSERT(device->getMediaService());
 
     OnvifDeviceService *deviceService = device->getDeviceService();
-    connect(deviceService, &OnvifDeviceService::deviceInformationAvailable,
+    if(deviceService)
+    {
+        connect(deviceService, &OnvifDeviceService::deviceInformationAvailable,
             this, &OnvifDevice::deviceInformationAvailable);
+    }
 
     OnvifMediaService *mediaService = device->getMediaService();
-    connect(mediaService, &OnvifMediaService::profileListAvailable,
-            this, &OnvifDevice::profileListAvailable);
-    connect(mediaService, &OnvifMediaService::streamUriAvailable,
-            this, &OnvifDevice::streamUriAvailable);
-    connect(mediaService, &OnvifMediaService::streamUriAvailable,
-            this, &OnvifDevice::streamUriChanged);
-    connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
-            this, &OnvifDevice::snapshotUriAvailable);
-    connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
-            this, &OnvifDevice::snapshotUriChanged);
+    if(mediaService)
+    {
+        connect(mediaService, &OnvifMediaService::profileListAvailable,
+                this, &OnvifDevice::profileListAvailable);
+        connect(mediaService, &OnvifMediaService::streamUriAvailable,
+                this, &OnvifDevice::streamUriAvailable);
+        connect(mediaService, &OnvifMediaService::streamUriAvailable,
+                this, &OnvifDevice::streamUriChanged);
+        connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
+                this, &OnvifDevice::snapshotUriAvailable);
+        connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
+                this, &OnvifDevice::snapshotUriChanged);
+    }
 }
 
 void OnvifDevice::deviceInformationAvailable(const OnvifDeviceInformation &deviceInformation)
