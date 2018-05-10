@@ -125,22 +125,6 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
                 d->deviceService = new OnvifDeviceService(service.xAddr(), this);
             }
         }
-        else if(service.namespace_() == "http://www.onvif.org/ver10/deviceIO/wsdl")
-        {
-            // Not yet supported
-        }
-        else if(service.namespace_() == "http://www.onvif.org/ver10/events/wsdl")
-        {
-            // Not yet supported
-        }
-        else if(service.namespace_() == "http://www.onvif.org/ver10/replay/wsdl")
-        {
-            // Not yet supported
-        }
-        else if(service.namespace_() == "http://www.onvif.org/ver10/search/wsdl")
-        {
-            // Not yet supported
-        }
         else if(service.namespace_() == "http://www.onvif.org/ver10/media/wsdl")
         {
             if(!d->mediaService)
@@ -148,28 +132,12 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
                 d->mediaService = new OnvifMediaService(service.xAddr(), this);
             }
         }
-        else if(service.namespace_() == "http://www.onvif.org/ver20/analytics/wsdl")
-        {
-            // Not yet supported
-        }
-        else if(service.namespace_() == "http://www.onvif.org/ver20/media/wsdl")
-        {
-            // Not yet supported
-        }
-        else if(service.namespace_() == "http://www.onvif.org/ver20/imaging/wsdl")
-        {
-            // Not yet supported
-        }
         else if(service.namespace_() == "http://www.onvif.org/ver20/ptz/wsdl")
         {
             if(!d->ptzService)
             {
                 d->ptzService = new OnvifPtzService(service.xAddr(), this);
             }
-        }
-        else
-        {
-            qDebug() << "OnvifDeviceConnection: found unknown service;" << service.namespace_();
         }
     }
 
@@ -262,13 +230,7 @@ void OnvifDeviceConnection::updateSoapCredentials(KDSoapClientInterface *clientI
         updateKDSoapAuthentication(clientInterface);
     else if(d->isUsernameTokenSupported)
         updateUsernameToken(clientInterface);
-    else
-    {
-        d->errorString = "None of the authentication methods are available";
-        qCritical() << d->errorString;
-        disconnectFromDevice();
-        emit errorStringChanged(d->errorString);
-    }
+    // Some camera's don't require authentication and therefore don't ask for any
 }
 
 void OnvifDeviceConnection::updateUsernameToken(KDSoapClientInterface *clientInterface)
@@ -332,6 +294,10 @@ void OnvifDeviceConnection::handleSoapError(const KDSoapMessage &fault, const QS
     }
     else if(fault.childValues().child(QLatin1String("faultcode")).value().toInt() == QNetworkReply::AuthenticationRequiredError) {
         d->errorString = "Authentication error occured. Credentials are probably incorrect.";
+        if(!d->isHttpDigestSupported && !d->isUsernameTokenSupported)
+        {
+            d->errorString = "None of the authentication methods are available";
+        }
     }
     else {
         d->errorString = location + ": " + fault.faultAsString();
