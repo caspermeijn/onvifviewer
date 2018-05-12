@@ -26,6 +26,8 @@ public:
     bool fixed() const;
     void setFixed(bool fixed);
 
+    QString ptzNodeToken() const;
+
 private:
     class Private;
     QSharedDataPointer<Private> d;

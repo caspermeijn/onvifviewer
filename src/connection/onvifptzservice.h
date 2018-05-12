@@ -26,6 +26,8 @@ public:
     void disconnectFromService();
 
     void absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
+
+    bool isRelativeMoveSupported(const OnvifMediaProfile &profile);
     void relativeMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
     void goToHome(const OnvifMediaProfile &profile);
 

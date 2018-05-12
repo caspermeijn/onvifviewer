@@ -9,6 +9,7 @@ Kirigami.Page {
     title: selectedDevice.deviceName
     actions {
         main: Kirigami.Action {
+            visible: selectedDevice.isPtzSupported
             iconName: "zoom-in"
             onTriggered: {
                 print("Action button in buttons page clicked");

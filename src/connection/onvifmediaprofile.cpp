@@ -15,7 +15,8 @@ public:
     Private(const TT__Profile &profile) :
         fixed(profile.fixed()),
         name(profile.name()),
-        token(profile.token().value())
+        token(profile.token().value()),
+        ptzNodeToken( profile.pTZConfiguration().nodeToken())
     {
         Q_ASSERT(token.size());
     }
@@ -23,6 +24,7 @@ public:
     bool fixed;
     QString name;
     QString token;
+    QString ptzNodeToken;
 };
 
 OnvifMediaProfile::OnvifMediaProfile() :
@@ -81,6 +83,11 @@ bool OnvifMediaProfile::fixed() const
 void OnvifMediaProfile::setFixed(bool fixed)
 {
     d->fixed = fixed;
+}
+
+QString OnvifMediaProfile::ptzNodeToken() const
+{
+    return d->ptzNodeToken;
 }
 
 QDebug operator<<(QDebug debug, const OnvifMediaProfile &p)

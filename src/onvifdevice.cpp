@@ -58,7 +58,7 @@ void OnvifDevice::servicesAvailable()
     if(deviceService)
     {
         connect(deviceService, &OnvifDeviceService::deviceInformationAvailable,
-            this, &OnvifDevice::deviceInformationAvailable);
+                this, &OnvifDevice::deviceInformationAvailable);
     }
 
     OnvifMediaService *mediaService = device->getMediaService();
@@ -136,6 +136,21 @@ void OnvifDevice::setPassword(const QString &password)
     }
 }
 
+bool OnvifDevice::isPtzSupported() const
+{
+    if(m_selectedMediaProfile.ptzNodeToken().isEmpty())
+        return false;
+    OnvifPtzService * ptzService = m_connection.getPtzService();
+    if(!ptzService)
+        return false;
+    //TODO: Add a workaround for when relative move is not supported...
+    //TODO: Add support for a absolute move; getStatus, then move to current pos + relative move
+    //TODO: Add support for a continuous move; start movement, wait a second, stop movement
+    if(!ptzService->isRelativeMoveSupported(m_selectedMediaProfile))
+        return false;
+    return true;
+}
+
 QString OnvifDevice::userName() const
 {
     return m_userName;
@@ -170,40 +185,30 @@ void OnvifDevice::setHostName(const QString &hostName)
 void OnvifDevice::ptzUp()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
-    if(ptzService)
-        ptzService->relativeMove(m_selectedMediaProfile, 0, 0.1);
-    else
-        qDebug() << "PTZ service is not available";
+    Q_ASSERT(ptzService);
+    ptzService->relativeMove(m_selectedMediaProfile, 0, 0.1);
 }
 
 void OnvifDevice::ptzDown()
 {
-    qDebug() << "ptzDown";
-
     OnvifPtzService * ptzService = m_connection.getPtzService();
-    if(ptzService)
-        ptzService->relativeMove(m_selectedMediaProfile, 0, -0.1);
-    else
-        qDebug() << "PTZ service is not available";
+    Q_ASSERT(ptzService);
+    ptzService->relativeMove(m_selectedMediaProfile, 0, -0.1);
 
 }
 
 void OnvifDevice::ptzLeft()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
-    if(ptzService)
-        ptzService->relativeMove(m_selectedMediaProfile, -0.1, 0);
-    else
-        qDebug() << "PTZ service is not available";
+    Q_ASSERT(ptzService);
+    ptzService->relativeMove(m_selectedMediaProfile, -0.1, 0);
 }
 
 void OnvifDevice::ptzRight()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
-    if(ptzService)
-        ptzService->relativeMove(m_selectedMediaProfile, 0.1, 0);
-    else
-        qDebug() << "PTZ service is not available";
+    Q_ASSERT(ptzService);
+    ptzService->relativeMove(m_selectedMediaProfile, 0.1, 0);
 }
 
 void OnvifDevice::ptzHome()

@@ -17,6 +17,7 @@ public:
 
     OnvifDeviceConnection * device;
     OnvifSoapPtz::PTZBindingService soapService;
+    QList< OnvifSoapPtz::TT__PTZNode > nodeList;
 };
 
 OnvifPtzService::OnvifPtzService(const QString &endpointAddress, OnvifDeviceConnection *parent) :
@@ -114,6 +115,16 @@ void OnvifPtzService::relativeMove(const OnvifMediaProfile &profile, qreal xFrac
     d->soapService.asyncRelativeMove(request);
 }
 
+bool OnvifPtzService::isRelativeMoveSupported(const OnvifMediaProfile &profile)
+{
+    for(auto& node : d->nodeList) {
+        if(node.token() == profile.ptzNodeToken()) {
+            return node.supportedPTZSpaces().relativePanTiltTranslationSpace().size();
+        }
+    }
+    return false;
+}
+
 void OnvifPtzService::goToHome(const OnvifMediaProfile &profile)
 {
     OnvifSoapPtz::TPTZ__GotoHomePosition request;
@@ -138,6 +149,7 @@ void OnvifPtzService::getServiceCapabilitiesError(const KDSoapMessage &fault)
 
 void OnvifPtzService::getNodesDone(const OnvifSoapPtz::TPTZ__GetNodesResponse &parameters)
 {
+    d->nodeList = parameters.pTZNode();
     for(auto node : parameters.pTZNode())
     {
         qDebug() << "PTZ node"
