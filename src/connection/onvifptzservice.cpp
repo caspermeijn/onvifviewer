@@ -115,6 +115,16 @@ void OnvifPtzService::relativeMove(const OnvifMediaProfile &profile, qreal xFrac
     d->soapService.asyncRelativeMove(request);
 }
 
+bool OnvifPtzService::isHomeSupported(const OnvifMediaProfile &profile)
+{
+    for(auto& node : d->nodeList) {
+        if(node.token() == profile.ptzNodeToken()) {
+            return node.homeSupported();
+        }
+    }
+    return false;
+}
+
 bool OnvifPtzService::isRelativeMoveSupported(const OnvifMediaProfile &profile)
 {
     for(auto& node : d->nodeList) {

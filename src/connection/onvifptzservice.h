@@ -29,6 +29,8 @@ public:
 
     bool isRelativeMoveSupported(const OnvifMediaProfile &profile);
     void relativeMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
+
+    bool isHomeSupported(const OnvifMediaProfile &profile);
     void goToHome(const OnvifMediaProfile &profile);
 
 private slots:

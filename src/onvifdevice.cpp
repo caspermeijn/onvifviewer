@@ -151,6 +151,15 @@ bool OnvifDevice::isPtzSupported() const
     return true;
 }
 
+bool OnvifDevice::isPtzHomeSupported() const
+{
+    OnvifPtzService * ptzService = m_connection.getPtzService();
+    if(ptzService)
+        return ptzService->isHomeSupported(m_selectedMediaProfile);
+    else
+        return false;
+}
+
 QString OnvifDevice::userName() const
 {
     return m_userName;
@@ -214,8 +223,6 @@ void OnvifDevice::ptzRight()
 void OnvifDevice::ptzHome()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
-    if(ptzService)
-        ptzService->goToHome(m_selectedMediaProfile);
-    else
-        qDebug() << "PTZ service is not available";
+    Q_ASSERT(ptzService);
+    ptzService->goToHome(m_selectedMediaProfile);
 }

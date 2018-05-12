@@ -19,6 +19,7 @@ class OnvifDevice : public QObject
     Q_PROPERTY(QUrl snapshotUri READ snapshotUri NOTIFY snapshotUriChanged)
     Q_PROPERTY(QUrl streamUri READ streamUri NOTIFY streamUriChanged)
     Q_PROPERTY(bool isPtzSupported READ isPtzSupported)
+    Q_PROPERTY(bool isPtzHomeSupported READ isPtzHomeSupported)
 public:
     explicit OnvifDevice(QObject *parent = nullptr);
 
@@ -42,6 +43,7 @@ public:
     void setPassword(const QString &password);
 
     bool isPtzSupported() const;
+    bool isPtzHomeSupported() const;
 
 signals:
     void deviceNameChanged(const QString& deviceName);

@@ -36,6 +36,7 @@ Kirigami.Page {
                     }
                 }
                 QQC2.Button {
+                    visible: selectedDevice.isPtzHomeSupported
                     icon.name: "go-home"
                     onClicked: {
                         selectedDevice.ptzHome()
