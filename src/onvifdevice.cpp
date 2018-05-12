@@ -89,12 +89,12 @@ void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileLi
 
     Q_ASSERT(profileList.size());
     //TODO: Add a proper profile selection
-    mediaService->selectProfile(profileList.last());
-
+    m_selectedMediaProfile = profileList.first();
     for(auto profile : profileList)
     {
         qDebug() << "Available profile:" << profile;
     }
+    mediaService->selectProfile(m_selectedMediaProfile);
 }
 
 void OnvifDevice::snapshotUriAvailable(const QUrl &snapshotUri)
@@ -171,7 +171,7 @@ void OnvifDevice::ptzUp()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
     if(ptzService)
-        ptzService->relativeMove(0, 0.1);
+        ptzService->relativeMove(m_selectedMediaProfile, 0, 0.1);
     else
         qDebug() << "PTZ service is not available";
 }
@@ -182,7 +182,7 @@ void OnvifDevice::ptzDown()
 
     OnvifPtzService * ptzService = m_connection.getPtzService();
     if(ptzService)
-        ptzService->relativeMove(0, -1);
+        ptzService->relativeMove(m_selectedMediaProfile, 0, -0.1);
     else
         qDebug() << "PTZ service is not available";
 
@@ -192,7 +192,7 @@ void OnvifDevice::ptzLeft()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
     if(ptzService)
-        ptzService->relativeMove(-0.01, 0);
+        ptzService->relativeMove(m_selectedMediaProfile, -0.1, 0);
     else
         qDebug() << "PTZ service is not available";
 }
@@ -201,7 +201,7 @@ void OnvifDevice::ptzRight()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
     if(ptzService)
-        ptzService->relativeMove(0.1, 0);
+        ptzService->relativeMove(m_selectedMediaProfile, 0.1, 0);
     else
         qDebug() << "PTZ service is not available";
 }
@@ -210,7 +210,7 @@ void OnvifDevice::ptzHome()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
     if(ptzService)
-        ptzService->goToHome();
+        ptzService->goToHome(m_selectedMediaProfile);
     else
         qDebug() << "PTZ service is not available";
 }

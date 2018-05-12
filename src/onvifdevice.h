@@ -2,11 +2,11 @@
 #define ONVIFDEVICE_H
 
 #include "onvifdeviceconnection.h"
+#include "onvifmediaprofile.h"
 #include <QObject>
 #include <QUrl>
 
 class OnvifDeviceInformation;
-class OnvifMediaProfile;
 
 class OnvifDevice : public QObject
 {
@@ -69,6 +69,7 @@ private:
     QString m_hostName;
     QString m_userName;
     QString m_password;
+    OnvifMediaProfile m_selectedMediaProfile;
 };
 
 

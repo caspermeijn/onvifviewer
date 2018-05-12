@@ -1,39 +1,19 @@
 ﻿#ifndef ONVIFMEDIASERVICE_H
 #define ONVIFMEDIASERVICE_H
 
+#include "onvifmediaprofile.h"
 #include <QObject>
 
 class OnvifDeviceConnection;
 namespace OnvifSoapMedia {
 class TT__Profile;
+class TT__PTZConfiguration;
 class TRT__GetProfilesResponse;
 class TRT__GetServiceCapabilitiesResponse;
 class TRT__GetSnapshotUriResponse;
 class TRT__GetStreamUriResponse;
 }
 class KDSoapMessage;
-
-class OnvifMediaProfile
-{
-public:
-    OnvifMediaProfile();
-    OnvifMediaProfile(const OnvifSoapMedia::TT__Profile& profile);
-
-    QString name() const;
-    void setName(const QString &name);
-
-    QString token() const;
-    void setToken(const QString &token);
-
-    bool fixed() const;
-    void setFixed(bool fixed);
-
-private:
-    bool m_fixed;
-    QString m_name;
-    QString m_token;
-};
-QDebug operator<<(QDebug debug, const OnvifMediaProfile &d);
 
 class OnvifMediaService : public QObject
 {

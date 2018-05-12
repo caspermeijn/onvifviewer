@@ -38,6 +38,7 @@ set(${PROJECT_NAME}_connection_SRCS
     "connection/onvifdeviceconnection.cpp"
     "connection/onvifdeviceservice.cpp"
     "connection/onvifmediaservice.cpp"
+    "connection/onvifmediaprofile.cpp"
     "connection/onvifptzservice.cpp"
 )
 include_directories("connection")

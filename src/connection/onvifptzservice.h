@@ -4,6 +4,7 @@
 #include <QObject>
 
 class OnvifDeviceConnection;
+class OnvifMediaProfile;
 namespace OnvifSoapPtz {
 class TPTZ__RelativeMoveResponse;
 class TPTZ__GetServiceCapabilitiesResponse;
@@ -24,9 +25,9 @@ public:
     void connectToService();
     void disconnectFromService();
 
-    void absoluteMove(qreal x, qreal y);
-    void relativeMove(qreal x, qreal y);
-    void goToHome();
+    void absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
+    void relativeMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
+    void goToHome(const OnvifMediaProfile &profile);
 
 private slots:
     void getServiceCapabilitiesDone( const OnvifSoapPtz::TPTZ__GetServiceCapabilitiesResponse& parameters );

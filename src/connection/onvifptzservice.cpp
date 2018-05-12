@@ -1,6 +1,7 @@
 ﻿#include "onvifptzservice.h"
 
 #include "onvifdeviceconnection.h"
+#include "onvifmediaprofile.h"
 #include <QDebug>
 #include <QUrl>
 #include "wsdl_ptz.h"
@@ -16,7 +17,6 @@ public:
 
     OnvifDeviceConnection * device;
     OnvifSoapPtz::PTZBindingService soapService;
-    OnvifSoapPtz::TT__Space2DDescription panTiltSpace;
 };
 
 OnvifPtzService::OnvifPtzService(const QString &endpointAddress, OnvifDeviceConnection *parent) :
@@ -72,53 +72,52 @@ void OnvifPtzService::disconnectFromService()
 
 }
 
-void OnvifPtzService::absoluteMove(qreal x, qreal y)
+void OnvifPtzService::absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction)
 {
-    OnvifSoapPtz::TPTZ__AbsoluteMove request;
-    request.setProfileToken(QString("SubProfileToken"));
+    Q_ASSERT(-1.0 <= xFraction && xFraction <= 1.0);
+    Q_ASSERT(-1.0 <= yFraction && yFraction <= 1.0);
 
     OnvifSoapPtz::TT__Vector2D vector2D;
-    vector2D.setX(x);
-    vector2D.setY(y);
+    vector2D.setX(xFraction);
+    vector2D.setY(yFraction);
     vector2D.setSpace("http://www.onvif.org/ver10/tptz/PanTiltSpaces/PositionGenericSpace");
 
     OnvifSoapPtz::TT__PTZVector vector;
     vector.setPanTilt(vector2D);
 
+    OnvifSoapPtz::TPTZ__AbsoluteMove request;
+    request.setProfileToken(profile.token());
     request.setPosition(vector);
 
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncAbsoluteMove(request);
 }
 
-void OnvifPtzService::relativeMove(qreal x, qreal y)
+void OnvifPtzService::relativeMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction)
 {
-    OnvifSoapPtz::TPTZ__RelativeMove request;
-    //    request.setProfileToken(QString("MainProfileToken"));
-    request.setProfileToken(QString("media_profile1"));
-
-    Q_ASSERT(d->panTiltSpace.uRI().size());
-    Q_ASSERT(d->panTiltSpace.xRange().max() + d->panTiltSpace.xRange().min() == 0);
-    Q_ASSERT(d->panTiltSpace.yRange().max() + d->panTiltSpace.yRange().min() == 0);
+    Q_ASSERT(-1.0 <= xFraction && xFraction <= 1.0);
+    Q_ASSERT(-1.0 <= yFraction && yFraction <= 1.0);
 
     OnvifSoapPtz::TT__Vector2D vector2D;
-    vector2D.setX(x * d->panTiltSpace.xRange().max());
-    vector2D.setY(y * d->panTiltSpace.yRange().max());
-    vector2D.setSpace(d->panTiltSpace.uRI());
+    vector2D.setX(xFraction);
+    vector2D.setY(yFraction);
+    vector2D.setSpace("http://www.onvif.org/ver10/tptz/PanTiltSpaces/TranslationGenericSpace");
 
     OnvifSoapPtz::TT__PTZVector vector;
     vector.setPanTilt(vector2D);
 
+    OnvifSoapPtz::TPTZ__RelativeMove request;
+    request.setProfileToken(profile.token());
     request.setTranslation(vector);
 
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncRelativeMove(request);
 }
 
-void OnvifPtzService::goToHome()
+void OnvifPtzService::goToHome(const OnvifMediaProfile &profile)
 {
     OnvifSoapPtz::TPTZ__GotoHomePosition request;
-    request.setProfileToken(QString("MainProfileToken"));
+    request.setProfileToken(profile.token());
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGotoHomePosition(request);
 }
@@ -149,19 +148,6 @@ void OnvifPtzService::getNodesDone(const OnvifSoapPtz::TPTZ__GetNodesResponse &p
                  << "geoMove" << node.geoMove()
                  << "maximumNumberOfPresets" << node.maximumNumberOfPresets()
                  << "auxiliaryCommands" << node.auxiliaryCommands() ;
-
-        if(node.supportedPTZSpaces().relativePanTiltTranslationSpace().size()) {
-            d->panTiltSpace = node.supportedPTZSpaces().relativePanTiltTranslationSpace().first();
-        }
-
-        for(auto space : node.supportedPTZSpaces().relativePanTiltTranslationSpace())
-        {
-            qDebug() << "\t relativePanTiltTranslationSpace:"
-                     << space.uRI()
-                     << "X:" << space.xRange().min() << space.xRange().max()
-                     << "Y:" << space.yRange().min() << space.yRange().max();
-        }
-
     }
 }
 
