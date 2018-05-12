@@ -226,3 +226,10 @@ void OnvifDevice::ptzHome()
     Q_ASSERT(ptzService);
     ptzService->goToHome(m_selectedMediaProfile);
 }
+
+void OnvifDevice::ptzSaveHomePosition()
+{
+    OnvifPtzService * ptzService = m_connection.getPtzService();
+    Q_ASSERT(ptzService);
+    ptzService->saveHomePosition(m_selectedMediaProfile);
+}

@@ -60,6 +60,7 @@ public slots:
     void ptzLeft();
     void ptzRight();
     void ptzHome();
+    void ptzSaveHomePosition();
 
 private slots:
     void servicesAvailable();

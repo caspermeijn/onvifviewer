@@ -13,6 +13,7 @@ class TPTZ__GotoHomePositionResponse;
 class TPTZ__AbsoluteMoveResponse;
 class TPTZ__GetConfigurationsResponse;
 class TPTZ__GetStatusResponse;
+class TPTZ__SetHomePositionResponse;
 }
 class KDSoapMessage;
 
@@ -32,6 +33,7 @@ public:
 
     bool isHomeSupported(const OnvifMediaProfile &profile);
     void goToHome(const OnvifMediaProfile &profile);
+    void saveHomePosition(const OnvifMediaProfile &profile);
 
 private slots:
     void getServiceCapabilitiesDone( const OnvifSoapPtz::TPTZ__GetServiceCapabilitiesResponse& parameters );
@@ -48,6 +50,8 @@ private slots:
     void relativeMoveError( const KDSoapMessage& fault );
     void gotoHomePositionDone( const OnvifSoapPtz::TPTZ__GotoHomePositionResponse& parameters );
     void gotoHomePositionError( const KDSoapMessage& fault );
+    void setHomePositionDone( const OnvifSoapPtz::TPTZ__SetHomePositionResponse& parameters );
+    void setHomePositionError( const KDSoapMessage& fault );
 
 private:
     class Private;

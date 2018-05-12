@@ -54,6 +54,10 @@ OnvifPtzService::OnvifPtzService(const QString &endpointAddress, OnvifDeviceConn
             this, &OnvifPtzService::gotoHomePositionDone);
     connect(&d->soapService, &PTZBindingService::gotoHomePositionError,
             this, &OnvifPtzService::gotoHomePositionError);
+    connect(&d->soapService, &PTZBindingService::setHomePositionDone,
+            this, &OnvifPtzService::setHomePositionDone);
+    connect(&d->soapService, &PTZBindingService::setHomePositionError,
+            this, &OnvifPtzService::setHomePositionError);
 }
 
 void OnvifPtzService::connectToService()
@@ -141,6 +145,14 @@ void OnvifPtzService::goToHome(const OnvifMediaProfile &profile)
     request.setProfileToken(profile.token());
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGotoHomePosition(request);
+}
+
+void OnvifPtzService::saveHomePosition(const OnvifMediaProfile &profile)
+{
+    OnvifSoapPtz::TPTZ__SetHomePosition request;
+    request.setProfileToken(profile.token());
+    d->device->updateSoapCredentials(d->soapService.clientInterface());
+    d->soapService.asyncSetHomePosition(request);
 }
 
 void OnvifPtzService::getServiceCapabilitiesDone(const TPTZ__GetServiceCapabilitiesResponse &parameters)
@@ -238,6 +250,16 @@ void OnvifPtzService::gotoHomePositionDone(const OnvifSoapPtz::TPTZ__GotoHomePos
 }
 
 void OnvifPtzService::gotoHomePositionError(const KDSoapMessage &fault)
+{
+    d->device->handleSoapError(fault, Q_FUNC_INFO);
+}
+
+void OnvifPtzService::setHomePositionDone(const OnvifSoapPtz::TPTZ__SetHomePositionResponse &parameters)
+{
+    qDebug() << Q_FUNC_INFO;
+}
+
+void OnvifPtzService::setHomePositionError(const KDSoapMessage &fault)
 {
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }

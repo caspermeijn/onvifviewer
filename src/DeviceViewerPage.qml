@@ -41,6 +41,11 @@ Kirigami.Page {
                     onClicked: {
                         selectedDevice.ptzHome()
                     }
+                    onPressAndHold: {
+                        console.log("onPressAndHold")
+                        selectedDevice.ptzSaveHomePosition()
+                        showPassiveNotification("Saving current position as home")
+                    }
                 }
                 QQC2.Button {
                     icon.name: "go-next"
