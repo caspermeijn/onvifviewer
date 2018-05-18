@@ -76,7 +76,7 @@ Kirigami.Page {
                 width: parent.width
             }
             QQC2.Button {
-                icon.name: "reload"
+                icon.name: "view-refresh"
                 onClicked: {
                     selectedDevice.reconnectToDevice()
                 }

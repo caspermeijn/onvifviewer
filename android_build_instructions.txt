@@ -1,0 +1,63 @@
+export ANDROID_NDK=/home/casper/Android/Sdk/ndk-bundle/
+export ANDROID_SDK_ROOT=/home/casper/Android/Sdk
+export Qt5_android=/home/casper/Qt/5.10.1/android_armv7
+export PATH=$ANDROID_SDK_ROOT/platform-tools/:$PATH
+export JAVA_HOME=/usr/lib64/openjdk-8/
+
+mkdir ~/build-android-install-prefix
+
+mkdir build-kirigami-android
+cd build-kirigami-android
+cmake ../kirigami2 \
+    -DECM_DIR=/usr/share/ECM/cmake \
+    -DCMAKE_TOOLCHAIN_FILE=/usr/share/ECM/toolchain/Android.cmake \
+    -DECM_ADDITIONAL_FIND_ROOT_PATH=/home/casper/Qt/5.10.1/android_armv7 \
+    -DCMAKE_PREFIX_PATH=/home/casper/Qt/5.10.1/android_armv7/ \
+    -DANDROID_NDK=/home/casper/Android/Sdk/ndk-bundle \
+    -DANDROID_SDK_ROOT=/home/casper/Android/Sdk/ \
+    -DANDROID_SDK_BUILD_TOOLS_REVISION=26.0.2 \
+    -DCMAKE_INSTALL_PREFIX=/home/casper/build-android-install-prefix
+
+make 
+make install
+cd ..
+
+mkdir build-kdsoap-android
+cd build-kdsoap-android
+cmake ../KDSoap \
+    -DECM_DIR=/usr/share/ECM/cmake \
+    -DCMAKE_TOOLCHAIN_FILE=/usr/share/ECM/toolchain/Android.cmake \
+    -DECM_ADDITIONAL_FIND_ROOT_PATH=/home/casper/Qt/5.10.1/android_armv7 \
+    -DCMAKE_PREFIX_PATH=/home/casper/Qt/5.10.1/android_armv7/ \
+    -DANDROID_NDK=/home/casper/Android/Sdk/ndk-bundle \
+    -DANDROID_SDK_ROOT=/home/casper/Android/Sdk/ \
+    -DANDROID_SDK_BUILD_TOOLS_REVISION=26.0.2 \
+    -DCMAKE_INSTALL_PREFIX=/home/casper/build-android-install-prefix
+
+make 
+make install
+cd ..
+
+mkdir build-onvifviewer-android
+cd build-onvifviewer-android
+cmake ../QtProjects/OnvifViewer2/src \
+    -DCMAKE_CXX_FLAGS=-isystem\ /home/casper/build-android-install-prefix/include \
+    -DECM_DIR=/usr/share/ECM/cmake \
+    -DKF5Kirigami2_DIR=/home/casper/build-android-install-prefix/lib/cmake/KF5Kirigami2 \
+    -DKDSoap_DIR=/home/casper/build-android-install-prefix/lib/cmake/KDSoap \
+    -DCMAKE_TOOLCHAIN_FILE=/usr/share/ECM/toolchain/Android.cmake \
+    -DECM_ADDITIONAL_FIND_ROOT_PATH="/home/casper/Qt/5.10.1/android_armv7;/home/casper/build-android-install-prefix" \
+    -DCMAKE_PREFIX_PATH=/home/casper/Qt/5.10.1/android_armv7/ \
+    -DANDROID_NDK=/home/casper/Android/Sdk/ndk-bundle \
+    -DCMAKE_ANDROID_NDK=/home/casper/Android/Sdk/ndk-bundle \
+    -DANDROID_SDK_ROOT=/home/casper/Android/Sdk/ \
+    -DANDROID_SDK_BUILD_TOOLS_REVISION=26.0.2 \
+    -DCMAKE_INSTALL_PREFIX=/home/casper/build-android-install-prefix \
+    -DQTANDROID_EXPORTED_TARGET=onvifviewer \
+    -DANDROID_APK_DIR=../QtProjects/OnvifViewer2/android
+
+make 
+make install
+make create-apk-onvifviewer
+cd ..
+

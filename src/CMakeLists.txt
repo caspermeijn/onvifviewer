@@ -1,10 +1,14 @@
-﻿cmake_minimum_required(VERSION 2.8.12)
+﻿cmake_minimum_required(VERSION 3.7)
+
+project(onvifviewer VERSION "0.1")
+SET(CMAKE_CXX_STANDARD 11)
+set(QT_MIN_VERSION "5.7.0")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Core Qml Quick QuickControls2)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
 find_package(KF5Kirigami2 REQUIRED)
 find_package(Qt5Widgets)
 find_package(KDSoap REQUIRED)
@@ -53,8 +57,10 @@ set(${PROJECT_NAME}_SRCS
 )
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_connection_SRCS} ${${PROJECT_NAME}_WSDL})
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Quick KF5::Kirigami2 KDSoap::kdsoap)
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Svg Qt5::Quick KF5::Kirigami2 KDSoap::kdsoap)
 
 install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+
+kirigami_package_breeze_icons(ICONS dialog-close zoom-in go-up go-previous go-home go-next go-down view-refresh document-new document-properties)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

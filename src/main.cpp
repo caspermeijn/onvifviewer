@@ -6,7 +6,7 @@
 #include "onvifdevicemanagermodel.h"
 #include "onvifdevice.h"
 
-int main(int argc, char *argv[])
+Q_DECL_EXPORT int main(int argc, char *argv[])
 {
 #if defined(Q_OS_WIN)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
