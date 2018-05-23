@@ -50,6 +50,7 @@ Kirigami.ScrollablePage {
 
                         QQC2.ToolButton {
                             icon.name: "document-properties"
+                            icon.source: "3rd-party/breeze-icons/document-properties.svg"
 
                             onClicked: {
                                 selectedIndex = index

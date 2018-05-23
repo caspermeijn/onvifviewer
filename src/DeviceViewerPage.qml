@@ -22,6 +22,7 @@ Kirigami.Page {
         Column{
             QQC2.Button {
                 icon.name: "go-up"
+                icon.source: "3rd-party/breeze-icons/go-up.svg"
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     selectedDevice.ptzUp()
@@ -31,6 +32,7 @@ Kirigami.Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 QQC2.Button {
                     icon.name: "go-previous"
+                    icon.source: "3rd-party/breeze-icons/go-previous.svg"
                     onClicked: {
                         selectedDevice.ptzLeft()
                     }
@@ -38,6 +40,7 @@ Kirigami.Page {
                 QQC2.Button {
                     visible: selectedDevice.isPtzHomeSupported
                     icon.name: "go-home"
+                    icon.source: "3rd-party/breeze-icons/go-home.svg"
                     onClicked: {
                         selectedDevice.ptzHome()
                     }
@@ -49,6 +52,7 @@ Kirigami.Page {
                 }
                 QQC2.Button {
                     icon.name: "go-next"
+                    icon.source: "3rd-party/breeze-icons/go-next.svg"
                     onClicked: {
                         selectedDevice.ptzRight()
                     }
@@ -56,6 +60,7 @@ Kirigami.Page {
             }
             QQC2.Button {
                 icon.name: "go-down"
+                icon.source: "3rd-party/breeze-icons/go-down.svg"
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     selectedDevice.ptzDown()
@@ -77,6 +82,7 @@ Kirigami.Page {
             }
             QQC2.Button {
                 icon.name: "view-refresh"
+                icon.source: "3rd-party/breeze-icons/view-refresh.svg"
                 onClicked: {
                     selectedDevice.reconnectToDevice()
                 }

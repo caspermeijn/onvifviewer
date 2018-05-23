@@ -28,6 +28,9 @@ build:
     - cmake -DCMAKE_BUILD_TYPE=Release ../kirigami
     - make install
     - cd ..
+    - cd 3rdparty
+    - git clone --branch v5.44.0 https://github.com/KDE/breeze-icons.git
+    - cd ..
   script: 
     - mkdir build
     - cd build
