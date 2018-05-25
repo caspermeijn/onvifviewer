@@ -3,7 +3,7 @@
 Item {
     property string snapshotUri
     property alias interval: timer.interval
-    property real aspectRatio: image1.isReady ? image1.aspectRatio : (image2.isReady ? image2.aspectRatio : 1)
+    property real aspectRatio: image1.isReady ? image1.aspectRatio : (image2.isReady ? image2.aspectRatio : 2)
 
     function isSnapshotAvailable() {
         return image1.status == Image.Ready || image2.status == Image.Ready
@@ -38,7 +38,7 @@ Item {
     Image {
         id: image1
         property bool isReady: status == Image.Ready
-        property real aspectRatio: paintedWidth / paintedHeight
+        property real aspectRatio: implicitWidth / implicitHeight
         anchors.fill: parent
         visible: false
         fillMode: Image.PreserveAspectFit
@@ -57,7 +57,7 @@ Item {
     Image {
         id: image2
         property bool isReady: status == Image.Ready
-        property real aspectRatio: paintedWidth / paintedHeight
+        property real aspectRatio: implicitWidth / implicitHeight
         anchors.fill: parent
         visible: false
         fillMode: Image.PreserveAspectFit

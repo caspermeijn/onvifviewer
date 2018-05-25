@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.3 as QQL
 import QtQuick.Controls 2.2 as QQC2
 import org.kde.kirigami 2.3 as Kirigami
 import QtQml.Models 2.1
-import org.kde.kirigami 2.2
 
 Kirigami.ScrollablePage {
     title: "Overview"
@@ -30,27 +29,29 @@ Kirigami.ScrollablePage {
                 pageStack.push(deviceViewerComponent);
             }
 
+            width: Math.min(parent.width, Kirigami.Units.gridUnit * 20)
+
             QQL.ColumnLayout {
-                id: containerLayout
+                id: layout
+                spacing: Kirigami.Units.smallSpacing
 
-                QQL.ColumnLayout {
-                    id: layout
-                    spacing: Units.smallSpacing*2
-                    QQL.Layout.maximumWidth: 300
 
+                QQC2.ToolBar {
+                    QQL.Layout.fillWidth: true
                     QQL.RowLayout {
+                        anchors.fill: parent
                         QQC2.Label {
-                            id: labelItem
-                            text: model.deviceName
-                            QQL.Layout.fillWidth: true
-
-                            elide: Text.ElideRight
+                            text: model.deviceName || "Camera " + (model.index + 1)
+                            elide: QQC2.Label.ElideRight
                             horizontalAlignment: Qt.AlignHCenter
+                            verticalAlignment: Qt.AlignVCenter
+                            QQL.Layout.fillWidth: true
                         }
-
                         QQC2.ToolButton {
                             icon.name: "document-properties"
                             icon.source: "3rd-party/breeze-icons/document-properties.svg"
+                            icon.width: Kirigami.Units.iconSizes.smallMedium
+                            icon.height: icon.width
 
                             onClicked: {
                                 selectedIndex = index
@@ -58,28 +59,25 @@ Kirigami.ScrollablePage {
                             }
                         }
                     }
-                    Item {
-                        QQL.Layout.fillWidth: true
-                        QQL.Layout.maximumWidth: 300
-                        QQL.Layout.preferredHeight: width / viewerItem.aspectRatio
-                        Text {
-                            id: errorText
-                            text: "An error occured during communication with the camera."
-                            wrapMode: Text.Wrap
-                            horizontalAlignment: Text.AlignHCenter
-                            anchors.fill: parent
-                            anchors.margins: 25
-                            visible: model.errorString
+                }
 
-                        }
-                        OnvifCameraViewer {
-                            id: viewerItem
-                            snapshotUri: model.snapshotUri
-                            snapshotInterval: 5000
-                            anchors.fill: parent
-                            visible: !model.errorString
-                        }
-                    }
+                QQC2.Label {
+                    id: errorText
+                    text: "An error occured during communication with the camera."
+                    wrapMode: Text.Wrap
+                    horizontalAlignment: Text.AlignHCenter
+                    visible: model.errorString
+                    QQL.Layout.fillWidth: true
+                    QQL.Layout.preferredHeight: Kirigami.Units.gridUnit * 2
+                }
+
+                OnvifCameraViewer {
+                    id: viewerItem
+                    snapshotUri: model.snapshotUri
+                    snapshotInterval: 5000
+                    visible: !model.errorString
+                    QQL.Layout.fillWidth: true
+                    QQL.Layout.preferredHeight: parent.width / viewerItem.aspectRatio
                 }
             }
         }
