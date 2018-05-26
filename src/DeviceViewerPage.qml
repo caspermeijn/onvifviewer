@@ -20,9 +20,11 @@ Kirigami.Page {
     Kirigami.OverlaySheet {
         id: sheet
         Column{
-            QQC2.Button {
+            QQC2.ToolButton {
                 icon.name: "go-up"
                 icon.source: "3rd-party/breeze-icons/go-up.svg"
+                icon.width: Kirigami.Units.iconSizes.medium
+                icon.height: icon.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     selectedDevice.ptzUp()
@@ -30,17 +32,21 @@ Kirigami.Page {
             }
             Row{
                 anchors.horizontalCenter: parent.horizontalCenter
-                QQC2.Button {
+                QQC2.ToolButton {
                     icon.name: "go-previous"
                     icon.source: "3rd-party/breeze-icons/go-previous.svg"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: icon.width
                     onClicked: {
                         selectedDevice.ptzLeft()
                     }
                 }
-                QQC2.Button {
+                QQC2.ToolButton {
                     visible: selectedDevice.isPtzHomeSupported
                     icon.name: "go-home"
                     icon.source: "3rd-party/breeze-icons/go-home.svg"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: icon.width
                     onClicked: {
                         selectedDevice.ptzHome()
                     }
@@ -50,17 +56,21 @@ Kirigami.Page {
                         showPassiveNotification("Saving current position as home")
                     }
                 }
-                QQC2.Button {
+                QQC2.ToolButton {
                     icon.name: "go-next"
                     icon.source: "3rd-party/breeze-icons/go-next.svg"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: icon.width
                     onClicked: {
                         selectedDevice.ptzRight()
                     }
                 }
             }
-            QQC2.Button {
+            QQC2.ToolButton {
                 icon.name: "go-down"
                 icon.source: "3rd-party/breeze-icons/go-down.svg"
+                icon.width: Kirigami.Units.iconSizes.medium
+                icon.height: icon.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     selectedDevice.ptzDown()
@@ -80,7 +90,7 @@ Kirigami.Page {
                 visible: selectedDevice.errorString
                 width: parent.width
             }
-            QQC2.Button {
+            QQC2.ToolButton {
                 icon.name: "view-refresh"
                 icon.source: "3rd-party/breeze-icons/view-refresh.svg"
                 onClicked: {
