@@ -5,14 +5,19 @@ import org.kde.kirigami 2.3 as Kirigami
 import net.meijn.onvifviewer 1.0
 
 Kirigami.ScrollablePage {
+    property bool hasChanged: false
+
     title: "Settings"
     objectName: "settingsPage"
 
     onActiveFocusChanged: {
         console.log("onActiveFocusChanged", activeFocus, activeFocusItem)
         if(!activeFocus) {
-            selectedDevice.reconnectToDevice()
-            deviceManager.saveDevices()
+            if(hasChanged) {
+                selectedDevice.reconnectToDevice()
+                deviceManager.saveDevices()
+                hasChanged = false
+            }
         }
     }
 
@@ -29,7 +34,8 @@ Kirigami.ScrollablePage {
             Kirigami.FormData.label: "Camera name:"
             placeholderText: qsTr("eg. Backyard")
             text: selectedDevice.deviceName
-            onTextChanged: {
+            onTextEdited: {
+                hasChanged = true
                 selectedDevice.deviceName = text
             }
         }
@@ -37,14 +43,16 @@ Kirigami.ScrollablePage {
             Kirigami.FormData.label: "Hostname:"
             placeholderText: qsTr("eg. ipcam.local or 192.168.0.12")
             text: selectedDevice.hostName
-            onTextChanged: {
+            onTextEdited: {
+                hasChanged = true
                 selectedDevice.hostName = text
             }
         }
         TextField {
             Kirigami.FormData.label: "Username:"
             text: selectedDevice.userName
-            onTextChanged: {
+            onTextEdited: {
+                hasChanged = true
                 selectedDevice.userName = text
             }
         }
@@ -52,7 +60,8 @@ Kirigami.ScrollablePage {
             Kirigami.FormData.label: "Password:"
             echoMode: TextInput.Password
             text: selectedDevice.password
-            onTextChanged: {
+            onTextEdited: {
+                hasChanged = true
                 selectedDevice.password = text
             }
         }

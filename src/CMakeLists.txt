@@ -2,7 +2,7 @@
 
 project(onvifviewer VERSION "0.1")
 SET(CMAKE_CXX_STANDARD 11)
-set(QT_MIN_VERSION "5.7.0")
+set(QT_MIN_VERSION "5.9.0")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -55,6 +55,7 @@ set(${PROJECT_NAME}_SRCS
     "onvifdevicemanagermodel.cpp"
     "qml.qrc"
 )
+
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_connection_SRCS} ${${PROJECT_NAME}_WSDL})
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Svg Qt5::Quick KF5::Kirigami2 KDSoap::kdsoap)

@@ -5,6 +5,7 @@ import org.kde.kirigami 2.3 as Kirigami
 import QtQml.Models 2.1
 
 Kirigami.ScrollablePage {
+    id: pageOverview
     title: "Overview"
     objectName: "overviewPage"
 
@@ -24,8 +25,9 @@ Kirigami.ScrollablePage {
         anchors.fill: parent
 
         delegate: Kirigami.AbstractListItem {
-            onPressed: {
+            onClicked: {
                 selectedIndex = index
+                pageStack.pop(pageOverview);
                 pageStack.push(deviceViewerComponent);
             }
 
@@ -53,8 +55,14 @@ Kirigami.ScrollablePage {
                             icon.width: Kirigami.Units.iconSizes.smallMedium
                             icon.height: icon.width
 
+                            onCanceled: {
+                                // For some reason clicks on this button are canceled if the focus is not on this page
+                                onClicked()
+                            }
+
                             onClicked: {
                                 selectedIndex = index
+                                pageStack.pop(pageOverview);
                                 pageStack.push(settingsComponent);
                             }
                         }
