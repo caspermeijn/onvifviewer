@@ -62,6 +62,6 @@ target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Svg Qt5::Quick KF5::Kirigam
 
 install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
-kirigami_package_breeze_icons(ICONS dialog-close zoom-in go-up go-previous go-home go-next go-down view-refresh document-new document-properties)
+kirigami_package_breeze_icons(ICONS go-up go-previous go-home go-next go-down list-add settings-configure transform-move view-refresh)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

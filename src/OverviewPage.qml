@@ -11,7 +11,7 @@ Kirigami.ScrollablePage {
 
     actions {
         main: Kirigami.Action {
-            iconName: "document-new"
+            iconName: "list-add"
             onTriggered: {
                 selectedIndex = deviceManager.appendDevice()
                 pageStack.push(settingsComponent);
@@ -50,8 +50,8 @@ Kirigami.ScrollablePage {
                             QQL.Layout.fillWidth: true
                         }
                         QQC2.ToolButton {
-                            icon.name: "document-properties"
-                            icon.source: "3rd-party/breeze-icons/document-properties.svg"
+                            icon.name: "settings-configure"
+                            icon.source: "3rd-party/breeze-icons/settings-configure.svg"
                             icon.width: Kirigami.Units.iconSizes.smallMedium
                             icon.height: icon.width
 

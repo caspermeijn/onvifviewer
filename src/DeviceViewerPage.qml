@@ -10,7 +10,7 @@ Kirigami.Page {
     actions {
         main: Kirigami.Action {
             visible: selectedDevice.isPtzSupported
-            iconName: "zoom-in"
+            iconName: "transform-move"
             onTriggered: {
                 print("Action button in buttons page clicked");
                 sheet.sheetOpen = !sheet.sheetOpen
