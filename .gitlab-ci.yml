@@ -16,20 +16,20 @@ build:
     - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/ ../KDSoap
     - make install
     - cd ..
-    - git clone --branch v5.44.0 https://github.com/KDE/extra-cmake-modules.git
+    - git clone --branch v5.46.0 https://github.com/KDE/extra-cmake-modules.git
     - mkdir build-ecm
     - cd build-ecm
     - cmake -DCMAKE_BUILD_TYPE=Release ../extra-cmake-modules
     - make install
     - cd ..
-    - git clone --branch v5.44.0 https://github.com/KDE/kirigami.git
+    - git clone --branch v5.46.0 https://github.com/KDE/kirigami.git
     - mkdir build-kirigami
     - cd build-kirigami
     - cmake -DCMAKE_BUILD_TYPE=Release ../kirigami
     - make install
     - cd ..
     - cd 3rdparty
-    - git clone --branch v5.44.0 https://github.com/KDE/breeze-icons.git
+    - git clone --branch v5.46.0 https://github.com/KDE/breeze-icons.git
     - cd ..
   script: 
     - mkdir build
