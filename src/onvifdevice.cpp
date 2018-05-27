@@ -6,12 +6,16 @@
 #include <QDebug>
 
 OnvifDevice::OnvifDevice(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    m_cachedDeviceInformation(new OnvifDeviceInformation())
 {
     connect(&m_connection, &OnvifDeviceConnection::servicesAvailable,
             this, &OnvifDevice::servicesAvailable);
     connect(&m_connection, &OnvifDeviceConnection::errorStringChanged,
             this, &OnvifDevice::errorStringChanged);
+
+    // TODO: Figure out why qRegisterMetaType is needed, when we already called Q_DECLARE_METATYPE
+    qRegisterMetaType<OnvifDeviceInformation>("OnvifDeviceInformation");
 }
 
 void OnvifDevice::connectToDevice()
@@ -26,6 +30,11 @@ void OnvifDevice::reconnectToDevice()
 
     emit snapshotUriChanged(snapshotUri());
     emit streamUriChanged(streamUri());
+}
+
+OnvifDeviceInformation *OnvifDevice::deviceInformation() const
+{
+    return m_cachedDeviceInformation;
 }
 
 QUrl OnvifDevice::snapshotUri() const
@@ -67,19 +76,10 @@ void OnvifDevice::servicesAvailable()
         connect(mediaService, &OnvifMediaService::profileListAvailable,
                 this, &OnvifDevice::profileListAvailable);
         connect(mediaService, &OnvifMediaService::streamUriAvailable,
-                this, &OnvifDevice::streamUriAvailable);
-        connect(mediaService, &OnvifMediaService::streamUriAvailable,
                 this, &OnvifDevice::streamUriChanged);
-        connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
-                this, &OnvifDevice::snapshotUriAvailable);
         connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
                 this, &OnvifDevice::snapshotUriChanged);
     }
-}
-
-void OnvifDevice::deviceInformationAvailable(const OnvifDeviceInformation &deviceInformation)
-{
-    qDebug() << "Device information:" << deviceInformation;
 }
 
 void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileList)
@@ -90,21 +90,13 @@ void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileLi
     Q_ASSERT(profileList.size());
     //TODO: Add a proper profile selection
     m_selectedMediaProfile = profileList.first();
-    for(auto profile : profileList)
-    {
-        qDebug() << "Available profile:" << profile;
-    }
     mediaService->selectProfile(m_selectedMediaProfile);
 }
 
-void OnvifDevice::snapshotUriAvailable(const QUrl &snapshotUri)
+void OnvifDevice::deviceInformationAvailable(const OnvifDeviceInformation &deviceInformation)
 {
-    qDebug() << "Snapshot uri:" << snapshotUri;
-}
-
-void OnvifDevice::streamUriAvailable(const QUrl &streamUri)
-{
-    qDebug() << "Stream uri:" << streamUri;
+    *m_cachedDeviceInformation = deviceInformation;
+    emit deviceInformationChanged(m_cachedDeviceInformation);
 }
 
 QString OnvifDevice::deviceName() const

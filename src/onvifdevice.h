@@ -16,6 +16,7 @@ class OnvifDevice : public QObject
     Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
     Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
     Q_PROPERTY(QString errorString READ errorString NOTIFY errorStringChanged)
+    Q_PROPERTY(OnvifDeviceInformation* deviceInformation READ deviceInformation NOTIFY deviceInformationChanged)
     Q_PROPERTY(QUrl snapshotUri READ snapshotUri NOTIFY snapshotUriChanged)
     Q_PROPERTY(QUrl streamUri READ streamUri NOTIFY streamUriChanged)
     Q_PROPERTY(bool isPtzSupported READ isPtzSupported)
@@ -26,6 +27,7 @@ public:
     void connectToDevice();
     Q_INVOKABLE void reconnectToDevice();
 
+    OnvifDeviceInformation* deviceInformation() const;
     QUrl snapshotUri() const;
     QUrl streamUri() const;
     QString errorString() const;
@@ -51,6 +53,7 @@ signals:
     void userNameChanged(const QString& userName);
     void passwordChanged(const QString& password);
     void errorStringChanged(const QString& errorString);
+    void deviceInformationChanged(OnvifDeviceInformation * deviceInformation);
     void snapshotUriChanged(const QUrl& url);
     void streamUriChanged(const QUrl& url);
 
@@ -66,8 +69,6 @@ private slots:
     void servicesAvailable();
     void deviceInformationAvailable(const OnvifDeviceInformation& deviceInformation);
     void profileListAvailable(const QList<OnvifMediaProfile>& profileList);
-    void snapshotUriAvailable(const QUrl& snapshotUri);
-    void streamUriAvailable(const QUrl& streamUri);
 
 private:
     OnvifDeviceConnection m_connection;
@@ -76,7 +77,7 @@ private:
     QString m_userName;
     QString m_password;
     OnvifMediaProfile m_selectedMediaProfile;
+    OnvifDeviceInformation* m_cachedDeviceInformation;
 };
-
 
 #endif // ONVIFDEVICE_H

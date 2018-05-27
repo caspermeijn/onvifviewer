@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.1
 import QtQuick.Controls 2.0 as QQC2
+import QtQuick.Layouts 1.2
 import org.kde.kirigami 2.0 as Kirigami
 import net.meijn.onvifviewer 1.0
 
@@ -13,18 +14,27 @@ Kirigami.Page {
             iconName: "transform-move"
             onTriggered: {
                 print("Action button in buttons page clicked");
-                sheet.sheetOpen = !sheet.sheetOpen
+                ptzOverlay.sheetOpen = !ptzOverlay.sheetOpen
             }
         }
+        contextualActions: [
+            Kirigami.Action {
+                text:"Device information"
+                iconName: "help-about"
+                onTriggered: {
+                    deviceInformation.sheetOpen = !deviceInformation.sheetOpen
+                }
+            }
+        ]
     }
     Kirigami.OverlaySheet {
-        id: sheet
+        id: ptzOverlay
         Column{
             QQC2.ToolButton {
                 icon.name: "go-up"
                 icon.source: "3rd-party/breeze-icons/go-up.svg"
                 icon.width: Kirigami.Units.iconSizes.medium
-                icon.height: icon.width
+                icon.height: Kirigami.Units.iconSizes.medium
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     selectedDevice.ptzUp()
@@ -36,7 +46,7 @@ Kirigami.Page {
                     icon.name: "go-previous"
                     icon.source: "3rd-party/breeze-icons/go-previous.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
-                    icon.height: icon.width
+                    icon.height: Kirigami.Units.iconSizes.medium
                     onClicked: {
                         selectedDevice.ptzLeft()
                     }
@@ -46,7 +56,7 @@ Kirigami.Page {
                     icon.name: "go-home"
                     icon.source: "3rd-party/breeze-icons/go-home.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
-                    icon.height: icon.width
+                    icon.height: Kirigami.Units.iconSizes.medium
                     onClicked: {
                         selectedDevice.ptzHome()
                     }
@@ -60,7 +70,7 @@ Kirigami.Page {
                     icon.name: "go-next"
                     icon.source: "3rd-party/breeze-icons/go-next.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
-                    icon.height: icon.width
+                    icon.height: Kirigami.Units.iconSizes.medium
                     onClicked: {
                         selectedDevice.ptzRight()
                     }
@@ -70,14 +80,61 @@ Kirigami.Page {
                 icon.name: "go-down"
                 icon.source: "3rd-party/breeze-icons/go-down.svg"
                 icon.width: Kirigami.Units.iconSizes.medium
-                icon.height: icon.width
+                icon.height: Kirigami.Units.iconSizes.medium
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     selectedDevice.ptzDown()
                 }
             }
         }
+    }
+    Kirigami.OverlaySheet {
+        id: deviceInformation
+        GridLayout {
+            columns: 2
+            anchors.margins: Kirigami.Units.gridUnit / 2
 
+            Kirigami.Heading {
+                text: "Device information"
+                Layout.columnSpan: 2
+                level: 2
+            }
+
+            QQC2.Label {
+                text: "Manufacturer:"
+            }
+            QQC2.Label {
+                text: selectedDevice.deviceInformation.manufacturer
+            }
+
+            QQC2.Label {
+                text: "Model:"
+            }
+            QQC2.Label {
+                text: selectedDevice.deviceInformation.model
+            }
+
+            QQC2.Label {
+                text: "Firmware version:"
+            }
+            QQC2.Label {
+                text: selectedDevice.deviceInformation.firmwareVersion
+            }
+
+            QQC2.Label {
+                text: "Serial number:"
+            }
+            QQC2.Label {
+                text: selectedDevice.deviceInformation.serialNumber
+            }
+
+            QQC2.Label {
+                text: "Hardware identifier:"
+            }
+            QQC2.Label {
+                text: selectedDevice.deviceInformation.hardwareId
+            }
+        }
     }
     Item {
         anchors.fill: parent

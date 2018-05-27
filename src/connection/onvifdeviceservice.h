@@ -1,6 +1,7 @@
 ﻿#ifndef ONVIFDEVICESERVICE_H
 #define ONVIFDEVICESERVICE_H
 
+#include "onvifdeviceinformation.h"
 #include <QObject>
 
 class OnvifDeviceConnection;
@@ -9,28 +10,6 @@ class TDS__GetServiceCapabilitiesResponse;
 class TDS__GetDeviceInformationResponse;
 }
 class KDSoapMessage;
-
-class OnvifDeviceInformation
-{
-public:
-    OnvifDeviceInformation();
-    OnvifDeviceInformation(const OnvifSoapDevicemgmt::TDS__GetDeviceInformationResponse& deviceInformationResponse);
-
-    QString manufacturer() const;
-    QString model() const;
-    QString firmwareVersion() const;
-    QString serialNumber() const;
-    QString hardwareId() const;
-
-private:
-    QString m_manufacturer;
-    QString m_model;
-    QString m_firmwareVersion;
-    QString m_serialNumber;
-    QString m_hardwareId;
-};
-
-QDebug operator<<(QDebug debug, const OnvifDeviceInformation &d);
 
 class OnvifDeviceService : public QObject
 {

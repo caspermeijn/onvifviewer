@@ -41,6 +41,7 @@ KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver20/p
 
 set(${PROJECT_NAME}_connection_SRCS
     "connection/onvifdeviceconnection.cpp"
+    "connection/onvifdeviceinformation.cpp"
     "connection/onvifdeviceservice.cpp"
     "connection/onvifmediaservice.cpp"
     "connection/onvifmediaprofile.cpp"

@@ -5,6 +5,7 @@
 #include "onvifdevicemanager.h"
 #include "onvifdevicemanagermodel.h"
 #include "onvifdevice.h"
+#include "onvifdeviceinformation.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -24,6 +25,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     OnvifDeviceManagerModel deviceManagerModel(&deviceManager);
 
     qmlRegisterType<OnvifDevice>("net.meijn.onvifviewer", 1, 0, "OnvifDevice");
+    qmlRegisterType<OnvifDeviceInformation>("net.meijn.onvifviewer", 1, 0, "OnvifDeviceInformation");
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("deviceManagerModel", &deviceManagerModel);

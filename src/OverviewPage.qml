@@ -53,7 +53,7 @@ Kirigami.ScrollablePage {
                             icon.name: "settings-configure"
                             icon.source: "3rd-party/breeze-icons/settings-configure.svg"
                             icon.width: Kirigami.Units.iconSizes.smallMedium
-                            icon.height: icon.width
+                            icon.height: Kirigami.Units.iconSizes.smallMedium
 
                             onCanceled: {
                                 // For some reason clicks on this button are canceled if the focus is not on this page
