@@ -15,6 +15,7 @@ public:
     QList<OnvifDevice*> deviceList() const;
     Q_INVOKABLE OnvifDevice* at(int i);
     Q_INVOKABLE int appendDevice();
+    Q_INVOKABLE void removeDevice(int i);
 
 signals:
     void deviceListChanged(const QList<OnvifDevice *> &deviceList);

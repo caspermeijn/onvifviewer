@@ -94,3 +94,10 @@ int OnvifDeviceManager::appendDevice()
     createNewDevice();
     return m_deviceList.count() - 1;
 }
+
+void OnvifDeviceManager::removeDevice(int i)
+{
+    OnvifDevice * device = m_deviceList.takeAt(i);
+    emit deviceListChanged(m_deviceList);
+    device->deleteLater();
+}
