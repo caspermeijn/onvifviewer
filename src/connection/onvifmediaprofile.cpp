@@ -2,8 +2,7 @@
 
 #include <QDebug>
 #include "wsdl_media.h"
-
-using namespace OnvifSoapMedia;
+#include "wsdl_media2.h"
 
 class OnvifMediaProfile::Private : public QSharedData
 {
@@ -12,11 +11,32 @@ public:
         fixed(false)
     {;}
 
-    Private(const TT__Profile &profile) :
+    Private(const OnvifSoapMedia::TT__Profile &profile) :
         fixed(profile.fixed()),
         name(profile.name()),
         token(profile.token().value()),
         ptzNodeToken( profile.pTZConfiguration().nodeToken())
+    {
+        Q_ASSERT(token.size());
+        switch (profile.videoEncoderConfiguration().encoding()) {
+        case OnvifSoapMedia::TT__VideoEncoding::JPEG:
+            videoEncoding = "JPEG";
+            break;
+        case OnvifSoapMedia::TT__VideoEncoding::H264:
+            videoEncoding = "H264";
+            break;
+        case OnvifSoapMedia::TT__VideoEncoding::MPEG4:
+            videoEncoding = "MPEG4";
+            break;
+        }
+    }
+
+    Private(const OnvifSoapMedia2::TR2__MediaProfile &profile) :
+        fixed(profile.fixed()),
+        name(profile.name()),
+        token(profile.token().value()),
+        ptzNodeToken( profile.configurations().pTZ().nodeToken()),
+        videoEncoding(profile.configurations().videoEncoder().encoding())
     {
         Q_ASSERT(token.size());
     }
@@ -25,6 +45,7 @@ public:
     QString name;
     QString token;
     QString ptzNodeToken;
+    QString videoEncoding;
 };
 
 OnvifMediaProfile::OnvifMediaProfile() :
@@ -37,7 +58,12 @@ OnvifMediaProfile::OnvifMediaProfile(const OnvifMediaProfile &other) :
 {
 }
 
-OnvifMediaProfile::OnvifMediaProfile(const TT__Profile &profile) :
+OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia::TT__Profile &profile) :
+    d(new Private(profile))
+{
+}
+
+OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia2::TR2__MediaProfile &profile) :
     d(new Private(profile))
 {
 }
@@ -88,6 +114,11 @@ void OnvifMediaProfile::setFixed(bool fixed)
 QString OnvifMediaProfile::ptzNodeToken() const
 {
     return d->ptzNodeToken;
+}
+
+QString OnvifMediaProfile::videoEncoding() const
+{
+    return d->videoEncoding;
 }
 
 QDebug operator<<(QDebug debug, const OnvifMediaProfile &p)

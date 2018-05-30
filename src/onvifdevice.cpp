@@ -2,6 +2,7 @@
 
 #include "onvifdeviceservice.h"
 #include "onvifmediaservice.h"
+#include "onvifmedia2service.h"
 #include "onvifptzservice.h"
 #include <QDebug>
 
@@ -39,17 +40,27 @@ OnvifDeviceInformation *OnvifDevice::deviceInformation() const
 
 QUrl OnvifDevice::snapshotUri() const
 {
+    OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
+    if(media2Service)
+        return media2Service->getSnapshotUri();
+
     OnvifMediaService* mediaService = m_connection.getMediaService();
     if(mediaService)
         return mediaService->getSnapshotUri();
+
     return QUrl();
 }
 
 QUrl OnvifDevice::streamUri() const
 {
+    OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
+    if(media2Service)
+        return media2Service->getStreamUri();
+
     OnvifMediaService* mediaService = m_connection.getMediaService();
     if(mediaService)
         return mediaService->getStreamUri();
+
     return QUrl();
 }
 
@@ -71,7 +82,17 @@ void OnvifDevice::servicesAvailable()
     }
 
     OnvifMediaService *mediaService = device->getMediaService();
-    if(mediaService)
+    OnvifMedia2Service *media2Service = device->getMedia2Service();
+    if(media2Service)
+    {
+        connect(media2Service, &OnvifMedia2Service::profileListAvailable,
+                this, &OnvifDevice::profileListAvailable);
+        connect(media2Service, &OnvifMedia2Service::streamUriAvailable,
+                this, &OnvifDevice::streamUriChanged);
+        connect(media2Service, &OnvifMedia2Service::snapshotUriAvailable,
+                this, &OnvifDevice::snapshotUriChanged);
+    }
+    else if(mediaService)
     {
         connect(mediaService, &OnvifMediaService::profileListAvailable,
                 this, &OnvifDevice::profileListAvailable);
@@ -81,16 +102,22 @@ void OnvifDevice::servicesAvailable()
                 this, &OnvifDevice::snapshotUriChanged);
     }
 }
+}
 
 void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileList)
 {
     OnvifMediaService * mediaService = qobject_cast<OnvifMediaService *>(sender());
-    Q_ASSERT(mediaService);
+    OnvifMedia2Service * media2Service = qobject_cast<OnvifMedia2Service *>(sender());
+    Q_ASSERT(mediaService || media2Service);
 
     Q_ASSERT(profileList.size());
     //TODO: Add a proper profile selection
     m_selectedMediaProfile = profileList.first();
-    mediaService->selectProfile(m_selectedMediaProfile);
+
+    if(mediaService)
+        mediaService->selectProfile(m_selectedMediaProfile);
+    if(media2Service)
+        media2Service->selectProfile(m_selectedMediaProfile);
 }
 
 void OnvifDevice::deviceInformationAvailable(const OnvifDeviceInformation &deviceInformation)

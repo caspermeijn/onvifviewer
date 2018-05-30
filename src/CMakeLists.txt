@@ -36,6 +36,9 @@ set(KSWSDL2CPP_OPTION -namespace OnvifSoapDevicemgmt)
 KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver10/device/wsdl/devicemgmt.wsdl)
 set(KSWSDL2CPP_OPTION -namespace OnvifSoapMedia)
 KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver10/media/wsdl/media.wsdl)
+set(KSWSDL2CPP_OPTION -namespace OnvifSoapMedia2)
+#TODO: Fix the media2.wsdl file, as this is not the original file path
+KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver20/media/wsdl/media2.wsdl)
 set(KSWSDL2CPP_OPTION -namespace OnvifSoapPtz)
 KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver20/ptz/wsdl/ptz.wsdl)
 
@@ -44,6 +47,7 @@ set(${PROJECT_NAME}_connection_SRCS
     "connection/onvifdeviceinformation.cpp"
     "connection/onvifdeviceservice.cpp"
     "connection/onvifmediaservice.cpp"
+    "connection/onvifmedia2service.cpp"
     "connection/onvifmediaprofile.cpp"
     "connection/onvifptzservice.cpp"
 )

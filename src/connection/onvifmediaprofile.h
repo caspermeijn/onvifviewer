@@ -6,6 +6,9 @@
 namespace OnvifSoapMedia {
 class TT__Profile;
 }
+namespace OnvifSoapMedia2 {
+class TR2__MediaProfile;
+}
 
 class OnvifMediaProfile
 {
@@ -13,6 +16,7 @@ public:
     OnvifMediaProfile();
     OnvifMediaProfile( const OnvifMediaProfile &other );
     OnvifMediaProfile(const OnvifSoapMedia::TT__Profile& profile);
+    OnvifMediaProfile(const OnvifSoapMedia2::TR2__MediaProfile& profile);
     ~OnvifMediaProfile();
 
     OnvifMediaProfile &operator=(const OnvifMediaProfile &other);
@@ -27,6 +31,7 @@ public:
     void setFixed(bool fixed);
 
     QString ptzNodeToken() const;
+    QString videoEncoding() const;
 
 private:
     class Private;

@@ -5,6 +5,7 @@
 
 class OnvifDeviceService;
 class OnvifMediaService;
+class OnvifMedia2Service;
 class OnvifPtzService;
 class KDSoapClientInterface;
 namespace OnvifSoapDevicemgmt {
@@ -30,6 +31,7 @@ public:
 
     OnvifDeviceService *getDeviceService() const;
     OnvifMediaService *getMediaService() const;
+    OnvifMedia2Service *getMedia2Service() const;
     OnvifPtzService *getPtzService() const;
 
     /* internal */

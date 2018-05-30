@@ -157,11 +157,7 @@ void OnvifPtzService::saveHomePosition(const OnvifMediaProfile &profile)
 
 void OnvifPtzService::getServiceCapabilitiesDone(const TPTZ__GetServiceCapabilitiesResponse &parameters)
 {
-    qDebug() << "PTZ capabilities"
-             << "eFlip:" << parameters.capabilities().eFlip()
-             << "reverse:" << parameters.capabilities().reverse()
-             << "moveStatus:" << parameters.capabilities().moveStatus()
-             << "statusPosition:" << parameters.capabilities().statusPosition();
+    //TODO: check for required and optional capabilities
 }
 
 void OnvifPtzService::getServiceCapabilitiesError(const KDSoapMessage &fault)
@@ -172,17 +168,6 @@ void OnvifPtzService::getServiceCapabilitiesError(const KDSoapMessage &fault)
 void OnvifPtzService::getNodesDone(const OnvifSoapPtz::TPTZ__GetNodesResponse &parameters)
 {
     d->nodeList = parameters.pTZNode();
-    for(auto node : parameters.pTZNode())
-    {
-        qDebug() << "PTZ node"
-                 << "name:" << node.name()
-                 << "token:" << node.token()
-                 << "homeSupported" << node.homeSupported()
-                 << "fixedHomePosition" << node.fixedHomePosition()
-                 << "geoMove" << node.geoMove()
-                 << "maximumNumberOfPresets" << node.maximumNumberOfPresets()
-                 << "auxiliaryCommands" << node.auxiliaryCommands() ;
-    }
 }
 
 void OnvifPtzService::getNodesError(const KDSoapMessage &fault)
@@ -192,17 +177,7 @@ void OnvifPtzService::getNodesError(const KDSoapMessage &fault)
 
 void OnvifPtzService::getConfigurationsDone(const TPTZ__GetConfigurationsResponse &parameters)
 {
-    for(auto config : parameters.pTZConfiguration())
-    {
-        qDebug() << "PTZ configuration"
-                 << "name:" << config.name()
-                 << "token:" << config.token()
-                 << "defaultRelativePanTiltTranslationSpace" << config.defaultRelativePanTiltTranslationSpace()
-                 << "defaultPTZSpeed" << config.defaultPTZSpeed().panTilt().x() << config.defaultPTZSpeed().panTilt().y() << config.defaultPTZSpeed().panTilt().space()
-                 << "defaultPTZTimeout" << config.defaultPTZTimeout()
-                 << "moveRamp" << config.moveRamp()
-                 << "panTiltLimits" << config.panTiltLimits().range().xRange().min() << config.panTiltLimits().range().xRange().max() << config.panTiltLimits().range().yRange().min()  << config.panTiltLimits().range().yRange().max() << config.panTiltLimits().range().uRI() ;
-    }
+    // TODO: What can we do with the the PTZ configuration
 }
 
 void OnvifPtzService::getConfigurationsError(const KDSoapMessage &fault)
@@ -212,11 +187,7 @@ void OnvifPtzService::getConfigurationsError(const KDSoapMessage &fault)
 
 void OnvifPtzService::getStatusDone(const OnvifSoapPtz::TPTZ__GetStatusResponse &parameters)
 {
-    qDebug() << "PTZ status"
-             << "position pantilt:" << parameters.pTZStatus().position().panTilt().x() << parameters.pTZStatus().position().panTilt().y() << parameters.pTZStatus().position().panTilt().space()
-             << "moveStatus pantilt:" << parameters.pTZStatus().moveStatus().panTilt().type()
-             << "error:" << parameters.pTZStatus().error()
-             << "time:" << parameters.pTZStatus().utcTime();
+    //TODO: What can we do with the PTZ status?
 }
 
 void OnvifPtzService::getStatusError(const KDSoapMessage &fault)
@@ -224,9 +195,9 @@ void OnvifPtzService::getStatusError(const KDSoapMessage &fault)
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }
 
-void OnvifPtzService::absoluteMoveDone(const TPTZ__AbsoluteMoveResponse &parameters)
+void OnvifPtzService::absoluteMoveDone(const TPTZ__AbsoluteMoveResponse &)
 {
-    qDebug() << Q_FUNC_INFO;
+    //NOP
 }
 
 void OnvifPtzService::absoluteMoveError(const KDSoapMessage &fault)
@@ -234,9 +205,9 @@ void OnvifPtzService::absoluteMoveError(const KDSoapMessage &fault)
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }
 
-void OnvifPtzService::relativeMoveDone(const TPTZ__RelativeMoveResponse &parameters)
+void OnvifPtzService::relativeMoveDone(const TPTZ__RelativeMoveResponse &)
 {
-    qDebug() << Q_FUNC_INFO;
+    //NOP
 }
 
 void OnvifPtzService::relativeMoveError(const KDSoapMessage &fault)
@@ -244,9 +215,9 @@ void OnvifPtzService::relativeMoveError(const KDSoapMessage &fault)
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }
 
-void OnvifPtzService::gotoHomePositionDone(const OnvifSoapPtz::TPTZ__GotoHomePositionResponse &parameters)
+void OnvifPtzService::gotoHomePositionDone(const OnvifSoapPtz::TPTZ__GotoHomePositionResponse &)
 {
-    qDebug() << Q_FUNC_INFO;
+    //NOP
 }
 
 void OnvifPtzService::gotoHomePositionError(const KDSoapMessage &fault)
@@ -254,9 +225,9 @@ void OnvifPtzService::gotoHomePositionError(const KDSoapMessage &fault)
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }
 
-void OnvifPtzService::setHomePositionDone(const OnvifSoapPtz::TPTZ__SetHomePositionResponse &parameters)
+void OnvifPtzService::setHomePositionDone(const OnvifSoapPtz::TPTZ__SetHomePositionResponse &)
 {
-    qDebug() << Q_FUNC_INFO;
+    //NOP
 }
 
 void OnvifPtzService::setHomePositionError(const KDSoapMessage &fault)

@@ -3,6 +3,7 @@
 #include <KDSoapClient/KDSoapAuthentication.h>
 #include "onvifdeviceservice.h"
 #include "onvifmediaservice.h"
+#include "onvifmedia2service.h"
 #include "onvifptzservice.h"
 #include <QCryptographicHash>
 #include <QDebug>
@@ -20,12 +21,14 @@ public:
     Private() :
         deviceService(NULL),
         mediaService(NULL),
+        media2Service(NULL),
         ptzService(NULL)
     {;}
 
     OnvifSoapDevicemgmt::DeviceBindingService soapService;
     OnvifDeviceService * deviceService;
     OnvifMediaService * mediaService;
+    OnvifMedia2Service * media2Service;
     OnvifPtzService * ptzService;
 
     QString username;
@@ -105,6 +108,9 @@ void OnvifDeviceConnection::disconnectFromDevice()
     delete d->mediaService;
     d->mediaService = NULL;
 
+    delete d->media2Service;
+    d->media2Service = NULL;
+
     delete d->ptzService;
     d->ptzService = NULL;
 }
@@ -130,6 +136,13 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
             if(!d->mediaService)
             {
                 d->mediaService = new OnvifMediaService(service.xAddr(), this);
+            }
+        }
+        else if(service.namespace_() == "http://www.onvif.org/ver20/media/wsdl")
+        {
+            if(!d->media2Service)
+            {
+                d->media2Service = new OnvifMedia2Service(service.xAddr(), this);
             }
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/ptz/wsdl")
@@ -203,6 +216,8 @@ void OnvifDeviceConnection::checkServicesAvailable()
             d->deviceService->connectToService();
         if (d->mediaService)
             d->mediaService->connectToService();
+        if (d->media2Service)
+            d->media2Service->connectToService();
         if (d->ptzService)
             d->ptzService->connectToService();
         emit servicesAvailable();
@@ -217,6 +232,11 @@ OnvifDeviceService *OnvifDeviceConnection::getDeviceService() const
 OnvifMediaService *OnvifDeviceConnection::getMediaService() const
 {
     return d->mediaService;
+}
+
+OnvifMedia2Service *OnvifDeviceConnection::getMedia2Service() const
+{
+    return d->media2Service;
 }
 
 OnvifPtzService *OnvifDeviceConnection::getPtzService() const
