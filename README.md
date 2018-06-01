@@ -10,6 +10,8 @@ There was no open-source application for viewing Onvif cameras for Plasma Mobile
 ## Android
 The application is available via the [Google Play Store] (https://play.google.com/store/apps/details?id=net.meijn.onvifviewer).
 
+NOTE: The video codec of Android doesn't support all types of RTSP streams. Therefore currently the video is not a live stream, but a series of snapshots.
+
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
       alt="Get it on Google Play"
       height="80">](https://play.google.com/store/apps/details?id=net.meijn.onvifviewer)
