@@ -102,7 +102,6 @@ void OnvifDevice::servicesAvailable()
                 this, &OnvifDevice::snapshotUriChanged);
     }
 }
-}
 
 void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileList)
 {
