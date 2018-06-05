@@ -103,6 +103,35 @@ void OnvifDevice::servicesAvailable()
     }
 }
 
+bool mediaProfileLessThan(const OnvifMediaProfile &p1, const OnvifMediaProfile &p2)
+{
+    if(p1.videoEncoding() != p2.videoEncoding()) {
+        QStringList preferredVideoEncodingList = QStringList()
+                << "H265"
+                << "H264"
+                << "MPV4-ES"
+                << "JPEG"
+                << "";
+        auto index1 = preferredVideoEncodingList.indexOf(p1.videoEncoding());
+        auto index2 = preferredVideoEncodingList.indexOf(p2.videoEncoding());
+        if(index1 != -1 && index2 != -1) {
+            return index1 < index2;
+        } else {
+            if(index1 == -1)
+                qCritical() << "Unknown video encoding" << p1.videoEncoding();
+            if(index2 == -1)
+                qCritical() << "Unknown video encoding" << p2.videoEncoding();
+            return p1.videoEncoding() < p2.videoEncoding();
+        }
+    }
+
+    if(p1.resolutionPixels() != p2.resolutionPixels()) {
+        return p1.resolutionPixels() > p2.resolutionPixels();
+    }
+
+    return p1.token() < p2.token();
+}
+
 void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileList)
 {
     OnvifMediaService * mediaService = qobject_cast<OnvifMediaService *>(sender());
@@ -111,7 +140,9 @@ void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileLi
 
     Q_ASSERT(profileList.size());
     //TODO: Add a proper profile selection
-    m_selectedMediaProfile = profileList.first();
+    auto sortedProfileList = profileList;
+    qSort(sortedProfileList.begin(), sortedProfileList.end(), mediaProfileLessThan);
+    m_selectedMediaProfile = sortedProfileList.first();
 
     if(mediaService)
         mediaService->selectProfile(m_selectedMediaProfile);

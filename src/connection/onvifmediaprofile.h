@@ -32,6 +32,7 @@ public:
 
     QString ptzNodeToken() const;
     QString videoEncoding() const;
+    long resolutionPixels() const;
 
 private:
     class Private;

@@ -8,14 +8,16 @@ class OnvifMediaProfile::Private : public QSharedData
 {
 public:
     Private() :
-        fixed(false)
+        fixed(false),
+        resolutionPixels(0)
     {;}
 
     Private(const OnvifSoapMedia::TT__Profile &profile) :
         fixed(profile.fixed()),
         name(profile.name()),
         token(profile.token().value()),
-        ptzNodeToken( profile.pTZConfiguration().nodeToken())
+        ptzNodeToken(profile.pTZConfiguration().nodeToken()),
+        resolutionPixels(profile.videoEncoderConfiguration().resolution().height() * profile.videoEncoderConfiguration().resolution().width())
     {
         Q_ASSERT(token.size());
         switch (profile.videoEncoderConfiguration().encoding()) {
@@ -26,7 +28,7 @@ public:
             videoEncoding = "H264";
             break;
         case OnvifSoapMedia::TT__VideoEncoding::MPEG4:
-            videoEncoding = "MPEG4";
+            videoEncoding = "MPV4-ES";
             break;
         }
     }
@@ -36,16 +38,19 @@ public:
         name(profile.name()),
         token(profile.token().value()),
         ptzNodeToken( profile.configurations().pTZ().nodeToken()),
-        videoEncoding(profile.configurations().videoEncoder().encoding())
+        videoEncoding(profile.configurations().videoEncoder().encoding()),
+        resolutionPixels(profile.configurations().videoEncoder().resolution().height() * profile.configurations().videoEncoder().resolution().width())
     {
         Q_ASSERT(token.size());
     }
+
 
     bool fixed;
     QString name;
     QString token;
     QString ptzNodeToken;
     QString videoEncoding;
+    long resolutionPixels;
 };
 
 OnvifMediaProfile::OnvifMediaProfile() :
@@ -121,11 +126,18 @@ QString OnvifMediaProfile::videoEncoding() const
     return d->videoEncoding;
 }
 
+long OnvifMediaProfile::resolutionPixels() const
+{
+    return d->resolutionPixels;
+}
+
 QDebug operator<<(QDebug debug, const OnvifMediaProfile &p)
 {
     QDebugStateSaver saver(debug);
     debug.nospace() << "(Fixed: " << p.fixed()
                     << ", Name: " << p.name()
-                    << ", Token: " << p.token() << ')';
+                    << ", Token: " << p.token()
+                    << ", VideoEncoding: " << p.videoEncoding()
+                    << ", ResolutionPixels: " << p.resolutionPixels()<< ')';
     return debug;
 }
