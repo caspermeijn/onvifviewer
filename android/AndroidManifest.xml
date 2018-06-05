@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<manifest package="net.meijn.onvifviewer" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.1" android:versionCode="3" android:installLocation="auto">
+<manifest package="net.meijn.onvifviewer" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.3" android:versionCode="6" android:installLocation="auto">
     <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="OnvifViewer" android:icon="@drawable/icon">
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="OnvifViewer" android:theme="@style/AppTheme" android:screenOrientation="unspecified" android:windowSoftInputMode="adjustResize" android:launchMode="singleTop">
             <intent-filter>
