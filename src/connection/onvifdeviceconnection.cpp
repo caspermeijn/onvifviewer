@@ -140,10 +140,11 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/media/wsdl")
         {
-            if(!d->media2Service)
-            {
-                d->media2Service = new OnvifMedia2Service(service.xAddr(), this);
-            }
+            //TODO: figure out why some cameras will not work correct with media2 service
+//            if(!d->media2Service)
+//            {
+//                d->media2Service = new OnvifMedia2Service(service.xAddr(), this);
+//            }
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/ptz/wsdl")
         {
