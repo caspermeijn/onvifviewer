@@ -1,6 +1,6 @@
 ﻿#include "onvifdeviceconnection.h"
 
-#include <KDSoapClient/KDSoapAuthentication.h>
+#include </home/casper/build-android-install-prefix/include/KDSoapClient/KDSoapAuthentication.h>
 #include "onvifdeviceservice.h"
 #include "onvifmediaservice.h"
 #include "onvifmedia2service.h"
@@ -145,13 +145,12 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/media/wsdl")
         {
-            //TODO: figure out why some cameras will not work correct with media2 service
-//            if(!d->media2Service)
-//            {
-//                OnvifSoapMedia2::TR2__Capabilities2 capabilities;
-//                capabilities.deserialize(service.capabilities().any());
-//                d->media2Service = new OnvifMedia2Service(service.xAddr(), capabilities, this);
-//            }
+            if(!d->media2Service)
+            {
+                OnvifSoapMedia2::TR2__Capabilities2 capabilities;
+                capabilities.deserialize(service.capabilities().any());
+                d->media2Service = new OnvifMedia2Service(service.xAddr(), capabilities, this);
+            }
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/ptz/wsdl")
         {

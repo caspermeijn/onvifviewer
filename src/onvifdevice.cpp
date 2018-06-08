@@ -96,8 +96,7 @@ void OnvifDevice::servicesAvailable()
 
     OnvifMediaService *mediaService = device->getMediaService();
     OnvifMedia2Service *media2Service = device->getMedia2Service();
-    if(media2Service)
-    {
+    if(media2Service) {
         connect(media2Service, &OnvifMedia2Service::profileListAvailable,
                 this, &OnvifDevice::profileListAvailable);
         connect(media2Service, &OnvifMedia2Service::streamUriAvailable,
@@ -106,9 +105,7 @@ void OnvifDevice::servicesAvailable()
                 this, &OnvifDevice::supportsSnapshotUriChanged);
         connect(media2Service, &OnvifMedia2Service::snapshotUriAvailable,
                 this, &OnvifDevice::snapshotUriChanged);
-    }
-    else if(mediaService)
-    {
+    } else if(mediaService) {
         connect(mediaService, &OnvifMediaService::profileListAvailable,
                 this, &OnvifDevice::profileListAvailable);
         connect(mediaService, &OnvifMediaService::streamUriAvailable,
@@ -161,10 +158,10 @@ void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileLi
     qSort(sortedProfileList.begin(), sortedProfileList.end(), mediaProfileLessThan);
     m_selectedMediaProfile = sortedProfileList.first();
 
-    if(mediaService)
-        mediaService->selectProfile(m_selectedMediaProfile);
     if(media2Service)
         media2Service->selectProfile(m_selectedMediaProfile);
+    else if(mediaService)
+        mediaService->selectProfile(m_selectedMediaProfile);
 }
 
 void OnvifDevice::deviceInformationAvailable(const OnvifDeviceInformation &deviceInformation)

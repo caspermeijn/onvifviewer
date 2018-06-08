@@ -81,7 +81,7 @@ void OnvifMedia2Service::selectProfile(const OnvifMediaProfile &profile)
 
     TR2__GetStreamUri requestStream;
     requestStream.setProfileToken(d->selectedProfile.token());
-//    requestStream.setProtocol("RtspUnicast");
+    requestStream.setProtocol("RtspUnicast");
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGetStreamUri(requestStream);
 }
