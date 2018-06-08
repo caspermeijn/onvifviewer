@@ -38,6 +38,19 @@ OnvifDeviceInformation *OnvifDevice::deviceInformation() const
     return m_cachedDeviceInformation;
 }
 
+bool OnvifDevice::supportsSnapshotUri() const
+{
+    OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
+    if(media2Service)
+        return media2Service->supportsSnapshotUri();
+
+    OnvifMediaService* mediaService = m_connection.getMediaService();
+    if(mediaService)
+        return mediaService->supportsSnapshotUri();
+
+    return true;
+}
+
 QUrl OnvifDevice::snapshotUri() const
 {
     OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
@@ -89,6 +102,8 @@ void OnvifDevice::servicesAvailable()
                 this, &OnvifDevice::profileListAvailable);
         connect(media2Service, &OnvifMedia2Service::streamUriAvailable,
                 this, &OnvifDevice::streamUriChanged);
+        connect(media2Service, &OnvifMedia2Service::supportsSnapshotUriAvailable,
+                this, &OnvifDevice::supportsSnapshotUriChanged);
         connect(media2Service, &OnvifMedia2Service::snapshotUriAvailable,
                 this, &OnvifDevice::snapshotUriChanged);
     }
@@ -98,6 +113,8 @@ void OnvifDevice::servicesAvailable()
                 this, &OnvifDevice::profileListAvailable);
         connect(mediaService, &OnvifMediaService::streamUriAvailable,
                 this, &OnvifDevice::streamUriChanged);
+        connect(mediaService, &OnvifMediaService::supportsSnapshotUriAvailable,
+                this, &OnvifDevice::supportsSnapshotUriChanged);
         connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
                 this, &OnvifDevice::snapshotUriChanged);
     }

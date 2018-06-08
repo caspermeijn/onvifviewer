@@ -11,13 +11,15 @@ class OnvifMediaService::Private
 {
 public:
     Private(OnvifDeviceConnection *device) :
-        device(device)
+        device(device),
+        supportsSnapshotUri(true)
     {;}
 
     OnvifDeviceConnection * device;
     OnvifSoapMedia::MediaBindingService soapService;
     QList<OnvifMediaProfile> profileList;
     OnvifMediaProfile selectedProfile;
+    bool supportsSnapshotUri;
     QUrl snapshotUri;
     QUrl streamUri;
 };
@@ -83,6 +85,11 @@ void OnvifMediaService::selectProfile(const OnvifMediaProfile &profile)
     d->soapService.asyncGetStreamUri(requestStream);
 }
 
+bool OnvifMediaService::supportsSnapshotUri() const
+{
+    return d->supportsSnapshotUri;
+}
+
 QUrl OnvifMediaService::getSnapshotUri() const
 {
     return d->snapshotUri;
@@ -93,10 +100,17 @@ QUrl OnvifMediaService::getStreamUri() const
     return d->streamUri;
 }
 
-void OnvifMediaService::getServiceCapabilitiesDone(const TRT__GetServiceCapabilitiesResponse &parameters)
+void OnvifMediaService::setCapabilities(TRT__Capabilities capabilities)
 {
     //TODO: find out the service capabilities
     //TODO: Check for required options
+    d->supportsSnapshotUri = capabilities.snapshotUri();
+    emit supportsSnapshotUriAvailable(d->supportsSnapshotUri);
+}
+
+void OnvifMediaService::getServiceCapabilitiesDone(const TRT__GetServiceCapabilitiesResponse &parameters)
+{
+    setCapabilities(parameters.capabilities());
 }
 
 void OnvifMediaService::getServiceCapabilitiesError(const KDSoapMessage &fault)

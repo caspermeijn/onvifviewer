@@ -10,6 +10,8 @@
 #include <QNetworkReply>
 #include <QUrl>
 #include "wsdl_devicemgmt.h"
+#include "wsdl_media.h"
+#include "wsdl_media2.h"
 
 using namespace OnvifSoapDevicemgmt;
 
@@ -137,13 +139,18 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
             {
                 d->mediaService = new OnvifMediaService(service.xAddr(), this);
             }
+            OnvifSoapMedia::TRT__Capabilities capabilities;
+            capabilities.deserialize(service.capabilities().any());
+            d->mediaService->setCapabilities(capabilities);
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/media/wsdl")
         {
             //TODO: figure out why some cameras will not work correct with media2 service
 //            if(!d->media2Service)
 //            {
-//                d->media2Service = new OnvifMedia2Service(service.xAddr(), this);
+//                OnvifSoapMedia2::TR2__Capabilities2 capabilities;
+//                capabilities.deserialize(service.capabilities().any());
+//                d->media2Service = new OnvifMedia2Service(service.xAddr(), capabilities, this);
 //            }
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/ptz/wsdl")

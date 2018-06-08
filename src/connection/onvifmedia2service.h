@@ -8,6 +8,7 @@ class OnvifDeviceConnection;
 namespace OnvifSoapMedia2 {
 class TT__Profile;
 class TT__PTZConfiguration;
+class TR2__Capabilities2;
 class TR2__GetProfilesResponse;
 class TR2__GetServiceCapabilitiesResponse;
 class TR2__GetSnapshotUriResponse;
@@ -19,7 +20,7 @@ class OnvifMedia2Service : public QObject
 {
     Q_OBJECT
 public:
-    explicit OnvifMedia2Service(const QString& endpointAddress, OnvifDeviceConnection *parent);
+    explicit OnvifMedia2Service(const QString& endpointAddress, OnvifSoapMedia2::TR2__Capabilities2 capabilities, OnvifDeviceConnection *parent);
 
     void connectToService();
     void disconnectFromService();
@@ -28,23 +29,26 @@ public:
 
     void selectProfile(const OnvifMediaProfile& profile);
 
+    bool supportsSnapshotUri() const;
     QUrl getSnapshotUri() const;
     QUrl getStreamUri() const;
 
 signals:
     void profileListAvailable(const QList<OnvifMediaProfile>& profileList);
+    void supportsSnapshotUriAvailable(bool supportsSnapshotUri);
     void snapshotUriAvailable(const QUrl& snapshotUri);
     void streamUriAvailable(const QUrl& streamUri);
 
 private slots:
-    void getServiceCapabilitiesDone( const OnvifSoapMedia2::TR2__GetServiceCapabilitiesResponse& parameters );
-    void getServiceCapabilitiesError( const KDSoapMessage& fault );
     void getProfilesDone( const OnvifSoapMedia2::TR2__GetProfilesResponse& parameters );
     void getProfilesError( const KDSoapMessage& fault );
     void getSnapshotUriDone( const OnvifSoapMedia2::TR2__GetSnapshotUriResponse& parameters );
     void getSnapshotUriError( const KDSoapMessage& fault );
     void getStreamUriDone( const OnvifSoapMedia2::TR2__GetStreamUriResponse& parameters );
     void getStreamUriError( const KDSoapMessage& fault );
+
+private:
+    void parseCapabilities(const OnvifSoapMedia2::TR2__Capabilities2& capabilities);
 
 private:
     class Private;

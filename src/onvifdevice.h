@@ -17,6 +17,7 @@ class OnvifDevice : public QObject
     Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
     Q_PROPERTY(QString errorString READ errorString NOTIFY errorStringChanged)
     Q_PROPERTY(OnvifDeviceInformation* deviceInformation READ deviceInformation NOTIFY deviceInformationChanged)
+    Q_PROPERTY(bool supportsSnapshotUri READ supportsSnapshotUri NOTIFY supportsSnapshotUriChanged)
     Q_PROPERTY(QUrl snapshotUri READ snapshotUri NOTIFY snapshotUriChanged)
     Q_PROPERTY(QUrl streamUri READ streamUri NOTIFY streamUriChanged)
     Q_PROPERTY(bool isPtzSupported READ isPtzSupported)
@@ -28,6 +29,7 @@ public:
     Q_INVOKABLE void reconnectToDevice();
 
     OnvifDeviceInformation* deviceInformation() const;
+    bool supportsSnapshotUri() const;
     QUrl snapshotUri() const;
     QUrl streamUri() const;
     QString errorString() const;
@@ -54,6 +56,7 @@ signals:
     void passwordChanged(const QString& password);
     void errorStringChanged(const QString& errorString);
     void deviceInformationChanged(OnvifDeviceInformation * deviceInformation);
+    void supportsSnapshotUriChanged(bool supportsSnapshotUri);
     void snapshotUriChanged(const QUrl& url);
     void streamUriChanged(const QUrl& url);
 

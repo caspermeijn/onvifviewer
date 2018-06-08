@@ -79,11 +79,21 @@ Kirigami.ScrollablePage {
                     QQL.Layout.preferredHeight: Kirigami.Units.gridUnit * 2
                 }
 
+                QQC2.Label {
+                    id: snapshotUnsupportedText
+                    text: "The camera doesn't support the retrieval of snapshots."
+                    wrapMode: Text.Wrap
+                    horizontalAlignment: Text.AlignHCenter
+                    visible: !model.errorString && !model.supportsSnapshotUri
+                    QQL.Layout.fillWidth: true
+                    QQL.Layout.preferredHeight: Kirigami.Units.gridUnit * 2
+                }
+
                 OnvifCameraViewer {
                     id: viewerItem
                     snapshotUri: model.snapshotUri
                     snapshotInterval: 5000
-                    visible: !model.errorString
+                    visible: !model.errorString && model.supportsSnapshotUri
                     QQL.Layout.fillWidth: true
                     QQL.Layout.preferredHeight: parent.width / viewerItem.aspectRatio
                 }

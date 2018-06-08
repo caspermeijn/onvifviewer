@@ -8,6 +8,7 @@ class OnvifDeviceConnection;
 namespace OnvifSoapMedia {
 class TT__Profile;
 class TT__PTZConfiguration;
+class TRT__Capabilities;
 class TRT__GetProfilesResponse;
 class TRT__GetServiceCapabilitiesResponse;
 class TRT__GetSnapshotUriResponse;
@@ -28,11 +29,15 @@ public:
 
     void selectProfile(const OnvifMediaProfile& profile);
 
+    bool supportsSnapshotUri() const;
     QUrl getSnapshotUri() const;
     QUrl getStreamUri() const;
 
+    void setCapabilities(OnvifSoapMedia::TRT__Capabilities capabilities);
+
 signals:
     void profileListAvailable(const QList<OnvifMediaProfile>& profileList);
+    void supportsSnapshotUriAvailable(bool supportsSnapshotUri);
     void snapshotUriAvailable(const QUrl& snapshotUri);
     void streamUriAvailable(const QUrl& streamUri);
 
