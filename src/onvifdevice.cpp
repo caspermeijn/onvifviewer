@@ -15,6 +15,10 @@ OnvifDevice::OnvifDevice(QObject *parent) :
     connect(&m_connection, &OnvifDeviceConnection::errorStringChanged,
             this, &OnvifDevice::errorStringChanged);
 
+    m_ptzStopTimer.setSingleShot(true);
+    connect(&m_ptzStopTimer, &QTimer::timeout,
+            this, &OnvifDevice::ptzStop);
+
     // TODO: Figure out why qRegisterMetaType is needed, when we already called Q_DECLARE_METATYPE
     qRegisterMetaType<OnvifDeviceInformation>("OnvifDeviceInformation");
 }
@@ -164,6 +168,20 @@ void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileLi
         mediaService->selectProfile(m_selectedMediaProfile);
 }
 
+bool OnvifDevice::preferContinuousMove() const
+{
+    return m_preferContinuousMove;
+}
+
+void OnvifDevice::setPreferContinuousMove(bool preferContinuousMove)
+{
+    if(m_preferContinuousMove != preferContinuousMove)
+    {
+        m_preferContinuousMove = preferContinuousMove;
+        emit preferContinuousMoveChanged(m_preferContinuousMove);
+    }
+}
+
 void OnvifDevice::deviceInformationAvailable(const OnvifDeviceInformation &deviceInformation)
 {
     *m_cachedDeviceInformation = deviceInformation;
@@ -208,10 +226,11 @@ bool OnvifDevice::isPtzSupported() const
         return false;
     //TODO: Add a workaround for when relative move is not supported...
     //TODO: Add support for a absolute move; getStatus, then move to current pos + relative move
-    //TODO: Add support for a continuous move; start movement, wait a second, stop movement
-    if(!ptzService->isRelativeMoveSupported(m_selectedMediaProfile))
-        return false;
-    return true;
+    if(ptzService->isRelativeMoveSupported(m_selectedMediaProfile))
+        return true;
+    if(ptzService->isContinuousMoveSupported(m_selectedMediaProfile))
+        return true;
+    return false;
 }
 
 bool OnvifDevice::isPtzHomeSupported() const
@@ -256,31 +275,34 @@ void OnvifDevice::setHostName(const QString &hostName)
 
 void OnvifDevice::ptzUp()
 {
-    OnvifPtzService * ptzService = m_connection.getPtzService();
-    Q_ASSERT(ptzService);
-    ptzService->relativeMove(m_selectedMediaProfile, 0, 0.1);
+    ptzMove(0, 0.1);
 }
 
 void OnvifDevice::ptzDown()
 {
-    OnvifPtzService * ptzService = m_connection.getPtzService();
-    Q_ASSERT(ptzService);
-    ptzService->relativeMove(m_selectedMediaProfile, 0, -0.1);
-
+    ptzMove(0, -0.1);
 }
 
 void OnvifDevice::ptzLeft()
 {
-    OnvifPtzService * ptzService = m_connection.getPtzService();
-    Q_ASSERT(ptzService);
-    ptzService->relativeMove(m_selectedMediaProfile, -0.1, 0);
+    ptzMove(-0.1, 0);
 }
 
 void OnvifDevice::ptzRight()
 {
+    ptzMove(0.1, 0);
+}
+
+void OnvifDevice::ptzMove(qreal xFraction, qreal yFraction)
+{
     OnvifPtzService * ptzService = m_connection.getPtzService();
     Q_ASSERT(ptzService);
-    ptzService->relativeMove(m_selectedMediaProfile, 0.1, 0);
+    if(ptzService->isRelativeMoveSupported(m_selectedMediaProfile) && !preferContinuousMove())
+        ptzService->relativeMove(m_selectedMediaProfile, xFraction, yFraction);
+    else if(ptzService->isContinuousMoveSupported(m_selectedMediaProfile)) {
+        ptzService->continuousMove(m_selectedMediaProfile, xFraction, yFraction);
+        m_ptzStopTimer.start(500);
+    }
 }
 
 void OnvifDevice::ptzHome()
@@ -295,4 +317,11 @@ void OnvifDevice::ptzSaveHomePosition()
     OnvifPtzService * ptzService = m_connection.getPtzService();
     Q_ASSERT(ptzService);
     ptzService->saveHomePosition(m_selectedMediaProfile);
+}
+
+void OnvifDevice::ptzStop()
+{
+    OnvifPtzService * ptzService = m_connection.getPtzService();
+    Q_ASSERT(ptzService);
+    ptzService->stopMovement(m_selectedMediaProfile);
 }

@@ -50,6 +50,10 @@ OnvifPtzService::OnvifPtzService(const QString &endpointAddress, OnvifDeviceConn
             this, &OnvifPtzService::absoluteMoveDone);
     connect(&d->soapService, &PTZBindingService::absoluteMoveError,
             this, &OnvifPtzService::absoluteMoveError);
+    connect(&d->soapService, &PTZBindingService::continuousMoveDone,
+            this, &OnvifPtzService::continuousMoveDone);
+    connect(&d->soapService, &PTZBindingService::continuousMoveError,
+            this, &OnvifPtzService::continuousMoveError);
     connect(&d->soapService, &PTZBindingService::gotoHomePositionDone,
             this, &OnvifPtzService::gotoHomePositionDone);
     connect(&d->soapService, &PTZBindingService::gotoHomePositionError,
@@ -58,6 +62,10 @@ OnvifPtzService::OnvifPtzService(const QString &endpointAddress, OnvifDeviceConn
             this, &OnvifPtzService::setHomePositionDone);
     connect(&d->soapService, &PTZBindingService::setHomePositionError,
             this, &OnvifPtzService::setHomePositionError);
+    connect(&d->soapService, &PTZBindingService::stopDone,
+            this, &OnvifPtzService::stopDone);
+    connect(&d->soapService, &PTZBindingService::stopError,
+            this, &OnvifPtzService::stopError);
 }
 
 void OnvifPtzService::connectToService()
@@ -117,6 +125,48 @@ void OnvifPtzService::relativeMove(const OnvifMediaProfile &profile, qreal xFrac
 
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncRelativeMove(request);
+}
+
+bool OnvifPtzService::isContinuousMoveSupported(const OnvifMediaProfile &profile)
+{
+        for(auto& node : d->nodeList) {
+            if(node.token() == profile.ptzNodeToken()) {
+                return node.supportedPTZSpaces().continuousPanTiltVelocitySpace().size();
+            }
+        }
+        return false;
+}
+
+void OnvifPtzService::continuousMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction)
+{
+    Q_ASSERT(-1.0 <= xFraction && xFraction <= 1.0);
+    Q_ASSERT(-1.0 <= yFraction && yFraction <= 1.0);
+
+    OnvifSoapPtz::TT__Vector2D vector2D;
+    vector2D.setX(xFraction);
+    vector2D.setY(yFraction);
+    vector2D.setSpace("http://www.onvif.org/ver10/tptz/PanTiltSpaces/VelocityGenericSpace");
+
+    OnvifSoapPtz::TT__PTZSpeed speed;
+    speed.setPanTilt(vector2D);
+
+    OnvifSoapPtz::TPTZ__ContinuousMove request;
+    request.setProfileToken(profile.token());
+    request.setVelocity(speed);
+
+    d->device->updateSoapCredentials(d->soapService.clientInterface());
+    d->soapService.asyncContinuousMove(request);
+}
+
+void OnvifPtzService::stopMovement(const OnvifMediaProfile &profile)
+{
+    OnvifSoapPtz::TPTZ__Stop request;
+    request.setProfileToken(profile.token());
+    request.setPanTilt(true);
+    request.setZoom(true);
+
+    d->device->updateSoapCredentials(d->soapService.clientInterface());
+    d->soapService.asyncStop(request);
 }
 
 bool OnvifPtzService::isHomeSupported(const OnvifMediaProfile &profile)
@@ -215,6 +265,16 @@ void OnvifPtzService::relativeMoveError(const KDSoapMessage &fault)
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }
 
+void OnvifPtzService::continuousMoveDone(const TPTZ__ContinuousMoveResponse &parameters)
+{
+    //NOP
+}
+
+void OnvifPtzService::continuousMoveError(const KDSoapMessage &fault)
+{
+    d->device->handleSoapError(fault, Q_FUNC_INFO);
+}
+
 void OnvifPtzService::gotoHomePositionDone(const OnvifSoapPtz::TPTZ__GotoHomePositionResponse &)
 {
     //NOP
@@ -231,6 +291,16 @@ void OnvifPtzService::setHomePositionDone(const OnvifSoapPtz::TPTZ__SetHomePosit
 }
 
 void OnvifPtzService::setHomePositionError(const KDSoapMessage &fault)
+{
+    d->device->handleSoapError(fault, Q_FUNC_INFO);
+}
+
+void OnvifPtzService::stopDone(const TPTZ__StopResponse &parameters)
+{
+    qDebug() << Q_FUNC_INFO;
+}
+
+void OnvifPtzService::stopError(const KDSoapMessage &fault)
 {
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }

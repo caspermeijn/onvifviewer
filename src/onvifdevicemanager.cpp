@@ -25,6 +25,7 @@ void OnvifDeviceManager::loadDevices()
         device->setHostName(settings.value("hostName").toString());
         device->setUserName(settings.value("userName").toString());
         device->setPassword(settings.value("password").toString());
+        device->setPreferContinuousMove(settings.value("preferContinuousMove").toBool());
 
         device->connectToDevice();
     }
@@ -66,6 +67,7 @@ void OnvifDeviceManager::saveDevices()
         settings.setValue("hostName", device->hostName());
         settings.setValue("userName", device->userName());
         settings.setValue("password", device->password());
+        settings.setValue("preferContinuousMove", device->preferContinuousMove());
     }
     settings.endArray();
 }

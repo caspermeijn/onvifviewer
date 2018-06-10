@@ -6,7 +6,8 @@ import net.meijn.onvifviewer 1.0
 import QtQuick.Controls.Material 2.3
 
 Kirigami.ScrollablePage {
-    property bool hasChanged: false
+    property bool hasConnectionSettingsChanged: false
+    property bool hasOtherSettingsChanged: false
 
     title: "Settings"
     objectName: "settingsPage"
@@ -14,10 +15,13 @@ Kirigami.ScrollablePage {
     onActiveFocusChanged: {
         console.log("onActiveFocusChanged", activeFocus, activeFocusItem)
         if(!activeFocus) {
-            if(hasChanged) {
-                selectedDevice.reconnectToDevice()
+            if(hasConnectionSettingsChanged || hasOtherSettingsChanged) {
+                if(hasConnectionSettingsChanged) {
+                    selectedDevice.reconnectToDevice()
+                }
                 deviceManager.saveDevices()
                 hasChanged = false
+                hasConnectionSettingsChanged = false;
             }
         }
     }
@@ -34,14 +38,14 @@ Kirigami.ScrollablePage {
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: selectedDevice.deviceName
+                Kirigami.FormData.label: "Connection settings"
             }
             TextField {
                 Kirigami.FormData.label: "Camera name:"
                 placeholderText: qsTr("eg. Backyard")
                 text: selectedDevice.deviceName
                 onTextEdited: {
-                    hasChanged = true
+                    hasOtherSettingsChanged = true
                     selectedDevice.deviceName = text
                 }
             }
@@ -50,7 +54,7 @@ Kirigami.ScrollablePage {
                 placeholderText: qsTr("eg. ipcam.local or 192.168.0.12")
                 text: selectedDevice.hostName
                 onTextEdited: {
-                    hasChanged = true
+                    hasConnectionSettingsChanged = true
                     selectedDevice.hostName = text
                 }
             }
@@ -58,7 +62,7 @@ Kirigami.ScrollablePage {
                 Kirigami.FormData.label: "Username:"
                 text: selectedDevice.userName
                 onTextEdited: {
-                    hasChanged = true
+                    hasConnectionSettingsChanged = true
                     selectedDevice.userName = text
                 }
             }
@@ -67,12 +71,21 @@ Kirigami.ScrollablePage {
                 echoMode: TextInput.Password
                 text: selectedDevice.password
                 onTextEdited: {
-                    hasChanged = true
+                    hasConnectionSettingsChanged = true
                     selectedDevice.password = text
                 }
             }
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: "Camera properties"
+            }
+            Switch {
+                Kirigami.FormData.label: "Enable camera movement fix"
+                checked: selectedDevice.preferContinuousMove
+                onCheckedChanged: {
+                    hasOtherSettingsChanged = true
+                    selectedDevice.preferContinuousMove = checked
+                }
             }
         }
         Button {

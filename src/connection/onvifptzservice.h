@@ -11,9 +11,11 @@ class TPTZ__GetServiceCapabilitiesResponse;
 class TPTZ__GetNodesResponse;
 class TPTZ__GotoHomePositionResponse;
 class TPTZ__AbsoluteMoveResponse;
+class TPTZ__ContinuousMoveResponse;
 class TPTZ__GetConfigurationsResponse;
 class TPTZ__GetStatusResponse;
 class TPTZ__SetHomePositionResponse;
+class TPTZ__StopResponse;
 }
 class KDSoapMessage;
 
@@ -31,9 +33,14 @@ public:
     bool isRelativeMoveSupported(const OnvifMediaProfile &profile);
     void relativeMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
 
+    bool isContinuousMoveSupported(const OnvifMediaProfile &profile);
+    void continuousMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
+
     bool isHomeSupported(const OnvifMediaProfile &profile);
     void goToHome(const OnvifMediaProfile &profile);
     void saveHomePosition(const OnvifMediaProfile &profile);
+
+    void stopMovement(const OnvifMediaProfile &profile);
 
 private slots:
     void getServiceCapabilitiesDone( const OnvifSoapPtz::TPTZ__GetServiceCapabilitiesResponse& parameters );
@@ -48,10 +55,14 @@ private slots:
     void absoluteMoveError( const KDSoapMessage& fault );
     void relativeMoveDone( const OnvifSoapPtz::TPTZ__RelativeMoveResponse& parameters );
     void relativeMoveError( const KDSoapMessage& fault );
+    void continuousMoveDone( const OnvifSoapPtz::TPTZ__ContinuousMoveResponse& parameters );
+    void continuousMoveError( const KDSoapMessage& fault );
     void gotoHomePositionDone( const OnvifSoapPtz::TPTZ__GotoHomePositionResponse& parameters );
     void gotoHomePositionError( const KDSoapMessage& fault );
     void setHomePositionDone( const OnvifSoapPtz::TPTZ__SetHomePositionResponse& parameters );
     void setHomePositionError( const KDSoapMessage& fault );
+    void stopDone( const OnvifSoapPtz::TPTZ__StopResponse& parameters );
+    void stopError( const KDSoapMessage& fault );
 
 private:
     class Private;

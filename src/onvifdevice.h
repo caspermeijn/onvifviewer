@@ -3,6 +3,7 @@
 
 #include "onvifdeviceconnection.h"
 #include "onvifmediaprofile.h"
+#include <QTimer>
 #include <QObject>
 #include <QUrl>
 
@@ -15,6 +16,7 @@ class OnvifDevice : public QObject
     Q_PROPERTY(QString hostName READ hostName WRITE setHostName NOTIFY hostNameChanged)
     Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
     Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
+    Q_PROPERTY(bool preferContinuousMove READ preferContinuousMove WRITE setPreferContinuousMove NOTIFY preferContinuousMoveChanged)
     Q_PROPERTY(QString errorString READ errorString NOTIFY errorStringChanged)
     Q_PROPERTY(OnvifDeviceInformation* deviceInformation READ deviceInformation NOTIFY deviceInformationChanged)
     Q_PROPERTY(bool supportsSnapshotUri READ supportsSnapshotUri NOTIFY supportsSnapshotUriChanged)
@@ -49,11 +51,15 @@ public:
     bool isPtzSupported() const;
     bool isPtzHomeSupported() const;
 
+    bool preferContinuousMove() const;
+    void setPreferContinuousMove(bool preferContinuousMove);
+
 signals:
     void deviceNameChanged(const QString& deviceName);
     void hostNameChanged(const QString& hostName);
     void userNameChanged(const QString& userName);
     void passwordChanged(const QString& password);
+    void preferContinuousMoveChanged(bool preferContinuousMove);
     void errorStringChanged(const QString& errorString);
     void deviceInformationChanged(OnvifDeviceInformation * deviceInformation);
     void supportsSnapshotUriChanged(bool supportsSnapshotUri);
@@ -65,8 +71,10 @@ public slots:
     void ptzDown();
     void ptzLeft();
     void ptzRight();
+    void ptzMove(qreal xFraction, qreal yFraction);
     void ptzHome();
     void ptzSaveHomePosition();
+    void ptzStop();
 
 private slots:
     void servicesAvailable();
@@ -79,8 +87,10 @@ private:
     QString m_hostName;
     QString m_userName;
     QString m_password;
+    bool m_preferContinuousMove;
     OnvifMediaProfile m_selectedMediaProfile;
     OnvifDeviceInformation* m_cachedDeviceInformation;
+    QTimer m_ptzStopTimer;
 };
 
 #endif // ONVIFDEVICE_H
