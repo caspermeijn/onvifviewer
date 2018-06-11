@@ -1,6 +1,6 @@
 ﻿#include "onvifdeviceconnection.h"
 
-#include </home/casper/build-android-install-prefix/include/KDSoapClient/KDSoapAuthentication.h>
+#include <KDSoapClient/KDSoapAuthentication.h>
 #include "onvifdeviceservice.h"
 #include "onvifmediaservice.h"
 #include "onvifmedia2service.h"
@@ -12,6 +12,7 @@
 #include "wsdl_devicemgmt.h"
 #include "wsdl_media.h"
 #include "wsdl_media2.h"
+#include "wsdl_ptz.h"
 
 using namespace OnvifSoapDevicemgmt;
 
@@ -21,10 +22,10 @@ class OnvifDeviceConnection::Private
 {
 public:
     Private() :
-        deviceService(NULL),
-        mediaService(NULL),
-        media2Service(NULL),
-        ptzService(NULL)
+        deviceService(nullptr),
+        mediaService(nullptr),
+        media2Service(nullptr),
+        ptzService(nullptr)
     {;}
 
     OnvifSoapDevicemgmt::DeviceBindingService soapService;
@@ -105,16 +106,16 @@ void OnvifDeviceConnection::disconnectFromDevice()
     d->getServicesFinished = false;
 
     delete d->deviceService;
-    d->deviceService = NULL;
+    d->deviceService = nullptr;
 
     delete d->mediaService;
-    d->mediaService = NULL;
+    d->mediaService = nullptr;
 
     delete d->media2Service;
-    d->media2Service = NULL;
+    d->media2Service = nullptr;
 
     delete d->ptzService;
-    d->ptzService = NULL;
+    d->ptzService = nullptr;
 }
 
 void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &parameters)
@@ -127,7 +128,6 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
             capabilities.deserialize(service.capabilities().any());
             d->isUsernameTokenSupported = capabilities.security().usernameToken();
             d->isHttpDigestSupported = capabilities.security().httpDigest();
-            //TODO: pass the recieved capabilities on to the services
             if(!d->deviceService)
             {
                 d->deviceService = new OnvifDeviceService(service.xAddr(), this);
@@ -141,7 +141,7 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
             }
             OnvifSoapMedia::TRT__Capabilities capabilities;
             capabilities.deserialize(service.capabilities().any());
-            d->mediaService->setCapabilities(capabilities);
+            d->mediaService->setServiceCapabilities(capabilities);
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/media/wsdl")
         {
@@ -158,6 +158,9 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
             {
                 d->ptzService = new OnvifPtzService(service.xAddr(), this);
             }
+            OnvifSoapPtz::TPTZ__Capabilities capabilities;
+            capabilities.deserialize(service.capabilities().any());
+            d->ptzService->setServiceCapabilities(capabilities);
         }
     }
 

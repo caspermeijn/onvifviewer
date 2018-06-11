@@ -6,6 +6,7 @@
 
 class OnvifDeviceConnection;
 namespace OnvifSoapDevicemgmt {
+class TDS__DeviceServiceCapabilities;
 class TDS__GetServiceCapabilitiesResponse;
 class TDS__GetDeviceInformationResponse;
 }
@@ -26,8 +27,6 @@ signals:
     void deviceInformationAvailable(const OnvifDeviceInformation& deviceInformation);
 
 private slots:
-    void getServiceCapabilitiesDone( const OnvifSoapDevicemgmt::TDS__GetServiceCapabilitiesResponse& parameters );
-    void getServiceCapabilitiesError( const KDSoapMessage& fault );
     void getDeviceInformationDone( const OnvifSoapDevicemgmt::TDS__GetDeviceInformationResponse& parameters );
     void getDeviceInformationError( const KDSoapMessage& fault );
 

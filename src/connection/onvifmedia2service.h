@@ -48,7 +48,7 @@ private slots:
     void getStreamUriError( const KDSoapMessage& fault );
 
 private:
-    void parseCapabilities(const OnvifSoapMedia2::TR2__Capabilities2& capabilities);
+    void setServiceCapabilities(const OnvifSoapMedia2::TR2__Capabilities2& capabilities);
 
 private:
     class Private;

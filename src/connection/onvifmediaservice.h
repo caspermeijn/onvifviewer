@@ -33,7 +33,7 @@ public:
     QUrl getSnapshotUri() const;
     QUrl getStreamUri() const;
 
-    void setCapabilities(OnvifSoapMedia::TRT__Capabilities capabilities);
+    void setServiceCapabilities(OnvifSoapMedia::TRT__Capabilities capabilities);
 
 signals:
     void profileListAvailable(const QList<OnvifMediaProfile>& profileList);

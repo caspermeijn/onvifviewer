@@ -12,6 +12,7 @@ class OnvifMediaService::Private
 public:
     Private(OnvifDeviceConnection *device) :
         device(device),
+        recievedServiceCapabilities(false),
         supportsSnapshotUri(true)
     {;}
 
@@ -19,6 +20,7 @@ public:
     OnvifSoapMedia::MediaBindingService soapService;
     QList<OnvifMediaProfile> profileList;
     OnvifMediaProfile selectedProfile;
+    bool recievedServiceCapabilities;
     bool supportsSnapshotUri;
     QUrl snapshotUri;
     QUrl streamUri;
@@ -50,15 +52,17 @@ OnvifMediaService::OnvifMediaService(const QString &endpointAddress, OnvifDevice
 
 void OnvifMediaService::connectToService()
 {
-    d->device->updateSoapCredentials(d->soapService.clientInterface());
-    d->soapService.asyncGetServiceCapabilities();
-
+    if(!d->recievedServiceCapabilities) {
+        d->device->updateSoapCredentials(d->soapService.clientInterface());
+        d->soapService.asyncGetServiceCapabilities();
+    }
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGetProfiles();
 }
 
 void OnvifMediaService::disconnectFromService()
 {
+    d->recievedServiceCapabilities = false;
     d->profileList.clear();
     d->selectedProfile = OnvifMediaProfile();
     d->snapshotUri.clear();
@@ -100,17 +104,16 @@ QUrl OnvifMediaService::getStreamUri() const
     return d->streamUri;
 }
 
-void OnvifMediaService::setCapabilities(TRT__Capabilities capabilities)
+void OnvifMediaService::setServiceCapabilities(TRT__Capabilities capabilities)
 {
-    //TODO: find out the service capabilities
-    //TODO: Check for required options
+    d->recievedServiceCapabilities = true;
     d->supportsSnapshotUri = capabilities.snapshotUri();
     emit supportsSnapshotUriAvailable(d->supportsSnapshotUri);
 }
 
 void OnvifMediaService::getServiceCapabilitiesDone(const TRT__GetServiceCapabilitiesResponse &parameters)
 {
-    setCapabilities(parameters.capabilities());
+    setServiceCapabilities(parameters.capabilities());
 }
 
 void OnvifMediaService::getServiceCapabilitiesError(const KDSoapMessage &fault)

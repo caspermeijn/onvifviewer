@@ -12,12 +12,14 @@ class OnvifPtzService::Private
 {
 public:
     Private(OnvifDeviceConnection *device) :
-        device(device)
+        device(device),
+        recievedServiceCapabilities(false)
     {;}
 
     OnvifDeviceConnection * device;
     OnvifSoapPtz::PTZBindingService soapService;
     QList< OnvifSoapPtz::TT__PTZNode > nodeList;
+    bool recievedServiceCapabilities;
 };
 
 OnvifPtzService::OnvifPtzService(const QString &endpointAddress, OnvifDeviceConnection *parent) :
@@ -70,8 +72,10 @@ OnvifPtzService::OnvifPtzService(const QString &endpointAddress, OnvifDeviceConn
 
 void OnvifPtzService::connectToService()
 {
-    d->device->updateSoapCredentials(d->soapService.clientInterface());
-    d->soapService.asyncGetServiceCapabilities();
+    if(!d->recievedServiceCapabilities) {
+        d->device->updateSoapCredentials(d->soapService.clientInterface());
+        d->soapService.asyncGetServiceCapabilities();
+    }
 
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGetNodes();
@@ -82,7 +86,13 @@ void OnvifPtzService::connectToService()
 
 void OnvifPtzService::disconnectFromService()
 {
+    d->recievedServiceCapabilities = false;
+}
 
+void OnvifPtzService::setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilities &capabilities)
+{
+     d->recievedServiceCapabilities = true;
+     //TODO: Use capabilities
 }
 
 void OnvifPtzService::absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction)
@@ -207,7 +217,7 @@ void OnvifPtzService::saveHomePosition(const OnvifMediaProfile &profile)
 
 void OnvifPtzService::getServiceCapabilitiesDone(const TPTZ__GetServiceCapabilitiesResponse &parameters)
 {
-    //TODO: check for required and optional capabilities
+    setServiceCapabilities(parameters.capabilities());
 }
 
 void OnvifPtzService::getServiceCapabilitiesError(const KDSoapMessage &fault)

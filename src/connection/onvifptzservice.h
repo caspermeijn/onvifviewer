@@ -6,6 +6,7 @@
 class OnvifDeviceConnection;
 class OnvifMediaProfile;
 namespace OnvifSoapPtz {
+class TPTZ__Capabilities;
 class TPTZ__RelativeMoveResponse;
 class TPTZ__GetServiceCapabilitiesResponse;
 class TPTZ__GetNodesResponse;
@@ -27,6 +28,8 @@ public:
 
     void connectToService();
     void disconnectFromService();
+
+    void setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilities& capabilities);
 
     void absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
 

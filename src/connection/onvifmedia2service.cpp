@@ -43,7 +43,7 @@ OnvifMedia2Service::OnvifMedia2Service(const QString &endpointAddress, TR2__Capa
     connect(&d->soapService, &Media2BindingService::getStreamUriError,
             this, &OnvifMedia2Service::getStreamUriError);
 
-    parseCapabilities(capabilities);
+    setServiceCapabilities(capabilities);
 }
 
 void OnvifMedia2Service::connectToService()
@@ -146,7 +146,7 @@ void OnvifMedia2Service::getStreamUriError(const KDSoapMessage &fault)
     d->device->handleSoapError(fault, Q_FUNC_INFO);
 }
 
-void OnvifMedia2Service::parseCapabilities(const TR2__Capabilities2 &capabilities)
+void OnvifMedia2Service::setServiceCapabilities(const TR2__Capabilities2 &capabilities)
 {
     d->supportsSnapshotUri = capabilities.snapshotUri();
     emit supportsSnapshotUriAvailable(d->supportsSnapshotUri);
