@@ -217,7 +217,7 @@ void OnvifDevice::setPassword(const QString &password)
     }
 }
 
-bool OnvifDevice::isPtzSupported() const
+bool OnvifDevice::isPanTiltSupported() const
 {
     if(m_selectedMediaProfile.ptzNodeToken().isEmpty())
         return false;
@@ -238,6 +238,15 @@ bool OnvifDevice::isPtzHomeSupported() const
     OnvifPtzService * ptzService = m_connection.getPtzService();
     if(ptzService)
         return ptzService->isHomeSupported(m_selectedMediaProfile);
+    else
+        return false;
+}
+
+bool OnvifDevice::isZoomSupported() const
+{
+    OnvifPtzService * ptzService = m_connection.getPtzService();
+    if(ptzService)
+        return ptzService->isRelativeZoomSupported(m_selectedMediaProfile);
     else
         return false;
 }
@@ -324,4 +333,18 @@ void OnvifDevice::ptzStop()
     OnvifPtzService * ptzService = m_connection.getPtzService();
     Q_ASSERT(ptzService);
     ptzService->stopMovement(m_selectedMediaProfile);
+}
+
+void OnvifDevice::ptzZoomIn()
+{
+    OnvifPtzService * ptzService = m_connection.getPtzService();
+    Q_ASSERT(ptzService);
+    ptzService->relativeZoom(m_selectedMediaProfile, 0.1);
+}
+
+void OnvifDevice::ptzZoomOut()
+{
+    OnvifPtzService * ptzService = m_connection.getPtzService();
+    Q_ASSERT(ptzService);
+    ptzService->relativeZoom(m_selectedMediaProfile, -0.1);
 }

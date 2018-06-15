@@ -91,8 +91,8 @@ void OnvifPtzService::disconnectFromService()
 
 void OnvifPtzService::setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilities &capabilities)
 {
-     d->recievedServiceCapabilities = true;
-     //TODO: Use capabilities
+    d->recievedServiceCapabilities = true;
+    //TODO: Use capabilities
 }
 
 void OnvifPtzService::absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction)
@@ -139,12 +139,12 @@ void OnvifPtzService::relativeMove(const OnvifMediaProfile &profile, qreal xFrac
 
 bool OnvifPtzService::isContinuousMoveSupported(const OnvifMediaProfile &profile)
 {
-        for(auto& node : d->nodeList) {
-            if(node.token() == profile.ptzNodeToken()) {
-                return node.supportedPTZSpaces().continuousPanTiltVelocitySpace().size();
-            }
+    for(auto& node : d->nodeList) {
+        if(node.token() == profile.ptzNodeToken()) {
+            return node.supportedPTZSpaces().continuousPanTiltVelocitySpace().size();
         }
-        return false;
+    }
+    return false;
 }
 
 void OnvifPtzService::continuousMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction)
@@ -166,6 +166,35 @@ void OnvifPtzService::continuousMove(const OnvifMediaProfile &profile, qreal xFr
 
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncContinuousMove(request);
+}
+
+bool OnvifPtzService::isRelativeZoomSupported(const OnvifMediaProfile &profile)
+{
+    for(auto& node : d->nodeList) {
+        if(node.token() == profile.ptzNodeToken()) {
+            return node.supportedPTZSpaces().relativeZoomTranslationSpace().size();
+        }
+    }
+    return false;
+}
+
+void OnvifPtzService::relativeZoom(const OnvifMediaProfile &profile, qreal zoomFraction)
+{
+    Q_ASSERT(-1.0 <= zoomFraction && zoomFraction <= 1.0);
+
+    OnvifSoapPtz::TT__Vector1D vector1D;
+    vector1D.setX(zoomFraction);
+    vector1D.setSpace("http://www.onvif.org/ver10/tptz/ZoomSpaces/TranslationGenericSpace");
+
+    OnvifSoapPtz::TT__PTZVector vector;
+    vector.setZoom(vector1D);
+
+    OnvifSoapPtz::TPTZ__RelativeMove request;
+    request.setProfileToken(profile.token());
+    request.setTranslation(vector);
+
+    d->device->updateSoapCredentials(d->soapService.clientInterface());
+    d->soapService.asyncRelativeMove(request);
 }
 
 void OnvifPtzService::stopMovement(const OnvifMediaProfile &profile)

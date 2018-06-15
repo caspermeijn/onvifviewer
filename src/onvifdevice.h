@@ -22,8 +22,9 @@ class OnvifDevice : public QObject
     Q_PROPERTY(bool supportsSnapshotUri READ supportsSnapshotUri NOTIFY supportsSnapshotUriChanged)
     Q_PROPERTY(QUrl snapshotUri READ snapshotUri NOTIFY snapshotUriChanged)
     Q_PROPERTY(QUrl streamUri READ streamUri NOTIFY streamUriChanged)
-    Q_PROPERTY(bool isPtzSupported READ isPtzSupported)
+    Q_PROPERTY(bool isPanTiltSupported READ isPanTiltSupported)
     Q_PROPERTY(bool isPtzHomeSupported READ isPtzHomeSupported)
+    Q_PROPERTY(bool isZoomSupported READ isZoomSupported)
 public:
     explicit OnvifDevice(QObject *parent = nullptr);
 
@@ -48,8 +49,9 @@ public:
     QString password() const;
     void setPassword(const QString &password);
 
-    bool isPtzSupported() const;
+    bool isPanTiltSupported() const;
     bool isPtzHomeSupported() const;
+    bool isZoomSupported() const;
 
     bool preferContinuousMove() const;
     void setPreferContinuousMove(bool preferContinuousMove);
@@ -75,6 +77,8 @@ public slots:
     void ptzHome();
     void ptzSaveHomePosition();
     void ptzStop();
+    void ptzZoomIn();
+    void ptzZoomOut();
 
 private slots:
     void servicesAvailable();

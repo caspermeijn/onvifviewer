@@ -10,7 +10,7 @@ Kirigami.Page {
     title: selectedDevice.deviceName
     actions {
         main: Kirigami.Action {
-            visible: selectedDevice.isPtzSupported
+            visible: selectedDevice.isPanTiltSupported || selectedDevice.isZoomSupported
             iconName: "transform-move"
             onTriggered: {
                 print("Action button in buttons page clicked");
@@ -29,61 +29,91 @@ Kirigami.Page {
     }
     Kirigami.OverlaySheet {
         id: ptzOverlay
-        Column{
-            QQC2.ToolButton {
-                icon.name: "go-up"
-                icon.source: "3rd-party/breeze-icons/go-up.svg"
-                icon.width: Kirigami.Units.iconSizes.medium
-                icon.height: Kirigami.Units.iconSizes.medium
-                anchors.horizontalCenter: parent.horizontalCenter
-                onClicked: {
-                    selectedDevice.ptzUp()
+        RowLayout {
+            anchors.verticalCenter: parent.verticalCenter
+            Column {
+                visible: selectedDevice.isPanTiltSupported
+                anchors.right: parent.horizontalCenter
+                QQC2.ToolButton {
+                    icon.name: "go-up"
+                    icon.source: "3rd-party/breeze-icons/go-up.svg"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: Kirigami.Units.iconSizes.medium
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    onClicked: {
+                        selectedDevice.ptzUp()
+                    }
+                }
+                Row{
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    QQC2.ToolButton {
+                        icon.name: "go-previous"
+                        icon.source: "3rd-party/breeze-icons/go-previous.svg"
+                        icon.width: Kirigami.Units.iconSizes.medium
+                        icon.height: Kirigami.Units.iconSizes.medium
+                        onClicked: {
+                            selectedDevice.ptzLeft()
+                        }
+                    }
+                    QQC2.ToolButton {
+                        visible: selectedDevice.isPtzHomeSupported
+                        icon.name: "go-home"
+                        icon.source: "3rd-party/breeze-icons/go-home.svg"
+                        icon.width: Kirigami.Units.iconSizes.medium
+                        icon.height: Kirigami.Units.iconSizes.medium
+                        onClicked: {
+                            selectedDevice.ptzHome()
+                        }
+                        onPressAndHold: {
+                            console.log("onPressAndHold")
+                            selectedDevice.ptzSaveHomePosition()
+                            showPassiveNotification("Saving current position as home")
+                        }
+                    }
+                    QQC2.ToolButton {
+                        icon.name: "go-next"
+                        icon.source: "3rd-party/breeze-icons/go-next.svg"
+                        icon.width: Kirigami.Units.iconSizes.medium
+                        icon.height: Kirigami.Units.iconSizes.medium
+                        onClicked: {
+                            selectedDevice.ptzRight()
+                        }
+                    }
+                }
+                QQC2.ToolButton {
+                    icon.name: "go-down"
+                    icon.source: "3rd-party/breeze-icons/go-down.svg"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: Kirigami.Units.iconSizes.medium
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    onClicked: {
+                        selectedDevice.ptzDown()
+                    }
                 }
             }
-            Row{
-                anchors.horizontalCenter: parent.horizontalCenter
+            ColumnLayout {
+                visible: selectedDevice.isZoomSupported
+                anchors.margins: Kirigami.Units.gridUnit
+                anchors.left: parent.horizontalCenter
                 QQC2.ToolButton {
-                    icon.name: "go-previous"
-                    icon.source: "3rd-party/breeze-icons/go-previous.svg"
+                    icon.name: "zoom-in"
+                    icon.source: "3rd-party/breeze-icons/zoom-in.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
+                    anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {
-                        selectedDevice.ptzLeft()
+                        selectedDevice.ptzZoomIn()
                     }
                 }
                 QQC2.ToolButton {
-                    visible: selectedDevice.isPtzHomeSupported
-                    icon.name: "go-home"
-                    icon.source: "3rd-party/breeze-icons/go-home.svg"
+                    icon.name: "zoom-out"
+                    icon.source: "3rd-party/breeze-icons/zoom-out.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
+                    anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {
-                        selectedDevice.ptzHome()
+                        selectedDevice.ptzZoomOut()
                     }
-                    onPressAndHold: {
-                        console.log("onPressAndHold")
-                        selectedDevice.ptzSaveHomePosition()
-                        showPassiveNotification("Saving current position as home")
-                    }
-                }
-                QQC2.ToolButton {
-                    icon.name: "go-next"
-                    icon.source: "3rd-party/breeze-icons/go-next.svg"
-                    icon.width: Kirigami.Units.iconSizes.medium
-                    icon.height: Kirigami.Units.iconSizes.medium
-                    onClicked: {
-                        selectedDevice.ptzRight()
-                    }
-                }
-            }
-            QQC2.ToolButton {
-                icon.name: "go-down"
-                icon.source: "3rd-party/breeze-icons/go-down.svg"
-                icon.width: Kirigami.Units.iconSizes.medium
-                icon.height: Kirigami.Units.iconSizes.medium
-                anchors.horizontalCenter: parent.horizontalCenter
-                onClicked: {
-                    selectedDevice.ptzDown()
                 }
             }
         }

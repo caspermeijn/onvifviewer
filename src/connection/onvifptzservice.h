@@ -39,6 +39,9 @@ public:
     bool isContinuousMoveSupported(const OnvifMediaProfile &profile);
     void continuousMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
 
+    bool isRelativeZoomSupported(const OnvifMediaProfile &profile);
+    void relativeZoom(const OnvifMediaProfile &profile, qreal zoomFraction);
+
     bool isHomeSupported(const OnvifMediaProfile &profile);
     void goToHome(const OnvifMediaProfile &profile);
     void saveHomePosition(const OnvifMediaProfile &profile);
