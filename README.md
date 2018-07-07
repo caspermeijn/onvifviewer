@@ -26,7 +26,7 @@ For other platforms you need to build the application yourself, as there are no 
 The following instructions should work on [Solus](https://solus-project.com/) and [Ubuntu 18.04](https://www.ubuntu.com/download/desktop)
 
 #### Building extra-cmake-modules
-    git clone --branch v5.44.0 https://github.com/KDE/extra-cmake-modules.git
+    git clone --branch v5.46.0 https://github.com/KDE/extra-cmake-modules.git
     mkdir build-ecm
     cd build-ecm
     cmake -DCMAKE_BUILD_TYPE=Release ../extra-cmake-modules
@@ -35,7 +35,7 @@ The following instructions should work on [Solus](https://solus-project.com/) an
     cd ..
 
 #### Building Kirigami2
-    git clone --branch v5.44.0 https://github.com/KDE/kirigami.git
+    git clone --branch v5.46.0 https://github.com/KDE/kirigami.git
     mkdir build-kirigami
     cd build-kirigami
     cmake -DCMAKE_BUILD_TYPE=Release ../kirigami
@@ -54,6 +54,9 @@ The following instructions should work on [Solus](https://solus-project.com/) an
 
 #### Building onvifviewer
     git clone https://gitlab.com/caspermeijn/onvifviewer.git
+    cd onvifviewer/3rdparty
+    git clone --branch v5.46.0 https://github.com/KDE/breeze-icons.git
+    cd ../..
     mkdir build-onvifviewer
     cd build-onvifviewer
     cmake -DCMAKE_BUILD_TYPE=Release ../onvifviewer

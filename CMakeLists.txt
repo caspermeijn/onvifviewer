@@ -23,6 +23,11 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+get_filename_component(BREEZEICONS_DIR 3rdparty/breeze-icons/ ABSOLUTE)
+if (NOT EXISTS ${BREEZEICONS_DIR})
+    message(FATAL_ERROR "Breeze-icons is missing, please checkout a copy at: \"${BREEZEICONS_DIR}\"")
+endif()
+
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
 find_package(KF5Kirigami2 REQUIRED)
 find_package(Qt5Widgets)
