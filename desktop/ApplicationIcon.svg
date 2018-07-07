@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="85mm"
+   height="85mm"
+   viewBox="0 0 85 85"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="ApplicationIcon.svg"
+   inkscape:export-filename="/home/casper/QtProjects/OnvifViewer2/android/res/drawable/onvifviewer_splash.9.png"
+   inkscape:export-xdpi="89.647049"
+   inkscape:export-ydpi="89.647049">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="199.06273"
+     inkscape:cy="154.7332"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer3"
+     showgrid="true"
+     showguides="true"
+     inkscape:pagecheckerboard="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="700"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4562"
+       units="mm"
+       spacingx="2.5"
+       spacingy="2.5"
+       empspacing="1" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="SplashBackground"
+     style="display:none">
+    <rect
+       style="opacity:1;fill:#2c7c90;fill-opacity:1;stroke-width:6.36101437"
+       id="rect27"
+       width="85"
+       height="85"
+       x="-4.4408921e-16"
+       y="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Background">
+    <circle
+       transform="translate(0,-212)"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:1.49930537"
+       id="path4599"
+       cx="42.5"
+       cy="254.49998"
+       r="42.5"
+       inkscape:export-xdpi="14.34353"
+       inkscape:export-ydpi="14.34353" />
+  </g>
+  <g
+     inkscape:label="Laag 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-212)">
+    <g
+       id="g4597"
+       transform="translate(12.300042,11.318736)">
+      <g
+         transform="rotate(-15,42.516369,247.00692)"
+         inkscape:transform-center-y="-7.1864734"
+         inkscape:transform-center-x="12.226839"
+         id="g4572">
+        <rect
+           id="rect3713"
+           width="50"
+           height="20"
+           x="15"
+           y="227"
+           style="stroke-width:0.24153042"
+           inkscape:transform-center-y="-10.01637"
+           inkscape:transform-center-x="2.5040923" />
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;image-rendering:auto"
+           d="m 0.13229166,226.80156 v 20 l 12.00000034,-5 v -10 z"
+           id="path3717"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc" />
+      </g>
+      <rect
+         y="249.5"
+         x="40"
+         height="12.5"
+         width="5"
+         id="rect4524"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.20031092" />
+      <rect
+         y="259.5"
+         x="42.5"
+         height="5"
+         width="20"
+         id="rect4526"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.22225" />
+      <circle
+         r="2.5"
+         cy="262"
+         cx="42.5"
+         id="path4528"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.27114296" />
+      <circle
+         r="5"
+         cy="247"
+         cx="42.5"
+         id="path4530"
+         style="fill:#000000;fill-opacity:1;stroke-width:0.5009594" />
+    </g>
+  </g>
+</svg>

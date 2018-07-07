@@ -62,8 +62,6 @@ The following instructions should work on [Solus](https://solus-project.com/) an
     cd ..
 
 ## Attribution 
-The app icon is ["Wall Mount Camera"](https://icons8.com/icon/6420/wall-mount-camera) by [Icons8](https://icons8.com/), used under [ Creative Commons Attribution-NoDerivs 3.0 Unported](https://creativecommons.org/licenses/by-nd/3.0/)
-
 Google Play and the Google Play logo are trademarks of Google LLC.
 
 
