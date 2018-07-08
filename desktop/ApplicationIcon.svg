@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="85mm"
-   height="85mm"
-   viewBox="0 0 85 85"
+   width="192"
+   height="192"
+   viewBox="0 0 50.799997 50.799997"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.2 2405546, 2018-03-11"
@@ -28,11 +28,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="199.06273"
-     inkscape:cy="154.7332"
+     inkscape:zoom="2"
+     inkscape:cx="44.754707"
+     inkscape:cy="84.605418"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer2"
      showgrid="true"
      showguides="true"
      inkscape:pagecheckerboard="true"
@@ -40,13 +40,14 @@
      inkscape:window-height="700"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="1">
+     inkscape:window-maximized="1"
+     units="px">
     <inkscape:grid
        type="xygrid"
        id="grid4562"
-       units="mm"
-       spacingx="2.5"
-       spacingy="2.5"
+       units="px"
+       spacingx="1.0583333"
+       spacingy="1.0583333"
        empspacing="1" />
   </sodipodi:namedview>
   <metadata
@@ -57,7 +58,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
         <cc:license
            rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/" />
       </cc:Work>
@@ -80,39 +81,26 @@
   </metadata>
   <g
      inkscape:groupmode="layer"
-     id="layer3"
-     inkscape:label="SplashBackground"
-     style="display:none">
-    <rect
-       style="opacity:1;fill:#2c7c90;fill-opacity:1;stroke-width:6.36101437"
-       id="rect27"
-       width="85"
-       height="85"
-       x="-4.4408921e-16"
-       y="0" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Background">
+     inkscape:label="Background"
+     transform="translate(0,-34.200008)">
     <circle
-       transform="translate(0,-212)"
-       style="fill:#ffffff;fill-opacity:1;stroke-width:1.49930537"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.82138413"
        id="path4599"
-       cx="42.5"
-       cy="254.49998"
-       r="42.5"
+       cx="25.4"
+       cy="59.600006"
+       r="23.283333"
        inkscape:export-xdpi="14.34353"
        inkscape:export-ydpi="14.34353" />
   </g>
   <g
-     inkscape:label="Laag 1"
+     inkscape:label="Camera"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-212)">
+     transform="translate(0,-246.20001)">
     <g
        id="g4597"
-       transform="translate(12.300042,11.318736)">
+       transform="matrix(0.53050332,0,0,0.53050332,9.3788219,142.59154)">
       <g
          transform="rotate(-15,42.516369,247.00692)"
          inkscape:transform-center-y="-7.1864734"
