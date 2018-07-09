@@ -1,6 +1,6 @@
 image: ubuntu:18.04
 
-build:
+build-ubuntu:
   stage: build
   # instead of calling g++ directly you can also use some build toolkit like make
   # install the necessary build tools when needed
@@ -32,13 +32,28 @@ build:
     - cd build
     - cmake -DCMAKE_BUILD_TYPE=Release ..
     - make
-  artifacts:
-    paths:
-      - build/src/onvifviewer
-  # depending on your build setup it's most likely a good idea to cache outputs to reduce the build time
-  # cache:
-  #   paths:
-  #     - "*.o"
+  cache:
+      paths:
+        - build-kdsoap
+        - build-ecm
+        - build-kirigami
+        - build
+
+flatpak:
+    image: fedora:latest
+    stage: test
+    script:
+        - dnf -y update && dnf install -y flatpak-builder ostree fuse elfutils dconf git && dnf clean all
+        - flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+        - flatpak install -y flathub org.kde.Platform//5.11 org.kde.Sdk//5.11
+        - flatpak-builder --repo=repo build-dir --force-clean flatpak/net.meijn.onvifviewer.json
+        - flatpak build-bundle repo onvifviewer.flatpak net.meijn.onvifviewer
+    artifacts:
+        paths:
+            - onvifviewer.flatpak
+    cache:
+        paths:
+            - .flatpak-builder/cache
 
 # run tests using the binary built before
 #test:

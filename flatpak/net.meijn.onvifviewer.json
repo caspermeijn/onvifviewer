@@ -1,0 +1,40 @@
+{
+    "app-id": "net.meijn.onvifviewer",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.11",
+    "sdk": "org.kde.Sdk",
+    "command": "onvifviewer",
+    "finish-args": [
+        "--socket=x11",
+        "--share=network"
+    ],
+    "modules": [
+        {
+            "name": "kdsoap",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/caspermeijn/KDSoap.git",
+                    "branch": "master"
+                }
+            ]
+        },
+        {
+            "name": "onvifviewer",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": ".."
+                },
+                {
+                    "type": "git",
+                    "url": "https://github.com/KDE/breeze-icons.git",
+                    "branch": "v5.46.0",
+                    "dest": "3rdparty/breeze-icons"
+                }
+            ]
+        }
+    ]
+}
