@@ -1,47 +1,6 @@
-image: ubuntu:18.04
-
-build-ubuntu:
-  stage: build
-  # instead of calling g++ directly you can also use some build toolkit like make
-  # install the necessary build tools when needed
-  before_script: 
-    - apt update && apt -y install cmake debhelper extra-cmake-modules kdoctools-dev libkf5declarative-dev libqt5svg5-dev pkg-kde-tools plasma-framework-dev qtbase5-dev qtdeclarative5-dev qttools5-dev qttools5-dev-tools git qtquickcontrols2-5-dev
-    - git clone https://github.com/caspermeijn/KDSoap.git
-    - mkdir build-kdsoap
-    - cd build-kdsoap
-    - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/ ../KDSoap
-    - make install
-    - cd ..
-    - git clone --branch v5.46.0 https://github.com/KDE/extra-cmake-modules.git
-    - mkdir build-ecm
-    - cd build-ecm
-    - cmake -DCMAKE_BUILD_TYPE=Release ../extra-cmake-modules
-    - make install
-    - cd ..
-    - git clone --branch v5.46.0 https://github.com/KDE/kirigami.git
-    - mkdir build-kirigami
-    - cd build-kirigami
-    - cmake -DCMAKE_BUILD_TYPE=Release ../kirigami
-    - make install
-    - cd ..
-    - cd 3rdparty
-    - git clone --branch v5.46.0 https://github.com/KDE/breeze-icons.git
-    - cd ..
-  script: 
-    - mkdir build
-    - cd build
-    - cmake -DCMAKE_BUILD_TYPE=Release ..
-    - make
-  cache:
-      paths:
-        - build-kdsoap
-        - build-ecm
-        - build-kirigami
-        - build
-
 flatpak:
     image: fedora:latest
-    stage: test
+    stage: build
     script:
         - dnf -y update && dnf install -y flatpak-builder ostree fuse elfutils dconf git && dnf clean all
         - flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -55,8 +14,3 @@ flatpak:
         paths:
             - .flatpak-builder/cache
 
-# run tests using the binary built before
-#test:
-#  stage: test
-#  script:
-#    - ./runmytests.sh
