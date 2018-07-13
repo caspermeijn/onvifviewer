@@ -1,11 +1,11 @@
-# OnvifViewer
+# ONVIFViewer
 
-**Onvif camera viewer for Android, Plasma Mobile and Linux desktop**
+**ONVIF camera viewer for Android, Plasma Mobile and Linux desktop**
 
-The goal of this application is to replace the proprietary app that was needed to configure and view my IP camera. The Onvif protocol can be used to view and configure many types of camera's and is a open standard that can be implemented using standard SOAP libraries. Using Qt5 for the backend and Kirigami UI framework makes this application a cross-platform solution. The primary focus is Plasma mobile and the Linux desktop, but porting to Android and Windows is also possible. 
+The goal of this application is to replace the proprietary app that was needed to configure and view my IP camera. The ONVIF protocol can be used to view and configure many types of camera's and is a open standard that can be implemented using standard SOAP libraries. Using Qt5 for the backend and Kirigami UI framework makes this application a cross-platform solution. The primary focus is Plasma mobile and the Linux desktop, but porting to Android and Windows is also possible. 
 
-This project was started as part of the [Onvif Open Source Spotlight Challange](https://onvif-spotlight.bemyapp.com/#/projects/5ae0bbf7f98fde00047f0605). 
-There was no open-source application for viewing Onvif cameras for Plasma Mobile and Linux desktop. Neither is there a simple to use open-source C++ library to communicate with Onvif cameras. The communication with the camera is implemented from scratch (using KDSoap) and modular designed, so that it can be separated into a reusable library at a later stage.
+This project was started as part of the [ONVIF Open Source Spotlight Challange](https://onvif-spotlight.bemyapp.com/#/projects/5ae0bbf7f98fde00047f0605). 
+There was no open-source application for viewing ONVIF cameras for Plasma Mobile and Linux desktop. Neither is there a simple to use open-source C++ library to communicate with ONVIF cameras. The communication with the camera is implemented from scratch (using KDSoap) and modular designed, so that it can be separated into a reusable library at a later stage.
 
 ## Android
 The application is available via the [Google Play Store] (https://play.google.com/store/apps/details?id=net.meijn.onvifviewer).
@@ -16,14 +16,15 @@ NOTE: The video codec of Android doesn't support all types of RTSP streams. Ther
       alt="Get it on Google Play"
       height="80">](https://play.google.com/store/apps/details?id=net.meijn.onvifviewer)
 
-## Other platforms
-For other platforms you need to build the application yourself, as there are no prebuild binaries available yet. The requirements are:
-* Qt 5.8
-* extra-cmake-modules 5.44
-* Kirigami 5.44
-* KDSoap 1.7
+## Flatpak
+On most Linux desktops you can install the application using Flatpak. First install Flatpak itself using the instructions on their [website](https://www.flatpak.org/setup/).
+Then you can download the application via [this link](https://gitlab.com/caspermeijn/onvifviewer/-/jobs/artifacts/master/download?job=flatpak).
 
-The following instructions should work on [Solus](https://solus-project.com/) and [Ubuntu 18.04](https://www.ubuntu.com/download/desktop)
+
+## Building
+It is also possible to build the application yourself. This requires Qt 5.10 to be installed.
+
+The following instructions should work on [Solus](https://solus-project.com/).
 
 #### Building extra-cmake-modules
     git clone --branch v5.46.0 https://github.com/KDE/extra-cmake-modules.git
@@ -44,7 +45,7 @@ The following instructions should work on [Solus](https://solus-project.com/) an
     cd ..
 
 #### Building KDSoap
-    git clone --branch kdsoap-1.7.0 https://github.com/KDAB/KDSoap.git
+    git clone https://github.com/caspermeijn/KDSoap.git
     mkdir build-kdsoap
     cd build-kdsoap
     cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local/ ../KDSoap
