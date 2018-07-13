@@ -17,7 +17,6 @@ cmake_minimum_required(VERSION 3.7)
 
 project(onvifviewer VERSION "0.1")
 SET(CMAKE_CXX_STANDARD 11)
-set(QT_MIN_VERSION "5.9.0")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -28,17 +27,11 @@ if (NOT EXISTS ${BREEZEICONS_DIR})
     message(FATAL_ERROR "Breeze-icons is missing, please checkout a copy at: \"${BREEZEICONS_DIR}\"")
 endif()
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
-find_package(KF5Kirigami2 REQUIRED)
-find_package(Qt5Widgets)
+find_package(ECM 5.44.0 REQUIRED NO_MODULE)
+find_package(KDSoap 1.7.0 REQUIRED)
+find_package(KF5Kirigami2 5.44.0 REQUIRED)
+find_package(Qt5 5.10.0 REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
 
-# Set ROOT_PATH_MODE to enable KDSoap to find the host wsdl compiler
-#set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM BOTH)
-
-#find_package(KDSoap REQUIRED CMAKE_FIND_ROOT_PATH_BOTH)
-find_package(KDSoap REQUIRED)
-
-find_package(ECM 5.38.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 set(ENABLE_CLAZY TRUE)
 include(ECMQMLModules)
@@ -47,13 +40,15 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 
 #TODO: figure out whye these qml module checks fail for gitlab-ci
-#ecm_find_qmlmodule(QtQuick 2.9 REQUIRED)
-#ecm_find_qmlmodule(QtQuick.Controls 1.4 REQUIRED)
-##TODO: figure out why QtQuick.Controls 2.0 is not foun
-##ecm_find_qmlmodule(QtQuick.Controls 2.0 REQUIRED)
-#ecm_find_qmlmodule(QtQuick.Layouts 1.3 REQUIRED)
-#ecm_find_qmlmodule(QtQml.Models 2.1 REQUIRED)
-#ecm_find_qmlmodule(org.kde.kirigami 2.0 REQUIRED)
+ecm_find_qmlmodule(org.kde.kirigami 2.3 REQUIRED)
+ecm_find_qmlmodule(QtMultimedia 5.9 REQUIRED)
+ecm_find_qmlmodule(QtQml.Models 2.1 REQUIRED)
+ecm_find_qmlmodule(QtQuick 2.9 REQUIRED)
+ecm_find_qmlmodule(QtQuick.Controls 1.4 REQUIRED)
+#TODO: figure out why QtQuick.Controls 2.3 is not found
+#ecm_find_qmlmodule(QtQuick.Controls 2.3 REQUIRED)
+#ecm_find_qmlmodule(QtQuick.Controls.Material 2.3 REQUIRED)
+ecm_find_qmlmodule(QtQuick.Layouts 1.3 REQUIRED)
 
 include(FeatureSummary)
 

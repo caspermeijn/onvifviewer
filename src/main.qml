@@ -13,10 +13,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+import org.kde.kirigami 2.3 as Kirigami
 import QtQuick 2.9
-import QtQuick.Controls 2.2 as QQC2
-import QtQuick.Controls 1.4 as QQC
-import org.kde.kirigami 2.0 as Kirigami
 
 Kirigami.ApplicationWindow {
     id: root
