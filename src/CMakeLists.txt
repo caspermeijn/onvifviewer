@@ -14,14 +14,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 cmake_minimum_required(VERSION 3.7)
 
-set(KSWSDL2CPP_OPTION -namespace OnvifSoapDevicemgmt)
+get_filename_component(KDWSDL_IMPORT_PATH ../3rdparty/wsdl/ ABSOLUTE)
+set(KSWSDL2CPP_OPTION -namespace OnvifSoapDevicemgmt -import-path ${KDWSDL_IMPORT_PATH} -use-local-files-only)
 KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver10/device/wsdl/devicemgmt.wsdl)
-set(KSWSDL2CPP_OPTION -namespace OnvifSoapMedia)
+set(KSWSDL2CPP_OPTION -namespace OnvifSoapMedia -import-path ${KDWSDL_IMPORT_PATH} -use-local-files-only)
 KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver10/media/wsdl/media.wsdl)
-set(KSWSDL2CPP_OPTION -namespace OnvifSoapMedia2)
+set(KSWSDL2CPP_OPTION -namespace OnvifSoapMedia2 -import-path ${KDWSDL_IMPORT_PATH} -use-local-files-only)
 #TODO: Fix the media2.wsdl file, as this is not the original file path
 KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver20/media/wsdl/media2.wsdl)
-set(KSWSDL2CPP_OPTION -namespace OnvifSoapPtz)
+set(KSWSDL2CPP_OPTION -namespace OnvifSoapPtz -import-path ${KDWSDL_IMPORT_PATH} -use-local-files-only)
 KDSOAP_GENERATE_WSDL(${PROJECT_NAME}_WSDL ../3rdparty/wsdl/www.onvif.org/ver20/ptz/wsdl/ptz.wsdl)
 
 set(${PROJECT_NAME}_connection_SRCS
