@@ -39,16 +39,16 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 
-#TODO: figure out whye these qml module checks fail for gitlab-ci
-ecm_find_qmlmodule(org.kde.kirigami 2.3 REQUIRED)
-ecm_find_qmlmodule(QtMultimedia 5.9 REQUIRED)
-ecm_find_qmlmodule(QtQml.Models 2.1 REQUIRED)
-ecm_find_qmlmodule(QtQuick 2.9 REQUIRED)
-ecm_find_qmlmodule(QtQuick.Controls 1.4 REQUIRED)
-#TODO: figure out why QtQuick.Controls 2.3 is not found
-#ecm_find_qmlmodule(QtQuick.Controls 2.3 REQUIRED)
-#ecm_find_qmlmodule(QtQuick.Controls.Material 2.3 REQUIRED)
-ecm_find_qmlmodule(QtQuick.Layouts 1.3 REQUIRED)
+##TODO: figure out whye these qml module checks fail for gitlab-ci
+#ecm_find_qmlmodule(org.kde.kirigami 2.3 REQUIRED)
+#ecm_find_qmlmodule(QtMultimedia 5.9 REQUIRED)
+#ecm_find_qmlmodule(QtQml.Models 2.1 REQUIRED)
+#ecm_find_qmlmodule(QtQuick 2.9 REQUIRED)
+#ecm_find_qmlmodule(QtQuick.Controls 1.4 REQUIRED)
+##TODO: figure out why QtQuick.Controls 2.3 is not found
+##ecm_find_qmlmodule(QtQuick.Controls 2.3 REQUIRED)
+##ecm_find_qmlmodule(QtQuick.Controls.Material 2.3 REQUIRED)
+#ecm_find_qmlmodule(QtQuick.Layouts 1.3 REQUIRED)
 
 include(FeatureSummary)
 
