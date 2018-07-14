@@ -14,3 +14,10 @@ flatpak:
         paths:
             - .flatpak-builder/cache
 
+test-metadata:
+    image: fedora:latest
+    stage: test
+    script:
+        - dnf -y update && dnf install -y libappstream-glib desktop-file-utils && dnf clean all
+        - appstream-util validate-strict desktop/net.meijn.onvifviewer.appdata.xml
+        - desktop-file-validate --warn-kde desktop/net.meijn.onvifviewer.desktop
