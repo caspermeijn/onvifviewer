@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <manifest package="net.meijn.onvifviewer" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="0.5" android:versionCode="500" android:installLocation="auto">
-    <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="OnvifViewer" android:icon="@drawable/icon">
-        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="OnvifViewer" android:theme="@style/AppTheme" android:screenOrientation="unspecified" android:windowSoftInputMode="adjustResize" android:launchMode="singleTop">
+    <application android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="ONVIFViewer" android:icon="@drawable/icon">
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.qtproject.qt5.android.bindings.QtActivity" android:label="ONVIFViewer" android:theme="@style/AppTheme" android:screenOrientation="unspecified" android:windowSoftInputMode="adjustResize" android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

@@ -1,10 +1,13 @@
 export ANDROID_NDK=/home/casper/Android/Sdk/ndk-bundle/
 export ANDROID_SDK_ROOT=/home/casper/Android/Sdk
+export ANDROID_SDK=$ANDROID_SDK_ROOT
 export Qt5_android=/home/casper/Qt/5.10.1/android_armv7
-export PATH=$ANDROID_SDK_ROOT/platform-tools/:$PATH
+export PATH=$ANDROID_SDK_ROOT/platform-tools/:$ANDROID_SDK/tools:$PATH
 export JAVA_HOME=/usr/lib64/openjdk-8/
 
 mkdir ~/build-android-install-prefix
+
+
 
 mkdir build-kirigami-android
 cd build-kirigami-android
@@ -40,7 +43,7 @@ cd ..
 
 mkdir build-onvifviewer-android
 cd build-onvifviewer-android
-cmake ../QtProjects/OnvifViewer2/src \
+cmake ../onvifviewer \
     -DCMAKE_CXX_FLAGS=-isystem\ /home/casper/build-android-install-prefix/include \
     -DECM_DIR=/usr/share/ECM/cmake \
     -DKF5Kirigami2_DIR=/home/casper/build-android-install-prefix/lib/cmake/KF5Kirigami2 \
@@ -54,10 +57,13 @@ cmake ../QtProjects/OnvifViewer2/src \
     -DANDROID_SDK_BUILD_TOOLS_REVISION=26.0.2 \
     -DCMAKE_INSTALL_PREFIX=/home/casper/build-android-install-prefix \
     -DQTANDROID_EXPORTED_TARGET=onvifviewer \
-    -DANDROID_APK_DIR=../QtProjects/OnvifViewer2/android
+    -DANDROID_APK_DIR=../onvifviewer/android \
+    -DKDSOAP_KDWSDL2CPP_COMPILER=/usr/local/bin/kdwsdl2cpp \
+    -DWITH_BREEZE_ICONS=ON
 
 make 
 make install
 make create-apk-onvifviewer
+#make create-apk-onvifviewer ARGS="--sign android.keystore release"
 cd ..
 
