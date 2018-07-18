@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <QGuiApplication>
+#include <QIcon>
 #include <QQmlApplicationEngine>
-
 #include <QQmlContext>
 #include "onvifdevicemanager.h"
 #include "onvifdevicemanagermodel.h"
@@ -41,6 +41,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     qmlRegisterType<OnvifDevice>("net.meijn.onvifviewer", 1, 0, "OnvifDevice");
     qmlRegisterType<OnvifDeviceInformation>("net.meijn.onvifviewer", 1, 0, "OnvifDeviceInformation");
+
+#ifdef WITH_BREEZE_ICONS
+    if(QIcon::themeName().isEmpty())
+        QIcon::setThemeName("breeze");
+#endif
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("deviceManagerModel", &deviceManagerModel);

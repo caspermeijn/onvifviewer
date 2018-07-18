@@ -27,12 +27,6 @@
                 {
                     "type": "dir",
                     "path": ".."
-                },
-                {
-                    "type": "git",
-                    "url": "https://github.com/KDE/breeze-icons.git",
-                    "branch": "v5.46.0",
-                    "dest": "3rdparty/breeze-icons"
                 }
             ]
         }

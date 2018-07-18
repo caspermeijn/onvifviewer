@@ -44,7 +44,11 @@ set(${PROJECT_NAME}_SRCS
     "qml.qrc"
 )
 
-add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_connection_SRCS} ${${PROJECT_NAME}_WSDL})
+if(WITH_BREEZE_ICONS)
+    set(${PROJECT_NAME}_BREEZE_ICONS "breeze-icons.qrc")
+endif()
+
+add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_connection_SRCS} ${${PROJECT_NAME}_WSDL} ${${PROJECT_NAME}_BREEZE_ICONS})
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Svg Qt5::Quick KF5::Kirigami2 KDSoap::kdsoap)
 

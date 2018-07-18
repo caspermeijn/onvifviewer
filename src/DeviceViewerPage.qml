@@ -51,7 +51,6 @@ Kirigami.Page {
                 anchors.right: parent.horizontalCenter
                 QQC2.ToolButton {
                     icon.name: "go-up"
-                    icon.source: "3rd-party/breeze-icons/go-up.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -63,7 +62,6 @@ Kirigami.Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     QQC2.ToolButton {
                         icon.name: "go-previous"
-                        icon.source: "3rd-party/breeze-icons/go-previous.svg"
                         icon.width: Kirigami.Units.iconSizes.medium
                         icon.height: Kirigami.Units.iconSizes.medium
                         onClicked: {
@@ -73,7 +71,6 @@ Kirigami.Page {
                     QQC2.ToolButton {
                         visible: selectedDevice.isPtzHomeSupported
                         icon.name: "go-home"
-                        icon.source: "3rd-party/breeze-icons/go-home.svg"
                         icon.width: Kirigami.Units.iconSizes.medium
                         icon.height: Kirigami.Units.iconSizes.medium
                         onClicked: {
@@ -87,7 +84,6 @@ Kirigami.Page {
                     }
                     QQC2.ToolButton {
                         icon.name: "go-next"
-                        icon.source: "3rd-party/breeze-icons/go-next.svg"
                         icon.width: Kirigami.Units.iconSizes.medium
                         icon.height: Kirigami.Units.iconSizes.medium
                         onClicked: {
@@ -97,7 +93,6 @@ Kirigami.Page {
                 }
                 QQC2.ToolButton {
                     icon.name: "go-down"
-                    icon.source: "3rd-party/breeze-icons/go-down.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -112,7 +107,6 @@ Kirigami.Page {
                 anchors.left: parent.horizontalCenter
                 QQC2.ToolButton {
                     icon.name: "zoom-in"
-                    icon.source: "3rd-party/breeze-icons/zoom-in.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -122,7 +116,6 @@ Kirigami.Page {
                 }
                 QQC2.ToolButton {
                     icon.name: "zoom-out"
-                    icon.source: "3rd-party/breeze-icons/zoom-out.svg"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -194,7 +187,6 @@ Kirigami.Page {
             }
             QQC2.ToolButton {
                 icon.name: "view-refresh"
-                icon.source: "3rd-party/breeze-icons/view-refresh.svg"
                 onClicked: {
                     selectedDevice.reconnectToDevice()
                 }

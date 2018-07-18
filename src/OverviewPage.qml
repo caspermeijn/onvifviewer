@@ -66,7 +66,6 @@ Kirigami.ScrollablePage {
                         }
                         QQC2.ToolButton {
                             icon.name: "settings-configure"
-                            icon.source: "3rd-party/breeze-icons/settings-configure.svg"
                             icon.width: Kirigami.Units.iconSizes.smallMedium
                             icon.height: Kirigami.Units.iconSizes.smallMedium
 
