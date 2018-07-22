@@ -13,6 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include <QCommandLineParser>
 #include <QGuiApplication>
 #include <QIcon>
 #include <QQmlApplicationEngine>
@@ -21,6 +22,7 @@
 #include "onvifdevicemanagermodel.h"
 #include "onvifdevice.h"
 #include "onvifdeviceinformation.h"
+#include "version.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -30,9 +32,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName("Casper Meijn");
+    QCoreApplication::setOrganizationName("meijn.net");
     QCoreApplication::setOrganizationDomain("meijn.net");
-    QCoreApplication::setApplicationName("OnvifViewer");
+    QCoreApplication::setApplicationName("ONVIFViewer");
+    QCoreApplication::setApplicationVersion(onvifviewer_VERSION_STRING);
 
     OnvifDeviceManager deviceManager;
     deviceManager.loadDevices();
