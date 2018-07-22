@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <QCommandLineParser>
+#include <QDebug>
 #include <QGuiApplication>
 #include <QIcon>
 #include <QQmlApplicationEngine>
@@ -37,6 +38,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("ONVIFViewer");
     QCoreApplication::setApplicationVersion(onvifviewer_VERSION_STRING);
 
+    QCommandLineParser commandLineParser;
+    commandLineParser.setApplicationDescription("View and control network cameras using the ONVIF protocol");
+    commandLineParser.addHelpOption();
+    commandLineParser.addVersionOption();
+    commandLineParser.addOption({"test", "test description", "test_name"});
+    commandLineParser.process(app);
+
     OnvifDeviceManager deviceManager;
     deviceManager.loadDevices();
 
@@ -57,6 +65,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return 12;
+
+    if(commandLineParser.isSet("test")) {
+        QString testOption = commandLineParser.value("test");
+        if(testOption == "startup") {
+            qDebug() << "Startup test activated, therefore the application will close automatically";
+            QTimer::singleShot(0, &app, &QGuiApplication::quit);
+        } else {
+            qFatal("Invalid test selected");
+        }
+    }
 
     return app.exec();
 }

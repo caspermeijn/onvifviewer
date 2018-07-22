@@ -59,5 +59,7 @@ include(FeatureSummary)
 
 add_subdirectory(src)
 add_subdirectory(desktop)
+enable_testing()
+add_subdirectory(autotests)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
