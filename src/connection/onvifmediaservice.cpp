@@ -154,11 +154,10 @@ void OnvifMediaService::getProfilesError(const KDSoapMessage &fault)
 void OnvifMediaService::getSnapshotUriDone(const OnvifSoapMedia::TRT__GetSnapshotUriResponse &parameters)
 {
     //TODO: what to do if invalidAfterReboot or invalidAfterConnect?
-    Q_ASSERT(!parameters.mediaUri().invalidAfterConnect());
-//    Q_ASSERT(!parameters.mediaUri().invalidAfterReboot());
-    qDebug() << "snapshot timeout:" << parameters.mediaUri().timeout();
+    //Q_ASSERT(!parameters.mediaUri().invalidAfterConnect());
+    //Q_ASSERT(!parameters.mediaUri().invalidAfterReboot());
     //TODO: what to do if timeout?
-//    Q_ASSERT(!parameters.mediaUri().timeout());
+    //Q_ASSERT(!parameters.mediaUri().timeout());
     d->snapshotUri = QUrl(parameters.mediaUri().uri());
     if(d->snapshotUri.userInfo().isEmpty())
     {
@@ -175,11 +174,10 @@ void OnvifMediaService::getSnapshotUriError(const KDSoapMessage &fault)
 void OnvifMediaService::getStreamUriDone(const OnvifSoapMedia::TRT__GetStreamUriResponse &parameters)
 {
     //TODO: what to do if invalidAfterReboot or invalidAfterConnect?
-    Q_ASSERT(!parameters.mediaUri().invalidAfterConnect());
-//    Q_ASSERT(!parameters.mediaUri().invalidAfterReboot());
-    qDebug() << "snapshot timeout:" << parameters.mediaUri().timeout();
+    //Q_ASSERT(!parameters.mediaUri().invalidAfterConnect());
+    //Q_ASSERT(!parameters.mediaUri().invalidAfterReboot());
     //TODO: what to do if timeout?
-//    Q_ASSERT(!parameters.mediaUri().timeout());
+    //Q_ASSERT(!parameters.mediaUri().timeout());
     d->streamUri = QUrl(parameters.mediaUri().uri());
     if(d->streamUri.userInfo().isEmpty())
     {
