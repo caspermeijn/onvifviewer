@@ -11,6 +11,24 @@ flatpak:
     cache:
         paths:
             - .flatpak-builder/cache
+            
+fedora:
+    image: registry.gitlab.com/caspermeijn/docker-images/fedora-build-onvifviewer:latest
+    stage: build
+    script:
+        - git clone https://github.com/KDAB/KDSoap.git
+        - mkdir build-KDSoap
+        - cd build-KDSoap/
+        - cmake ../KDSoap/ -DCMAKE_INSTALL_PREFIX=/usr/local
+        - make
+        - make install
+        - cd ..
+        - mkdir build-onvifviewer/
+        - cd build-onvifviewer/
+        - cmake ..
+        - make
+        - xvfb-run -a -s "-screen 0 1024x768x24" make test
+        - make install
 
 test-metadata:
     image: registry.gitlab.com/caspermeijn/docker-images/appstream:latest
