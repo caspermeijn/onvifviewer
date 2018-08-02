@@ -17,8 +17,10 @@ NOTE: The video codec of Android doesn't support all types of RTSP streams. Ther
       height="80">](https://play.google.com/store/apps/details?id=net.meijn.onvifviewer)
 
 ## Flatpak
-On most Linux desktops you can install the application using Flatpak. First install Flatpak itself using the instructions on their [website](https://www.flatpak.org/setup/).
-Then you can download the application via [this link](https://gitlab.com/caspermeijn/onvifviewer/-/jobs/artifacts/master/download?job=flatpak).
+On most Linux desktops you can install the application using Flatpak. 
+
+1) First install Flatpak itself using the instructions on their [website](https://www.flatpak.org/setup/).
+2) Then you can install the application from the [ONVIFViewer flathub page](https://flathub.org/apps/details/net.meijn.onvifviewer).
 
 
 ## Building
