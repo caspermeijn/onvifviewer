@@ -15,8 +15,37 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-install(FILES net.meijn.onvifviewer.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-install(FILES net.meijn.onvifviewer.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+# desktop file
+find_program(INTLTOOL_MERGE_EXECUTABLE intltool-merge REQUIRED)
+set(_desktopTemplate net.meijn.onvifviewer.desktop.template)
+set(_desktopFile ${CMAKE_CURRENT_BINARY_DIR}/net.meijn.onvifviewer.desktop)
+add_custom_command(
+    OUTPUT ${_desktopFile}
+    COMMAND ${INTLTOOL_MERGE_EXECUTABLE} --quiet --desktop-style ../po/ ${_desktopTemplate} ${_desktopFile}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    DEPENDS ${_desktopTemplate} translations)
+add_custom_target(desktop-file ALL DEPENDS ${_desktopFile})
+install(FILES ${_desktopFile} DESTINATION ${KDE_INSTALL_APPDIR})
+
+find_program(DESKTOP_FILE_VALIDATE_EXECUTABLE desktop-file-validate REQUIRED)
+add_test(NAME validate-desktop-file COMMAND ${DESKTOP_FILE_VALIDATE_EXECUTABLE} --warn-kde ${_desktopFile})
+
+# appstream metadata
+find_program(ITSTOOL_MERGE_EXECUTABLE itstool REQUIRED)
+set(_appDataTemplate net.meijn.onvifviewer.appdata.xml.template)
+set(_appDataFile ${CMAKE_CURRENT_BINARY_DIR}/net.meijn.onvifviewer.appdata.xml)
+add_custom_command(
+    OUTPUT ${_appDataFile}
+    COMMAND ${ITSTOOL_MERGE_EXECUTABLE} -i appstream-metainfo.its -j ${_appDataTemplate} -o ${_appDataFile} ${CMAKE_CURRENT_BINARY_DIR}/../po/*.mo
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    DEPENDS appstream-metainfo.its ${_appDataTemplate} translations)
+add_custom_target(app-data ALL DEPENDS ${_appDataFile})
+install(FILES ${_appDataFile} DESTINATION ${KDE_INSTALL_METAINFODIR})
+
+find_program(APPSTREAM_UTIL_EXECUTABLE appstream-util REQUIRED)
+add_test(NAME validate-appdata COMMAND ${APPSTREAM_UTIL_EXECUTABLE} validate-strict ${_appDataFile})
+
+# icons
 install(FILES ApplicationIcon.svg DESTINATION ${KDE_INSTALL_ICONDIR}/hicolor/scalable/apps RENAME net.meijn.onvifviewer.svg)
 foreach(_iconSize 16 22 24 32 48 64 128 256)
   install(FILES ApplicationIcon-${_iconSize}.png DESTINATION ${KDE_INSTALL_ICONDIR}/hicolor/${_iconSize}x${_iconSize}/apps RENAME net.meijn.onvifviewer.png)

@@ -1,0 +1,173 @@
+# Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+# This file is distributed under the same license as the onvifviewer package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
+"POT-Creation-Date: 2018-08-03 17:51+0200\n"
+"PO-Revision-Date: 2018-08-03 17:40+0100\n"
+"Last-Translator: Casper Meijn <casper@meijn.net>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: DeviceSettingsPage.qml:27
+msgid "Settings"
+msgstr "Instellingen"
+
+#: DeviceSettingsPage.qml:56
+msgid "Connection settings"
+msgstr "Verbindingsinstellingen"
+
+#: DeviceSettingsPage.qml:59
+msgid "Camera name:"
+msgstr "Cameranaam:"
+
+#: DeviceSettingsPage.qml:60
+msgid "eg. Backyard"
+msgstr "bijv. Achtertuin"
+
+#: DeviceSettingsPage.qml:68
+msgid "Hostname:"
+msgstr "Hostname:"
+
+#: DeviceSettingsPage.qml:69
+msgid "eg. ipcam.local or 192.168.0.12"
+msgstr "bijv. ipcam.local of 192.168.0.2"
+
+#: DeviceSettingsPage.qml:77
+msgid "Username:"
+msgstr "Gebruikersnaam:"
+
+#: DeviceSettingsPage.qml:85
+msgid "Password:"
+msgstr "Wachtwoord:"
+
+#: DeviceSettingsPage.qml:95
+msgid "Camera properties"
+msgstr "Camera eigenschappen:"
+
+#: DeviceSettingsPage.qml:98
+msgid "Enable camera movement fix"
+msgstr "Camerabewegingen oplossing aanzetten"
+
+#: DeviceSettingsPage.qml:107
+msgid "Remove camera"
+msgstr "Camera verwijderen"
+
+#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:134
+msgid "Device information"
+msgstr "Apparaatinformatie"
+
+#: DeviceViewerPage.qml:80
+msgid "Saving current position as home"
+msgstr "Huidige positie wordt als thuis opgeslagen"
+
+#: DeviceViewerPage.qml:140
+msgid "Manufacturer:"
+msgstr "Fabrikant:"
+
+#: DeviceViewerPage.qml:147
+msgid "Model:"
+msgstr "Model:"
+
+#: DeviceViewerPage.qml:154
+msgid "Firmware version:"
+msgstr "Firmware:"
+
+#: DeviceViewerPage.qml:161
+msgid "Serial number:"
+msgstr "Serienummer:"
+
+#: DeviceViewerPage.qml:168
+msgid "Hardware identifier:"
+msgstr "Hardware identificatienummer:"
+
+#: DeviceViewerPage.qml:181
+msgid ""
+"An error occurred during communication with the camera.\n"
+"\n"
+"Technical details: %1\n"
+msgstr ""
+"Er is een fout opgetreden tijdens de communicatie met de camera.\n"
+"\n"
+"Technische informatie: %1\n"
+
+#: OnvifCameraViewer.qml:28
+msgid "Loading..."
+msgstr "Laden..."
+
+#: OverviewPage.qml:24
+msgid "Overview"
+msgstr "Overzicht"
+
+#: OverviewPage.qml:61
+msgid "Camera %1"
+msgstr "Camera %1"
+
+#: OverviewPage.qml:88
+msgid "An error occurred during communication with the camera."
+msgstr "Er is een fout opgetreden tijdens de communicatie met de camera."
+
+#: OverviewPage.qml:98
+msgid "The camera doesn't support the retrieval of snapshots."
+msgstr "Deze camera ondersteund het ophalen van momentopname's niet."
+
+#: desktop.cpp:1
+msgid "ONVIFViewer"
+msgstr "ONVIFViewer"
+
+#: desktop.cpp:2
+msgid "View and control network cameras using the ONVIF protocol"
+msgstr "Bekijk en bestuur netwerkcamera's met behulp van het ONVIF protocol"
+
+#: rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Casper Meijn"
+
+#: rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "casper@meijn.net"
+
+#. (itstool) path: description/p
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:10
+msgid ""
+"Use this opensource app to view your network cameras using the ONVIF "
+"protocol."
+msgstr ""
+"Gebruik deze open-bron applicatie voor het bekijken van netwerkcamera's via "
+"het ONVIF protocol."
+
+#. (itstool) path: description/p
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:11
+msgid ""
+"The development of this app was started as part of the ONVIF Spotlight "
+"Challange."
+msgstr ""
+"De ontwikkeling van deze applicatie is gestart als onderdeel van de ONVIF "
+"Spotlight Challange."
+
+#. (itstool) path: description/p
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:12
+msgid ""
+"You can connect to your network camera and view the video of it. If the "
+"camera is controlable you can move it as well."
+msgstr ""
+"Je kan verbinden met jouw netwerkcamera en het beeld daarvan bekijken. Als "
+"de camera bedienbaar is, dan kan je hem bewegen."
+
+#. (itstool) path: screenshot/caption
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:20
+msgid "The camera overview page"
+msgstr "De camera-overzicht pagina"
+
+#. (itstool) path: screenshot/caption
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:24
+msgid "The camera settings page"
+msgstr "De camera-instellingen pagina"

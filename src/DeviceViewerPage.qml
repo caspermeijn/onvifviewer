@@ -28,13 +28,12 @@ Kirigami.Page {
             visible: selectedDevice.isPanTiltSupported || selectedDevice.isZoomSupported
             iconName: "transform-move"
             onTriggered: {
-                print("Action button in buttons page clicked");
                 ptzOverlay.sheetOpen = !ptzOverlay.sheetOpen
             }
         }
         contextualActions: [
             Kirigami.Action {
-                text:"Device information"
+                text: i18n("Device information")
                 iconName: "help-about"
                 onTriggered: {
                     deviceInformation.sheetOpen = !deviceInformation.sheetOpen
@@ -77,9 +76,8 @@ Kirigami.Page {
                             selectedDevice.ptzHome()
                         }
                         onPressAndHold: {
-                            console.log("onPressAndHold")
                             selectedDevice.ptzSaveHomePosition()
-                            showPassiveNotification("Saving current position as home")
+                            showPassiveNotification(i18n("Saving current position as home"))
                         }
                     }
                     QQC2.ToolButton {
@@ -133,41 +131,41 @@ Kirigami.Page {
             anchors.margins: Kirigami.Units.gridUnit / 2
 
             Kirigami.Heading {
-                text: "Device information"
+                text: i18n("Device information")
                 Layout.columnSpan: 2
                 level: 2
             }
 
             QQC2.Label {
-                text: "Manufacturer:"
+                text: i18n("Manufacturer:")
             }
             QQC2.Label {
                 text: selectedDevice.deviceInformation.manufacturer
             }
 
             QQC2.Label {
-                text: "Model:"
+                text: i18n("Model:")
             }
             QQC2.Label {
                 text: selectedDevice.deviceInformation.model
             }
 
             QQC2.Label {
-                text: "Firmware version:"
+                text: i18n("Firmware version:")
             }
             QQC2.Label {
                 text: selectedDevice.deviceInformation.firmwareVersion
             }
 
             QQC2.Label {
-                text: "Serial number:"
+                text: i18n("Serial number:")
             }
             QQC2.Label {
                 text: selectedDevice.deviceInformation.serialNumber
             }
 
             QQC2.Label {
-                text: "Hardware identifier:"
+                text: i18n("Hardware identifier:")
             }
             QQC2.Label {
                 text: selectedDevice.deviceInformation.hardwareId
@@ -180,7 +178,7 @@ Kirigami.Page {
             anchors.fill: parent
             Text {
                 id: errorText
-                text: "An error occured during communication with the camera.\n\nTechnical details:\n" + selectedDevice.errorString
+                text: i18n("An error occurred during communication with the camera.\n\nTechnical details: %1\n", selectedDevice.errorString)
                 wrapMode: Text.Wrap
                 visible: selectedDevice.errorString
                 width: parent.width

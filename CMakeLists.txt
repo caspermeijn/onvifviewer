@@ -32,11 +32,12 @@ if(WITH_BREEZE_ICONS)
 endif()
 
 find_package(ECM 5.44.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 find_package(KDSoap 1.7.0 REQUIRED)
+find_package(KF5 5.44 REQUIRED I18n)
 find_package(KF5Kirigami2 5.44.0 REQUIRED)
 find_package(Qt5 5.10.0 REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 set(ENABLE_CLAZY TRUE)
 include(ECMQMLModules)
 include(ECMSetupVersion)
@@ -59,6 +60,7 @@ include(FeatureSummary)
 
 add_subdirectory(src)
 add_subdirectory(desktop)
+add_subdirectory(po)
 enable_testing()
 add_subdirectory(autotests)
 
