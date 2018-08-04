@@ -21,7 +21,7 @@ import QtQuick.Layouts 1.3 as QQL
 
 Kirigami.ScrollablePage {
     id: pageOverview
-    title: "Overview"
+    title: i18n("Overview")
     objectName: "overviewPage"
 
     actions {
@@ -58,7 +58,7 @@ Kirigami.ScrollablePage {
                     QQL.RowLayout {
                         anchors.fill: parent
                         QQC2.Label {
-                            text: model.deviceName || "Camera " + (model.index + 1)
+                            text: model.deviceName || i18n("Camera %1", model.index + 1)
                             elide: QQC2.Label.ElideRight
                             horizontalAlignment: Qt.AlignHCenter
                             verticalAlignment: Qt.AlignVCenter
@@ -85,7 +85,7 @@ Kirigami.ScrollablePage {
 
                 QQC2.Label {
                     id: errorText
-                    text: "An error occured during communication with the camera."
+                    text: i18n("An error occurred during communication with the camera.")
                     wrapMode: Text.Wrap
                     horizontalAlignment: Text.AlignHCenter
                     visible: model.errorString
@@ -95,7 +95,7 @@ Kirigami.ScrollablePage {
 
                 QQC2.Label {
                     id: snapshotUnsupportedText
-                    text: "The camera doesn't support the retrieval of snapshots."
+                    text: i18n("The camera doesn't support the retrieval of snapshots.")
                     wrapMode: Text.Wrap
                     horizontalAlignment: Text.AlignHCenter
                     visible: !model.errorString && !model.supportsSnapshotUri

@@ -5,16 +5,11 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>ONVIFViewer</name>
-  <name xml:lang="nl">ONVIFViewer</name>
   <summary>View and control network cameras using the ONVIF protocol</summary>
-  <summary xml:lang="nl">Bekijk en bestuur netwerkcamera's met behulp van het ONVIF protocol</summary>
   <description>
     <p>Use this opensource app to view your network cameras using the ONVIF protocol.</p>
-    <p xml:lang="nl">Gebruik deze open-bron applicatie voor het bekijken van netwerkcamera's via het ONVIF protocol.</p>
     <p>The development of this app was started as part of the ONVIF Spotlight Challange.</p>
-    <p xml:lang="nl">De ontwikkeling van deze applicatie is gestart als onderdeel van de ONVIF Spotlight Challange.</p>
     <p>You can connect to your network camera and view the video of it. If the camera is controlable you can move it as well.</p>
-    <p xml:lang="nl">Je kan verbinden met jouw netwerkcamera en het beeld daarvan bekijken. Als de camera bedienbaar is, dan kan je hem bewegen.</p>
   </description>
   <developer_name>Casper Meijn</developer_name>
   <url type="homepage">https://gitlab.com/caspermeijn/onvifviewer</url>

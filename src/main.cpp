@@ -13,6 +13,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include <KLocalizedContext>
+#include <KLocalizedString>
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QGuiApplication>
@@ -32,6 +34,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
+    KLocalizedString::setApplicationDomain("onvifviewer");
 
     QCoreApplication::setOrganizationName("meijn.net");
     QCoreApplication::setOrganizationDomain("meijn.net");
@@ -59,6 +62,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     QQmlApplicationEngine engine;
+    KLocalizedContext localizedContext;
+    engine.rootContext()->setContextObject(&localizedContext);
     engine.rootContext()->setContextProperty("deviceManagerModel", &deviceManagerModel);
     engine.rootContext()->setContextProperty("deviceManager", &deviceManager);
 

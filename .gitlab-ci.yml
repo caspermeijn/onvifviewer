@@ -30,12 +30,16 @@ fedora:
         - xvfb-run -a -s "-screen 0 1024x768x24" make test
         - make install
 
-test-metadata:
-    image: registry.gitlab.com/caspermeijn/docker-images/appstream:latest
+test-translations:
+    image: registry.gitlab.com/caspermeijn/docker-images/fedora-build-onvifviewer:latest
     stage: test
     script:
-        - appstream-util validate-strict desktop/net.meijn.onvifviewer.appdata.xml
-        - desktop-file-validate --warn-kde desktop/net.meijn.onvifviewer.desktop
+        - cd po && ./update_translation.sh
+        - git diff --quiet
+    artifacts:
+        paths:
+            - po/onvifviewer.pot
+            - po/*.po
 
 sast:
     image: docker:stable

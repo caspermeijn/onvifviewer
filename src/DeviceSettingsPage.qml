@@ -24,7 +24,7 @@ Kirigami.ScrollablePage {
     property bool hasConnectionSettingsChanged: false
     property bool hasOtherSettingsChanged: false
 
-    title: "Settings"
+    title: i18n("Settings")
     objectName: "settingsPage"
 
     onActiveFocusChanged: {
@@ -53,11 +53,11 @@ Kirigami.ScrollablePage {
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: "Connection settings"
+                Kirigami.FormData.label: i18n("Connection settings")
             }
             TextField {
-                Kirigami.FormData.label: "Camera name:"
-                placeholderText: qsTr("eg. Backyard")
+                Kirigami.FormData.label: i18n("Camera name:")
+                placeholderText: i18n("eg. Backyard")
                 text: selectedDevice.deviceName
                 onTextEdited: {
                     hasOtherSettingsChanged = true
@@ -65,8 +65,8 @@ Kirigami.ScrollablePage {
                 }
             }
             TextField {
-                Kirigami.FormData.label: "Hostname:"
-                placeholderText: qsTr("eg. ipcam.local or 192.168.0.12")
+                Kirigami.FormData.label: i18n("Hostname:")
+                placeholderText: i18n("eg. ipcam.local or 192.168.0.12")
                 text: selectedDevice.hostName
                 onTextEdited: {
                     hasConnectionSettingsChanged = true
@@ -74,7 +74,7 @@ Kirigami.ScrollablePage {
                 }
             }
             TextField {
-                Kirigami.FormData.label: "Username:"
+                Kirigami.FormData.label: i18n("Username:")
                 text: selectedDevice.userName
                 onTextEdited: {
                     hasConnectionSettingsChanged = true
@@ -82,7 +82,7 @@ Kirigami.ScrollablePage {
                 }
             }
             TextField {
-                Kirigami.FormData.label: "Password:"
+                Kirigami.FormData.label: i18n("Password:")
                 echoMode: TextInput.Password
                 text: selectedDevice.password
                 onTextEdited: {
@@ -92,10 +92,10 @@ Kirigami.ScrollablePage {
             }
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: "Camera properties"
+                Kirigami.FormData.label: i18n("Camera properties")
             }
             Switch {
-                Kirigami.FormData.label: "Enable camera movement fix"
+                Kirigami.FormData.label: i18n("Enable camera movement fix")
                 checked: selectedDevice.preferContinuousMove
                 onCheckedChanged: {
                     hasOtherSettingsChanged = true
@@ -104,7 +104,7 @@ Kirigami.ScrollablePage {
             }
         }
         Button {
-            text: "Remove camera"
+            text: i18n("Remove camera")
             onClicked: {
                 pageStack.pop();
                 deviceManager.removeDevice(selectedIndex)
