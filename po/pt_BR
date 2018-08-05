@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2018-08-05\n"
+"Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Configurações de conexão"
 
 #: DeviceSettingsPage.qml:59
 msgid "Camera name:"
-msgstr "Nome da câmera"
+msgstr "Nome da câmera:"
 
 #: DeviceSettingsPage.qml:60
 msgid "eg. Backyard"
@@ -34,7 +34,7 @@ msgstr "por exemplo. Jardim"
 
 #: DeviceSettingsPage.qml:68
 msgid "Hostname:"
-msgstr "Hostname"
+msgstr "Hostname:"
 
 #: DeviceSettingsPage.qml:69
 msgid "eg. ipcam.local or 192.168.0.12"
@@ -46,7 +46,7 @@ msgstr "Nome de usuário"
 
 #: DeviceSettingsPage.qml:85
 msgid "Password:"
-msgstr "Senha"
+msgstr "Senha:"
 
 #: DeviceSettingsPage.qml:95
 msgid "Camera properties"
