@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the onvifviewer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: onvifviewer\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: DeviceSettingsPage.qml:27
+msgid "Settings"
+msgstr "Configurações"
+
+#: DeviceSettingsPage.qml:56
+msgid "Connection settings"
+msgstr "Configurações de conexão"
+
+#: DeviceSettingsPage.qml:59
+msgid "Camera name:"
+msgstr "Nome da câmera"
+
+#: DeviceSettingsPage.qml:60
+msgid "eg. Backyard"
+msgstr "por exemplo. Jardim"
+
+#: DeviceSettingsPage.qml:68
+msgid "Hostname:"
+msgstr "Hostname"
+
+#: DeviceSettingsPage.qml:69
+msgid "eg. ipcam.local or 192.168.0.12"
+msgstr "por exemplo. ipcam.local ou 192.168.0.12"
+
+#: DeviceSettingsPage.qml:77
+msgid "Username:"
+msgstr "Nome de usuário"
+
+#: DeviceSettingsPage.qml:85
+msgid "Password:"
+msgstr "Senha"
+
+#: DeviceSettingsPage.qml:95
+msgid "Camera properties"
+msgstr "Propriedades da câmera"
+
+#: DeviceSettingsPage.qml:98
+msgid "Enable camera movement fix"
+msgstr "Ativar correção do movimento da câmera"
+
+#: DeviceSettingsPage.qml:107
+msgid "Remove camera"
+msgstr "Remover a câmera"
+
+#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:134
+msgid "Device information"
+msgstr "Informações do dispositivo"
+
+#: DeviceViewerPage.qml:80
+msgid "Saving current position as home"
+msgstr "Salvando a posição atual como Casa"
+
+#: DeviceViewerPage.qml:140
+msgid "Manufacturer:"
+msgstr "Fabricante:"
+
+#: DeviceViewerPage.qml:147
+msgid "Model:"
+msgstr "Modelo:"
+
+#: DeviceViewerPage.qml:154
+msgid "Firmware version:"
+msgstr "Versão do firmware:"
+
+#: DeviceViewerPage.qml:161
+msgid "Serial number:"
+msgstr "Número de série:"
+
+#: DeviceViewerPage.qml:168
+msgid "Hardware identifier:"
+msgstr "Identificador de hardware:"
+
+#: DeviceViewerPage.qml:181
+msgid ""
+"An error occurred during communication with the camera.\n"
+"\n"
+"Technical details: %1\n"
+msgstr "Ocorreu um erro durante a comunicação com a câmera."
+"\n"
+"Detalhes técnicos: %1\n"
+
+#: OnvifCameraViewer.qml:28
+msgid "Loading..."
+msgstr "Carregando..."
+
+#: OverviewPage.qml:24
+msgid "Overview"
+msgstr "Visão geral"
+
+#: OverviewPage.qml:61
+msgid "Camera %1"
+msgstr "Camera %1"
+
+#: OverviewPage.qml:88
+msgid "An error occurred during communication with the camera."
+msgstr "Ocorreu um erro durante a comunicação com a câmera."
+
+#: OverviewPage.qml:98
+msgid "The camera doesn't support the retrieval of snapshots."
+msgstr "A câmera não suporta a recuperação de instantâneos."
+
+#: desktop.cpp:1
+msgid "ONVIFViewer"
+msgstr "ONVIFViewer"
+
+#: desktop.cpp:2
+msgid "View and control network cameras using the ONVIF protocol"
+msgstr "Ver e controlar câmeras de rede usando o protocolo ONVIF"
+
+#: rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Seus nomes"
+
+#: rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "Seus E-Mails"
+
+#. (itstool) path: description/p
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:10
+msgid ""
+"Use this opensource app to view your network cameras using the ONVIF "
+"protocol."
+msgstr "Use este aplicativo opensource para visualizar suas câmeras de rede usando o ONVIF "
+"protocolo."
+
+#. (itstool) path: description/p
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:11
+msgid ""
+"The development of this app was started as part of the ONVIF Spotlight "
+"Challange."
+msgstr "O desenvolvimento deste aplicativo foi iniciado como parte do ONVIF Spotlight "
+"Desafio."
+
+#. (itstool) path: description/p
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:12
+msgid ""
+"You can connect to your network camera and view the video of it. If the "
+"camera is controlable you can move it as well."
+msgstr "Você pode se conectar à sua câmera de rede e ver o vídeo dela. Se a "
+"a câmera é controlável, você pode movê-la também."
+
+#. (itstool) path: screenshot/caption
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:20
+msgid "The camera overview page"
+msgstr "A página de visão geral da câmera"
+
+#. (itstool) path: screenshot/caption
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:24
+msgid "The camera settings page"
+msgstr "A página de configurações da câmera"
