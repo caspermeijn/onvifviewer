@@ -36,7 +36,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     KLocalizedString::setApplicationDomain("onvifviewer");
 
-    QCoreApplication::setOrganizationName("meijn.net");
+    QCoreApplication::setOrganizationName("CasperMeijn");
     QCoreApplication::setOrganizationDomain("meijn.net");
     QCoreApplication::setApplicationName("ONVIFViewer");
     QCoreApplication::setApplicationVersion(onvifviewer_VERSION_STRING);
