@@ -60,5 +60,3 @@ add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_connect
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Svg Qt5::Quick KF5::Kirigami2 KF5::I18n KDSoap::kdsoap)
 
 install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-
-kirigami_package_breeze_icons(ICONS go-up go-previous go-home go-next go-down list-add settings-configure transform-move view-refresh)
