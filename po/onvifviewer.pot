@@ -60,35 +60,35 @@ msgstr ""
 msgid "Remove camera"
 msgstr ""
 
-#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:134
+#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
 msgid "Device information"
 msgstr ""
 
-#: DeviceViewerPage.qml:80
+#: DeviceViewerPage.qml:88
 msgid "Saving current position as home"
 msgstr ""
 
-#: DeviceViewerPage.qml:140
+#: DeviceViewerPage.qml:149
 msgid "Manufacturer:"
 msgstr ""
 
-#: DeviceViewerPage.qml:147
+#: DeviceViewerPage.qml:156
 msgid "Model:"
 msgstr ""
 
-#: DeviceViewerPage.qml:154
+#: DeviceViewerPage.qml:163
 msgid "Firmware version:"
 msgstr ""
 
-#: DeviceViewerPage.qml:161
+#: DeviceViewerPage.qml:170
 msgid "Serial number:"
 msgstr ""
 
-#: DeviceViewerPage.qml:168
+#: DeviceViewerPage.qml:177
 msgid "Hardware identifier:"
 msgstr ""
 
-#: DeviceViewerPage.qml:181
+#: DeviceViewerPage.qml:190
 msgid ""
 "An error occurred during communication with the camera.\n"
 "\n"
