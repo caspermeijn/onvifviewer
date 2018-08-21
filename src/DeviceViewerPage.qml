@@ -44,56 +44,66 @@ Kirigami.Page {
     Kirigami.OverlaySheet {
         id: ptzOverlay
         RowLayout {
+            spacing: Kirigami.Units.gridUnit
             anchors.verticalCenter: parent.verticalCenter
-            Column {
+            Rectangle {
+                Layout.fillWidth: true
+            }
+            GridLayout {
                 visible: selectedDevice.isPanTiltSupported
-                anchors.right: parent.horizontalCenter
+                columns: 3
+
                 QQC2.ToolButton {
+                    Layout.row: 1
+                    Layout.column: 2
                     icon.name: "go-up"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
-                    anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {
                         selectedDevice.ptzUp()
                     }
                 }
-                Row{
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    QQC2.ToolButton {
-                        icon.name: "go-previous"
-                        icon.width: Kirigami.Units.iconSizes.medium
-                        icon.height: Kirigami.Units.iconSizes.medium
-                        onClicked: {
-                            selectedDevice.ptzLeft()
-                        }
-                    }
-                    QQC2.ToolButton {
-                        visible: selectedDevice.isPtzHomeSupported
-                        icon.name: "go-home"
-                        icon.width: Kirigami.Units.iconSizes.medium
-                        icon.height: Kirigami.Units.iconSizes.medium
-                        onClicked: {
-                            selectedDevice.ptzHome()
-                        }
-                        onPressAndHold: {
-                            selectedDevice.ptzSaveHomePosition()
-                            showPassiveNotification(i18n("Saving current position as home"))
-                        }
-                    }
-                    QQC2.ToolButton {
-                        icon.name: "go-next"
-                        icon.width: Kirigami.Units.iconSizes.medium
-                        icon.height: Kirigami.Units.iconSizes.medium
-                        onClicked: {
-                            selectedDevice.ptzRight()
-                        }
+                QQC2.ToolButton {
+                    Layout.row: 2
+                    Layout.column: 1
+                    icon.name: "go-previous"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: Kirigami.Units.iconSizes.medium
+                    onClicked: {
+                        selectedDevice.ptzLeft()
                     }
                 }
                 QQC2.ToolButton {
+                    Layout.row: 2
+                    Layout.column: 2
+                    visible: selectedDevice.isPtzHomeSupported
+                    icon.name: "go-home"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: Kirigami.Units.iconSizes.medium
+                    onClicked: {
+                        selectedDevice.ptzHome()
+                    }
+                    onPressAndHold: {
+                        selectedDevice.ptzSaveHomePosition()
+                        showPassiveNotification(i18n("Saving current position as home"))
+                    }
+                }
+                QQC2.ToolButton {
+                    Layout.row: 2
+                    Layout.column: 3
+                    icon.name: "go-next"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: Kirigami.Units.iconSizes.medium
+                    onClicked: {
+                        selectedDevice.ptzRight()
+                    }
+                }
+                QQC2.ToolButton {
+                    Layout.row: 3
+                    Layout.column: 2
                     icon.name: "go-down"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
-                    anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {
                         selectedDevice.ptzDown()
                     }
@@ -101,13 +111,10 @@ Kirigami.Page {
             }
             ColumnLayout {
                 visible: selectedDevice.isZoomSupported
-                anchors.margins: Kirigami.Units.gridUnit
-                anchors.left: parent.horizontalCenter
                 QQC2.ToolButton {
                     icon.name: "zoom-in"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
-                    anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {
                         selectedDevice.ptzZoomIn()
                     }
@@ -116,11 +123,13 @@ Kirigami.Page {
                     icon.name: "zoom-out"
                     icon.width: Kirigami.Units.iconSizes.medium
                     icon.height: Kirigami.Units.iconSizes.medium
-                    anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {
                         selectedDevice.ptzZoomOut()
                     }
                 }
+            }
+            Rectangle {
+                Layout.fillWidth: true
             }
         }
     }
