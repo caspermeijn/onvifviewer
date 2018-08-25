@@ -48,27 +48,21 @@ void OnvifDeviceManager::loadDevices()
     settings.endArray();
 
     if(m_deviceList.isEmpty()) {
-        // These are example devices from the Onvif spotlight challange
         OnvifDevice * device1 = createNewDevice();
-        device1->setDeviceName("Bosch (Dinion7000HD)");
-        device1->setHostName("193.159.244.134");
-        device1->setUserName("service");
-        device1->setPassword("Xbks8tr8vT");
+        device1->setDeviceName("Demo USA");
+        device1->setHostName("166.139.82.23");
+        device1->setUserName("");
+        device1->setPassword("");
         device1->connectToDevice();
 
         OnvifDevice * device2 = createNewDevice();
-        device2->setDeviceName("Bosch (Autodom7000)");
-        device2->setHostName("193.159.244.132");
-        device2->setUserName("service");
-        device2->setPassword("Xbks8tr8vT");
+        device2->setDeviceName("Demo Norway");
+        device2->setHostName("79.160.18.23:10000");
+        device2->setUserName("");
+        device2->setPassword("");
+        device2->setPreferredVideoStreamProtocol("RtspOverHttp");
         device2->connectToDevice();
 
-        OnvifDevice * device3 = createNewDevice();
-        device3->setDeviceName("Axis");
-        device3->setHostName("195.60.68.239");
-        device3->setUserName("operator");
-        device3->setPassword("Onv!f2018");
-        device3->connectToDevice();
     }
 }
 
