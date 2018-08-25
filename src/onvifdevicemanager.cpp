@@ -41,6 +41,7 @@ void OnvifDeviceManager::loadDevices()
         device->setUserName(settings.value("userName").toString());
         device->setPassword(settings.value("password").toString());
         device->setPreferContinuousMove(settings.value("preferContinuousMove").toBool());
+        device->setPreferredVideoStreamProtocol(settings.value("preferredVideoStreamProtocol").toString());
 
         device->connectToDevice();
     }
@@ -83,6 +84,7 @@ void OnvifDeviceManager::saveDevices()
         settings.setValue("userName", device->userName());
         settings.setValue("password", device->password());
         settings.setValue("preferContinuousMove", device->preferContinuousMove());
+        settings.setValue("preferredVideoStreamProtocol", device->preferredVideoStreamProtocol());
     }
     settings.endArray();
 }

@@ -50,6 +50,8 @@ public:
 
     void setServiceCapabilities(OnvifSoapMedia::TRT__Capabilities capabilities);
 
+    void setPreferredVideoStreamProtocol(const QString& preferredVideoStreamProtocol);
+
 signals:
     void profileListAvailable(const QList<OnvifMediaProfile>& profileList);
     void supportsSnapshotUriAvailable(bool supportsSnapshotUri);

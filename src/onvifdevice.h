@@ -32,6 +32,7 @@ class OnvifDevice : public QObject
     Q_PROPERTY(QString userName READ userName WRITE setUserName NOTIFY userNameChanged)
     Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
     Q_PROPERTY(bool preferContinuousMove READ preferContinuousMove WRITE setPreferContinuousMove NOTIFY preferContinuousMoveChanged)
+    Q_PROPERTY(QString preferredVideoStreamProtocol READ preferredVideoStreamProtocol WRITE setPreferredVideoStreamProtocol NOTIFY preferredVideoStreamProtocolChanged)
     Q_PROPERTY(QString errorString READ errorString NOTIFY errorStringChanged)
     Q_PROPERTY(OnvifDeviceInformation* deviceInformation READ deviceInformation NOTIFY deviceInformationChanged)
     Q_PROPERTY(bool supportsSnapshotUri READ supportsSnapshotUri NOTIFY supportsSnapshotUriChanged)
@@ -71,12 +72,16 @@ public:
     bool preferContinuousMove() const;
     void setPreferContinuousMove(bool preferContinuousMove);
 
+    QString preferredVideoStreamProtocol() const;
+    void setPreferredVideoStreamProtocol(const QString &preferredVideoStreamProtocol);
+
 signals:
     void deviceNameChanged(const QString& deviceName);
     void hostNameChanged(const QString& hostName);
     void userNameChanged(const QString& userName);
     void passwordChanged(const QString& password);
     void preferContinuousMoveChanged(bool preferContinuousMove);
+    void preferredVideoStreamProtocolChanged(const QString& preferredVideoStreamProtocol);
     void errorStringChanged(const QString& errorString);
     void deviceInformationChanged(OnvifDeviceInformation * deviceInformation);
     void supportsSnapshotUriChanged(bool supportsSnapshotUri);
@@ -107,6 +112,7 @@ private:
     QString m_userName;
     QString m_password;
     bool m_preferContinuousMove;
+    QString m_preferredVideoStreamProtocol;
     OnvifMediaProfile m_selectedMediaProfile;
     OnvifDeviceInformation* m_cachedDeviceInformation;
     QTimer m_ptzStopTimer;

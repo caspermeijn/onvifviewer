@@ -23,6 +23,7 @@
 
 OnvifDevice::OnvifDevice(QObject *parent) :
     QObject(parent),
+    m_preferContinuousMove(false),
     m_cachedDeviceInformation(new OnvifDeviceInformation())
 {
     connect(&m_connection, &OnvifDeviceConnection::servicesAvailable,
@@ -116,6 +117,7 @@ void OnvifDevice::servicesAvailable()
     OnvifMediaService *mediaService = device->getMediaService();
     OnvifMedia2Service *media2Service = device->getMedia2Service();
     if(media2Service) {
+        media2Service->setPreferredVideoStreamProtocol(preferredVideoStreamProtocol());
         connect(media2Service, &OnvifMedia2Service::profileListAvailable,
                 this, &OnvifDevice::profileListAvailable);
         connect(media2Service, &OnvifMedia2Service::streamUriAvailable,
@@ -125,6 +127,7 @@ void OnvifDevice::servicesAvailable()
         connect(media2Service, &OnvifMedia2Service::snapshotUriAvailable,
                 this, &OnvifDevice::snapshotUriChanged);
     } else if(mediaService) {
+        mediaService->setPreferredVideoStreamProtocol(preferredVideoStreamProtocol());
         connect(mediaService, &OnvifMediaService::profileListAvailable,
                 this, &OnvifDevice::profileListAvailable);
         connect(mediaService, &OnvifMediaService::streamUriAvailable,
@@ -181,6 +184,20 @@ void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileLi
         media2Service->selectProfile(m_selectedMediaProfile);
     else if(mediaService)
         mediaService->selectProfile(m_selectedMediaProfile);
+}
+
+QString OnvifDevice::preferredVideoStreamProtocol() const
+{
+    return m_preferredVideoStreamProtocol;
+}
+
+void OnvifDevice::setPreferredVideoStreamProtocol(const QString &preferredVideoStreamProtocol)
+{
+    if(m_preferredVideoStreamProtocol != preferredVideoStreamProtocol)
+    {
+        m_preferredVideoStreamProtocol = preferredVideoStreamProtocol;
+        emit preferredVideoStreamProtocolChanged(m_preferredVideoStreamProtocol);
+    }
 }
 
 bool OnvifDevice::preferContinuousMove() const

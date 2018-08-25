@@ -39,6 +39,7 @@ public:
     bool supportsSnapshotUri;
     QUrl snapshotUri;
     QUrl streamUri;
+    QString preferredVideoStreamProtocol;
 };
 
 OnvifMediaService::OnvifMediaService(const QString &endpointAddress, OnvifDeviceConnection *parent) :
@@ -100,6 +101,30 @@ void OnvifMediaService::selectProfile(const OnvifMediaProfile &profile)
 
     OnvifSoapMedia::TRT__GetStreamUri requestStream;
     requestStream.setProfileToken(d->selectedProfile.token());
+    if(d->preferredVideoStreamProtocol == "RtspOverHttp") {
+        OnvifSoapMedia::TT__StreamSetup streamSetup;
+        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
+        OnvifSoapMedia::TT__Transport transport;
+        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::HTTP);
+        streamSetup.setTransport(transport);
+        requestStream.setStreamSetup(streamSetup);
+    } else if(d->preferredVideoStreamProtocol == "RtspUnicast") {
+        OnvifSoapMedia::TT__StreamSetup streamSetup;
+        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
+        OnvifSoapMedia::TT__Transport transport;
+        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::UDP);
+        streamSetup.setTransport(transport);
+        requestStream.setStreamSetup(streamSetup);
+    } else if(d->preferredVideoStreamProtocol == "RTSP") {
+        OnvifSoapMedia::TT__StreamSetup streamSetup;
+        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
+        OnvifSoapMedia::TT__Transport transport;
+        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::RTSP);
+        streamSetup.setTransport(transport);
+        requestStream.setStreamSetup(streamSetup);
+    } else {
+        qWarning() << "Warning: unknown preferredVideoStreamProtocol" << d->preferredVideoStreamProtocol;
+    }
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGetStreamUri(requestStream);
 }
@@ -124,6 +149,11 @@ void OnvifMediaService::setServiceCapabilities(TRT__Capabilities capabilities)
     d->recievedServiceCapabilities = true;
     d->supportsSnapshotUri = capabilities.snapshotUri();
     emit supportsSnapshotUriAvailable(d->supportsSnapshotUri);
+}
+
+void OnvifMediaService::setPreferredVideoStreamProtocol(const QString &preferredVideoStreamProtocol)
+{
+    d->preferredVideoStreamProtocol = preferredVideoStreamProtocol;
 }
 
 void OnvifMediaService::getServiceCapabilitiesDone(const TRT__GetServiceCapabilitiesResponse &parameters)
