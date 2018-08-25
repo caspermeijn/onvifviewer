@@ -134,6 +134,7 @@ void OnvifMedia2Service::getProfilesError(const KDSoapMessage &fault)
 void OnvifMedia2Service::getSnapshotUriDone(const TR2__GetSnapshotUriResponse &parameters)
 {
     d->snapshotUri = QUrl(parameters.uri());
+    d->device->updateUrlHost(&d->snapshotUri);
     if(d->snapshotUri.userInfo().isEmpty())
     {
         d->device->updateUrlCredentials(&d->snapshotUri);
@@ -149,6 +150,7 @@ void OnvifMedia2Service::getSnapshotUriError(const KDSoapMessage &fault)
 void OnvifMedia2Service::getStreamUriDone(const TR2__GetStreamUriResponse &parameters)
 {
     d->streamUri = QUrl(parameters.uri());
+    d->device->updateUrlHost(&d->streamUri);
     if(d->streamUri.userInfo().isEmpty())
     {
         d->device->updateUrlCredentials(&d->streamUri);

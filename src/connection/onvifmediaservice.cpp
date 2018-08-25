@@ -159,6 +159,7 @@ void OnvifMediaService::getSnapshotUriDone(const OnvifSoapMedia::TRT__GetSnapsho
     //TODO: what to do if timeout?
     //Q_ASSERT(!parameters.mediaUri().timeout());
     d->snapshotUri = QUrl(parameters.mediaUri().uri());
+    d->device->updateUrlHost(&d->snapshotUri);
     if(d->snapshotUri.userInfo().isEmpty())
     {
         d->device->updateUrlCredentials(&d->snapshotUri);
@@ -179,6 +180,7 @@ void OnvifMediaService::getStreamUriDone(const OnvifSoapMedia::TRT__GetStreamUri
     //TODO: what to do if timeout?
     //Q_ASSERT(!parameters.mediaUri().timeout());
     d->streamUri = QUrl(parameters.mediaUri().uri());
+    d->device->updateUrlHost(&d->streamUri);
     if(d->streamUri.userInfo().isEmpty())
     {
         d->device->updateUrlCredentials(&d->streamUri);

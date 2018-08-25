@@ -50,6 +50,7 @@ public:
     OnvifPtzService *getPtzService() const;
 
     /* internal */
+    void updateUrlHost(QUrl* url);
     void updateSoapCredentials(KDSoapClientInterface * clientInterface);
     void updateUrlCredentials(QUrl* url);
     void handleSoapError(const KDSoapMessage& fault, const QString& location);
