@@ -37,6 +37,7 @@ public:
     bool supportsSnapshotUri;
     QUrl snapshotUri;
     QUrl streamUri;
+    QString preferredVideoStreamProtocol;
 };
 
 OnvifMedia2Service::OnvifMedia2Service(const QString &endpointAddress, TR2__Capabilities2 capabilities, OnvifDeviceConnection *parent) :
@@ -96,7 +97,9 @@ void OnvifMedia2Service::selectProfile(const OnvifMediaProfile &profile)
 
     TR2__GetStreamUri requestStream;
     requestStream.setProfileToken(d->selectedProfile.token());
-    requestStream.setProtocol("RtspUnicast");
+    if(!d->preferredVideoStreamProtocol.isEmpty()) {
+        requestStream.setProtocol(d->preferredVideoStreamProtocol);
+    }
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGetStreamUri(requestStream);
 }
@@ -114,6 +117,11 @@ QUrl OnvifMedia2Service::getSnapshotUri() const
 QUrl OnvifMedia2Service::getStreamUri() const
 {
     return d->streamUri;
+}
+
+void OnvifMedia2Service::setPreferredVideoStreamProtocol(const QString &preferredVideoStreamProtocol)
+{
+    d->preferredVideoStreamProtocol = preferredVideoStreamProtocol;
 }
 
 void OnvifMedia2Service::getProfilesDone(const TR2__GetProfilesResponse &parameters)
@@ -134,6 +142,7 @@ void OnvifMedia2Service::getProfilesError(const KDSoapMessage &fault)
 void OnvifMedia2Service::getSnapshotUriDone(const TR2__GetSnapshotUriResponse &parameters)
 {
     d->snapshotUri = QUrl(parameters.uri());
+    d->device->updateUrlHost(&d->snapshotUri);
     if(d->snapshotUri.userInfo().isEmpty())
     {
         d->device->updateUrlCredentials(&d->snapshotUri);
@@ -149,6 +158,7 @@ void OnvifMedia2Service::getSnapshotUriError(const KDSoapMessage &fault)
 void OnvifMedia2Service::getStreamUriDone(const TR2__GetStreamUriResponse &parameters)
 {
     d->streamUri = QUrl(parameters.uri());
+    d->device->updateUrlHost(&d->streamUri);
     if(d->streamUri.userInfo().isEmpty())
     {
         d->device->updateUrlCredentials(&d->streamUri);

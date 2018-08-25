@@ -49,6 +49,7 @@ public:
     OnvifMedia2Service * media2Service;
     OnvifPtzService * ptzService;
 
+    QString hostname;
     QString username;
     QString password;
 
@@ -82,6 +83,7 @@ OnvifDeviceConnection::~OnvifDeviceConnection()
 
 void OnvifDeviceConnection::setHostname(const QString& hostname)
 {
+    d->hostname = hostname;
     d->soapService.setEndPoint(c_baseEndpointURI.arg(hostname));
 }
 
@@ -137,22 +139,29 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
 {
     for(auto service : parameters.service())
     {
+        QUrl xAddrUrl(service.xAddr());
+        this->updateUrlHost(&xAddrUrl);
         if(service.namespace_() == "http://www.onvif.org/ver10/device/wsdl")
         {
+            if(QUrl(service.xAddr()) != QUrl(c_baseEndpointURI.arg(d->hostname))) {
+                qWarning() << "Warning: The recieved address of the device service doesn't match the address of the initial connection.";
+                qWarning() << "Recieved address:" << QUrl(service.xAddr()).toString();
+                qWarning() << "Initial connection:" << QUrl(c_baseEndpointURI.arg(d->hostname)).toString();
+            }
             OnvifSoapDevicemgmt::TDS__DeviceServiceCapabilities capabilities;
             capabilities.deserialize(service.capabilities().any());
             d->isUsernameTokenSupported = capabilities.security().usernameToken();
             d->isHttpDigestSupported = capabilities.security().httpDigest();
             if(!d->deviceService)
             {
-                d->deviceService = new OnvifDeviceService(service.xAddr(), this);
+                d->deviceService = new OnvifDeviceService(xAddrUrl.toString(), this);
             }
         }
         else if(service.namespace_() == "http://www.onvif.org/ver10/media/wsdl")
         {
             if(!d->mediaService)
             {
-                d->mediaService = new OnvifMediaService(service.xAddr(), this);
+                d->mediaService = new OnvifMediaService(xAddrUrl.toString(), this);
             }
             OnvifSoapMedia::TRT__Capabilities capabilities;
             capabilities.deserialize(service.capabilities().any());
@@ -164,14 +173,14 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
             {
                 OnvifSoapMedia2::TR2__Capabilities2 capabilities;
                 capabilities.deserialize(service.capabilities().any());
-                d->media2Service = new OnvifMedia2Service(service.xAddr(), capabilities, this);
+                d->media2Service = new OnvifMedia2Service(xAddrUrl.toString(), capabilities, this);
             }
         }
         else if(service.namespace_() == "http://www.onvif.org/ver20/ptz/wsdl")
         {
             if(!d->ptzService)
             {
-                d->ptzService = new OnvifPtzService(service.xAddr(), this);
+                d->ptzService = new OnvifPtzService(xAddrUrl.toString(), this);
             }
             OnvifSoapPtz::TPTZ__Capabilities capabilities;
             capabilities.deserialize(service.capabilities().any());
@@ -198,7 +207,9 @@ void OnvifDeviceConnection::getCapabilitiesDone(const TDS__GetCapabilitiesRespon
     {
         if(!d->deviceService)
         {
-            d->deviceService = new OnvifDeviceService(parameters.capabilities().device().xAddr(), this);
+            QUrl xAddrUrl(parameters.capabilities().device().xAddr());
+            this->updateUrlHost(&xAddrUrl);
+            d->deviceService = new OnvifDeviceService(xAddrUrl.toString(), this);
         }
     }
     if(parameters.capabilities().events().xAddr().size())
@@ -213,14 +224,18 @@ void OnvifDeviceConnection::getCapabilitiesDone(const TDS__GetCapabilitiesRespon
     {
         if(!d->mediaService)
         {
-            d->mediaService = new OnvifMediaService(parameters.capabilities().media().xAddr(), this);
+            QUrl xAddrUrl(parameters.capabilities().media().xAddr());
+            this->updateUrlHost(&xAddrUrl);
+            d->mediaService = new OnvifMediaService(xAddrUrl.toString(), this);
         }
     }
     if(parameters.capabilities().pTZ().xAddr().size())
     {
         if(!d->ptzService)
         {
-            d->ptzService = new OnvifPtzService(parameters.capabilities().pTZ().xAddr(), this);
+            QUrl xAddrUrl(parameters.capabilities().pTZ().xAddr());
+            this->updateUrlHost(&xAddrUrl);
+            d->ptzService = new OnvifPtzService(xAddrUrl.toString(), this);
         }
     }
 
@@ -267,6 +282,15 @@ OnvifMedia2Service *OnvifDeviceConnection::getMedia2Service() const
 OnvifPtzService *OnvifDeviceConnection::getPtzService() const
 {
     return d->ptzService;
+}
+
+void OnvifDeviceConnection::updateUrlHost(QUrl *url)
+{
+    QUrl origUrl(c_baseEndpointURI.arg(d->hostname));
+    if(url->host() != origUrl.host()) {
+        url->setHost(origUrl.host());
+        url->setPort(origUrl.port());
+    }
 }
 
 void OnvifDeviceConnection::updateSoapCredentials(KDSoapClientInterface *clientInterface)

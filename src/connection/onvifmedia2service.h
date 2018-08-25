@@ -48,6 +48,8 @@ public:
     QUrl getSnapshotUri() const;
     QUrl getStreamUri() const;
 
+    void setPreferredVideoStreamProtocol(const QString& preferredVideoStreamProtocol);
+
 signals:
     void profileListAvailable(const QList<OnvifMediaProfile>& profileList);
     void supportsSnapshotUriAvailable(bool supportsSnapshotUri);
