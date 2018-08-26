@@ -32,6 +32,17 @@
   </provides>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="0.6" date="2018-08-26">
+      <description>
+        <p>This is a minor release, with the following improvements:</p>
+        <ul>
+          <li>Renamed internal application name. Note: this causes the configuation file to reset</li>
+          <li>Added internationalization support with Brazilian and Dutch translations</li>
+          <li>Replaced demo cameras</li>
+          <li>Several internal improvements</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.5" date="2018-07-15">
       <description>
         <p>This is a minor release, with the following improvements:</p>
