@@ -25,6 +25,40 @@ make
 make install
 cd ..
 
+mkdir build-libintl-lite-android
+cd build-libintl-lite-android
+cmake ../libintl-lite \
+    -DECM_DIR=/usr/share/ECM/cmake \
+    -DCMAKE_TOOLCHAIN_FILE=/usr/share/ECM/toolchain/Android.cmake \
+    -DECM_ADDITIONAL_FIND_ROOT_PATH=/home/casper/Qt/5.10.1/android_armv7 \
+    -DCMAKE_PREFIX_PATH=/home/casper/Qt/5.10.1/android_armv7/ \
+    -DANDROID_NDK=/home/casper/Android/Sdk/ndk-bundle \
+    -DANDROID_SDK_ROOT=/home/casper/Android/Sdk/ \
+    -DANDROID_SDK_BUILD_TOOLS_REVISION=26.0.2 \
+    -DCMAKE_INSTALL_PREFIX=/home/casper/build-android-install-prefix
+
+make 
+make install
+cd ..
+
+mkdir build-ki18n-android
+cd build-ki18n-android
+cmake ../ki18n \
+    -DECM_DIR=/usr/share/ECM/cmake \
+    -DCMAKE_TOOLCHAIN_FILE=/usr/share/ECM/toolchain/Android.cmake \
+    -DECM_ADDITIONAL_FIND_ROOT_PATH=/home/casper/Qt/5.10.1/android_armv7 \
+    -DCMAKE_PREFIX_PATH=/home/casper/Qt/5.10.1/android_armv7/ \
+    -DANDROID_NDK=/home/casper/Android/Sdk/ndk-bundle \
+    -DANDROID_SDK_ROOT=/home/casper/Android/Sdk/ \
+    -DANDROID_SDK_BUILD_TOOLS_REVISION=26.0.2 \
+    -DCMAKE_INSTALL_PREFIX=/home/casper/build-android-install-prefix \
+    -DLibIntl_INCLUDE_DIRS=/home/casper/build-android-install-prefix/include/ \
+    -DLibIntl_LIBRARIES=/home/casper/build-android-install-prefix/lib/libintl.a
+
+make 
+make install
+cd ..
+
 mkdir build-kdsoap-android
 cd build-kdsoap-android
 cmake ../KDSoap \
