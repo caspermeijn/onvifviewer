@@ -124,7 +124,7 @@ void OnvifMediaService::selectProfile(const OnvifMediaProfile &profile)
         transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::RTSP);
         streamSetup.setTransport(transport);
         requestStream.setStreamSetup(streamSetup);
-    } else {
+    } else if(!d->preferredVideoStreamProtocol.isEmpty()){
         qWarning() << "Warning: unknown preferredVideoStreamProtocol" << d->preferredVideoStreamProtocol;
     }
     d->device->updateSoapCredentials(d->soapService.clientInterface());
