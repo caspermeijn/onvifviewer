@@ -102,17 +102,28 @@ msgstr "Carregando..."
 msgid "Overview"
 msgstr "Visão geral"
 
-#: OverviewPage.qml:61
+#: OverviewPage.qml:46
 msgid "Camera %1"
 msgstr "Camera %1"
 
-#: OverviewPage.qml:88
+#: OverviewPage.qml:67
 msgid "An error occurred during communication with the camera."
 msgstr "Ocorreu um erro durante a comunicação com a câmera."
 
-#: OverviewPage.qml:98
+#: OverviewPage.qml:76
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "A câmera não suporta a recuperação de instantâneos."
+
+#: OverviewPage.qml:97
+msgctxt "Go to view a camera"
+msgid "View"
+msgstr ""
+
+#: OverviewPage.qml:106
+#, fuzzy
+msgctxt "Go to settings of a camera"
+msgid "Settings"
+msgstr "Configurações"
 
 #: desktop.cpp:1
 msgid "ONVIFViewer"

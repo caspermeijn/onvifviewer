@@ -15,6 +15,7 @@
     <qresource prefix="/icons/breeze/actions/24">
         <file alias="go-home.svg">../3rdparty/breeze-icons/icons/actions/24/go-home.svg</file>
         <file alias="list-add.svg">../3rdparty/breeze-icons/icons/actions/24/list-add.svg</file>
+        <file alias="view-preview.svg">../3rdparty/breeze-icons/icons/actions/24/view-preview.svg</file>
         <file alias="transform-move.svg">../3rdparty/breeze-icons/icons/actions/24/transform-move.svg</file>
     </qresource>
 </RCC>

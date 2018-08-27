@@ -105,17 +105,28 @@ msgstr "Laden..."
 msgid "Overview"
 msgstr "Overzicht"
 
-#: OverviewPage.qml:61
+#: OverviewPage.qml:46
 msgid "Camera %1"
 msgstr "Camera %1"
 
-#: OverviewPage.qml:88
+#: OverviewPage.qml:67
 msgid "An error occurred during communication with the camera."
 msgstr "Er is een fout opgetreden tijdens de communicatie met de camera."
 
-#: OverviewPage.qml:98
+#: OverviewPage.qml:76
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "Deze camera ondersteund het ophalen van momentopname's niet."
+
+#: OverviewPage.qml:97
+msgctxt "Go to view a camera"
+msgid "View"
+msgstr ""
+
+#: OverviewPage.qml:106
+#, fuzzy
+msgctxt "Go to settings of a camera"
+msgid "Settings"
+msgstr "Instellingen"
 
 #: desktop.cpp:1
 msgid "ONVIFViewer"
