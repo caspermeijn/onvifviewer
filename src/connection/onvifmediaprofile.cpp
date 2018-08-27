@@ -22,10 +22,7 @@
 class OnvifMediaProfile::Private : public QSharedData
 {
 public:
-    Private() :
-        fixed(false),
-        resolutionPixels(0)
-    {;}
+    Private() {;}
 
     Private(const OnvifSoapMedia::TT__Profile &profile) :
         fixed(profile.fixed()),
@@ -59,13 +56,12 @@ public:
         Q_ASSERT(token.size());
     }
 
-
-    bool fixed;
+    bool fixed = false;
     QString name;
     QString token;
     QString ptzNodeToken;
     QString videoEncoding;
-    long resolutionPixels;
+    long resolutionPixels = 0;
 };
 
 OnvifMediaProfile::OnvifMediaProfile() :
@@ -73,10 +69,7 @@ OnvifMediaProfile::OnvifMediaProfile() :
 {
 }
 
-OnvifMediaProfile::OnvifMediaProfile(const OnvifMediaProfile &other) :
-    d(other.d)
-{
-}
+OnvifMediaProfile::OnvifMediaProfile(const OnvifMediaProfile &other) = default;
 
 OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia::TT__Profile &profile) :
     d(new Private(profile))
@@ -88,9 +81,7 @@ OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia2::TR2__MediaProfile &p
 {
 }
 
-OnvifMediaProfile::~OnvifMediaProfile()
-{
-}
+OnvifMediaProfile::~OnvifMediaProfile() = default;
 
 OnvifMediaProfile &OnvifMediaProfile::operator=(const OnvifMediaProfile &other)
 {

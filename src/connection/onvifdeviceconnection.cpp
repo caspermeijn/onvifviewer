@@ -31,23 +31,20 @@
 
 using namespace OnvifSoapDevicemgmt;
 
+#define Q_FUNC_INFO_AS_STRING (QString(static_cast<const char*>(Q_FUNC_INFO)))
+
 static const QString c_baseEndpointURI = "http://%1/onvif/device_service";
 
 class OnvifDeviceConnection::Private
 {
 public:
-    Private() :
-        deviceService(nullptr),
-        mediaService(nullptr),
-        media2Service(nullptr),
-        ptzService(nullptr)
-    {;}
+    Private() = default;
 
     OnvifSoapDevicemgmt::DeviceBindingService soapService;
-    OnvifDeviceService * deviceService;
-    OnvifMediaService * mediaService;
-    OnvifMedia2Service * media2Service;
-    OnvifPtzService * ptzService;
+    OnvifDeviceService * deviceService = nullptr;
+    OnvifMediaService * mediaService = nullptr;
+    OnvifMedia2Service * media2Service = nullptr;
+    OnvifPtzService * ptzService = nullptr;
 
     QString hostname;
     QString username;
@@ -137,7 +134,7 @@ void OnvifDeviceConnection::disconnectFromDevice()
 
 void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &parameters)
 {
-    for(auto service : parameters.service())
+    for(const auto& service : parameters.service())
     {
         QUrl xAddrUrl(service.xAddr());
         this->updateUrlHost(&xAddrUrl);
@@ -194,7 +191,7 @@ void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &para
 
 void OnvifDeviceConnection::getServicesError(const KDSoapMessage &fault)
 {
-    handleSoapError(fault, Q_FUNC_INFO);
+    handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifDeviceConnection::getCapabilitiesDone(const TDS__GetCapabilitiesResponse &parameters)
@@ -245,7 +242,7 @@ void OnvifDeviceConnection::getCapabilitiesDone(const TDS__GetCapabilitiesRespon
 
 void OnvifDeviceConnection::getCapabilitiesError(const KDSoapMessage &fault)
 {
-    handleSoapError(fault, Q_FUNC_INFO);
+    handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifDeviceConnection::checkServicesAvailable()

@@ -53,9 +53,8 @@ QVariant OnvifDeviceManagerModel::data(const QModelIndex &index, int role) const
     {
         const QMetaProperty& prop = metaObject->property(role - Qt::UserRole);
         return device->property(prop.name());
-    } else {
-        qDebug() << "OnvifDeviceManagerModel" << "Unknown role" << index << role;
     }
+    qDebug() << "OnvifDeviceManagerModel" << "Unknown role" << index << role;
     return QVariant();
 }
 
@@ -98,7 +97,7 @@ void OnvifDeviceManagerModel::deviceListChanged()
 
 void OnvifDeviceManagerModel::deviceChanged()
 {
-    OnvifDevice * device = qobject_cast<OnvifDevice*>(sender());
+    auto * device = qobject_cast<OnvifDevice*>(sender());
     Q_ASSERT(device);
 
     int i = m_deviceManager->deviceList().indexOf(device);

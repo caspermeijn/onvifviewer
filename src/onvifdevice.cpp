@@ -104,7 +104,7 @@ QString OnvifDevice::errorString() const
 
 void OnvifDevice::servicesAvailable()
 {
-    OnvifDeviceConnection * device = qobject_cast<OnvifDeviceConnection *>(sender());
+    auto * device = qobject_cast<OnvifDeviceConnection *>(sender());
     Q_ASSERT(device);
 
     OnvifDeviceService *deviceService = device->getDeviceService();
@@ -152,13 +152,12 @@ bool mediaProfileLessThan(const OnvifMediaProfile &p1, const OnvifMediaProfile &
         auto index2 = preferredVideoEncodingList.indexOf(p2.videoEncoding());
         if(index1 != -1 && index2 != -1) {
             return index1 < index2;
-        } else {
-            if(index1 == -1)
-                qCritical() << "Unknown video encoding" << p1.videoEncoding();
-            if(index2 == -1)
-                qCritical() << "Unknown video encoding" << p2.videoEncoding();
-            return p1.videoEncoding() < p2.videoEncoding();
         }
+        if(index1 == -1)
+            qCritical() << "Unknown video encoding" << p1.videoEncoding();
+        if(index2 == -1)
+            qCritical() << "Unknown video encoding" << p2.videoEncoding();
+        return p1.videoEncoding() < p2.videoEncoding();
     }
 
     if(p1.resolutionPixels() != p2.resolutionPixels()) {
@@ -170,8 +169,8 @@ bool mediaProfileLessThan(const OnvifMediaProfile &p1, const OnvifMediaProfile &
 
 void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile> &profileList)
 {
-    OnvifMediaService * mediaService = qobject_cast<OnvifMediaService *>(sender());
-    OnvifMedia2Service * media2Service = qobject_cast<OnvifMedia2Service *>(sender());
+    auto * mediaService = qobject_cast<OnvifMediaService *>(sender());
+    auto * media2Service = qobject_cast<OnvifMedia2Service *>(sender());
     Q_ASSERT(mediaService || media2Service);
 
     Q_ASSERT(profileList.size());
@@ -268,19 +267,19 @@ bool OnvifDevice::isPanTiltSupported() const
 bool OnvifDevice::isPtzHomeSupported() const
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
-    if(ptzService)
+    if(ptzService) {
         return ptzService->isHomeSupported(m_selectedMediaProfile);
-    else
-        return false;
+    }
+    return false;
 }
 
 bool OnvifDevice::isZoomSupported() const
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
-    if(ptzService)
+    if(ptzService) {
         return ptzService->isRelativeZoomSupported(m_selectedMediaProfile);
-    else
-        return false;
+    }
+    return false;
 }
 
 QString OnvifDevice::userName() const

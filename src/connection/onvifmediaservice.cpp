@@ -22,6 +22,8 @@
 
 using namespace OnvifSoapMedia;
 
+#define Q_FUNC_INFO_AS_STRING (QString(static_cast<const char*>(Q_FUNC_INFO)))
+
 class OnvifMediaService::Private
 {
 public:
@@ -122,7 +124,7 @@ void OnvifMediaService::selectProfile(const OnvifMediaProfile &profile)
         transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::RTSP);
         streamSetup.setTransport(transport);
         requestStream.setStreamSetup(streamSetup);
-    } else {
+    } else if(!d->preferredVideoStreamProtocol.isEmpty()){
         qWarning() << "Warning: unknown preferredVideoStreamProtocol" << d->preferredVideoStreamProtocol;
     }
     d->device->updateSoapCredentials(d->soapService.clientInterface());
@@ -144,7 +146,7 @@ QUrl OnvifMediaService::getStreamUri() const
     return d->streamUri;
 }
 
-void OnvifMediaService::setServiceCapabilities(TRT__Capabilities capabilities)
+void OnvifMediaService::setServiceCapabilities(const TRT__Capabilities& capabilities)
 {
     d->recievedServiceCapabilities = true;
     d->supportsSnapshotUri = capabilities.snapshotUri();
@@ -163,13 +165,13 @@ void OnvifMediaService::getServiceCapabilitiesDone(const TRT__GetServiceCapabili
 
 void OnvifMediaService::getServiceCapabilitiesError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMediaService::getProfilesDone(const OnvifSoapMedia::TRT__GetProfilesResponse &parameters)
 {
     d->profileList.clear();
-    for(auto profile : parameters.profiles()) {
+    for(const auto& profile : parameters.profiles()) {
         d->profileList << OnvifMediaProfile(profile);
     }
 
@@ -178,7 +180,7 @@ void OnvifMediaService::getProfilesDone(const OnvifSoapMedia::TRT__GetProfilesRe
 
 void OnvifMediaService::getProfilesError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMediaService::getSnapshotUriDone(const OnvifSoapMedia::TRT__GetSnapshotUriResponse &parameters)
@@ -199,7 +201,7 @@ void OnvifMediaService::getSnapshotUriDone(const OnvifSoapMedia::TRT__GetSnapsho
 
 void OnvifMediaService::getSnapshotUriError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMediaService::getStreamUriDone(const OnvifSoapMedia::TRT__GetStreamUriResponse &parameters)
@@ -220,5 +222,5 @@ void OnvifMediaService::getStreamUriDone(const OnvifSoapMedia::TRT__GetStreamUri
 
 void OnvifMediaService::getStreamUriError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }

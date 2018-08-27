@@ -24,6 +24,8 @@
 
 using namespace OnvifSoapDevicemgmt;
 
+#define Q_FUNC_INFO_AS_STRING (QString(static_cast<const char*>(Q_FUNC_INFO)))
+
 class OnvifDeviceService::Private
 {
 public:
@@ -72,5 +74,5 @@ void OnvifDeviceService::getDeviceInformationDone(const TDS__GetDeviceInformatio
 
 void OnvifDeviceService::getDeviceInformationError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
