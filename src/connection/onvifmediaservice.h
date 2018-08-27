@@ -48,7 +48,7 @@ public:
     QUrl getSnapshotUri() const;
     QUrl getStreamUri() const;
 
-    void setServiceCapabilities(OnvifSoapMedia::TRT__Capabilities capabilities);
+    void setServiceCapabilities(const OnvifSoapMedia::TRT__Capabilities& capabilities);
 
     void setPreferredVideoStreamProtocol(const QString& preferredVideoStreamProtocol);
 

@@ -35,7 +35,7 @@ class OnvifMedia2Service : public QObject
 {
     Q_OBJECT
 public:
-    explicit OnvifMedia2Service(const QString& endpointAddress, OnvifSoapMedia2::TR2__Capabilities2 capabilities, OnvifDeviceConnection *parent);
+    explicit OnvifMedia2Service(const QString& endpointAddress, const OnvifSoapMedia2::TR2__Capabilities2& capabilities, OnvifDeviceConnection *parent);
 
     void connectToService();
     void disconnectFromService();

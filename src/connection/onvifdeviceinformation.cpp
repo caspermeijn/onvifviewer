@@ -60,9 +60,7 @@ OnvifDeviceInformation::OnvifDeviceInformation(const TDS__GetDeviceInformationRe
 {
 }
 
-OnvifDeviceInformation::~OnvifDeviceInformation()
-{
-}
+OnvifDeviceInformation::~OnvifDeviceInformation() = default;
 
 OnvifDeviceInformation &OnvifDeviceInformation::operator=(const OnvifDeviceInformation &other)
 {

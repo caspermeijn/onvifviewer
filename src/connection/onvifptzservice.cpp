@@ -23,6 +23,8 @@
 
 using namespace OnvifSoapPtz;
 
+#define Q_FUNC_INFO_AS_STRING (QString(static_cast<const char*>(Q_FUNC_INFO)))
+
 class OnvifPtzService::Private
 {
 public:
@@ -104,7 +106,7 @@ void OnvifPtzService::disconnectFromService()
     d->recievedServiceCapabilities = false;
 }
 
-void OnvifPtzService::setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilities &capabilities)
+void OnvifPtzService::setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilities & /*capabilities*/)
 {
     d->recievedServiceCapabilities = true;
     //TODO: Use capabilities
@@ -156,7 +158,7 @@ bool OnvifPtzService::isContinuousMoveSupported(const OnvifMediaProfile &profile
 {
     for(auto& node : d->nodeList) {
         if(node.token() == profile.ptzNodeToken()) {
-            return node.supportedPTZSpaces().continuousPanTiltVelocitySpace().size();
+            return !node.supportedPTZSpaces().continuousPanTiltVelocitySpace().empty();
         }
     }
     return false;
@@ -187,7 +189,7 @@ bool OnvifPtzService::isRelativeZoomSupported(const OnvifMediaProfile &profile)
 {
     for(auto& node : d->nodeList) {
         if(node.token() == profile.ptzNodeToken()) {
-            return node.supportedPTZSpaces().relativeZoomTranslationSpace().size();
+            return !node.supportedPTZSpaces().relativeZoomTranslationSpace().empty();
         }
     }
     return false;
@@ -237,7 +239,7 @@ bool OnvifPtzService::isRelativeMoveSupported(const OnvifMediaProfile &profile)
 {
     for(auto& node : d->nodeList) {
         if(node.token() == profile.ptzNodeToken()) {
-            return node.supportedPTZSpaces().relativePanTiltTranslationSpace().size();
+            return !node.supportedPTZSpaces().relativePanTiltTranslationSpace().empty();
         }
     }
     return false;
@@ -266,7 +268,7 @@ void OnvifPtzService::getServiceCapabilitiesDone(const TPTZ__GetServiceCapabilit
 
 void OnvifPtzService::getServiceCapabilitiesError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifPtzService::getNodesDone(const OnvifSoapPtz::TPTZ__GetNodesResponse &parameters)
@@ -276,27 +278,27 @@ void OnvifPtzService::getNodesDone(const OnvifSoapPtz::TPTZ__GetNodesResponse &p
 
 void OnvifPtzService::getNodesError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
-void OnvifPtzService::getConfigurationsDone(const TPTZ__GetConfigurationsResponse &parameters)
+void OnvifPtzService::getConfigurationsDone(const TPTZ__GetConfigurationsResponse & /*parameters*/)
 {
     // TODO: What can we do with the the PTZ configuration
 }
 
 void OnvifPtzService::getConfigurationsError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
-void OnvifPtzService::getStatusDone(const OnvifSoapPtz::TPTZ__GetStatusResponse &parameters)
+void OnvifPtzService::getStatusDone(const OnvifSoapPtz::TPTZ__GetStatusResponse & /*parameters*/)
 {
     //TODO: What can we do with the PTZ status?
 }
 
 void OnvifPtzService::getStatusError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifPtzService::absoluteMoveDone(const TPTZ__AbsoluteMoveResponse &)
@@ -306,7 +308,7 @@ void OnvifPtzService::absoluteMoveDone(const TPTZ__AbsoluteMoveResponse &)
 
 void OnvifPtzService::absoluteMoveError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifPtzService::relativeMoveDone(const TPTZ__RelativeMoveResponse &)
@@ -316,17 +318,17 @@ void OnvifPtzService::relativeMoveDone(const TPTZ__RelativeMoveResponse &)
 
 void OnvifPtzService::relativeMoveError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
-void OnvifPtzService::continuousMoveDone(const TPTZ__ContinuousMoveResponse &parameters)
+void OnvifPtzService::continuousMoveDone(const TPTZ__ContinuousMoveResponse & /*parameters*/)
 {
     //NOP
 }
 
 void OnvifPtzService::continuousMoveError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifPtzService::gotoHomePositionDone(const OnvifSoapPtz::TPTZ__GotoHomePositionResponse &)
@@ -336,7 +338,7 @@ void OnvifPtzService::gotoHomePositionDone(const OnvifSoapPtz::TPTZ__GotoHomePos
 
 void OnvifPtzService::gotoHomePositionError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifPtzService::setHomePositionDone(const OnvifSoapPtz::TPTZ__SetHomePositionResponse &)
@@ -346,15 +348,14 @@ void OnvifPtzService::setHomePositionDone(const OnvifSoapPtz::TPTZ__SetHomePosit
 
 void OnvifPtzService::setHomePositionError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
-void OnvifPtzService::stopDone(const TPTZ__StopResponse &parameters)
+void OnvifPtzService::stopDone(const TPTZ__StopResponse & /*parameters*/)
 {
-    qDebug() << Q_FUNC_INFO;
 }
 
 void OnvifPtzService::stopError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }

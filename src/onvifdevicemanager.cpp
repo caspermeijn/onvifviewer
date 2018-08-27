@@ -85,7 +85,7 @@ void OnvifDeviceManager::saveDevices()
 
 OnvifDevice *OnvifDeviceManager::createNewDevice()
 {
-    OnvifDevice * device = new OnvifDevice(this);
+    auto * device = new OnvifDevice(this);
 
     m_deviceList.append(device);
     emit deviceListChanged(m_deviceList);

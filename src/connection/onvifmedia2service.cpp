@@ -22,6 +22,8 @@
 
 using namespace OnvifSoapMedia2;
 
+#define Q_FUNC_INFO_AS_STRING (QString(static_cast<const char*>(Q_FUNC_INFO)))
+
 class OnvifMedia2Service::Private
 {
 public:
@@ -40,7 +42,7 @@ public:
     QString preferredVideoStreamProtocol;
 };
 
-OnvifMedia2Service::OnvifMedia2Service(const QString &endpointAddress, TR2__Capabilities2 capabilities, OnvifDeviceConnection *parent) :
+OnvifMedia2Service::OnvifMedia2Service(const QString &endpointAddress, const TR2__Capabilities2& capabilities, OnvifDeviceConnection *parent) :
     QObject(parent),
     d(new Private(parent))
 {
@@ -64,7 +66,6 @@ OnvifMedia2Service::OnvifMedia2Service(const QString &endpointAddress, TR2__Capa
 
 void OnvifMedia2Service::connectToService()
 {
-    qDebug() << Q_FUNC_INFO;
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     TR2__GetProfiles request;
     request.setType(QStringList() << "All");
@@ -126,9 +127,8 @@ void OnvifMedia2Service::setPreferredVideoStreamProtocol(const QString &preferre
 
 void OnvifMedia2Service::getProfilesDone(const TR2__GetProfilesResponse &parameters)
 {
-    qDebug() << Q_FUNC_INFO;
     d->profileList.clear();
-    for(auto profile : parameters.profiles()) {
+    for(const auto& profile : parameters.profiles()) {
         d->profileList << OnvifMediaProfile(profile);
     }
     emit profileListAvailable(d->profileList);
@@ -136,7 +136,7 @@ void OnvifMedia2Service::getProfilesDone(const TR2__GetProfilesResponse &paramet
 
 void OnvifMedia2Service::getProfilesError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMedia2Service::getSnapshotUriDone(const TR2__GetSnapshotUriResponse &parameters)
@@ -152,7 +152,7 @@ void OnvifMedia2Service::getSnapshotUriDone(const TR2__GetSnapshotUriResponse &p
 
 void OnvifMedia2Service::getSnapshotUriError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMedia2Service::getStreamUriDone(const TR2__GetStreamUriResponse &parameters)
@@ -168,7 +168,7 @@ void OnvifMedia2Service::getStreamUriDone(const TR2__GetStreamUriResponse &param
 
 void OnvifMedia2Service::getStreamUriError(const KDSoapMessage &fault)
 {
-    d->device->handleSoapError(fault, Q_FUNC_INFO);
+    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMedia2Service::setServiceCapabilities(const TR2__Capabilities2 &capabilities)
