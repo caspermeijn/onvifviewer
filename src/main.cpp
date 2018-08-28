@@ -68,8 +68,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("deviceManager", &deviceManager);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
+    if (engine.rootObjects().isEmpty()) {
         return 12;
+    }
 
     if(commandLineParser.isSet("test")) {
         QString testOption = commandLineParser.value("test");

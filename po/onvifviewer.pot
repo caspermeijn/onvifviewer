@@ -103,16 +103,26 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: OverviewPage.qml:61
+#: OverviewPage.qml:46
 msgid "Camera %1"
 msgstr ""
 
-#: OverviewPage.qml:88
+#: OverviewPage.qml:67
 msgid "An error occurred during communication with the camera."
 msgstr ""
 
-#: OverviewPage.qml:98
+#: OverviewPage.qml:76
 msgid "The camera doesn't support the retrieval of snapshots."
+msgstr ""
+
+#: OverviewPage.qml:97
+msgctxt "Go to view a camera"
+msgid "View"
+msgstr ""
+
+#: OverviewPage.qml:106
+msgctxt "Go to settings of a camera"
+msgid "Settings"
 msgstr ""
 
 #: desktop.cpp:1

@@ -35,7 +35,7 @@ find_package(ECM 5.44.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 find_package(KDSoap 1.7.0 REQUIRED)
 find_package(KF5 5.44 REQUIRED I18n)
-find_package(KF5Kirigami2 5.44.0 REQUIRED)
+find_package(KF5Kirigami2 5.48.0 REQUIRED)
 find_package(Qt5 5.10.0 REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
 
 set(ENABLE_CLAZY TRUE)
@@ -46,7 +46,7 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 
 ##TODO: figure out whye these qml module checks fail for gitlab-ci
-#ecm_find_qmlmodule(org.kde.kirigami 2.3 REQUIRED)
+#ecm_find_qmlmodule(org.kde.kirigami 2.5 REQUIRED)
 #ecm_find_qmlmodule(QtMultimedia 5.9 REQUIRED)
 #ecm_find_qmlmodule(QtQml.Models 2.1 REQUIRED)
 #ecm_find_qmlmodule(QtQuick 2.9 REQUIRED)
