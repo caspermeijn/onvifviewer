@@ -6,14 +6,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
 "POT-Creation-Date: 2018-08-03 17:51+0200\n"
-"PO-Revision-Date: 2018-08-03 17:40+0100\n"
+"PO-Revision-Date: 2018-08-29 18:47+0000\n"
 "Last-Translator: Casper Meijn <casper@meijn.net>\n"
-"Language: nl_NL\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/onvifviewer/"
+"translations/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: DeviceSettingsPage.qml:27
 msgid "Settings"
@@ -49,7 +51,7 @@ msgstr "Wachtwoord:"
 
 #: DeviceSettingsPage.qml:95
 msgid "Camera properties"
-msgstr "Camera eigenschappen:"
+msgstr "Camera eigenschappen"
 
 #: DeviceSettingsPage.qml:98
 msgid "Enable camera movement fix"
@@ -120,10 +122,9 @@ msgstr "Deze camera ondersteund het ophalen van momentopname's niet."
 #: OverviewPage.qml:97
 msgctxt "Go to view a camera"
 msgid "View"
-msgstr ""
+msgstr "Bekijk"
 
 #: OverviewPage.qml:106
-#, fuzzy
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr "Instellingen"
