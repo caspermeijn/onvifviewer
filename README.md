@@ -24,7 +24,11 @@ NOTE: The video codec of Android doesn't support all types of RTSP streams. Ther
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
       alt="Get it on Google Play"
       height="80">](https://play.google.com/store/apps/details?id=net.meijn.onvifviewer)
+      
+## Translations
+You can help translating this application using [Weblate](https://hosted.weblate.org/engage/onvifviewer/). You can login on the website and translate the texts to your language. The translations will be included in the next release.
 
+[<img src="https://hosted.weblate.org/widgets/onvifviewer/-/287x66-grey.png" alt="Vertalingsstatus" />](https://hosted.weblate.org/engage/onvifviewer/?utm_source=widget)
 
 ## Building from source
 It is also possible to build the application yourself. This requires Qt 5.10 to be installed.
