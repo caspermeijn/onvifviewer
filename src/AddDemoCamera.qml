@@ -32,10 +32,16 @@ Kirigami.ScrollablePage {
             preferredVideoStreamProtocol: "RtspOverHttp"
         }
         ListElement {
-            deviceName: "Demo USA"
-            hostName: "166.139.82.23"
+            deviceName: "Demo Zurich"
+            hostName: "213.173.165.16:90"
             userName: ""
             password: ""
+        }
+        ListElement {
+            deviceName: "Demo frontdoor"
+            hostName: "84.171.95.10:50001"
+            userName: "service"
+            password: "service"
         }
     }
 
