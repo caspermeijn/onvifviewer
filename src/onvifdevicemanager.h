@@ -24,6 +24,7 @@ class OnvifDeviceManager : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QList<OnvifDevice*> deviceList READ deviceList NOTIFY deviceListChanged)
+    Q_PROPERTY(int size READ size NOTIFY deviceListChanged)
 public:
     explicit OnvifDeviceManager(QObject *parent = nullptr);
 
@@ -31,6 +32,7 @@ public:
     Q_INVOKABLE OnvifDevice* at(int i);
     Q_INVOKABLE int appendDevice();
     Q_INVOKABLE void removeDevice(int i);
+    int size();
 
 signals:
     void deviceListChanged(const QList<OnvifDevice *> &deviceList);

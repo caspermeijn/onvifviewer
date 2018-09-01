@@ -28,9 +28,83 @@ Kirigami.ScrollablePage {
         main: Kirigami.Action {
             iconName: "list-add"
             onTriggered: {
-                selectedIndex = deviceManager.appendDevice()
-                pageStack.push(settingsComponent);
+                bottomDrawer.open()
             }
+        }
+    }
+
+    //Close the drawer with the back button
+    onBackRequested: {
+        if (bottomDrawer.drawerOpen) {
+            event.accepted = true;
+            bottomDrawer.close();
+        }
+    }
+
+    Kirigami.OverlayDrawer {
+        id: bottomDrawer
+        edge: Qt.BottomEdge
+        contentItem: Item {
+            implicitHeight: childrenRect.height + Kirigami.Units.gridUnit
+            implicitWidth: pageOverview.width
+            ColumnLayout {
+                anchors.centerIn: parent
+                Controls.Button {
+                    text: i18n("Add demonstation camera")
+                    Layout.fillWidth: true
+                    onClicked: {
+                        pageStack.push(addDemoCameraComponent);
+                        bottomDrawer.close();
+                    }
+                }
+                Controls.Label {
+                    text: i18n("These demonstation cameras show you some on the capabilities, without owning a camera.");
+                    wrapMode: Text.WordWrap
+                    Layout.maximumWidth: pageOverview.width - Kirigami.Units.gridUnit * 4
+                }
+                Controls.Button {
+                    text: i18n("Manually add camera")
+                    Layout.fillWidth: true
+                    onClicked: {
+                        selectedIndex = deviceManager.appendDevice()
+                        pageStack.push(settingsComponent);
+                        pageStack.currentItem.isNewDevice = true
+                        bottomDrawer.close();
+                    }
+                }
+                Controls.Label {
+                    text: i18n("Manually adding a camera means that you need to provide the connection parameters yourself.");
+                    wrapMode: Text.WordWrap
+                    Layout.maximumWidth: pageOverview.width - Kirigami.Units.gridUnit * 4
+                }
+                Item {
+                    Layout.minimumHeight: Kirigami.Units.gridUnit * 4
+                }
+            }
+        }
+    }
+
+    ColumnLayout {
+        visible: deviceManager.size === 0
+
+        width: root.width
+        height: root.height
+        Item {
+            Layout.fillHeight: true
+        }
+        Controls.Label {
+            text: i18n("You can add a camera by clicking the add button below.")
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignHCenter
+            Layout.fillWidth: true
+        }
+        Kirigami.Icon {
+            source: "go-down"
+            Layout.fillWidth: true
+            height: Kirigami.Units.iconSizes.enormous
+        }
+        Item {
+            Layout.fillHeight: true
         }
     }
 

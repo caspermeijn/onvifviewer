@@ -13,47 +13,57 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: DeviceSettingsPage.qml:27
-msgid "Settings"
-msgstr "Configurações"
+#: AddDemoCamera.qml:22
+#, fuzzy
+msgid "Add demo camera"
+msgstr "Remover a câmera"
 
-#: DeviceSettingsPage.qml:56
+#: DeviceSettingsPage.qml:28
+msgid "New manual device"
+msgstr ""
+
+#: DeviceSettingsPage.qml:28
+#, fuzzy
+msgid "Device settings"
+msgstr "Configurações de conexão"
+
+#: DeviceSettingsPage.qml:57
 msgid "Connection settings"
 msgstr "Configurações de conexão"
 
-#: DeviceSettingsPage.qml:59
+#: DeviceSettingsPage.qml:60
 msgid "Camera name:"
 msgstr "Nome da câmera:"
 
-#: DeviceSettingsPage.qml:60
+#: DeviceSettingsPage.qml:61
 msgid "eg. Backyard"
 msgstr "por exemplo. Jardim"
 
-#: DeviceSettingsPage.qml:68
+#: DeviceSettingsPage.qml:69
 msgid "Hostname:"
 msgstr "Hostname:"
 
-#: DeviceSettingsPage.qml:69
+#: DeviceSettingsPage.qml:70
 msgid "eg. ipcam.local or 192.168.0.12"
 msgstr "por exemplo. ipcam.local ou 192.168.0.12"
 
-#: DeviceSettingsPage.qml:77
+#: DeviceSettingsPage.qml:78
 msgid "Username:"
 msgstr "Nome de usuário"
 
-#: DeviceSettingsPage.qml:85
+#: DeviceSettingsPage.qml:86
 msgid "Password:"
 msgstr "Senha:"
 
-#: DeviceSettingsPage.qml:95
+#: DeviceSettingsPage.qml:96
 msgid "Camera properties"
 msgstr "Propriedades da câmera"
 
-#: DeviceSettingsPage.qml:98
+#: DeviceSettingsPage.qml:99
 msgid "Enable camera movement fix"
 msgstr "Ativar correção do movimento da câmera"
 
-#: DeviceSettingsPage.qml:107
+#: DeviceSettingsPage.qml:108
 msgid "Remove camera"
 msgstr "Remover a câmera"
 
@@ -102,24 +112,48 @@ msgstr "Carregando..."
 msgid "Overview"
 msgstr "Visão geral"
 
-#: OverviewPage.qml:46
+#: OverviewPage.qml:53
+msgid "Add demonstation camera"
+msgstr ""
+
+#: OverviewPage.qml:61
+msgid ""
+"These demonstation cameras show you some on the capabilities, without owning "
+"a camera."
+msgstr ""
+
+#: OverviewPage.qml:66
+msgid "Manually add camera"
+msgstr ""
+
+#: OverviewPage.qml:76
+msgid ""
+"Manually adding a camera means that you need to provide the connection "
+"parameters yourself."
+msgstr ""
+
+#: OverviewPage.qml:96
+msgid "You can add a camera by clicking the add button below."
+msgstr ""
+
+#: OverviewPage.qml:120
 msgid "Camera %1"
 msgstr "Camera %1"
 
-#: OverviewPage.qml:67
+#: OverviewPage.qml:141
 msgid "An error occurred during communication with the camera."
 msgstr "Ocorreu um erro durante a comunicação com a câmera."
 
-#: OverviewPage.qml:76
+#: OverviewPage.qml:150
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "A câmera não suporta a recuperação de instantâneos."
 
-#: OverviewPage.qml:97
+#: OverviewPage.qml:171
 msgctxt "Go to view a camera"
 msgid "View"
 msgstr ""
 
-#: OverviewPage.qml:106
+#: OverviewPage.qml:180
 #, fuzzy
 msgctxt "Go to settings of a camera"
 msgid "Settings"
@@ -179,3 +213,6 @@ msgstr "A página de visão geral da câmera"
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:24
 msgid "The camera settings page"
 msgstr "A página de configurações da câmera"
+
+#~ msgid "Settings"
+#~ msgstr "Configurações"

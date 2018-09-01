@@ -23,21 +23,22 @@ import QtQuick.Layouts 1.3
 Kirigami.ScrollablePage {
     property bool hasConnectionSettingsChanged: false
     property bool hasOtherSettingsChanged: false
+    property bool isNewDevice: false
 
-    title: i18n("Settings")
+    title: isNewDevice ? i18n("New manual device") : i18n("Device settings")
     objectName: "settingsPage"
 
-    onActiveFocusChanged: {
-        console.log("onActiveFocusChanged", activeFocus, activeFocusItem)
-        if(!activeFocus) {
+    onIsCurrentPageChanged: {
+        if(!isCurrentPage) {
             if(hasConnectionSettingsChanged || hasOtherSettingsChanged) {
                 if(hasConnectionSettingsChanged) {
                     selectedDevice.reconnectToDevice()
                 }
                 deviceManager.saveDevices()
-                hasChanged = false
                 hasConnectionSettingsChanged = false;
+                hasOtherSettingsChanged = false
             }
+            isNewDevice = false
         }
     }
 

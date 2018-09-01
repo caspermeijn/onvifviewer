@@ -46,24 +46,6 @@ void OnvifDeviceManager::loadDevices()
         device->connectToDevice();
     }
     settings.endArray();
-
-    if(m_deviceList.isEmpty()) {
-        OnvifDevice * device1 = createNewDevice();
-        device1->setDeviceName("Demo USA");
-        device1->setHostName("166.139.82.23");
-        device1->setUserName("");
-        device1->setPassword("");
-        device1->connectToDevice();
-
-        OnvifDevice * device2 = createNewDevice();
-        device2->setDeviceName("Demo Norway");
-        device2->setHostName("79.160.18.23:10000");
-        device2->setUserName("");
-        device2->setPassword("");
-        device2->setPreferredVideoStreamProtocol("RtspOverHttp");
-        device2->connectToDevice();
-
-    }
 }
 
 void OnvifDeviceManager::saveDevices()
@@ -113,4 +95,9 @@ void OnvifDeviceManager::removeDevice(int i)
     OnvifDevice * device = m_deviceList.takeAt(i);
     emit deviceListChanged(m_deviceList);
     device->deleteLater();
+}
+
+int OnvifDeviceManager::size()
+{
+    return m_deviceList.size();
 }
