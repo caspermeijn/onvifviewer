@@ -16,6 +16,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: main.cpp:48 desktop.cpp:1
+msgid "ONVIFViewer"
+msgstr ""
+
+#: main.cpp:49 main.cpp:63 desktop.cpp:2
+msgid "View and control network cameras using the ONVIF protocol"
+msgstr ""
+
+#: main.cpp:54 rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#: main.cpp:55 rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: main.cpp:58
+msgid "Main developer"
+msgstr ""
+
 #: AddDemoCamera.qml:22
 msgid "Add demo camera"
 msgstr ""
@@ -111,68 +133,55 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: OverviewPage.qml:53
+#: OverviewPage.qml:36
+msgctxt "opens the about menu"
+msgid "About ONVIFViewer"
+msgstr ""
+
+#: OverviewPage.qml:62
 msgid "Add demonstation camera"
 msgstr ""
 
-#: OverviewPage.qml:61
+#: OverviewPage.qml:70
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
 msgstr ""
 
-#: OverviewPage.qml:66
+#: OverviewPage.qml:75
 msgid "Manually add camera"
 msgstr ""
 
-#: OverviewPage.qml:76
+#: OverviewPage.qml:85
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
 msgstr ""
 
-#: OverviewPage.qml:96
+#: OverviewPage.qml:105
 msgid "You can add a camera by clicking the add button below."
 msgstr ""
 
-#: OverviewPage.qml:120
+#: OverviewPage.qml:129
 msgid "Camera %1"
 msgstr ""
 
-#: OverviewPage.qml:141
+#: OverviewPage.qml:150
 msgid "An error occurred during communication with the camera."
 msgstr ""
 
-#: OverviewPage.qml:150
+#: OverviewPage.qml:159
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr ""
 
-#: OverviewPage.qml:171
+#: OverviewPage.qml:180
 msgctxt "Go to view a camera"
 msgid "View"
 msgstr ""
 
-#: OverviewPage.qml:180
+#: OverviewPage.qml:189
 msgctxt "Go to settings of a camera"
 msgid "Settings"
-msgstr ""
-
-#: desktop.cpp:1
-msgid "ONVIFViewer"
-msgstr ""
-
-#: desktop.cpp:2
-msgid "View and control network cameras using the ONVIF protocol"
-msgstr ""
-
-#: rc.cpp:1
-msgctxt "NAME OF TRANSLATORS"
-msgid "Your names"
-msgstr ""
-
-#: rc.cpp:2
-msgctxt "EMAIL OF TRANSLATORS"
-msgid "Your emails"
 msgstr ""
 
 #. (itstool) path: description/p

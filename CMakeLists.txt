@@ -38,6 +38,11 @@ find_package(KF5 5.44 REQUIRED I18n)
 find_package(KF5Kirigami2 5.48.0 REQUIRED)
 find_package(Qt5 5.10.0 REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
 
+if(NOT ANDROID)
+    find_package(KF5 5.44 REQUIRED CoreAddons XmlGui)
+    add_definitions(-DWITH_KF5_XML_GUI)
+endif()
+
 set(ENABLE_CLAZY TRUE)
 include(ECMQMLModules)
 include(ECMSetupVersion)

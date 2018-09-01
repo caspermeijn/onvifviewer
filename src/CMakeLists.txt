@@ -58,5 +58,8 @@ ecm_setup_version(PROJECT VERSION_HEADER version.h)
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_connection_SRCS} ${${PROJECT_NAME}_WSDL} ${${PROJECT_NAME}_BREEZE_ICONS})
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Svg Qt5::Quick KF5::Kirigami2 KF5::I18n KDSoap::kdsoap)
+if(KF5XmlGui_FOUND)
+    target_link_libraries(${PROJECT_NAME} KF5::XmlGui)
+endif()
 
 install(TARGETS ${PROJECT_NAME} ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

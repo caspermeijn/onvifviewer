@@ -31,6 +31,15 @@ Kirigami.ScrollablePage {
                 bottomDrawer.open()
             }
         }
+        contextualActions: [
+            Kirigami.Action {
+                text: i18nc("opens the about menu", "About ONVIFViewer")
+                iconName: "help-about"
+                onTriggered: {
+                    deviceManager.aboutApplication()
+                }
+            }
+        ]
     }
 
     //Close the drawer with the back button
