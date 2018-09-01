@@ -44,7 +44,7 @@ class OnvifDevice : public QObject
 public:
     explicit OnvifDevice(QObject *parent = nullptr);
 
-    void connectToDevice();
+    Q_INVOKABLE void connectToDevice();
     Q_INVOKABLE void reconnectToDevice();
 
     OnvifDeviceInformation* deviceInformation() const;

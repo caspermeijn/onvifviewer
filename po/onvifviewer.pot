@@ -16,47 +16,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: DeviceSettingsPage.qml:27
-msgid "Settings"
+#: AddDemoCamera.qml:22
+msgid "Add demo camera"
 msgstr ""
 
-#: DeviceSettingsPage.qml:56
+#: DeviceSettingsPage.qml:28
+msgid "New manual device"
+msgstr ""
+
+#: DeviceSettingsPage.qml:28
+msgid "Device settings"
+msgstr ""
+
+#: DeviceSettingsPage.qml:57
 msgid "Connection settings"
 msgstr ""
 
-#: DeviceSettingsPage.qml:59
+#: DeviceSettingsPage.qml:60
 msgid "Camera name:"
 msgstr ""
 
-#: DeviceSettingsPage.qml:60
+#: DeviceSettingsPage.qml:61
 msgid "eg. Backyard"
 msgstr ""
 
-#: DeviceSettingsPage.qml:68
+#: DeviceSettingsPage.qml:69
 msgid "Hostname:"
 msgstr ""
 
-#: DeviceSettingsPage.qml:69
+#: DeviceSettingsPage.qml:70
 msgid "eg. ipcam.local or 192.168.0.12"
 msgstr ""
 
-#: DeviceSettingsPage.qml:77
+#: DeviceSettingsPage.qml:78
 msgid "Username:"
 msgstr ""
 
-#: DeviceSettingsPage.qml:85
+#: DeviceSettingsPage.qml:86
 msgid "Password:"
 msgstr ""
 
-#: DeviceSettingsPage.qml:95
+#: DeviceSettingsPage.qml:96
 msgid "Camera properties"
 msgstr ""
 
-#: DeviceSettingsPage.qml:98
+#: DeviceSettingsPage.qml:99
 msgid "Enable camera movement fix"
 msgstr ""
 
-#: DeviceSettingsPage.qml:107
+#: DeviceSettingsPage.qml:108
 msgid "Remove camera"
 msgstr ""
 
@@ -103,24 +111,48 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: OverviewPage.qml:46
-msgid "Camera %1"
+#: OverviewPage.qml:53
+msgid "Add demonstation camera"
 msgstr ""
 
-#: OverviewPage.qml:67
-msgid "An error occurred during communication with the camera."
+#: OverviewPage.qml:61
+msgid ""
+"These demonstation cameras show you some on the capabilities, without owning "
+"a camera."
+msgstr ""
+
+#: OverviewPage.qml:66
+msgid "Manually add camera"
 msgstr ""
 
 #: OverviewPage.qml:76
+msgid ""
+"Manually adding a camera means that you need to provide the connection "
+"parameters yourself."
+msgstr ""
+
+#: OverviewPage.qml:96
+msgid "You can add a camera by clicking the add button below."
+msgstr ""
+
+#: OverviewPage.qml:120
+msgid "Camera %1"
+msgstr ""
+
+#: OverviewPage.qml:141
+msgid "An error occurred during communication with the camera."
+msgstr ""
+
+#: OverviewPage.qml:150
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr ""
 
-#: OverviewPage.qml:97
+#: OverviewPage.qml:171
 msgctxt "Go to view a camera"
 msgid "View"
 msgstr ""
 
-#: OverviewPage.qml:106
+#: OverviewPage.qml:180
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr ""

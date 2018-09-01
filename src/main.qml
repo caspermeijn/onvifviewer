@@ -38,5 +38,9 @@ Kirigami.ApplicationWindow {
         id: overviewComponent
         OverviewPage{}
     }
+    Component {
+        id: addDemoCameraComponent
+        AddDemoCamera{}
+    }
 }
 
