@@ -40,6 +40,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("meijn.net");
     QCoreApplication::setApplicationName("ONVIFViewer");
     QCoreApplication::setApplicationVersion(onvifviewer_VERSION_STRING);
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("net.meijn.onvifviewer")));
 
     QCommandLineParser commandLineParser;
     commandLineParser.setApplicationDescription("View and control network cameras using the ONVIF protocol");
