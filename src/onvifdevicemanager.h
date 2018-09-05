@@ -34,6 +34,7 @@ public:
     Q_INVOKABLE void removeDevice(int i);
     int size();
 
+    Q_INVOKABLE void aboutApplication();
 signals:
     void deviceListChanged(const QList<OnvifDevice *> &deviceList);
 

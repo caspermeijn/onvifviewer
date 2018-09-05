@@ -13,11 +13,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifdef WITH_KF5_XML_GUI
+#include <KAboutData>
+#endif
 #include <KLocalizedContext>
 #include <KLocalizedString>
 #include <QCommandLineParser>
 #include <QDebug>
-#include <QGuiApplication>
+#include <QApplication>
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -33,17 +36,32 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
-    QGuiApplication app(argc, argv);
-    KLocalizedString::setApplicationDomain("onvifviewer");
+    QApplication app(argc, argv);
 
+    KLocalizedString::setApplicationDomain("onvifviewer");
     QCoreApplication::setOrganizationName("CasperMeijn");
     QCoreApplication::setOrganizationDomain("meijn.net");
     QCoreApplication::setApplicationName("ONVIFViewer");
     QCoreApplication::setApplicationVersion(onvifviewer_VERSION_STRING);
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("net.meijn.onvifviewer")));
 
+#ifdef WITH_KF5_XML_GUI
+    KAboutData about("onvifviewer", i18n("ONVIFViewer"), onvifviewer_VERSION_STRING,
+                     i18n("View and control network cameras using the ONVIF protocol"),
+                     KAboutLicense::GPL_V3,
+                     "Copyright (C) 2018 Casper Meijn <casper@meijn.net>", "",
+                     "https://gitlab.com/caspermeijn/onvifviewer",
+                     "https://gitlab.com/caspermeijn/onvifviewer/issues");
+    about.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"),
+                        i18nc("EMAIL OF TRANSLATORS", "Your emails"));
+    about.setOrganizationDomain("meijn.net");
+    about.setDesktopFileName("net.meijn.onvifviewer");
+    about.addAuthor("Casper Meijn", i18n("Main developer"), QStringLiteral("casper@meijn.net"));
+    KAboutData::setApplicationData(about);
+#endif
+
     QCommandLineParser commandLineParser;
-    commandLineParser.setApplicationDescription("View and control network cameras using the ONVIF protocol");
+    commandLineParser.setApplicationDescription(i18n("View and control network cameras using the ONVIF protocol"));
     commandLineParser.addHelpOption();
     commandLineParser.addVersionOption();
     commandLineParser.addOption({"test", "test description", "test_name"});
@@ -83,5 +101,5 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         }
     }
 
-    return QGuiApplication::exec();
+    return QApplication::exec();
 }

@@ -22,7 +22,8 @@ echo "Done preparing rc files"
 
 echo "Extracting messages"
 cd ${BASEDIR}
-find . -name '*.cpp' -o -name '*.h' -o -name '*.qml' | sort > ${WDIR}/infiles.list
+find . -name '*.cpp' -o -name '*.h' | sort > ${WDIR}/infiles.list
+find . -name '*.qml' | sort >> ${WDIR}/infiles.list
 cd ${WDIR}
 find . -name '*.cpp' | sort >> ${WDIR}/infiles.list
 xgettext --from-code=UTF-8 -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki18ncp:1c,2,3 -ktr2i18n:1 \

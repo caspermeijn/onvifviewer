@@ -48,7 +48,7 @@ test-translations:
     stage: test
     script:
         - cd po && ./update_translation.sh
-        - git diff --quiet
+        - git diff --exit-code
     artifacts:
         paths:
             - po/onvifviewer.pot
