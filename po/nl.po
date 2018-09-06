@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
 "POT-Creation-Date: 2018-08-03 17:51+0200\n"
-"PO-Revision-Date: 2018-08-29 18:47+0000\n"
+"PO-Revision-Date: 2018-09-05 19:19+0000\n"
 "Last-Translator: Casper Meijn <casper@meijn.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/nl/>\n"
@@ -37,19 +37,17 @@ msgstr "casper@meijn.net"
 
 #: main.cpp:58
 msgid "Main developer"
-msgstr ""
+msgstr "Hoofdontwikkelaar"
 
 #: AddDemoCamera.qml:22
-#, fuzzy
 msgid "Add demo camera"
-msgstr "Camera verwijderen"
+msgstr "Demonstratiecamera toevoegen"
 
 #: DeviceSettingsPage.qml:28
 msgid "New manual device"
-msgstr ""
+msgstr "Handmatig apparaat toevoegen"
 
 #: DeviceSettingsPage.qml:28
-#, fuzzy
 msgid "Device settings"
 msgstr "Verbindingsinstellingen"
 
@@ -140,34 +138,37 @@ msgid "Overview"
 msgstr "Overzicht"
 
 #: OverviewPage.qml:36
-#, fuzzy
 msgctxt "opens the about menu"
 msgid "About ONVIFViewer"
-msgstr "ONVIFViewer"
+msgstr "Info over ONVIFViewer"
 
 #: OverviewPage.qml:62
 msgid "Add demonstation camera"
-msgstr ""
+msgstr "Demonstratiecamera toevoegen"
 
 #: OverviewPage.qml:70
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
 msgstr ""
+"Met deze demonstratiecamera's kan je mogelijkheden zien, zonder een camera "
+"te bezitten."
 
 #: OverviewPage.qml:75
 msgid "Manually add camera"
-msgstr ""
+msgstr "Handmatige camera toevoegen"
 
 #: OverviewPage.qml:85
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
 msgstr ""
+"Handmatige camera toevoegen betekent dat je zelf de verbindingsinstellingen "
+"opgeeft."
 
 #: OverviewPage.qml:105
 msgid "You can add a camera by clicking the add button below."
-msgstr ""
+msgstr "Je kan een camera toevoegen met behulp van knop hieronder."
 
 #: OverviewPage.qml:129
 msgid "Camera %1"

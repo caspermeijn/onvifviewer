@@ -5,13 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2018-08-05\n"
+"PO-Revision-Date: 2018-08-30 21:21+0000\n"
 "Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"onvifviewer/translations/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: main.cpp:48 desktop.cpp:1
 msgid "ONVIFViewer"
@@ -71,7 +74,7 @@ msgstr "por exemplo. ipcam.local ou 192.168.0.12"
 
 #: DeviceSettingsPage.qml:78
 msgid "Username:"
-msgstr "Nome de usuário"
+msgstr "Nome de usuário:"
 
 #: DeviceSettingsPage.qml:86
 msgid "Password:"
@@ -179,7 +182,7 @@ msgstr "A câmera não suporta a recuperação de instantâneos."
 #: OverviewPage.qml:180
 msgctxt "Go to view a camera"
 msgid "View"
-msgstr ""
+msgstr "Visão"
 
 #: OverviewPage.qml:189
 #, fuzzy
