@@ -40,7 +40,6 @@
           <li>Improved UI style by using Kirigami cards</li>
           <li>Improved translations by supporting Weblate</li>
           <li>Made demo cameras optional, by moving them to the add camera button</li>
-          <li>Fixed window icon</li>
           <li>Some small improvements</li>
         </ul>
       </description>
