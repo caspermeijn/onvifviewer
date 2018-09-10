@@ -14,6 +14,7 @@
   <developer_name>Casper Meijn</developer_name>
   <url type="homepage">https://gitlab.com/caspermeijn/onvifviewer</url>
   <url type="bugtracker">https://gitlab.com/caspermeijn/onvifviewer/issues</url>
+  <url type="translate">https://hosted.weblate.org/engage/onvifviewer/</url>
   <launchable type="desktop-id">net.meijn.onvifviewer.desktop</launchable>
   <screenshots>
     <screenshot type="default">
@@ -32,6 +33,17 @@
   </provides>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="0.7" date="2018-09-09">
+      <description>
+        <p>This is a minor release, with the following improvements:</p>
+        <ul>
+          <li>Improved UI style by using Kirigami cards</li>
+          <li>Improved translations by supporting Weblate</li>
+          <li>Made demo cameras optional, by moving them to the add camera button</li>
+          <li>Some small improvements</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.6" date="2018-08-26">
       <description>
         <p>This is a minor release, with the following improvements:</p>
