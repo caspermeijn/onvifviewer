@@ -58,7 +58,7 @@ Kirigami.ScrollablePage {
             }
             TextField {
                 Kirigami.FormData.label: i18n("Camera name:")
-                placeholderText: i18n("eg. Backyard")
+                placeholderText: i18n("e.g. Backyard")
                 text: selectedDevice && selectedDevice.deviceName
                 onTextEdited: {
                     hasOtherSettingsChanged = true
@@ -67,7 +67,7 @@ Kirigami.ScrollablePage {
             }
             TextField {
                 Kirigami.FormData.label: i18n("Hostname:")
-                placeholderText: i18n("eg. ipcam.local or 192.168.0.12")
+                placeholderText: i18n("e.g. ipcam.local or 192.168.0.12")
                 text: selectedDevice && selectedDevice.hostName
                 onTextEdited: {
                     hasConnectionSettingsChanged = true

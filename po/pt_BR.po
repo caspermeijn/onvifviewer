@@ -59,7 +59,8 @@ msgid "Camera name:"
 msgstr "Nome da câmera:"
 
 #: DeviceSettingsPage.qml:61
-msgid "eg. Backyard"
+#, fuzzy
+msgid "e.g. Backyard"
 msgstr "por exemplo. Jardim"
 
 #: DeviceSettingsPage.qml:69
@@ -67,7 +68,8 @@ msgid "Hostname:"
 msgstr "Hostname:"
 
 #: DeviceSettingsPage.qml:70
-msgid "eg. ipcam.local or 192.168.0.12"
+#, fuzzy
+msgid "e.g. ipcam.local or 192.168.0.12"
 msgstr "por exemplo. ipcam.local ou 192.168.0.12"
 
 #: DeviceSettingsPage.qml:78
@@ -139,7 +141,8 @@ msgstr ""
 "Detalhes técnicos: %1\n"
 
 #: OnvifCameraViewer.qml:29
-msgid "Loading..."
+#, fuzzy
+msgid "Loading…"
 msgstr "Carregando..."
 
 #: OverviewPage.qml:24
@@ -147,7 +150,8 @@ msgid "Overview"
 msgstr "Visão geral"
 
 #: OverviewPage.qml:36
-msgctxt "opens the about menu"
+#, fuzzy
+msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
 msgstr "Sobre o ONVIFViewer"
 
@@ -176,7 +180,8 @@ msgstr ""
 "parâmetros de conexão."
 
 #: OverviewPage.qml:108
-msgid "You can add a camera by clicking the add button below."
+#, fuzzy
+msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr "Você pode adicionar uma câmera clicando no botão Adicionar abaixo."
 
 #: OverviewPage.qml:153

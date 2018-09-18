@@ -26,7 +26,7 @@ Item {
 
     QQC2.Label {
         id: loadingLabel
-        text: i18n("Loading...")
+        text: i18n("Loading…")
         visible: !snapshotViewer.visible && !streamViewer.visible
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
