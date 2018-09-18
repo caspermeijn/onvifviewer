@@ -7,115 +7,120 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2018-09-19 23:31+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"onvifviewer/translations/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: main.cpp:48 desktop.cpp:1
 msgid "ONVIFViewer"
-msgstr ""
+msgstr "ONVIFViewer"
 
 #: main.cpp:49 main.cpp:63 desktop.cpp:2
 msgid "View and control network cameras using the ONVIF protocol"
-msgstr ""
+msgstr "Se på og kontroller nettverkskameraer som bruker ONVIF-protokollen"
 
 #: main.cpp:54 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Dine navn"
 
 #: main.cpp:55 rc.cpp:2
+#, fuzzy
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "Dine e-poster"
 
 #: main.cpp:58
 msgid "Main developer"
-msgstr ""
+msgstr "Hovedutvikler"
 
 #: AddDemoCamera.qml:22
 msgid "Add demo camera"
-msgstr ""
+msgstr "Legg til demokamera"
 
 #: DeviceSettingsPage.qml:28
 msgid "New manual device"
-msgstr ""
+msgstr "Ny manuell enhet"
 
 #: DeviceSettingsPage.qml:28
 msgid "Device settings"
-msgstr ""
+msgstr "Enhetsinnstillinger"
 
 #: DeviceSettingsPage.qml:57
 msgid "Connection settings"
-msgstr ""
+msgstr "Tilkoblingsinnstillinger"
 
 #: DeviceSettingsPage.qml:60
 msgid "Camera name:"
-msgstr ""
+msgstr "Kameranavn:"
 
 #: DeviceSettingsPage.qml:61
+#, fuzzy
 msgid "eg. Backyard"
-msgstr ""
+msgstr "f.eks. Bakgård"
 
 #: DeviceSettingsPage.qml:69
 msgid "Hostname:"
-msgstr ""
+msgstr "Vertsnavn:"
 
 #: DeviceSettingsPage.qml:70
 msgid "eg. ipcam.local or 192.168.0.12"
-msgstr ""
+msgstr "f.eks. ipcom.local eller 192.168.0.12"
 
 #: DeviceSettingsPage.qml:78
 msgid "Username:"
-msgstr ""
+msgstr "Brukernavn:"
 
 #: DeviceSettingsPage.qml:86
 msgid "Password:"
-msgstr ""
+msgstr "Passord:"
 
 #: DeviceSettingsPage.qml:96
 msgid "Camera properties"
-msgstr ""
+msgstr "Kameraegenskaper"
 
 #: DeviceSettingsPage.qml:99
 msgid "Enable camera movement fix"
-msgstr ""
+msgstr "Skru på kamerabevegelsesfiks"
 
 #: DeviceSettingsPage.qml:108
 msgid "Remove camera"
-msgstr ""
+msgstr "Fjern kamera"
 
 #: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
 msgid "Device information"
-msgstr ""
+msgstr "Enhetsinformasjon"
 
 #: DeviceViewerPage.qml:88
 msgid "Saving current position as home"
-msgstr ""
+msgstr "Lagrer nåværende posisjon som hjem"
 
 #: DeviceViewerPage.qml:149
 msgid "Manufacturer:"
-msgstr ""
+msgstr "Fabrikant:"
 
 #: DeviceViewerPage.qml:156
 msgid "Model:"
-msgstr ""
+msgstr "Modell:"
 
 #: DeviceViewerPage.qml:163
 msgid "Firmware version:"
-msgstr ""
+msgstr "Fastvareversjon:"
 
 #: DeviceViewerPage.qml:170
 msgid "Serial number:"
-msgstr ""
+msgstr "Serienummer:"
 
 #: DeviceViewerPage.qml:177
 msgid "Hardware identifier:"
-msgstr ""
+msgstr "Maskinvareidentifikator:"
 
 #: DeviceViewerPage.qml:190
 msgid ""
@@ -123,65 +128,75 @@ msgid ""
 "\n"
 "Technical details: %1\n"
 msgstr ""
+"En feil inntraff under kommunikasjon med kameraet.\n"
+"\n"
+"Tekniske detaljer: %1\n"
 
 #: OnvifCameraViewer.qml:28
+#, fuzzy
 msgid "Loading..."
-msgstr ""
+msgstr "Laster…"
 
 #: OverviewPage.qml:24
 msgid "Overview"
-msgstr ""
+msgstr "Oversikt"
 
 #: OverviewPage.qml:36
+#, fuzzy
 msgctxt "opens the about menu"
 msgid "About ONVIFViewer"
-msgstr ""
+msgstr "Om"
 
 #: OverviewPage.qml:62
 msgid "Add demonstation camera"
-msgstr ""
+msgstr "Legg til demonstrasjonskamera"
 
 #: OverviewPage.qml:70
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
 msgstr ""
+"Disse demonstrasjonskameraene viser deg noen av mulighetene, uten at du eier "
+"et kamera."
 
 #: OverviewPage.qml:75
 msgid "Manually add camera"
-msgstr ""
+msgstr "Legg til kamera manuelt"
 
 #: OverviewPage.qml:85
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
 msgstr ""
+"Å legge til et kamera manuelt betyr at du vil måtte angi "
+"tilkoblingsparameterne selv."
 
 #: OverviewPage.qml:105
+#, fuzzy
 msgid "You can add a camera by clicking the add button below."
-msgstr ""
+msgstr "Du kan legge til et kamera ved å trykke \"Legg til\"-knappen nedenfor."
 
 #: OverviewPage.qml:129
 msgid "Camera %1"
-msgstr ""
+msgstr "Kamera %1"
 
 #: OverviewPage.qml:150
 msgid "An error occurred during communication with the camera."
-msgstr ""
+msgstr "En feil inntraff under kommunikasjon med kameraet."
 
 #: OverviewPage.qml:159
 msgid "The camera doesn't support the retrieval of snapshots."
-msgstr ""
+msgstr "Kameraet har ikke støtte for å hente skjermavbildninger."
 
 #: OverviewPage.qml:180
 msgctxt "Go to view a camera"
 msgid "View"
-msgstr ""
+msgstr "Vis"
 
 #: OverviewPage.qml:189
 msgctxt "Go to settings of a camera"
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #. (itstool) path: description/p
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:10
@@ -189,6 +204,8 @@ msgid ""
 "Use this opensource app to view your network cameras using the ONVIF "
 "protocol."
 msgstr ""
+"Bruk dette friprogprogrammet for å vise dine nettverkskamera som bruker "
+"ONVIF-protokollen."
 
 #. (itstool) path: description/p
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:11
@@ -196,6 +213,8 @@ msgid ""
 "The development of this app was started as part of the ONVIF Spotlight "
 "Challange."
 msgstr ""
+"Utviklingen av dette programmet ble startet som del av ONVIF Spotlight-"
+"utfordringen."
 
 #. (itstool) path: description/p
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:12
@@ -203,13 +222,15 @@ msgid ""
 "You can connect to your network camera and view the video of it. If the "
 "camera is controlable you can move it as well."
 msgstr ""
+"Du kan koble til ditt nettverkskamera og vise videostrømmen fra det. Hvis "
+"kameraet er kontrollerbart kan du bevege det også."
 
 #. (itstool) path: screenshot/caption
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:20
 msgid "The camera overview page"
-msgstr ""
+msgstr "Kameraoversiktssiden"
 
 #. (itstool) path: screenshot/caption
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:24
 msgid "The camera settings page"
-msgstr ""
+msgstr "Kamerainnstillingssiden"
