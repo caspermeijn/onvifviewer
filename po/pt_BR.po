@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2018-09-20 19:31+0000\n"
-"Last-Translator: Casper Meijn <casper@meijn.net>\n"
+"PO-Revision-Date: 2018-09-23 11:32+0000\n"
+"Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -36,21 +36,19 @@ msgstr "leandrostanger@hotmail.com"
 
 #: main.cpp:58
 msgid "Main developer"
-msgstr ""
+msgstr "Principal desenvolvedor"
 
 #: AddDemoCamera.qml:22
-#, fuzzy
 msgid "Add demo camera"
-msgstr "Remover a câmera"
+msgstr "Adicionar câmera de demonstração"
 
 #: DeviceSettingsPage.qml:28
 msgid "New manual device"
-msgstr ""
+msgstr "Novo dispositivo manual"
 
 #: DeviceSettingsPage.qml:28
-#, fuzzy
 msgid "Device settings"
-msgstr "Configurações de conexão"
+msgstr "Configurações do dispositivo"
 
 #: DeviceSettingsPage.qml:57
 msgid "Connection settings"
@@ -138,34 +136,37 @@ msgid "Overview"
 msgstr "Visão geral"
 
 #: OverviewPage.qml:36
-#, fuzzy
 msgctxt "opens the about menu"
 msgid "About ONVIFViewer"
-msgstr "ONVIFViewer"
+msgstr "Sobre o ONVIFViewer"
 
 #: OverviewPage.qml:62
 msgid "Add demonstation camera"
-msgstr ""
+msgstr "Adicionar câmara de demonstração"
 
 #: OverviewPage.qml:70
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
 msgstr ""
+"Estas câmeras de demonstração mostram algumas das capacidades do aplicativo, "
+"sem possuir uma câmera."
 
 #: OverviewPage.qml:75
 msgid "Manually add camera"
-msgstr ""
+msgstr "Adicionar manualmente uma câmera"
 
 #: OverviewPage.qml:85
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
 msgstr ""
+"Adicionar manualmente uma câmera significa que você precisa fornecer os "
+"parâmetros de conexão."
 
 #: OverviewPage.qml:105
 msgid "You can add a camera by clicking the add button below."
-msgstr ""
+msgstr "Você pode adicionar uma câmera clicando no botão Adicionar abaixo."
 
 #: OverviewPage.qml:129
 msgid "Camera %1"
@@ -185,7 +186,6 @@ msgid "View"
 msgstr "Visão"
 
 #: OverviewPage.qml:189
-#, fuzzy
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr "Configurações"
