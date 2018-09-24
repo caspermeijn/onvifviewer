@@ -20,6 +20,7 @@ Item {
     id: viewer
 
     property alias streamUri: video.source
+    property bool hasError: video.error !== MediaPlayer.NoError
 
     function isStreamAvailable() {
         return video.playbackState === MediaPlayer.PlayingState && video.hasVideo && video.source

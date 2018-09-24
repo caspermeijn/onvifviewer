@@ -67,6 +67,7 @@ QVariant OnvifDeviceManagerModel::headerData(int section, Qt::Orientation orient
 QHash<int, QByteArray> OnvifDeviceManagerModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
+    roles[Qt::DisplayRole] = "device";
     const QMetaObject& metaObject = OnvifDevice::staticMetaObject;
     for(int i = 0; i < metaObject.propertyCount(); i++)
     {

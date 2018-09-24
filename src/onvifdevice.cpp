@@ -19,12 +19,14 @@
 #include "onvifmediaservice.h"
 #include "onvifmedia2service.h"
 #include "onvifptzservice.h"
+#include "onvifsnapshotdownloader.h"
 #include <QDebug>
 
 OnvifDevice::OnvifDevice(QObject *parent) :
     QObject(parent),
     m_preferContinuousMove(false),
-    m_cachedDeviceInformation(new OnvifDeviceInformation())
+    m_cachedDeviceInformation(new OnvifDeviceInformation()),
+    m_cachedSnapshotDownloader(new OnvifSnapshotDownloader())
 {
     connect(&m_connection, &OnvifDeviceConnection::servicesAvailable,
             this, &OnvifDevice::servicesAvailable);
@@ -56,6 +58,11 @@ void OnvifDevice::reconnectToDevice()
 OnvifDeviceInformation *OnvifDevice::deviceInformation() const
 {
     return m_cachedDeviceInformation;
+}
+
+OnvifSnapshotDownloader *OnvifDevice::snapshotDownloader() const
+{
+    return m_cachedSnapshotDownloader;
 }
 
 bool OnvifDevice::supportsSnapshotUri() const
@@ -126,6 +133,8 @@ void OnvifDevice::servicesAvailable()
                 this, &OnvifDevice::supportsSnapshotUriChanged);
         connect(media2Service, &OnvifMedia2Service::snapshotUriAvailable,
                 this, &OnvifDevice::snapshotUriChanged);
+        connect(media2Service, &OnvifMedia2Service::snapshotUriAvailable,
+                m_cachedSnapshotDownloader, &OnvifSnapshotDownloader::setSnapshotUri);
     } else if(mediaService) {
         mediaService->setPreferredVideoStreamProtocol(preferredVideoStreamProtocol());
         connect(mediaService, &OnvifMediaService::profileListAvailable,
@@ -136,6 +145,8 @@ void OnvifDevice::servicesAvailable()
                 this, &OnvifDevice::supportsSnapshotUriChanged);
         connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
                 this, &OnvifDevice::snapshotUriChanged);
+        connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
+                m_cachedSnapshotDownloader, &OnvifSnapshotDownloader::setSnapshotUri);
     }
 }
 

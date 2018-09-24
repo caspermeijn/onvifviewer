@@ -23,6 +23,7 @@
 #include <QUrl>
 
 class OnvifDeviceInformation;
+class OnvifSnapshotDownloader;
 
 class OnvifDevice : public QObject
 {
@@ -41,6 +42,7 @@ class OnvifDevice : public QObject
     Q_PROPERTY(bool isPanTiltSupported READ isPanTiltSupported)
     Q_PROPERTY(bool isPtzHomeSupported READ isPtzHomeSupported)
     Q_PROPERTY(bool isZoomSupported READ isZoomSupported)
+    Q_PROPERTY(OnvifSnapshotDownloader* snapshotDownloader READ snapshotDownloader NOTIFY snapshotDownloaderChanged)
 public:
     explicit OnvifDevice(QObject *parent = nullptr);
 
@@ -48,6 +50,7 @@ public:
     Q_INVOKABLE void reconnectToDevice();
 
     OnvifDeviceInformation* deviceInformation() const;
+    OnvifSnapshotDownloader* snapshotDownloader() const;
     bool supportsSnapshotUri() const;
     QUrl snapshotUri() const;
     QUrl streamUri() const;
@@ -87,6 +90,7 @@ signals:
     void supportsSnapshotUriChanged(bool supportsSnapshotUri);
     void snapshotUriChanged(const QUrl& url);
     void streamUriChanged(const QUrl& url);
+    void snapshotDownloaderChanged(OnvifSnapshotDownloader* snapshotDownloader);
 
 public slots:
     void ptzUp();
@@ -116,6 +120,7 @@ private:
     OnvifMediaProfile m_selectedMediaProfile;
     OnvifDeviceInformation* m_cachedDeviceInformation;
     QTimer m_ptzStopTimer;
+    OnvifSnapshotDownloader* m_cachedSnapshotDownloader;
 };
 
 #endif // ONVIFDEVICE_H

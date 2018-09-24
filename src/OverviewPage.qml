@@ -164,8 +164,9 @@ Kirigami.ScrollablePage {
                     }
                     OnvifCameraViewer {
                         id: viewerItem
-                        snapshotUri: model.snapshotUri
+                        camera: model.device
                         snapshotInterval: 5000
+                        loadStream: false
                         visible: !model.errorString && model.supportsSnapshotUri
                         Layout.fillWidth: true
                         Layout.preferredHeight: parent.width / viewerItem.aspectRatio

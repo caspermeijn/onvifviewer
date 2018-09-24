@@ -200,12 +200,12 @@ Kirigami.Page {
                 visible: selectedDevice.errorString
             }
         }
+
         OnvifCameraViewer {
             id: viewerItem
             objectName: "cameraViewer"
             anchors.fill: parent
-            snapshotUri: selectedDevice.snapshotUri
-            streamUri: selectedDevice.streamUri
+            camera: selectedDevice
             visible: !selectedDevice.errorString
         }
     }

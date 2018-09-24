@@ -47,6 +47,8 @@ set(${PROJECT_NAME}_SRCS
     "onvifdevice.cpp"
     "onvifdevicemanager.cpp"
     "onvifdevicemanagermodel.cpp"
+    "onvifsnapshotdownloader.cpp"
+    "onvifsnapshotviewer.cpp"
     "qml.qrc"
 )
 
