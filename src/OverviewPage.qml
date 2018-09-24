@@ -53,44 +53,47 @@ Kirigami.ScrollablePage {
     Kirigami.OverlayDrawer {
         id: bottomDrawer
         edge: Qt.BottomEdge
-        contentItem: Item {
-            implicitHeight: childrenRect.height + Kirigami.Units.gridUnit
-            implicitWidth: pageOverview.width
-            ColumnLayout {
-                anchors.centerIn: parent
-                Controls.Button {
-                    text: i18n("Add demonstation camera")
-                    Layout.fillWidth: true
-                    onClicked: {
-                        pageStack.push(addDemoCameraComponent);
-                        bottomDrawer.close();
-                    }
-                }
-                Controls.Label {
-                    text: i18n("These demonstation cameras show you some on the capabilities, without owning a camera.");
-                    wrapMode: Text.WordWrap
-                    Layout.maximumWidth: pageOverview.width - Kirigami.Units.gridUnit * 4
-                }
-                Controls.Button {
-                    text: i18n("Manually add camera")
-                    Layout.fillWidth: true
-                    onClicked: {
-                        selectedIndex = deviceManager.appendDevice()
-                        pageStack.push(settingsComponent);
-                        pageStack.currentItem.isNewDevice = true
-                        bottomDrawer.close();
-                    }
-                }
-                Controls.Label {
-                    text: i18n("Manually adding a camera means that you need to provide the connection parameters yourself.");
-                    wrapMode: Text.WordWrap
-                    Layout.maximumWidth: pageOverview.width - Kirigami.Units.gridUnit * 4
-                }
-                Item {
-                    Layout.minimumHeight: Kirigami.Units.gridUnit * 4
+        contentItem: ColumnLayout {
+            id: delegateLayout
+            Controls.Button {
+                text: i18n("Add demonstation camera")
+                Layout.fillWidth: true
+                onClicked: {
+                    pageStack.push(addDemoCameraComponent);
+                    bottomDrawer.close();
                 }
             }
+            Controls.Label {
+                text: i18n("These demonstation cameras show you some on the capabilities, without owning a camera.");
+                wrapMode: Text.WordWrap
+                horizontalAlignment: "AlignHCenter"
+                Layout.leftMargin: Kirigami.Units.gridUnit * 2
+                Layout.rightMargin: Kirigami.Units.gridUnit * 2
+                Layout.fillWidth: true
+            }
+            Controls.Button {
+                text: i18n("Manually add camera")
+                Layout.fillWidth: true
+                onClicked: {
+                    selectedIndex = deviceManager.appendDevice()
+                    pageStack.push(settingsComponent);
+                    pageStack.currentItem.isNewDevice = true
+                    bottomDrawer.close();
+                }
+            }
+            Controls.Label {
+                text: i18n("Manually adding a camera means that you need to provide the connection parameters yourself.");
+                wrapMode: Text.WordWrap
+                horizontalAlignment: "AlignHCenter"
+                Layout.leftMargin: Kirigami.Units.gridUnit * 2
+                Layout.rightMargin: Kirigami.Units.gridUnit * 2
+                Layout.fillWidth: true
+            }
+            Item {
+                Layout.minimumHeight: Kirigami.Units.gridUnit * 4
+            }
         }
+
     }
 
     ColumnLayout {

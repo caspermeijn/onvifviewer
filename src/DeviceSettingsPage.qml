@@ -59,7 +59,7 @@ Kirigami.ScrollablePage {
             TextField {
                 Kirigami.FormData.label: i18n("Camera name:")
                 placeholderText: i18n("eg. Backyard")
-                text: selectedDevice.deviceName
+                text: selectedDevice && selectedDevice.deviceName
                 onTextEdited: {
                     hasOtherSettingsChanged = true
                     selectedDevice.deviceName = text
@@ -68,7 +68,7 @@ Kirigami.ScrollablePage {
             TextField {
                 Kirigami.FormData.label: i18n("Hostname:")
                 placeholderText: i18n("eg. ipcam.local or 192.168.0.12")
-                text: selectedDevice.hostName
+                text: selectedDevice && selectedDevice.hostName
                 onTextEdited: {
                     hasConnectionSettingsChanged = true
                     selectedDevice.hostName = text
@@ -76,7 +76,7 @@ Kirigami.ScrollablePage {
             }
             TextField {
                 Kirigami.FormData.label: i18n("Username:")
-                text: selectedDevice.userName
+                text: selectedDevice && selectedDevice.userName
                 onTextEdited: {
                     hasConnectionSettingsChanged = true
                     selectedDevice.userName = text
@@ -85,7 +85,7 @@ Kirigami.ScrollablePage {
             TextField {
                 Kirigami.FormData.label: i18n("Password:")
                 echoMode: TextInput.Password
-                text: selectedDevice.password
+                text: selectedDevice && selectedDevice.password
                 onTextEdited: {
                     hasConnectionSettingsChanged = true
                     selectedDevice.password = text
@@ -97,7 +97,7 @@ Kirigami.ScrollablePage {
             }
             Switch {
                 Kirigami.FormData.label: i18n("Enable camera movement fix")
-                checked: selectedDevice.preferContinuousMove
+                checked: selectedDevice && selectedDevice.preferContinuousMove
                 onCheckedChanged: {
                     hasOtherSettingsChanged = true
                     selectedDevice.preferContinuousMove = checked
