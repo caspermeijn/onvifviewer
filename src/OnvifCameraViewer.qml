@@ -16,12 +16,13 @@
 import QtMultimedia 5.9
 import QtQuick 2.9
 import QtQuick.Controls 2.3 as QQC2
+import net.meijn.onvifviewer 1.0
 
 Item {
-    property alias snapshotUri: snapshotViewer.snapshotUri
-    property alias snapshotInterval: snapshotViewer.interval
-    property alias streamUri: streamViewer.streamUri
-    property real aspectRatio: snapshotViewer.visible ? snapshotViewer.aspectRatio : 2
+    property OnvifDevice camera
+    property int snapshotInterval: 1000
+    property real aspectRatio: snapshotViewer.aspectRatio
+    property bool loadStream: true
 
     QQC2.Label {
         id: loadingLabel
@@ -36,12 +37,15 @@ Item {
     OnvifSnapshotViewer {
         id: snapshotViewer
         anchors.fill: parent
-        visible: snapshotViewer.isSnapshotAvailable() && !streamViewer.visible
+        interval: streamViewer.visible ? -1 : streamViewer.hasError ? 0 : snapshotInterval
+        downloader: camera ? camera.snapshotDownloader : null
+        visible: snapshotViewer.isSnapShotAvailable && !streamViewer.visible
     }
 
     OnvifStreamViewer {
         id: streamViewer
         anchors.fill: parent
+        streamUri: (loadStream && camera) ? camera.streamUri : ""
         visible: streamViewer.isStreamAvailable()
     }
 }

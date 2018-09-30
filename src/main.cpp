@@ -28,6 +28,8 @@
 #include "onvifdevicemanagermodel.h"
 #include "onvifdevice.h"
 #include "onvifdeviceinformation.h"
+#include "onvifsnapshotdownloader.h"
+#include "onvifsnapshotviewer.h"
 #include "version.h"
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -74,6 +76,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     qmlRegisterType<OnvifDevice>("net.meijn.onvifviewer", 1, 0, "OnvifDevice");
     qmlRegisterType<OnvifDeviceInformation>("net.meijn.onvifviewer", 1, 0, "OnvifDeviceInformation");
+    qmlRegisterType<OnvifSnapshotDownloader>("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotDownloader");
+    qmlRegisterType<OnvifSnapshotViewer>("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotViewer");
 
 #ifdef WITH_BREEZE_ICONS
     if(QIcon::themeName().isEmpty())
