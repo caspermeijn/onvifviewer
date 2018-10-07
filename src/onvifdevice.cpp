@@ -21,6 +21,7 @@
 #include "onvifptzservice.h"
 #include "onvifsnapshotdownloader.h"
 #include <QDebug>
+#include <QUrlQuery>
 
 OnvifDevice::OnvifDevice(QObject *parent) :
     QObject(parent),
@@ -207,6 +208,23 @@ void OnvifDevice::setPreferredVideoStreamProtocol(const QString &preferredVideoS
     {
         m_preferredVideoStreamProtocol = preferredVideoStreamProtocol;
         emit preferredVideoStreamProtocolChanged(m_preferredVideoStreamProtocol);
+    }
+}
+
+void OnvifDevice::initByUrl(const QUrl &url)
+{
+    setUserName(url.userName());
+    setPassword(url.password());
+    QString host = url.host();
+    if(url.port() != -1) {
+        host += QString(":%1").arg(url.port());
+    }
+    setHostName(host);
+    if(url.hasQuery()) {
+        QUrlQuery urlQuery(url);
+        if(urlQuery.hasQueryItem("name")) {
+            setDeviceName(urlQuery.queryItemValue("name"));
+        }
     }
 }
 

@@ -105,5 +105,16 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         }
     }
 
+    if(!commandLineParser.positionalArguments().isEmpty()) {
+        auto url = QUrl(commandLineParser.positionalArguments().first());
+        if(url.isValid()) {
+            OnvifDevice * device = deviceManager.createNewDevice();
+            device->initByUrl(url);
+            device->connectToDevice();
+            QVariant variantDevice = QVariant::fromValue<OnvifDevice*>(device);
+            engine.rootObjects().first()->setProperty("previewDevice", variantDevice);
+        }
+    }
+
     return QApplication::exec();
 }

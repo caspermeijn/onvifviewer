@@ -103,6 +103,11 @@ void OnvifDeviceManager::removeDevice(int i)
     device->deleteLater();
 }
 
+int OnvifDeviceManager::indexOf(OnvifDevice *device)
+{
+    return m_deviceList.indexOf(device);
+}
+
 int OnvifDeviceManager::size()
 {
     return m_deviceList.size();
