@@ -32,7 +32,10 @@ public:
     Q_INVOKABLE OnvifDevice* at(int i);
     Q_INVOKABLE int appendDevice();
     Q_INVOKABLE void removeDevice(int i);
+    Q_INVOKABLE int indexOf(OnvifDevice * device);
     int size();
+
+    OnvifDevice * createNewDevice();
 
     Q_INVOKABLE void aboutApplication();
 signals:
@@ -41,9 +44,6 @@ signals:
 public slots:
     void loadDevices();
     void saveDevices();
-
-private:
-    OnvifDevice * createNewDevice();
 
 private:
     QList<OnvifDevice *> m_deviceList;

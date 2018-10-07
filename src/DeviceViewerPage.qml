@@ -22,7 +22,7 @@ import QtQuick.Layouts 1.3
 Kirigami.Page {
     property OnvifDevice selectedDevice: deviceManager.at(selectedIndex)
 
-    title: selectedDevice.deviceName
+    title: selectedDevice.deviceName || i18n("Camera %1", selectedIndex + 1)
     actions {
         main: Kirigami.Action {
             visible: selectedDevice.isPanTiltSupported || selectedDevice.isZoomSupported
@@ -181,15 +181,46 @@ Kirigami.Page {
             }
         }
     }
-    Item {
+    ColumnLayout {
         anchors.fill: parent
+        Rectangle {
+            id: previewRectangle
+            Layout.fillWidth: true
+            implicitHeight: content.height
+            color: Kirigami.Theme.highlightColor
+            visible: selectedDevice == previewDevice
+            RowLayout {
+                id: content
+                width: parent.width
+
+                Text {
+                    text: i18n("This camera is currently only opened as a preview. This means that the device is not loaded the next time you open this application. If you want to save this device, then you need to click the Save button.")
+                    wrapMode: Text.Wrap
+                    color: Kirigami.Theme.highlightedTextColor
+                    Layout.fillWidth: true
+                    Layout.margins: Kirigami.Units.gridUnit
+                }
+                QQC2.ToolButton {
+                    icon.name: "document-save"
+                    icon.width: Kirigami.Units.iconSizes.medium
+                    icon.height: Kirigami.Units.iconSizes.medium
+                    icon.color: Kirigami.Theme.highlightedTextColor
+                    Layout.margins: Kirigami.Units.gridUnit
+                    onClicked: {
+                        deviceManager.saveDevices()
+                        previewDevice = null
+                    }
+                }
+            }
+        }
         Column{
-            anchors.fill: parent
+            visible: selectedDevice.errorString
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             Text {
                 id: errorText
                 text: i18n("An error occurred during communication with the camera.\n\nTechnical details: %1\n", selectedDevice.errorString)
                 wrapMode: Text.Wrap
-                visible: selectedDevice.errorString
                 width: parent.width
             }
             QQC2.ToolButton {
@@ -197,16 +228,16 @@ Kirigami.Page {
                 onClicked: {
                     selectedDevice.reconnectToDevice()
                 }
-                visible: selectedDevice.errorString
             }
         }
 
         OnvifCameraViewer {
             id: viewerItem
             objectName: "cameraViewer"
-            anchors.fill: parent
             camera: selectedDevice
             visible: !selectedDevice.errorString
+            Layout.fillHeight: true
+            Layout.fillWidth: true
         }
     }
 }

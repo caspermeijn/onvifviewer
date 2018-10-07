@@ -16,25 +16,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: main.cpp:48 desktop.cpp:1
+#: main.cpp:51 desktop.cpp:1
 msgid "ONVIFViewer"
 msgstr ""
 
-#: main.cpp:49 main.cpp:63 desktop.cpp:2
+#: main.cpp:52 main.cpp:66 desktop.cpp:2
 msgid "View and control network cameras using the ONVIF protocol"
 msgstr ""
 
-#: main.cpp:54 rc.cpp:1
+#: main.cpp:57 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 
-#: main.cpp:55 rc.cpp:2
+#: main.cpp:58 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 
-#: main.cpp:58
+#: main.cpp:61
 msgid "Main developer"
 msgstr ""
 
@@ -90,6 +90,10 @@ msgstr ""
 msgid "Remove camera"
 msgstr ""
 
+#: DeviceViewerPage.qml:25 OverviewPage.qml:132
+msgid "Camera %1"
+msgstr ""
+
 #: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
 msgid "Device information"
 msgstr ""
@@ -118,14 +122,21 @@ msgstr ""
 msgid "Hardware identifier:"
 msgstr ""
 
-#: DeviceViewerPage.qml:190
+#: DeviceViewerPage.qml:197
+msgid ""
+"This camera is currently only opened as a preview. This means that the "
+"device is not loaded the next time you open this application. If you want to "
+"save this device, then you need to click the Save button."
+msgstr ""
+
+#: DeviceViewerPage.qml:222
 msgid ""
 "An error occurred during communication with the camera.\n"
 "\n"
 "Technical details: %1\n"
 msgstr ""
 
-#: OnvifCameraViewer.qml:28
+#: OnvifCameraViewer.qml:29
 msgid "Loading..."
 msgstr ""
 
@@ -138,11 +149,11 @@ msgctxt "opens the about menu"
 msgid "About ONVIFViewer"
 msgstr ""
 
-#: OverviewPage.qml:62
+#: OverviewPage.qml:59
 msgid "Add demonstation camera"
 msgstr ""
 
-#: OverviewPage.qml:70
+#: OverviewPage.qml:67
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
@@ -158,28 +169,24 @@ msgid ""
 "parameters yourself."
 msgstr ""
 
-#: OverviewPage.qml:105
+#: OverviewPage.qml:108
 msgid "You can add a camera by clicking the add button below."
 msgstr ""
 
-#: OverviewPage.qml:129
-msgid "Camera %1"
-msgstr ""
-
-#: OverviewPage.qml:150
+#: OverviewPage.qml:153
 msgid "An error occurred during communication with the camera."
 msgstr ""
 
-#: OverviewPage.qml:159
+#: OverviewPage.qml:162
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr ""
 
-#: OverviewPage.qml:180
+#: OverviewPage.qml:184
 msgctxt "Go to view a camera"
 msgid "View"
 msgstr ""
 
-#: OverviewPage.qml:189
+#: OverviewPage.qml:193
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr ""
@@ -206,11 +213,11 @@ msgid ""
 msgstr ""
 
 #. (itstool) path: screenshot/caption
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:20
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:21
 msgid "The camera overview page"
 msgstr ""
 
 #. (itstool) path: screenshot/caption
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:24
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:25
 msgid "The camera settings page"
 msgstr ""

@@ -15,11 +15,20 @@
  */
 import org.kde.kirigami 2.3 as Kirigami
 import QtQuick 2.9
+import net.meijn.onvifviewer 1.0
 
 Kirigami.ApplicationWindow {
     id: root
 
     property int selectedIndex: 0
+    property OnvifDevice previewDevice: null
+
+    onPreviewDeviceChanged: {
+        if(previewDevice) {
+            selectedIndex = deviceManager.indexOf(previewDevice);
+            pageStack.push(deviceViewerComponent);
+        }
+    }
 
     header: Kirigami.ApplicationHeader {}
     contextDrawer: Kirigami.ContextDrawer {

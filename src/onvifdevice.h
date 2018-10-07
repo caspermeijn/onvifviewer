@@ -78,6 +78,8 @@ public:
     QString preferredVideoStreamProtocol() const;
     void setPreferredVideoStreamProtocol(const QString &preferredVideoStreamProtocol);
 
+    void initByUrl(const QUrl& url);
+
 signals:
     void deviceNameChanged(const QString& deviceName);
     void hostNameChanged(const QString& hostName);
