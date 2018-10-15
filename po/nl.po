@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
 "POT-Creation-Date: 2018-08-03 17:51+0200\n"
-"PO-Revision-Date: 2018-10-07 17:31+0000\n"
+"PO-Revision-Date: 2018-10-16 18:26+0000\n"
 "Last-Translator: Casper Meijn <casper@meijn.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/nl/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2\n"
+"X-Generator: Weblate 3.2.1\n"
 
 #: main.cpp:51 desktop.cpp:1
 msgid "ONVIFViewer"
@@ -60,7 +60,6 @@ msgid "Camera name:"
 msgstr "Cameranaam:"
 
 #: DeviceSettingsPage.qml:61
-#, fuzzy
 msgid "e.g. Backyard"
 msgstr "bijv. Achtertuin"
 
@@ -69,7 +68,6 @@ msgid "Hostname:"
 msgstr "Hostname:"
 
 #: DeviceSettingsPage.qml:70
-#, fuzzy
 msgid "e.g. ipcam.local or 192.168.0.12"
 msgstr "bijv. ipcam.local of 192.168.0.2"
 
@@ -146,16 +144,14 @@ msgstr ""
 "Technische informatie: %1\n"
 
 #: OnvifCameraViewer.qml:29
-#, fuzzy
 msgid "Loading…"
-msgstr "Laden..."
+msgstr "Laden…"
 
 #: OverviewPage.qml:24
 msgid "Overview"
 msgstr "Overzicht"
 
 #: OverviewPage.qml:36
-#, fuzzy
 msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
 msgstr "Info over ONVIFViewer"
@@ -185,7 +181,6 @@ msgstr ""
 "opgeeft."
 
 #: OverviewPage.qml:108
-#, fuzzy
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr "Je kan een camera toevoegen met behulp van knop hieronder."
 
