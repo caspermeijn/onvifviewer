@@ -33,7 +33,7 @@ Kirigami.ScrollablePage {
         }
         contextualActions: [
             Kirigami.Action {
-                text: i18nc("opens the about menu", "About ONVIFViewer")
+                text: i18nc("opens the \"About\" menu", "About ONVIFViewer")
                 iconName: "help-about"
                 onTriggered: {
                     deviceManager.aboutApplication()
@@ -105,7 +105,7 @@ Kirigami.ScrollablePage {
             Layout.fillHeight: true
         }
         Controls.Label {
-            text: i18n("You can add a camera by clicking the add button below.")
+            text: i18n("You can add a camera by clicking the \"Add\" button below.")
             wrapMode: Text.Wrap
             horizontalAlignment: Text.AlignHCenter
             Layout.fillWidth: true
