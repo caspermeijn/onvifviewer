@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
 "PO-Revision-Date: 2018-10-16 20:37+0000\n"
-"Last-Translator: Casper Meijn <casper@meijn.net>\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/nb_NO/>\n"
 "Language: nb_NO\n"
@@ -147,7 +147,6 @@ msgstr ""
 "Tekniske detaljer: %1\n"
 
 #: OnvifCameraViewer.qml:29
-#, fuzzy
 msgid "Loading…"
 msgstr "Laster…"
 
