@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2018-10-12 00:34+0000\n"
+"PO-Revision-Date: 2018-10-17 12:52+0000\n"
 "Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/pt_BR/>\n"
@@ -59,7 +59,6 @@ msgid "Camera name:"
 msgstr "Nome da câmera:"
 
 #: DeviceSettingsPage.qml:61
-#, fuzzy
 msgid "e.g. Backyard"
 msgstr "por exemplo. Jardim"
 
@@ -68,7 +67,6 @@ msgid "Hostname:"
 msgstr "Hostname:"
 
 #: DeviceSettingsPage.qml:70
-#, fuzzy
 msgid "e.g. ipcam.local or 192.168.0.12"
 msgstr "por exemplo. ipcam.local ou 192.168.0.12"
 
@@ -145,16 +143,14 @@ msgstr ""
 "Detalhes técnicos: %1\n"
 
 #: OnvifCameraViewer.qml:29
-#, fuzzy
 msgid "Loading…"
-msgstr "Carregando..."
+msgstr "Carregando…"
 
 #: OverviewPage.qml:24
 msgid "Overview"
 msgstr "Visão geral"
 
 #: OverviewPage.qml:36
-#, fuzzy
 msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
 msgstr "Sobre o ONVIFViewer"
