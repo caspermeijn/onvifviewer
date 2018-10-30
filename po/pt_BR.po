@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2018-10-17 12:52+0000\n"
+"PO-Revision-Date: 2018-10-17 13:02+0000\n"
 "Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/pt_BR/>\n"
@@ -180,9 +180,8 @@ msgstr ""
 "parâmetros de conexão."
 
 #: OverviewPage.qml:108
-#, fuzzy
 msgid "You can add a camera by clicking the \"Add\" button below."
-msgstr "Você pode adicionar uma câmera clicando no botão Adicionar abaixo."
+msgstr "Você pode adicionar uma câmera clicando no botão \"Adicionar\" abaixo."
 
 #: OverviewPage.qml:153
 msgid "An error occurred during communication with the camera."
