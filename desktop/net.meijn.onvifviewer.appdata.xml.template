@@ -33,6 +33,16 @@
   </provides>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="0.8" date="2018-10-17">
+      <description>
+        <p>This is a minor release, with the following improvements:</p>
+        <ul>
+          <li>Added opening cameras by URL</li>
+          <li>Improved snapshot downloading</li>
+          <li>Improved translations and added Norwegian</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.7" date="2018-09-09">
       <description>
         <p>This is a minor release, with the following improvements:</p>
