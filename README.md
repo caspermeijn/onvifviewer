@@ -30,6 +30,11 @@ You can help translating this application using [Weblate](https://hosted.weblate
 
 [<img src="https://hosted.weblate.org/widgets/onvifviewer/-/287x66-grey.png" alt="Vertalingsstatus" />](https://hosted.weblate.org/engage/onvifviewer/?utm_source=widget)
 
+## Donations
+You can donate via Bitcoin at [15PerwiiGxPf27AxVTYq7hGYJ52WfM9EWo](bitcoin:15PerwiiGxPf27AxVTYq7hGYJ52WfM9EWo).
+
+You can donate via PayPal via: [<img src="https://www.paypalobjects.com/nl_NL/NL/i/btn/btn_donateCC_LG.gif" alt="Donate" />](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RNGGP3C6J84QU)
+
 ## Building from source
 It is also possible to build the application yourself. This requires Qt 5.10 to be installed.
 
