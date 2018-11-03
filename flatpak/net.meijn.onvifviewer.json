@@ -23,6 +23,9 @@
         {
             "name": "onvifviewer",
             "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DUSE_BREEZE_ICONS=ON"
+            ],
             "sources": [
                 {
                     "type": "dir",
