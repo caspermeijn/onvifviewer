@@ -79,9 +79,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<OnvifSnapshotDownloader>("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotDownloader");
     qmlRegisterType<OnvifSnapshotViewer>("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotViewer");
 
-#ifdef WITH_BREEZE_ICONS
-    if(QIcon::themeName().isEmpty())
-        QIcon::setThemeName("breeze");
+#ifdef USE_BREEZE_ICONS
+#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
+    QIcon::setFallbackThemeName("breeze");
+#else
+    QIcon::setThemeName("breeze");
+#endif
 #endif
 
     QQmlApplicationEngine engine;

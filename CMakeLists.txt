@@ -24,11 +24,16 @@ set(CMAKE_AUTORCC ON)
 
 option(WITH_BREEZE_ICONS "Build a set of breeze icons into the binary, useful for platforms without themes")
 if(WITH_BREEZE_ICONS)
-    add_definitions(-DWITH_BREEZE_ICONS)
+    add_definitions(-DUSE_BREEZE_ICONS)
     get_filename_component(BREEZEICONS_DIR 3rdparty/breeze-icons/ ABSOLUTE)
     if (NOT EXISTS ${BREEZEICONS_DIR})
         message(FATAL_ERROR "Breeze-icons is missing, please checkout a copy at: \"${BREEZEICONS_DIR}\"")
     endif()
+endif()
+
+option(USE_BREEZE_ICONS "Use the breeze icon theme as fallback icon theme, useful for GNOME based desktops")
+if(USE_BREEZE_ICONS)
+    add_definitions(-DUSE_BREEZE_ICONS)
 endif()
 
 find_package(ECM 5.44.0 REQUIRED NO_MODULE)
