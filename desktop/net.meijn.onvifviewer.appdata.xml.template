@@ -14,6 +14,7 @@
   <developer_name>Casper Meijn</developer_name>
   <url type="homepage">https://gitlab.com/caspermeijn/onvifviewer</url>
   <url type="bugtracker">https://gitlab.com/caspermeijn/onvifviewer/issues</url>
+  <url type="donation">https://gitlab.com/caspermeijn/onvifviewer/blob/master/README.md#donations</url>
   <url type="translate">https://hosted.weblate.org/engage/onvifviewer/</url>
   <launchable type="desktop-id">net.meijn.onvifviewer.desktop</launchable>
   <screenshots>
