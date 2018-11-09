@@ -35,6 +35,8 @@ You can donate via Bitcoin at [15PerwiiGxPf27AxVTYq7hGYJ52WfM9EWo](bitcoin:15Per
 
 You can donate via PayPal via: [<img src="https://www.paypalobjects.com/nl_NL/NL/i/btn/btn_donateCC_LG.gif" alt="Donate" />](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RNGGP3C6J84QU)
 
+You can donate via LiberaPay via: [<img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg" />](https://liberapay.com/caspermeijn/donate)
+
 ## Building from source
 It is also possible to build the application yourself. This requires Qt 5.10 to be installed.
 
