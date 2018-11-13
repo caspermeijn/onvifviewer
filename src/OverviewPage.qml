@@ -99,8 +99,8 @@ Kirigami.ScrollablePage {
     ColumnLayout {
         visible: deviceManager.size === 0
 
-        width: root.width
-        height: root.height
+        width: pageOverview.width
+        height: pageOverview.height
         Item {
             Layout.fillHeight: true
         }
