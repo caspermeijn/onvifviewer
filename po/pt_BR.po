@@ -203,8 +203,9 @@ msgstr "Configurações"
 
 #. (itstool) path: description/p
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:10
+#, fuzzy
 msgid ""
-"Use this opensource app to view your network cameras using the ONVIF "
+"Use this open-source app to view your network cameras using the ONVIF "
 "protocol."
 msgstr ""
 "Use este aplicativo opensource para visualizar suas câmeras de rede usando o "
@@ -221,20 +222,21 @@ msgstr ""
 
 #. (itstool) path: description/p
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:12
+#, fuzzy
 msgid ""
 "You can connect to your network camera and view the video of it. If the "
-"camera is controlable you can move it as well."
+"camera is controllable you can move it as well."
 msgstr ""
 "Você pode se conectar à sua câmera de rede e ver o vídeo dela. Se a a câmera "
 "é controlável, você pode movê-la também."
 
 #. (itstool) path: screenshot/caption
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:21
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:22
 msgid "The camera overview page"
 msgstr "A página de visão geral da câmera"
 
 #. (itstool) path: screenshot/caption
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:25
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.template:26
 msgid "The camera settings page"
 msgstr "A página de configurações da câmera"
 
