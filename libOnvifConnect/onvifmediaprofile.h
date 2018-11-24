@@ -16,6 +16,7 @@
 #ifndef ONVIFMEDIAPROFILE_H
 #define ONVIFMEDIAPROFILE_H
 
+#include "onvifconnect_export.h"
 #include <QSharedDataPointer>
 
 namespace OnvifSoapMedia {
@@ -25,7 +26,7 @@ namespace OnvifSoapMedia2 {
 class TR2__MediaProfile;
 }
 
-class OnvifMediaProfile
+class ONVIFCONNECT_EXPORT OnvifMediaProfile
 {
 public:
     OnvifMediaProfile();

@@ -13,29 +13,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef ONVIFMEDIASERVICE_H
-#define ONVIFMEDIASERVICE_H
+#ifndef ONVIFMEDIA2SERVICE_H
+#define ONVIFMEDIA2SERVICE_H
 
+#include "onvifconnect_export.h"
 #include "onvifmediaprofile.h"
 #include <QObject>
 
 class OnvifDeviceConnection;
-namespace OnvifSoapMedia {
+namespace OnvifSoapMedia2 {
 class TT__Profile;
 class TT__PTZConfiguration;
-class TRT__Capabilities;
-class TRT__GetProfilesResponse;
-class TRT__GetServiceCapabilitiesResponse;
-class TRT__GetSnapshotUriResponse;
-class TRT__GetStreamUriResponse;
+class TR2__Capabilities2;
+class TR2__GetProfilesResponse;
+class TR2__GetServiceCapabilitiesResponse;
+class TR2__GetSnapshotUriResponse;
+class TR2__GetStreamUriResponse;
 }
 class KDSoapMessage;
 
-class OnvifMediaService : public QObject
+class ONVIFCONNECT_EXPORT OnvifMedia2Service : public QObject
 {
     Q_OBJECT
 public:
-    explicit OnvifMediaService(const QString& endpointAddress, OnvifDeviceConnection *parent);
+    explicit OnvifMedia2Service(const QString& endpointAddress, const OnvifSoapMedia2::TR2__Capabilities2& capabilities, OnvifDeviceConnection *parent);
 
     void connectToService();
     void disconnectFromService();
@@ -48,8 +49,6 @@ public:
     QUrl getSnapshotUri() const;
     QUrl getStreamUri() const;
 
-    void setServiceCapabilities(const OnvifSoapMedia::TRT__Capabilities& capabilities);
-
     void setPreferredVideoStreamProtocol(const QString& preferredVideoStreamProtocol);
 
 signals:
@@ -59,18 +58,19 @@ signals:
     void streamUriAvailable(const QUrl& streamUri);
 
 private slots:
-    void getServiceCapabilitiesDone( const OnvifSoapMedia::TRT__GetServiceCapabilitiesResponse& parameters );
-    void getServiceCapabilitiesError( const KDSoapMessage& fault );
-    void getProfilesDone( const OnvifSoapMedia::TRT__GetProfilesResponse& parameters );
+    void getProfilesDone( const OnvifSoapMedia2::TR2__GetProfilesResponse& parameters );
     void getProfilesError( const KDSoapMessage& fault );
-    void getSnapshotUriDone( const OnvifSoapMedia::TRT__GetSnapshotUriResponse& parameters );
+    void getSnapshotUriDone( const OnvifSoapMedia2::TR2__GetSnapshotUriResponse& parameters );
     void getSnapshotUriError( const KDSoapMessage& fault );
-    void getStreamUriDone( const OnvifSoapMedia::TRT__GetStreamUriResponse& parameters );
+    void getStreamUriDone( const OnvifSoapMedia2::TR2__GetStreamUriResponse& parameters );
     void getStreamUriError( const KDSoapMessage& fault );
+
+private:
+    void setServiceCapabilities(const OnvifSoapMedia2::TR2__Capabilities2& capabilities);
 
 private:
     class Private;
     Private *const d;
 };
 
-#endif // ONVIFMEDIASERVICE_H
+#endif // ONVIFMEDIA2SERVICE_H

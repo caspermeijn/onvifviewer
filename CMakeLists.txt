@@ -68,6 +68,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 
 include(FeatureSummary)
 
+add_subdirectory(libOnvifConnect)
 add_subdirectory(src)
 add_subdirectory(desktop)
 add_subdirectory(po)

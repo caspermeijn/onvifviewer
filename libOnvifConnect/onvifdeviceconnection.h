@@ -16,6 +16,7 @@
 #ifndef ONVIFDEVICECONNECTION_H
 #define ONVIFDEVICECONNECTION_H
 
+#include "onvifconnect_export.h"
 #include <QObject>
 
 class OnvifDeviceService;
@@ -29,7 +30,7 @@ class TDS__GetCapabilitiesResponse;
 }
 class KDSoapMessage;
 
-class OnvifDeviceConnection : public QObject
+class ONVIFCONNECT_EXPORT OnvifDeviceConnection : public QObject
 {
     Q_OBJECT
 public:

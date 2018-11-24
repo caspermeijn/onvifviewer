@@ -16,6 +16,7 @@
 #ifndef ONVIFPTZSERVICE_H
 #define ONVIFPTZSERVICE_H
 
+#include "onvifconnect_export.h"
 #include <QObject>
 
 class OnvifDeviceConnection;
@@ -35,7 +36,7 @@ class TPTZ__StopResponse;
 }
 class KDSoapMessage;
 
-class OnvifPtzService : public QObject
+class ONVIFCONNECT_EXPORT OnvifPtzService : public QObject
 {
     Q_OBJECT
 public:
