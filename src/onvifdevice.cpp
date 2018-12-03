@@ -68,11 +68,11 @@ OnvifSnapshotDownloader *OnvifDevice::snapshotDownloader() const
 
 bool OnvifDevice::supportsSnapshotUri() const
 {
-    OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
+    const OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
     if(media2Service)
         return media2Service->supportsSnapshotUri();
 
-    OnvifMediaService* mediaService = m_connection.getMediaService();
+    const OnvifMediaService* mediaService = m_connection.getMediaService();
     if(mediaService)
         return mediaService->supportsSnapshotUri();
 
@@ -81,11 +81,11 @@ bool OnvifDevice::supportsSnapshotUri() const
 
 QUrl OnvifDevice::snapshotUri() const
 {
-    OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
+    const OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
     if(media2Service)
         return media2Service->getSnapshotUri();
 
-    OnvifMediaService* mediaService = m_connection.getMediaService();
+    const OnvifMediaService* mediaService = m_connection.getMediaService();
     if(mediaService)
         return mediaService->getSnapshotUri();
 
@@ -94,11 +94,11 @@ QUrl OnvifDevice::snapshotUri() const
 
 QUrl OnvifDevice::streamUri() const
 {
-    OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
+    const OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
     if(media2Service)
         return media2Service->getStreamUri();
 
-    OnvifMediaService* mediaService = m_connection.getMediaService();
+    const OnvifMediaService* mediaService = m_connection.getMediaService();
     if(mediaService)
         return mediaService->getStreamUri();
 
@@ -281,7 +281,7 @@ bool OnvifDevice::isPanTiltSupported() const
 {
     if(m_selectedMediaProfile.ptzNodeToken().isEmpty())
         return false;
-    OnvifPtzService * ptzService = m_connection.getPtzService();
+    const OnvifPtzService * ptzService = m_connection.getPtzService();
     if(!ptzService)
         return false;
     //TODO: Add a workaround for when relative move is not supported...
@@ -295,7 +295,7 @@ bool OnvifDevice::isPanTiltSupported() const
 
 bool OnvifDevice::isPtzHomeSupported() const
 {
-    OnvifPtzService * ptzService = m_connection.getPtzService();
+    const OnvifPtzService * ptzService = m_connection.getPtzService();
     if(ptzService) {
         return ptzService->isHomeSupported(m_selectedMediaProfile);
     }
@@ -304,7 +304,7 @@ bool OnvifDevice::isPtzHomeSupported() const
 
 bool OnvifDevice::isZoomSupported() const
 {
-    OnvifPtzService * ptzService = m_connection.getPtzService();
+    const OnvifPtzService * ptzService = m_connection.getPtzService();
     if(ptzService) {
         return ptzService->isRelativeZoomSupported(m_selectedMediaProfile);
     }

@@ -36,11 +36,15 @@ class TPTZ__StopResponse;
 }
 class KDSoapMessage;
 
+class OnvifPtzServicePrivate;
 class ONVIFCONNECT_EXPORT OnvifPtzService : public QObject
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(OnvifPtzService)
+    QScopedPointer<OnvifPtzServicePrivate> const d_ptr;
 public:
     explicit OnvifPtzService(const QString& endpointAddress, OnvifDeviceConnection *parent);
+    ~OnvifPtzService();
 
     void connectToService();
     void disconnectFromService();
@@ -49,16 +53,16 @@ public:
 
     void absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
 
-    bool isRelativeMoveSupported(const OnvifMediaProfile &profile);
+    bool isRelativeMoveSupported(const OnvifMediaProfile &profile) const;
     void relativeMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
 
-    bool isContinuousMoveSupported(const OnvifMediaProfile &profile);
+    bool isContinuousMoveSupported(const OnvifMediaProfile &profile) const;
     void continuousMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
 
-    bool isRelativeZoomSupported(const OnvifMediaProfile &profile);
+    bool isRelativeZoomSupported(const OnvifMediaProfile &profile) const;
     void relativeZoom(const OnvifMediaProfile &profile, qreal zoomFraction);
 
-    bool isHomeSupported(const OnvifMediaProfile &profile);
+    bool isHomeSupported(const OnvifMediaProfile &profile) const;
     void goToHome(const OnvifMediaProfile &profile);
     void saveHomePosition(const OnvifMediaProfile &profile);
 
@@ -85,10 +89,6 @@ private slots:
     void setHomePositionError( const KDSoapMessage& fault );
     void stopDone( const OnvifSoapPtz::TPTZ__StopResponse& parameters );
     void stopError( const KDSoapMessage& fault );
-
-private:
-    class Private;
-    Private *const d;
 };
 
 

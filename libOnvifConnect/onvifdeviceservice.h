@@ -28,11 +28,15 @@ class TDS__GetDeviceInformationResponse;
 }
 class KDSoapMessage;
 
+class OnvifDeviceServicePrivate;
 class ONVIFCONNECT_EXPORT OnvifDeviceService : public QObject
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(OnvifDeviceService)
+    QScopedPointer<OnvifDeviceServicePrivate> const d_ptr;
 public:
     explicit OnvifDeviceService(const QString& soapEndpoint, OnvifDeviceConnection *parent);
+    ~OnvifDeviceService();
 
     void connectToService();
     void disconnectFromService();
@@ -45,10 +49,6 @@ signals:
 private slots:
     void getDeviceInformationDone( const OnvifSoapDevicemgmt::TDS__GetDeviceInformationResponse& parameters );
     void getDeviceInformationError( const KDSoapMessage& fault );
-
-private:
-    class Private;
-    Private *const d;
 };
 
 #endif // ONVIFDEVICESERVICE_H

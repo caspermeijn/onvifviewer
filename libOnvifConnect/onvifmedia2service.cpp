@@ -24,10 +24,11 @@ using namespace OnvifSoapMedia2;
 
 #define Q_FUNC_INFO_AS_STRING (QString(static_cast<const char*>(Q_FUNC_INFO)))
 
-class OnvifMedia2Service::Private
+class OnvifMedia2ServicePrivate
 {
+    Q_DISABLE_COPY(OnvifMedia2ServicePrivate)
 public:
-    Private(OnvifDeviceConnection *device) :
+    OnvifMedia2ServicePrivate(OnvifDeviceConnection *device) :
         device(device),
         supportsSnapshotUri(true)
     {;}
@@ -44,8 +45,9 @@ public:
 
 OnvifMedia2Service::OnvifMedia2Service(const QString &endpointAddress, const TR2__Capabilities2& capabilities, OnvifDeviceConnection *parent) :
     QObject(parent),
-    d(new Private(parent))
+    d_ptr(new OnvifMedia2ServicePrivate(parent))
 {
+    Q_D(OnvifMedia2Service);
     d->soapService.setEndPoint(endpointAddress);
 
     connect(&d->soapService, &Media2BindingService::getProfilesDone,
@@ -64,8 +66,11 @@ OnvifMedia2Service::OnvifMedia2Service(const QString &endpointAddress, const TR2
     setServiceCapabilities(capabilities);
 }
 
+OnvifMedia2Service::~OnvifMedia2Service() = default;
+
 void OnvifMedia2Service::connectToService()
 {
+    Q_D(OnvifMedia2Service);
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     TR2__GetProfiles request;
     request.setType(QStringList() << "All");
@@ -74,6 +79,7 @@ void OnvifMedia2Service::connectToService()
 
 void OnvifMedia2Service::disconnectFromService()
 {
+    Q_D(OnvifMedia2Service);
     d->profileList.clear();
     d->selectedProfile = OnvifMediaProfile();
     d->snapshotUri.clear();
@@ -82,11 +88,13 @@ void OnvifMedia2Service::disconnectFromService()
 
 QList<OnvifMediaProfile> OnvifMedia2Service::getProfileList() const
 {
+    Q_D(const OnvifMedia2Service);
     return d->profileList;
 }
 
 void OnvifMedia2Service::selectProfile(const OnvifMediaProfile &profile)
 {
+    Q_D(OnvifMedia2Service);
     d->selectedProfile = profile;
 
     if(d->supportsSnapshotUri) {
@@ -107,26 +115,31 @@ void OnvifMedia2Service::selectProfile(const OnvifMediaProfile &profile)
 
 bool OnvifMedia2Service::supportsSnapshotUri() const
 {
+    Q_D(const OnvifMedia2Service);
     return d->supportsSnapshotUri;
 }
 
 QUrl OnvifMedia2Service::getSnapshotUri() const
 {
+    Q_D(const OnvifMedia2Service);
     return d->snapshotUri;
 }
 
 QUrl OnvifMedia2Service::getStreamUri() const
 {
+    Q_D(const OnvifMedia2Service);
     return d->streamUri;
 }
 
 void OnvifMedia2Service::setPreferredVideoStreamProtocol(const QString &preferredVideoStreamProtocol)
 {
+    Q_D(OnvifMedia2Service);
     d->preferredVideoStreamProtocol = preferredVideoStreamProtocol;
 }
 
 void OnvifMedia2Service::getProfilesDone(const TR2__GetProfilesResponse &parameters)
 {
+    Q_D(OnvifMedia2Service);
     d->profileList.clear();
     for(const auto& profile : parameters.profiles()) {
         d->profileList << OnvifMediaProfile(profile);
@@ -136,11 +149,13 @@ void OnvifMedia2Service::getProfilesDone(const TR2__GetProfilesResponse &paramet
 
 void OnvifMedia2Service::getProfilesError(const KDSoapMessage &fault)
 {
+    Q_D(OnvifMedia2Service);
     d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMedia2Service::getSnapshotUriDone(const TR2__GetSnapshotUriResponse &parameters)
 {
+    Q_D(OnvifMedia2Service);
     d->snapshotUri = QUrl(parameters.uri());
     d->device->updateUrlHost(&d->snapshotUri);
     if(d->snapshotUri.userInfo().isEmpty())
@@ -152,11 +167,13 @@ void OnvifMedia2Service::getSnapshotUriDone(const TR2__GetSnapshotUriResponse &p
 
 void OnvifMedia2Service::getSnapshotUriError(const KDSoapMessage &fault)
 {
+    Q_D(OnvifMedia2Service);
     d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMedia2Service::getStreamUriDone(const TR2__GetStreamUriResponse &parameters)
 {
+    Q_D(OnvifMedia2Service);
     d->streamUri = QUrl(parameters.uri());
     d->device->updateUrlHost(&d->streamUri);
     if(d->streamUri.userInfo().isEmpty())
@@ -168,11 +185,13 @@ void OnvifMedia2Service::getStreamUriDone(const TR2__GetStreamUriResponse &param
 
 void OnvifMedia2Service::getStreamUriError(const KDSoapMessage &fault)
 {
+    Q_D(OnvifMedia2Service);
     d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
 void OnvifMedia2Service::setServiceCapabilities(const TR2__Capabilities2 &capabilities)
 {
+    Q_D(OnvifMedia2Service);
     d->supportsSnapshotUri = capabilities.snapshotUri();
     emit supportsSnapshotUriAvailable(d->supportsSnapshotUri);
 }

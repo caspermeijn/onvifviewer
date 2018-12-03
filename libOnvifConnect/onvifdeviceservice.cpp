@@ -26,10 +26,11 @@ using namespace OnvifSoapDevicemgmt;
 
 #define Q_FUNC_INFO_AS_STRING (QString(static_cast<const char*>(Q_FUNC_INFO)))
 
-class OnvifDeviceService::Private
+class OnvifDeviceServicePrivate
 {
+    Q_DISABLE_COPY(OnvifDeviceServicePrivate)
 public:
-    Private(OnvifDeviceConnection *device) :
+    OnvifDeviceServicePrivate(OnvifDeviceConnection *device) :
         device(device)
     {;}
 
@@ -40,8 +41,9 @@ public:
 
 OnvifDeviceService::OnvifDeviceService(const QString &soapEndpoint, OnvifDeviceConnection *parent) :
     QObject(parent),
-    d(new Private(parent))
+    d_ptr(new OnvifDeviceServicePrivate(parent))
 {
+    Q_D(OnvifDeviceService);
     d->soapService.setEndPoint(soapEndpoint);
 
     connect(&d->soapService, &DeviceBindingService::getDeviceInformationDone,
@@ -50,29 +52,36 @@ OnvifDeviceService::OnvifDeviceService(const QString &soapEndpoint, OnvifDeviceC
             this, &OnvifDeviceService::getDeviceInformationError);
 }
 
+OnvifDeviceService::~OnvifDeviceService() = default;
+
 void OnvifDeviceService::connectToService()
 {
+    Q_D(OnvifDeviceService);
     d->device->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGetDeviceInformation();
 }
 
 void OnvifDeviceService::disconnectFromService()
 {
+    Q_D(OnvifDeviceService);
     d->deviceInformation = OnvifDeviceInformation();
 }
 
 OnvifDeviceInformation OnvifDeviceService::getDeviceInformation()
 {
+    Q_D(OnvifDeviceService);
     return d->deviceInformation;
 }
 
 void OnvifDeviceService::getDeviceInformationDone(const TDS__GetDeviceInformationResponse &parameters)
 {
+    Q_D(OnvifDeviceService);
     d->deviceInformation = OnvifDeviceInformation(parameters);
     emit deviceInformationAvailable(d->deviceInformation);
 }
 
 void OnvifDeviceService::getDeviceInformationError(const KDSoapMessage &fault)
 {
+    Q_D(OnvifDeviceService);
     d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }

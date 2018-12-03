@@ -26,6 +26,7 @@ namespace OnvifSoapMedia2 {
 class TR2__MediaProfile;
 }
 
+class OnvifMediaProfilePrivate;
 class ONVIFCONNECT_EXPORT OnvifMediaProfile
 {
 public:
@@ -51,8 +52,7 @@ public:
     long resolutionPixels() const;
 
 private:
-    class Private;
-    QSharedDataPointer<Private> d;
+    QSharedDataPointer<OnvifMediaProfilePrivate> d;
 };
 QDebug operator<<(QDebug debug, const OnvifMediaProfile &d);
 

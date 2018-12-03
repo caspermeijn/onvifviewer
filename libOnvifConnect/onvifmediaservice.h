@@ -32,11 +32,15 @@ class TRT__GetStreamUriResponse;
 }
 class KDSoapMessage;
 
+class OnvifMediaServicePrivate;
 class ONVIFCONNECT_EXPORT OnvifMediaService : public QObject
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(OnvifMediaService)
+    QScopedPointer<OnvifMediaServicePrivate> const d_ptr;
 public:
     explicit OnvifMediaService(const QString& endpointAddress, OnvifDeviceConnection *parent);
+    ~OnvifMediaService();
 
     void connectToService();
     void disconnectFromService();
@@ -68,10 +72,6 @@ private slots:
     void getSnapshotUriError( const KDSoapMessage& fault );
     void getStreamUriDone( const OnvifSoapMedia::TRT__GetStreamUriResponse& parameters );
     void getStreamUriError( const KDSoapMessage& fault );
-
-private:
-    class Private;
-    Private *const d;
 };
 
 #endif // ONVIFMEDIASERVICE_H

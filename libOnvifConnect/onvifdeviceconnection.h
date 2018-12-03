@@ -30,9 +30,12 @@ class TDS__GetCapabilitiesResponse;
 }
 class KDSoapMessage;
 
+class OnvifDeviceConnectionPrivate;
 class ONVIFCONNECT_EXPORT OnvifDeviceConnection : public QObject
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(OnvifDeviceConnection)
+    QScopedPointer<OnvifDeviceConnectionPrivate> const d_ptr;
 public:
     explicit OnvifDeviceConnection(QObject *parent = nullptr);
     ~OnvifDeviceConnection();
@@ -69,8 +72,6 @@ private:
     void checkServicesAvailable();
     void updateUsernameToken(KDSoapClientInterface * clientInterface);
     void updateKDSoapAuthentication(KDSoapClientInterface * clientInterface);
-    class Private;
-    Private *const d;
 };
 
 #endif // ONVIFDEVICECONNECTION_H
