@@ -186,7 +186,8 @@ void OnvifMediaService::getProfilesDone(const OnvifSoapMedia::TRT__GetProfilesRe
 {
     Q_D(OnvifMediaService);
     d->profileList.clear();
-    for(const auto& profile : parameters.profiles()) {
+    const auto& profileList = parameters.profiles();
+    for(auto& profile : profileList) {
         d->profileList << OnvifMediaProfile(profile);
     }
 

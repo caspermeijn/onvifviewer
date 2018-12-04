@@ -33,8 +33,6 @@ using namespace OnvifSoapDevicemgmt;
 
 #define Q_FUNC_INFO_AS_STRING (QString(static_cast<const char*>(Q_FUNC_INFO)))
 
-static const QString c_baseEndpointURI = "http://%1/onvif/device_service";
-
 class OnvifDeviceConnectionPrivate
 {
     Q_DISABLE_COPY(OnvifDeviceConnectionPrivate)
@@ -58,7 +56,11 @@ public:
 
     bool getServicesFinished = false;
     bool getCapabilitiesFinished = false;
+
+    static const QString c_baseEndpointURI;
 };
+
+const QString OnvifDeviceConnectionPrivate::c_baseEndpointURI = QLatin1String("http://%1/onvif/device_service");
 
 OnvifDeviceConnection::OnvifDeviceConnection(QObject *parent) :
     QObject(parent),
@@ -81,7 +83,7 @@ void OnvifDeviceConnection::setHostname(const QString& hostname)
 {
     Q_D(OnvifDeviceConnection);
     d->hostname = hostname;
-    d->soapService.setEndPoint(c_baseEndpointURI.arg(hostname));
+    d->soapService.setEndPoint(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(hostname));
 }
 
 void OnvifDeviceConnection::setCredentials(const QString &username, const QString &password)
@@ -139,16 +141,17 @@ void OnvifDeviceConnection::disconnectFromDevice()
 void OnvifDeviceConnection::getServicesDone(const TDS__GetServicesResponse &parameters)
 {
     Q_D(OnvifDeviceConnection);
-    for(const auto& service : parameters.service())
+    const auto& serviceList = parameters.service();
+    for(auto& service : serviceList)
     {
         QUrl xAddrUrl(service.xAddr());
         this->updateUrlHost(&xAddrUrl);
         if(service.namespace_() == "http://www.onvif.org/ver10/device/wsdl")
         {
-            if(QUrl(service.xAddr()) != QUrl(c_baseEndpointURI.arg(d->hostname))) {
+            if(QUrl(service.xAddr()) != QUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(d->hostname))) {
                 qWarning() << "Warning: The recieved address of the device service doesn't match the address of the initial connection.";
                 qWarning() << "Recieved address:" << QUrl(service.xAddr()).toString();
-                qWarning() << "Initial connection:" << QUrl(c_baseEndpointURI.arg(d->hostname)).toString();
+                qWarning() << "Initial connection:" << QUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(d->hostname)).toString();
             }
             OnvifSoapDevicemgmt::TDS__DeviceServiceCapabilities capabilities;
             capabilities.deserialize(service.capabilities().any());
@@ -295,7 +298,7 @@ OnvifPtzService *OnvifDeviceConnection::getPtzService() const
 void OnvifDeviceConnection::updateUrlHost(QUrl *url)
 {
     Q_D(OnvifDeviceConnection);
-    QUrl origUrl(c_baseEndpointURI.arg(d->hostname));
+    QUrl origUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(d->hostname));
     if(url->host() != origUrl.host()) {
         url->setHost(origUrl.host());
         url->setPort(origUrl.port());

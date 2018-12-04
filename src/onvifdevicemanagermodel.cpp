@@ -83,11 +83,10 @@ void OnvifDeviceManagerModel::deviceListChanged()
     const QMetaMethod& targetSlot = this->metaObject()->method(indexOfMethod);
 
     beginResetModel();
-    for(auto device : m_deviceManager->deviceList())
-    {
+    const auto& deviceList = m_deviceManager->deviceList();
+    for(auto& device : deviceList) {
         const QMetaObject* metaObject = device->metaObject();
-        for(int i = 0; i < metaObject->propertyCount(); i++)
-        {
+        for(int i = 0; i < metaObject->propertyCount(); i++) {
             const QMetaProperty& prop = metaObject->property(i);
             if(prop.hasNotifySignal())
                 connect(device, prop.notifySignal(), this, targetSlot);

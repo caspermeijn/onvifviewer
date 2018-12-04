@@ -141,7 +141,8 @@ void OnvifMedia2Service::getProfilesDone(const TR2__GetProfilesResponse &paramet
 {
     Q_D(OnvifMedia2Service);
     d->profileList.clear();
-    for(const auto& profile : parameters.profiles()) {
+    const auto& profileList = parameters.profiles();
+    for(auto& profile : profileList) {
         d->profileList << OnvifMediaProfile(profile);
     }
     emit profileListAvailable(d->profileList);

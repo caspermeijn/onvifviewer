@@ -109,13 +109,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     }
 
     if(!commandLineParser.positionalArguments().isEmpty()) {
-        auto url = QUrl(commandLineParser.positionalArguments().first());
+        auto url = QUrl(commandLineParser.positionalArguments().constFirst());
         if(url.isValid()) {
             OnvifDevice * device = deviceManager.createNewDevice();
             device->initByUrl(url);
             device->connectToDevice();
             QVariant variantDevice = QVariant::fromValue<OnvifDevice*>(device);
-            engine.rootObjects().first()->setProperty("previewDevice", variantDevice);
+            engine.rootObjects().constFirst()->setProperty("previewDevice", variantDevice);
         }
     }
 
