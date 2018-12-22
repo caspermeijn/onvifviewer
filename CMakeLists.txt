@@ -36,12 +36,18 @@ if(USE_BREEZE_ICONS)
     add_definitions(-DUSE_BREEZE_ICONS)
 endif()
 
+include(FeatureSummary)
+
 find_package(ECM 5.44.0 REQUIRED NO_MODULE)
+set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://projects.kde.org/projects/kdesupport/extra-cmake-modules")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 find_package(KDSoap 1.7.0 REQUIRED)
+set_package_properties(KDSoap PROPERTIES DESCRIPTION "A Qt-based client-side and server-side SOAP component" URL "http://www.kdab.com/products/kd-soap" TYPE REQUIRED PURPOSE "Support for SOAP client protocol")
 find_package(KF5 5.44 REQUIRED I18n)
 find_package(KF5Kirigami2 5.48.0 REQUIRED)
 find_package(Qt5 5.10.0 REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
+set_package_properties(Qt5 PROPERTIES DESCRIPTION "The Qt5 framework" URL "http://www.qt.io" TYPE REQUIRED)
+
 
 if(NOT ANDROID)
     find_package(KF5 5.44 REQUIRED CoreAddons XmlGui)
@@ -65,8 +71,6 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 ##ecm_find_qmlmodule(QtQuick.Controls 2.3 REQUIRED)
 ##ecm_find_qmlmodule(QtQuick.Controls.Material 2.3 REQUIRED)
 #ecm_find_qmlmodule(QtQuick.Layouts 1.3 REQUIRED)
-
-include(FeatureSummary)
 
 add_subdirectory(libOnvifConnect)
 add_subdirectory(src)
