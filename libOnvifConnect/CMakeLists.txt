@@ -14,55 +14,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 cmake_minimum_required(VERSION 3.0)
-
-project(libOnvifConnect VERSION 0.1)
+cmake_policy(SET CMP0063 NEW)
 
 include(GenerateExportHeader)
 
 include(ECMGenerateHeaders)
-include(ECMQtDeclareLoggingCategory)
-
-ecm_setup_version(PROJECT
-    VARIABLE_PREFIX ONVIF_CONNECT
-    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/OnvifConnectVersion.h"
-    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/OnvifConnectConfigVersion.cmake"
-    SOVERSION 0)
-
 
 # if (BUILD_TESTING)
 #     add_subdirectory(autotests)
 #     add_subdirectory(tests)
 # endif()
-
-# create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/OnvifConnect")
-
-include(CMakePackageConfigHelpers)
-
-configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/OnvifConnectConfig.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/OnvifConnectConfig.cmake"
-    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
-)
-
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/OnvifConnectVersion.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}
-        COMPONENT Devel)
-
-install(FILES
-            "${CMAKE_CURRENT_BINARY_DIR}/OnvifConnectConfig.cmake"
-            "${CMAKE_CURRENT_BINARY_DIR}/OnvifConnectConfigVersion.cmake"
-        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        COMPONENT Devel)
-
-install(EXPORT OnvifConnectTargets
-        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-        FILE OnvifConnectTargets.cmake
-        NAMESPACE OnvifConnect::)
-
-install(FILES onvif_connect.categories DESTINATION ${KDE_INSTALL_CONFDIR})
-
-feature_summary(WHAT ALL   FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 set(GLOBAL_KSWSDL2CPP_OPTION)
 option(KDSOAP_SUPPORTS_USE_LOCAL_FILES_ONLY "Build using the -use-local-files-only option of KDSoap; disable this for older KDSoap versions" ON)
@@ -91,20 +52,8 @@ set(libOnvifConnect_SRCS
     onvifmediaprofile.cpp
 )
 
-ecm_qt_declare_logging_category(libOnvifConnect_SRCS
-    HEADER loggingcategory.h
-    IDENTIFIER OnvifConnectLog
-    CATEGORY_NAME onvifconnect
-    DEFAULT_SEVERITY Warning
-)
-
-add_library(libOnvifConnect ${libOnvifConnect_SRCS} ${libOnvifConnect_WSDL})
+add_library(libOnvifConnect STATIC ${libOnvifConnect_SRCS} ${libOnvifConnect_WSDL})
 generate_export_header(libOnvifConnect BASE_NAME OnvifConnect)
-add_library(OnvifConnect::libOnvifConnect ALIAS libOnvifConnect)
-
-target_include_directories(libOnvifConnect
-    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/OnvifConnect>"
-)
 
 target_link_libraries(libOnvifConnect
     PUBLIC
@@ -113,29 +62,3 @@ target_link_libraries(libOnvifConnect
     PRIVATE
         Qt5::Network
 )
-
-set_target_properties(libOnvifConnect PROPERTIES
-    VERSION     ${ONVIF_CONNECT_VERSION_STRING}
-    SOVERSION   ${ONVIF_CONNECT_SOVERSION}
-)
-
-ecm_generate_headers(OnvifConnect_HEADERS
-    HEADER_NAMES
-    OnvifDeviceConnection
-    OnvifDeviceService
-    OnvifMediaService
-    OnvifMedia2Service
-    OnvifPtzService
-
-    REQUIRED_HEADERS OnvifConnect_HEADERS
-)
-
-install(TARGETS libOnvifConnect
-        EXPORT OnvifConnectTargets
-        ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
-
-install(FILES
-            ${CMAKE_CURRENT_BINARY_DIR}/onvif_connect_export.h
-            ${KArchive_HEADERS}
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/OnvifConnect
-        COMPONENT Devel)
