@@ -23,18 +23,20 @@ class OnvifDeviceService;
 class OnvifMediaService;
 class OnvifMedia2Service;
 class OnvifPtzService;
-class KDSoapClientInterface;
-namespace OnvifSoapDevicemgmt {
-class TDS__GetServicesResponse;
-class TDS__GetCapabilitiesResponse;
-}
-class KDSoapMessage;
 
 class OnvifDeviceConnectionPrivate;
 class ONVIFCONNECT_EXPORT OnvifDeviceConnection : public QObject
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(OnvifDeviceConnection)
+    friend class OnvifDeviceService;
+    friend class OnvifDeviceServicePrivate;
+    friend class OnvifMediaService;
+    friend class OnvifMediaServicePrivate;
+    friend class OnvifMedia2Service;
+    friend class OnvifMedia2ServicePrivate;
+    friend class OnvifPtzService;
+    friend class OnvifPtzServicePrivate;
     QScopedPointer<OnvifDeviceConnectionPrivate> const d_ptr;
 public:
     explicit OnvifDeviceConnection(QObject *parent = nullptr);
@@ -53,25 +55,9 @@ public:
     OnvifMedia2Service *getMedia2Service() const;
     OnvifPtzService *getPtzService() const;
 
-    /* internal */
-    void updateUrlHost(QUrl* url);
-    void updateSoapCredentials(KDSoapClientInterface * clientInterface);
-    void updateUrlCredentials(QUrl* url);
-    void handleSoapError(const KDSoapMessage& fault, const QString& location);
 signals:
     void servicesAvailable();
     void errorStringChanged(const QString& errorString);
-
-private slots:
-    void getServicesDone( const OnvifSoapDevicemgmt::TDS__GetServicesResponse& parameters );
-    void getServicesError( const KDSoapMessage& fault );
-    void getCapabilitiesDone( const OnvifSoapDevicemgmt::TDS__GetCapabilitiesResponse& parameters );
-    void getCapabilitiesError( const KDSoapMessage& fault );
-
-private:
-    void checkServicesAvailable();
-    void updateUsernameToken(KDSoapClientInterface * clientInterface);
-    void updateKDSoapAuthentication(KDSoapClientInterface * clientInterface);
 };
 
 #endif // ONVIFDEVICECONNECTION_H

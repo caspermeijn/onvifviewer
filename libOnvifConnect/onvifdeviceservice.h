@@ -21,12 +21,6 @@
 #include <QObject>
 
 class OnvifDeviceConnection;
-namespace OnvifSoapDevicemgmt {
-class TDS__DeviceServiceCapabilities;
-class TDS__GetServiceCapabilitiesResponse;
-class TDS__GetDeviceInformationResponse;
-}
-class KDSoapMessage;
 
 class OnvifDeviceServicePrivate;
 class ONVIFCONNECT_EXPORT OnvifDeviceService : public QObject
@@ -45,10 +39,6 @@ public:
 
 signals:
     void deviceInformationAvailable(const OnvifDeviceInformation& deviceInformation);
-
-private slots:
-    void getDeviceInformationDone( const OnvifSoapDevicemgmt::TDS__GetDeviceInformationResponse& parameters );
-    void getDeviceInformationError( const KDSoapMessage& fault );
 };
 
 #endif // ONVIFDEVICESERVICE_H

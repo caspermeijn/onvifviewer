@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "onvifdeviceconnection.h"
+#include "onvifdeviceconnection_p.h"
 #include "onvifdeviceservice.h"
 
 #include <QCryptographicHash>
@@ -29,27 +29,33 @@ using namespace OnvifSoapDevicemgmt;
 class OnvifDeviceServicePrivate
 {
     Q_DISABLE_COPY(OnvifDeviceServicePrivate)
+    Q_DECLARE_PUBLIC(OnvifDeviceService)
 public:
-    OnvifDeviceServicePrivate(OnvifDeviceConnection *device) :
+    OnvifDeviceServicePrivate(OnvifDeviceService * service,OnvifDeviceConnection *device) :
+        q_ptr(service),
         device(device)
     {;}
 
+    OnvifDeviceService * const q_ptr;
     OnvifDeviceConnection * device;
     DeviceBindingService soapService;
     OnvifDeviceInformation deviceInformation;
+
+    void getDeviceInformationDone( const OnvifSoapDevicemgmt::TDS__GetDeviceInformationResponse& parameters );
+    void getDeviceInformationError( const KDSoapMessage& fault );
 };
 
 OnvifDeviceService::OnvifDeviceService(const QString &soapEndpoint, OnvifDeviceConnection *parent) :
     QObject(parent),
-    d_ptr(new OnvifDeviceServicePrivate(parent))
+    d_ptr(new OnvifDeviceServicePrivate(this, parent))
 {
     Q_D(OnvifDeviceService);
     d->soapService.setEndPoint(soapEndpoint);
 
     connect(&d->soapService, &DeviceBindingService::getDeviceInformationDone,
-            this, &OnvifDeviceService::getDeviceInformationDone);
+            [d](const OnvifSoapDevicemgmt::TDS__GetDeviceInformationResponse& parameters){d->getDeviceInformationDone(parameters);});
     connect(&d->soapService, &DeviceBindingService::getDeviceInformationError,
-            this, &OnvifDeviceService::getDeviceInformationError);
+            [d](const KDSoapMessage& fault){d->getDeviceInformationError(fault);});
 }
 
 OnvifDeviceService::~OnvifDeviceService() = default;
@@ -57,7 +63,7 @@ OnvifDeviceService::~OnvifDeviceService() = default;
 void OnvifDeviceService::connectToService()
 {
     Q_D(OnvifDeviceService);
-    d->device->updateSoapCredentials(d->soapService.clientInterface());
+    d->device->d_ptr->updateSoapCredentials(d->soapService.clientInterface());
     d->soapService.asyncGetDeviceInformation();
 }
 
@@ -73,15 +79,14 @@ OnvifDeviceInformation OnvifDeviceService::getDeviceInformation()
     return d->deviceInformation;
 }
 
-void OnvifDeviceService::getDeviceInformationDone(const TDS__GetDeviceInformationResponse &parameters)
+void OnvifDeviceServicePrivate::getDeviceInformationDone(const TDS__GetDeviceInformationResponse &parameters)
 {
-    Q_D(OnvifDeviceService);
-    d->deviceInformation = OnvifDeviceInformation(parameters);
-    emit deviceInformationAvailable(d->deviceInformation);
+    Q_Q(OnvifDeviceService);
+    deviceInformation = OnvifDeviceInformation(parameters);
+    emit q->deviceInformationAvailable(deviceInformation);
 }
 
-void OnvifDeviceService::getDeviceInformationError(const KDSoapMessage &fault)
+void OnvifDeviceServicePrivate::getDeviceInformationError(const KDSoapMessage &fault)
 {
-    Q_D(OnvifDeviceService);
-    d->device->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
+    device->d_ptr->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
