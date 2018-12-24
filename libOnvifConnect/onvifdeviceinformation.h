@@ -16,6 +16,7 @@
 #ifndef ONVIFDEVICEINFORMATION_H
 #define ONVIFDEVICEINFORMATION_H
 
+#include "onvifconnect_export.h"
 #include <QSharedDataPointer>
 #include <QObject>
 
@@ -23,7 +24,8 @@ namespace OnvifSoapDevicemgmt {
 class TDS__GetDeviceInformationResponse;
 }
 
-class OnvifDeviceInformation : public QObject
+class OnvifDeviceInformationPrivate;
+class ONVIFCONNECT_EXPORT OnvifDeviceInformation : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString manufacturer READ manufacturer NOTIFY manufacturerChanged)
@@ -53,8 +55,7 @@ signals:
     void hardwareIdChanged(const QString& hardwareId);
 
 private:
-    class Private;
-    QSharedDataPointer<Private> d;
+    QSharedDataPointer<OnvifDeviceInformationPrivate> d;
 };
 
 QDebug operator<<(QDebug debug, const OnvifDeviceInformation &d);

@@ -16,22 +16,21 @@
 #ifndef ONVIFDEVICESERVICE_H
 #define ONVIFDEVICESERVICE_H
 
+#include "onvifconnect_export.h"
 #include "onvifdeviceinformation.h"
 #include <QObject>
 
 class OnvifDeviceConnection;
-namespace OnvifSoapDevicemgmt {
-class TDS__DeviceServiceCapabilities;
-class TDS__GetServiceCapabilitiesResponse;
-class TDS__GetDeviceInformationResponse;
-}
-class KDSoapMessage;
 
-class OnvifDeviceService : public QObject
+class OnvifDeviceServicePrivate;
+class ONVIFCONNECT_EXPORT OnvifDeviceService : public QObject
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(OnvifDeviceService)
+    QScopedPointer<OnvifDeviceServicePrivate> const d_ptr;
 public:
     explicit OnvifDeviceService(const QString& soapEndpoint, OnvifDeviceConnection *parent);
+    ~OnvifDeviceService();
 
     void connectToService();
     void disconnectFromService();
@@ -40,14 +39,6 @@ public:
 
 signals:
     void deviceInformationAvailable(const OnvifDeviceInformation& deviceInformation);
-
-private slots:
-    void getDeviceInformationDone( const OnvifSoapDevicemgmt::TDS__GetDeviceInformationResponse& parameters );
-    void getDeviceInformationError( const KDSoapMessage& fault );
-
-private:
-    class Private;
-    Private *const d;
 };
 
 #endif // ONVIFDEVICESERVICE_H

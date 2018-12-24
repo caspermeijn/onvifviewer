@@ -19,12 +19,12 @@
 #include "wsdl_media.h"
 #include "wsdl_media2.h"
 
-class OnvifMediaProfile::Private : public QSharedData
+class OnvifMediaProfilePrivate : public QSharedData
 {
 public:
-    Private() {;}
+    OnvifMediaProfilePrivate() {;}
 
-    Private(const OnvifSoapMedia::TT__Profile &profile) :
+    OnvifMediaProfilePrivate(const OnvifSoapMedia::TT__Profile &profile) :
         fixed(profile.fixed()),
         name(profile.name()),
         token(profile.token().value()),
@@ -45,7 +45,7 @@ public:
         }
     }
 
-    Private(const OnvifSoapMedia2::TR2__MediaProfile &profile) :
+    OnvifMediaProfilePrivate(const OnvifSoapMedia2::TR2__MediaProfile &profile) :
         fixed(profile.fixed()),
         name(profile.name()),
         token(profile.token().value()),
@@ -65,19 +65,19 @@ public:
 };
 
 OnvifMediaProfile::OnvifMediaProfile() :
-    d(new Private())
+    d(new OnvifMediaProfilePrivate())
 {
 }
 
 OnvifMediaProfile::OnvifMediaProfile(const OnvifMediaProfile &other) = default;
 
 OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia::TT__Profile &profile) :
-    d(new Private(profile))
+    d(new OnvifMediaProfilePrivate(profile))
 {
 }
 
 OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia2::TR2__MediaProfile &profile) :
-    d(new Private(profile))
+    d(new OnvifMediaProfilePrivate(profile))
 {
 }
 

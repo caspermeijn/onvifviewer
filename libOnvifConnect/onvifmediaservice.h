@@ -16,26 +16,24 @@
 #ifndef ONVIFMEDIASERVICE_H
 #define ONVIFMEDIASERVICE_H
 
+#include "onvifconnect_export.h"
 #include "onvifmediaprofile.h"
 #include <QObject>
 
 class OnvifDeviceConnection;
 namespace OnvifSoapMedia {
-class TT__Profile;
-class TT__PTZConfiguration;
 class TRT__Capabilities;
-class TRT__GetProfilesResponse;
-class TRT__GetServiceCapabilitiesResponse;
-class TRT__GetSnapshotUriResponse;
-class TRT__GetStreamUriResponse;
 }
-class KDSoapMessage;
 
-class OnvifMediaService : public QObject
+class OnvifMediaServicePrivate;
+class ONVIFCONNECT_EXPORT OnvifMediaService : public QObject
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(OnvifMediaService)
+    QScopedPointer<OnvifMediaServicePrivate> const d_ptr;
 public:
     explicit OnvifMediaService(const QString& endpointAddress, OnvifDeviceConnection *parent);
+    ~OnvifMediaService();
 
     void connectToService();
     void disconnectFromService();
@@ -48,6 +46,7 @@ public:
     QUrl getSnapshotUri() const;
     QUrl getStreamUri() const;
 
+    //TODO: Move setServiceCapabilities to private class
     void setServiceCapabilities(const OnvifSoapMedia::TRT__Capabilities& capabilities);
 
     void setPreferredVideoStreamProtocol(const QString& preferredVideoStreamProtocol);
@@ -57,20 +56,6 @@ signals:
     void supportsSnapshotUriAvailable(bool supportsSnapshotUri);
     void snapshotUriAvailable(const QUrl& snapshotUri);
     void streamUriAvailable(const QUrl& streamUri);
-
-private slots:
-    void getServiceCapabilitiesDone( const OnvifSoapMedia::TRT__GetServiceCapabilitiesResponse& parameters );
-    void getServiceCapabilitiesError( const KDSoapMessage& fault );
-    void getProfilesDone( const OnvifSoapMedia::TRT__GetProfilesResponse& parameters );
-    void getProfilesError( const KDSoapMessage& fault );
-    void getSnapshotUriDone( const OnvifSoapMedia::TRT__GetSnapshotUriResponse& parameters );
-    void getSnapshotUriError( const KDSoapMessage& fault );
-    void getStreamUriDone( const OnvifSoapMedia::TRT__GetStreamUriResponse& parameters );
-    void getStreamUriError( const KDSoapMessage& fault );
-
-private:
-    class Private;
-    Private *const d;
 };
 
 #endif // ONVIFMEDIASERVICE_H

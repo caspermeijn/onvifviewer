@@ -68,7 +68,7 @@ void OnvifSnapshotDownloader::setInterval(QObject *key, int interval)
         m_intervalMap.remove(key);
     }
     int minInterval = std::numeric_limits<int>::max();
-    for(auto interval : m_intervalMap) {
+    for(auto interval : qAsConst(m_intervalMap)) {
         minInterval = qMin(interval, minInterval);
     }
     if(m_downloadTimer.interval() != minInterval) {

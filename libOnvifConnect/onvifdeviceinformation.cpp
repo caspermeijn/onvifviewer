@@ -20,13 +20,13 @@
 
 using namespace OnvifSoapDevicemgmt;
 
-class OnvifDeviceInformation::Private : public QSharedData
+class OnvifDeviceInformationPrivate : public QSharedData
 {
 public:
-    Private()
+    OnvifDeviceInformationPrivate()
     {;}
 
-    Private(const TDS__GetDeviceInformationResponse &deviceInformationResponse) :
+    OnvifDeviceInformationPrivate(const TDS__GetDeviceInformationResponse &deviceInformationResponse) :
         manufacturer(deviceInformationResponse.manufacturer()),
         model(deviceInformationResponse.model()),
         firmwareVersion(deviceInformationResponse.firmwareVersion()),
@@ -44,7 +44,7 @@ public:
 
 OnvifDeviceInformation::OnvifDeviceInformation(QObject *parent) :
     QObject(parent),
-    d(new Private())
+    d(new OnvifDeviceInformationPrivate())
 {
 }
 
@@ -56,7 +56,7 @@ OnvifDeviceInformation::OnvifDeviceInformation(const OnvifDeviceInformation &oth
 
 OnvifDeviceInformation::OnvifDeviceInformation(const TDS__GetDeviceInformationResponse &profile, QObject *parent) :
     QObject(parent),
-    d(new Private(profile))
+    d(new OnvifDeviceInformationPrivate(profile))
 {
 }
 
