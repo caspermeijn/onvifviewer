@@ -82,8 +82,8 @@ void OnvifDeviceConnection::connectToDevice()
     d->isUsernameTokenSupported = false;
     d->isHttpDigestSupported = false;
 
-    d->getCapabilitiesFinished = false;
-    d->getServicesFinished = false;
+    d->isGetCapabilitiesFinished = false;
+    d->isGetServicesFinished = false;
 
     TDS__GetServices request;
     request.setIncludeCapability(true);
@@ -99,8 +99,8 @@ void OnvifDeviceConnection::connectToDevice()
 void OnvifDeviceConnection::disconnectFromDevice()
 {
     Q_D(OnvifDeviceConnection);
-    d->getCapabilitiesFinished = false;
-    d->getServicesFinished = false;
+    d->isGetCapabilitiesFinished = false;
+    d->isGetServicesFinished = false;
 
     if(d->deviceService)
         d->deviceService->deleteLater();
@@ -174,7 +174,7 @@ void OnvifDeviceConnectionPrivate::getServicesDone(const TDS__GetServicesRespons
         }
     }
 
-    getServicesFinished = true;
+    isGetServicesFinished = true;
     checkServicesAvailable();
 }
 
@@ -226,7 +226,7 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitie
         }
     }
 
-    getCapabilitiesFinished = true;
+    isGetCapabilitiesFinished = true;
     checkServicesAvailable();
 }
 
@@ -238,7 +238,7 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesError(const KDSoapMessage &fau
 void OnvifDeviceConnectionPrivate::checkServicesAvailable()
 {
     Q_Q(OnvifDeviceConnection);
-    if(getServicesFinished && getCapabilitiesFinished)
+    if(isGetServicesFinished && isGetCapabilitiesFinished)
     {
         if (deviceService)
             deviceService->connectToService();
