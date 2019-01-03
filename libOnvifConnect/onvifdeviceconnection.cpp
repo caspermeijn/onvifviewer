@@ -102,16 +102,20 @@ void OnvifDeviceConnection::disconnectFromDevice()
     d->getCapabilitiesFinished = false;
     d->getServicesFinished = false;
 
-    delete d->deviceService;
+    if(d->deviceService)
+        d->deviceService->deleteLater();
     d->deviceService = nullptr;
 
-    delete d->mediaService;
+    if(d->mediaService)
+        d->mediaService->deleteLater();
     d->mediaService = nullptr;
 
-    delete d->media2Service;
+    if(d->media2Service)
+        d->media2Service->deleteLater();
     d->media2Service = nullptr;
 
-    delete d->ptzService;
+    if(d->ptzService)
+        d->ptzService->deleteLater();
     d->ptzService = nullptr;
 }
 
