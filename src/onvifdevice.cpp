@@ -391,8 +391,9 @@ void OnvifDevice::ptzSaveHomePosition()
 void OnvifDevice::ptzStop()
 {
     OnvifPtzService * ptzService = m_connection.getPtzService();
-    Q_ASSERT(ptzService);
-    ptzService->stopMovement(m_selectedMediaProfile);
+    if(ptzService) {
+        ptzService->stopMovement(m_selectedMediaProfile);
+    }
 }
 
 void OnvifDevice::ptzZoomIn()

@@ -21,6 +21,9 @@
 
 class OnvifDeviceConnection;
 class OnvifMediaProfile;
+namespace OnvifSoapDevicemgmt {
+class TT__PTZCapabilities;
+}
 namespace OnvifSoapPtz {
 class TPTZ__Capabilities;
 }
@@ -40,6 +43,7 @@ public:
 
     //TODO: Move setServiceCapabilities to private class
     void setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilities& capabilities);
+    void setServiceCapabilities(const OnvifSoapDevicemgmt::TT__PTZCapabilities& capabilities);
 
     void absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
 

@@ -79,11 +79,13 @@ QString OnvifDeviceConnection::errorString() const
 void OnvifDeviceConnection::connectToDevice()
 {
     Q_D(OnvifDeviceConnection);
-    d->isUsernameTokenSupported = false;
+    // ONVIF Profile S mandates WS-UsernameToken authentication, therfore we can
+    //    assume this is supported unless the GetServiceCapabilities tells otherwise
+    d->isUsernameTokenSupported = true;
     d->isHttpDigestSupported = false;
 
-    d->getCapabilitiesFinished = false;
-    d->getServicesFinished = false;
+    d->isGetCapabilitiesFinished = false;
+    d->isGetServicesFinished = false;
 
     TDS__GetServices request;
     request.setIncludeCapability(true);
@@ -99,19 +101,23 @@ void OnvifDeviceConnection::connectToDevice()
 void OnvifDeviceConnection::disconnectFromDevice()
 {
     Q_D(OnvifDeviceConnection);
-    d->getCapabilitiesFinished = false;
-    d->getServicesFinished = false;
+    d->isGetCapabilitiesFinished = false;
+    d->isGetServicesFinished = false;
 
-    delete d->deviceService;
+    if(d->deviceService)
+        d->deviceService->deleteLater();
     d->deviceService = nullptr;
 
-    delete d->mediaService;
+    if(d->mediaService)
+        d->mediaService->deleteLater();
     d->mediaService = nullptr;
 
-    delete d->media2Service;
+    if(d->media2Service)
+        d->media2Service->deleteLater();
     d->media2Service = nullptr;
 
-    delete d->ptzService;
+    if(d->ptzService)
+        d->ptzService->deleteLater();
     d->ptzService = nullptr;
 }
 
@@ -170,13 +176,17 @@ void OnvifDeviceConnectionPrivate::getServicesDone(const TDS__GetServicesRespons
         }
     }
 
-    getServicesFinished = true;
+    isGetServicesFinished = true;
     checkServicesAvailable();
 }
 
 void OnvifDeviceConnectionPrivate::getServicesError(const KDSoapMessage &fault)
 {
-    handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
+    // Some older devices don't support the GetServices call, only the GetCapabilities call
+    // Therefore we mark the service finished and ignore any error
+    isGetServicesFinished = true;
+    qDebug() << "The GetServices call failed; this is expected for older ONVIF devices:" << fault.faultAsString();
+    checkServicesAvailable();
 }
 
 void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitiesResponse &parameters)
@@ -194,6 +204,7 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitie
             updateUrlHost(&xAddrUrl);
             deviceService = new OnvifDeviceService(xAddrUrl.toString(), q);
         }
+        // isUsernameTokenSupported and isHttpDigestSupported are not reported by the GetCapabilities call
     }
     if(parameters.capabilities().events().xAddr().size())
     {
@@ -211,6 +222,7 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitie
             updateUrlHost(&xAddrUrl);
             mediaService = new OnvifMediaService(xAddrUrl.toString(), q);
         }
+        mediaService->setServiceCapabilities(parameters.capabilities().media());
     }
     if(parameters.capabilities().pTZ().xAddr().size())
     {
@@ -220,9 +232,10 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitie
             updateUrlHost(&xAddrUrl);
             ptzService = new OnvifPtzService(xAddrUrl.toString(), q);
         }
+        ptzService->setServiceCapabilities(parameters.capabilities().pTZ());
     }
 
-    getCapabilitiesFinished = true;
+    isGetCapabilitiesFinished = true;
     checkServicesAvailable();
 }
 
@@ -234,7 +247,7 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesError(const KDSoapMessage &fau
 void OnvifDeviceConnectionPrivate::checkServicesAvailable()
 {
     Q_Q(OnvifDeviceConnection);
-    if(getServicesFinished && getCapabilitiesFinished)
+    if(isGetServicesFinished && isGetCapabilitiesFinished)
     {
         if (deviceService)
             deviceService->connectToService();

@@ -21,6 +21,9 @@
 #include <QObject>
 
 class OnvifDeviceConnection;
+namespace OnvifSoapDevicemgmt {
+class TT__MediaCapabilities;
+}
 namespace OnvifSoapMedia {
 class TRT__Capabilities;
 }
@@ -48,6 +51,7 @@ public:
 
     //TODO: Move setServiceCapabilities to private class
     void setServiceCapabilities(const OnvifSoapMedia::TRT__Capabilities& capabilities);
+    void setServiceCapabilities(const OnvifSoapDevicemgmt::TT__MediaCapabilities& capabilities);
 
     void setPreferredVideoStreamProtocol(const QString& preferredVideoStreamProtocol);
 

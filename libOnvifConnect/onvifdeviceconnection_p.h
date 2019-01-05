@@ -44,8 +44,8 @@ private:
     bool isUsernameTokenSupported = false;
     bool isHttpDigestSupported = false;
 
-    bool getServicesFinished = false;
-    bool getCapabilitiesFinished = false;
+    bool isGetServicesFinished = false;
+    bool isGetCapabilitiesFinished = false;
 
     static const QString c_baseEndpointURI;
 
