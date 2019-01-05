@@ -144,6 +144,12 @@ void OnvifPtzService::setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilit
     //TODO: Use capabilities
 }
 
+void OnvifPtzService::setServiceCapabilities(const OnvifSoapDevicemgmt::TT__PTZCapabilities &capabilities)
+{
+    Q_D(OnvifPtzService);
+    // No useful capabilities are defines
+}
+
 void OnvifPtzService::absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction)
 {
     Q_D(OnvifPtzService);

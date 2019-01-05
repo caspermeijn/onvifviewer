@@ -178,6 +178,15 @@ void OnvifMediaService::setServiceCapabilities(const TRT__Capabilities& capabili
     emit supportsSnapshotUriAvailable(d->supportsSnapshotUri);
 }
 
+void OnvifMediaService::setServiceCapabilities(const OnvifSoapDevicemgmt::TT__MediaCapabilities &capabilities)
+{
+    Q_D(OnvifMediaService);
+    Q_UNUSED(capabilities);
+    // Lets assume that snapshots are supported and hope the GetServiceCapabilities call provide the exact answer
+    d->supportsSnapshotUri = true;
+    emit supportsSnapshotUriAvailable(d->supportsSnapshotUri);
+}
+
 void OnvifMediaService::setPreferredVideoStreamProtocol(const QString &preferredVideoStreamProtocol)
 {
     Q_D(OnvifMediaService);
@@ -192,7 +201,13 @@ void OnvifMediaServicePrivate::getServiceCapabilitiesDone(const TRT__GetServiceC
 
 void OnvifMediaServicePrivate::getServiceCapabilitiesError(const KDSoapMessage &fault)
 {
-    device->d_ptr->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
+    // Some older devices don't support the GetServiceCapabilities call
+    // Therefore we mark the service finished and ignore any error
+    recievedServiceCapabilities = true;
+    qDebug() << "The Media::GetServiceCapabilities call failed; this is expected for older ONVIF devices:" << fault.faultAsString();
+
+    // Lets assume that snapshots are supported
+    supportsSnapshotUri = true;
 }
 
 void OnvifMediaServicePrivate::getProfilesDone(const OnvifSoapMedia::TRT__GetProfilesResponse &parameters)
