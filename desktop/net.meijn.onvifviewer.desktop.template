@@ -8,3 +8,4 @@ Icon=net.meijn.onvifviewer
 _Comment=View and control network cameras using the ONVIF protocol
 Categories=Network;Qt
 MimeType=x-scheme-handler/onvif;
+StartupWMClass=onvifviewer
