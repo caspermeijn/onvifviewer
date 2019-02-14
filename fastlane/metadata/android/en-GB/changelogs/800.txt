@@ -1,0 +1,5 @@
+This is a minor release, with the following improvements:
+
+- Added opening cameras by URL
+- Improved snapshot downloading
+- Improved translations and added Norwegian

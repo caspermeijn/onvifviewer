@@ -1,0 +1,4 @@
+This is a minor release, with the following improvements:
+- Added workaround for cameras that don't support relative movement properly
+- Added support for zoom'ing
+- Improved build system
