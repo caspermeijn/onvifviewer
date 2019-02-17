@@ -1,0 +1,7 @@
+Gebruik deze open-bron applicatie voor het bekijken van netwerkcamera's via het ONVIF protocol.
+
+De ontwikkeling van deze applicatie is gestart als onderdeel van de ONVIF Spotlight Challange.
+
+Je kan verbinden met jouw netwerkcamera en het beeld daarvan bekijken. Als de camera bedienbaar is, dan kan je hem bewegen.
+
+NOTE: The video codec of Android doesn't support all types of RTSP streams. Therefore currently the video is not a live stream, but a series of snapshots.

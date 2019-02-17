@@ -80,7 +80,7 @@
       <description>
         <p>This is a minor release, with the following improvements:</p>
         <ul>
-          <li>Renamed internal application name. Note: this causes the configuation file to reset</li>
+          <li>Renamed internal application name. Note: this causes the configuration file to reset</li>
           <li>Added internationalization support with Brazilian and Dutch translations</li>
           <li>Replaced demo cameras</li>
           <li>Several internal improvements</li>

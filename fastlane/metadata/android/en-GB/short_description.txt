@@ -1,1 +1,1 @@
-View network cameras using the ONVIF protocol
+View and control network cameras using the ONVIF protocol

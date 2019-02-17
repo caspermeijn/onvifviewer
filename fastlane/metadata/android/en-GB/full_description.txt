@@ -1,7 +1,7 @@
-Use this opensource app to view your network cameras using the ONVIF protocol.
+Use this open-source app to view your network cameras using the ONVIF protocol.
 
-The development of this app was started as part of the ONVIF Spotlight Challange [https://onvif-spotlight.bemyapp.com/#/event]. 
+The development of this app was started as part of the ONVIF Spotlight Challange.
+
+You can connect to your network camera and view the video of it. If the camera is controllable you can move it as well.
 
 NOTE: The video codec of Android doesn't support all types of RTSP streams. Therefore currently the video is not a live stream, but a series of snapshots.
-
-The sources of this app are available at the Gitlab page [https://gitlab.com/caspermeijn/onvifviewer].
