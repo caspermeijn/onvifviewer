@@ -13,18 +13,24 @@ fastlane_path = Path(args.fastlane)
 if not fastlane_path.exists():
     sys.exit("fastlane path doesn't exist")
 
+def get_lang_from_attib(tag):
+    lang = tag.attrib.get('{http://www.w3.org/XML/1998/namespace}lang', 'en-GB')
+    if lang == 'nb-NO':
+        lang = 'no-NO'
+    return lang
+
 tree = ET.parse(args.appstream)
 root = tree.getroot()
 
 for name in root.findall('name'):
-    lang = name.attrib.get('{http://www.w3.org/XML/1998/namespace}lang', 'en-GB')
+    lang = get_lang_from_attib(name)
     lang_dir = fastlane_path.joinpath(lang)
     lang_dir.mkdir(0o755, True, True)
     name_file = lang_dir.joinpath('title.txt')
     name_file.write_text(name.text)
 
 for summary in root.findall('summary'):
-    lang = summary.attrib.get('{http://www.w3.org/XML/1998/namespace}lang', 'en-GB')
+    lang = get_lang_from_attib(summary)
     lang_dir = fastlane_path.joinpath(lang)
     lang_dir.mkdir(0o755, True, True)
     desc_file = lang_dir.joinpath('short_description.txt')
@@ -32,7 +38,7 @@ for summary in root.findall('summary'):
 
 description_map = {}
 for description in root.findall('./description/p'):
-    lang = description.attrib.get('{http://www.w3.org/XML/1998/namespace}lang', 'en-GB')
+    lang = get_lang_from_attib(description)
     if lang in description_map:
         description_map[lang] = description_map[lang] + '\n'
     else:
