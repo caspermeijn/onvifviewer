@@ -23,7 +23,7 @@ foreach(_poFile ${PO_FILES})
     set(_moFile ${CMAKE_CURRENT_BINARY_DIR}/${_langCode}.mo)
     add_custom_command(
         OUTPUT ${_moFile}
-        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_langCode}.mo ${_poFile}
+        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check --use-fuzzy -o ${_langCode}.mo ${_poFile}
         DEPENDS ${_poFile})
     install(FILES ${_moFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${PROJECT_NAME}.mo)
     list(APPEND MO_FILES ${_moFile})
