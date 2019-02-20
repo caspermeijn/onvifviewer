@@ -38,7 +38,7 @@ android:
         - cd 3rdparty && git clone https://github.com/KDE/breeze-icons.git && cd breeze-icons && git checkout v5.49.0
         - cd && export PERSIST=1 && /opt/helpers/build-cmake onvifviewer invalid-git-repo -DCMAKE_CXX_FLAGS=-isystem/opt/kdeandroid-deps/include -DKDSOAP_KDWSDL2CPP_COMPILER=/usr/local/bin/kdwsdl2cpp -DANDROID_APK_DIR=/home/user/src/onvifviewer/android -DQTANDROID_EXPORTED_TARGET=onvifviewer -DWITH_BREEZE_ICONS=ON
         - cd build/onvifviewer/ && make create-apk
-        - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/onvifviewer_build_apk-debug.apk /home/user/src/onvifviewer
+        - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/debug/onvifviewer_build_apk-debug.apk /home/user/src/onvifviewer
     artifacts:
         paths:
             - onvifviewer_build_apk-debug.apk
