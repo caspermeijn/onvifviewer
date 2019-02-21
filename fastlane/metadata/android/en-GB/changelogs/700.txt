@@ -1,0 +1,5 @@
+This is a minor release, with the following improvements:
+- Improved UI style by using Kirigami cards
+- Improved translations by supporting Weblate
+- Made demo cameras optional, by moving them to the add camera button
+- Some small improvements

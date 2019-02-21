@@ -50,6 +50,7 @@ test-translations:
         - git config diff.podiff.textconv "msgcat --no-location --sort-output"
         - mkdir -p .git/info && echo "*.po diff=podiff" >> .git/info/attributes && echo "*.pot diff=podiff" >> .git/info/attributes
         - cd po && ./update_translation.sh
+        - mkdir build && cmake .. && cmake --build . --target fastlane-metadata
 # --ignore-space-change is a workaround, as --exit-code doesn't work properly without it. See http://git.661346.n2.nabble.com/git-diff-exit-code-does-not-honour-textconv-setting-tp7651075.html
         - git diff --ignore-space-change --exit-code
     artifacts:

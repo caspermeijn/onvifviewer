@@ -1,0 +1,5 @@
+This is a minor release, with the following improvements:
+- Renamed internal application name. Note: this causes the configuration file to reset
+- Added internationalization support with Brazilian and Dutch translations
+- Replaced demo cameras
+- Several internal improvements

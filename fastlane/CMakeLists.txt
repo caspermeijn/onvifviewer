@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+# Copyright (C) 2019 Casper Meijn <casper@meijn.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,17 +15,11 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-find_package(Gettext REQUIRED)
-file(GLOB PO_FILES *.po)
-SET(MO_FILES)
-foreach(_poFile ${PO_FILES})
-    get_filename_component(_langCode ${_poFile} NAME_WE)
-    set(_moFile ${CMAKE_CURRENT_BINARY_DIR}/${_langCode}.mo)
-    add_custom_command(
-        OUTPUT ${_moFile}
-        COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check --use-fuzzy -o ${_langCode}.mo ${_poFile}
-        DEPENDS ${_poFile})
-    install(FILES ${_moFile} DESTINATION ${LOCALE_INSTALL_DIR}/${_langCode}/LC_MESSAGES/ RENAME ${PROJECT_NAME}.mo)
-    list(APPEND MO_FILES ${_moFile})
-endforeach()
-add_custom_target(translations ALL DEPENDS ${MO_FILES})
+set(_appDataFile ${CMAKE_CURRENT_BINARY_DIR}/../desktop/net.meijn.onvifviewer.appdata.xml)
+set(_fastlaneMetadata ${CMAKE_CURRENT_SOURCE_DIR}/metadata/android/)
+add_custom_command(
+    OUTPUT ${_fastlaneMetadata}
+    COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/convert_appstream_to_fastlane.py --appstream ${_appDataFile} --fastlane ${_fastlaneMetadata}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    DEPENDS app-data ${_appDataFile})
+add_custom_target(fastlane-metadata DEPENDS ${_fastlaneMetadata})

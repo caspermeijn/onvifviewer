@@ -52,3 +52,6 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+
+# fastlane
+fastlane/api-*.json
