@@ -21,5 +21,5 @@ add_custom_command(
     OUTPUT ${_fastlaneMetadata}
     COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/convert_appstream_to_fastlane.py --appstream ${_appDataFile} --fastlane ${_fastlaneMetadata}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    DEPENDS ${_appDataFile})
+    DEPENDS app-data ${_appDataFile})
 add_custom_target(fastlane-metadata DEPENDS ${_fastlaneMetadata})
