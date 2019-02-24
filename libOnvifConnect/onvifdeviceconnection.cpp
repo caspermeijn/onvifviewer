@@ -287,10 +287,12 @@ OnvifPtzService *OnvifDeviceConnection::getPtzService() const
 
 void OnvifDeviceConnectionPrivate::updateUrlHost(QUrl *url)
 {
-    QUrl origUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(hostname));
-    if(url->host() != origUrl.host()) {
-        url->setHost(origUrl.host());
-        url->setPort(origUrl.port());
+    if(url->scheme() == "http") {
+        QUrl origUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(hostname));
+        if(url->host() != origUrl.host()) {
+            url->setHost(origUrl.host());
+            url->setPort(origUrl.port());
+        }
     }
 }
 
