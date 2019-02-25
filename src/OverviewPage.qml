@@ -54,7 +54,6 @@ Kirigami.ScrollablePage {
         id: bottomDrawer
         edge: Qt.BottomEdge
         contentItem: ColumnLayout {
-            id: delegateLayout
             Controls.Button {
                 text: i18n("Add demonstation camera")
                 Layout.fillWidth: true
@@ -120,84 +119,84 @@ Kirigami.ScrollablePage {
         }
     }
 
-    Kirigami.CardsListView {
+    Kirigami.CardsLayout {
         id: view
-        model: deviceManagerModel
-        //        maximumColumnWidth: Kirigami.Units.gridUnit * 20
+        maximumColumnWidth: Kirigami.Units.gridUnit * 40
 
-        delegate: Kirigami.AbstractCard {
-            header: ColumnLayout {
-                Kirigami.Heading {
-                    level: 2
-                    text: model.deviceName || i18n("Camera %1", model.index + 1)
-                    Layout.fillWidth: true
-                }
-                Kirigami.Separator {
-                    Layout.fillWidth: true
-                }
-            }
-            //NOTE: never put a Layout as contentItem as it will cause binding loops
-            //SEE: https://bugreports.qt.io/browse/QTBUG-66826
-            contentItem: Item {
-                implicitWidth: delegateLayout.implicitWidth
-                implicitHeight: delegateLayout.implicitHeight
-                GridLayout {
-                    id: delegateLayout
-                    anchors {
-                        left: parent.left
-                        top: parent.top
-                        right: parent.right
-                    }
-                    Controls.Label {
-                        id: errorText
-                        text: i18n("An error occurred during communication with the camera.")
-                        wrapMode: Text.Wrap
-                        horizontalAlignment: Text.AlignHCenter
-                        visible: model.errorString
+        Repeater {
+            model: deviceManagerModel
+            delegate: Kirigami.AbstractCard {
+                header: ColumnLayout {
+                    Kirigami.Heading {
+                        level: 2
+                        text: model.deviceName || i18n("Camera %1", model.index + 1)
                         Layout.fillWidth: true
                     }
-
-                    Controls.Label {
-                        id: snapshotUnsupportedText
-                        text: i18n("The camera doesn't support the retrieval of snapshots.")
-                        wrapMode: Text.Wrap
-                        horizontalAlignment: Text.AlignHCenter
-                        visible: !model.errorString && !model.supportsSnapshotUri
+                    Kirigami.Separator {
                         Layout.fillWidth: true
-                    }
-                    OnvifCameraViewer {
-                        id: viewerItem
-                        camera: model.device
-                        snapshotInterval: 5000
-                        loadStream: false
-                        visible: !model.errorString && model.supportsSnapshotUri
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: parent.width / viewerItem.aspectRatio
                     }
                 }
-            }
-            footer: Kirigami.ActionToolBar {
-                id: actionsToolBar
-                actions: [
-                    Kirigami.Action {
-                        iconName: "view-preview"
-                        text: i18nc("Go to view a camera", "View")
-                        onTriggered: {
-                            selectedIndex = index
-                            pageStack.pop(pageOverview);
-                            pageStack.push(deviceViewerComponent);
+                //NOTE: never put a Layout as contentItem as it will cause binding loops
+                //SEE: https://bugreports.qt.io/browse/QTBUG-66826
+                contentItem: Item {
+                    implicitHeight: delegateLayout.implicitHeight
+                    GridLayout {
+                        id: delegateLayout
+                        anchors {
+                            left: parent.left
+                            top: parent.top
+                            right: parent.right
                         }
-                    },
-                    Kirigami.Action {
-                        iconName: "settings-configure"
-                        text: i18nc("Go to settings of a camera", "Settings")
-                        onTriggered: {
-                            selectedIndex = index
-                            pageStack.pop(pageOverview);
-                            pageStack.push(settingsComponent);
+                        Controls.Label {
+                            id: errorText
+                            text: i18n("An error occurred during communication with the camera.")
+                            wrapMode: Text.Wrap
+                            horizontalAlignment: Text.AlignHCenter
+                            visible: model.errorString
+                            Layout.fillWidth: true
+                        }
+                        Controls.Label {
+                            id: snapshotUnsupportedText
+                            text: i18n("The camera doesn't support the retrieval of snapshots.")
+                            wrapMode: Text.Wrap
+                            horizontalAlignment: Text.AlignHCenter
+                            visible: !model.errorString && !model.supportsSnapshotUri
+                            Layout.fillWidth: true
+                        }
+                        OnvifCameraViewer {
+                            id: viewerItem
+                            camera: model.device
+                            snapshotInterval: 5000
+                            loadStream: false
+                            visible: !model.errorString && model.supportsSnapshotUri
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: parent.width / viewerItem.aspectRatio
                         }
                     }
-                ]
+                }
+                footer: Kirigami.ActionToolBar {
+                    id: actionsToolBar
+                    actions: [
+                        Kirigami.Action {
+                            iconName: "view-preview"
+                            text: i18nc("Go to view a camera", "View")
+                            onTriggered: {
+                                selectedIndex = index
+                                pageStack.pop(pageOverview);
+                                pageStack.push(deviceViewerComponent);
+                            }
+                        },
+                        Kirigami.Action {
+                            iconName: "settings-configure"
+                            text: i18nc("Go to settings of a camera", "Settings")
+                            onTriggered: {
+                                selectedIndex = index
+                                pageStack.pop(pageOverview);
+                                pageStack.push(settingsComponent);
+                            }
+                        }
+                    ]
+                }
             }
         }
     }
