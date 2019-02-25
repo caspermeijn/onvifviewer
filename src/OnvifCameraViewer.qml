@@ -31,7 +31,6 @@ Item {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         anchors.fill: parent
-        font.pixelSize: 12
     }
 
     OnvifSnapshotViewer {
