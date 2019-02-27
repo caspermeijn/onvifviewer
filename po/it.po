@@ -7,119 +7,124 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-02-28 20:18+0000\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/onvifviewer/"
+"translations/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: main.cpp:51 desktop.cpp:1
 msgid "ONVIFViewer"
-msgstr ""
+msgstr "ONVIFViewer"
 
 #: main.cpp:52 main.cpp:66 desktop.cpp:2
 msgid "View and control network cameras using the ONVIF protocol"
 msgstr ""
+"Visualizzare e controllare le telecamere di rete utilizzando il protocollo "
+"ONVIF"
 
 #: main.cpp:57 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "I vostri nomi"
 
 #: main.cpp:58 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "Le tue e-mail"
 
 #: main.cpp:61
 msgid "Main developer"
-msgstr ""
+msgstr "Sviluppatore principale"
 
 #: AddDemoCamera.qml:22
 msgid "Add demo camera"
-msgstr ""
+msgstr "Aggiungere telecamera demo"
 
 #: DeviceSettingsPage.qml:28
 msgid "New manual device"
-msgstr ""
+msgstr "Nuovo dispositivo manuale"
 
 #: DeviceSettingsPage.qml:28
 msgid "Device settings"
-msgstr ""
+msgstr "Impostazioni del dispositivo"
 
 #: DeviceSettingsPage.qml:57
 msgid "Connection settings"
-msgstr ""
+msgstr "Impostazioni di connessione"
 
 #: DeviceSettingsPage.qml:60
 msgid "Camera name:"
-msgstr ""
+msgstr "Nome della telecamera:"
 
 #: DeviceSettingsPage.qml:61
 msgid "e.g. Backyard"
-msgstr ""
+msgstr "ad esempio Backyard"
 
 #: DeviceSettingsPage.qml:69
 msgid "Hostname:"
-msgstr ""
+msgstr "Hostname:"
 
 #: DeviceSettingsPage.qml:70
 msgid "e.g. ipcam.local or 192.168.0.12"
-msgstr ""
+msgstr "ad esempio, ipcam.local o 192.168.0.12"
 
 #: DeviceSettingsPage.qml:78
 msgid "Username:"
-msgstr ""
+msgstr "Nome utente:"
 
 #: DeviceSettingsPage.qml:86
 msgid "Password:"
-msgstr ""
+msgstr "Password:"
 
 #: DeviceSettingsPage.qml:96
 msgid "Camera properties"
-msgstr ""
+msgstr "Proprietà della videocamera"
 
 #: DeviceSettingsPage.qml:99
 msgid "Enable camera movement fix"
-msgstr ""
+msgstr "Abilita la correzione del movimento della telecamera"
 
 #: DeviceSettingsPage.qml:108
 msgid "Remove camera"
-msgstr ""
+msgstr "rimuovi la telecamera"
 
 #: DeviceViewerPage.qml:25 OverviewPage.qml:132
 msgid "Camera %1"
-msgstr ""
+msgstr "Fotocamera %1"
 
 #: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
 msgid "Device information"
-msgstr ""
+msgstr "Informazioni sul dispositivo"
 
 #: DeviceViewerPage.qml:88
 msgid "Saving current position as home"
-msgstr ""
+msgstr "Salvare la posizione corrente come casa"
 
 #: DeviceViewerPage.qml:149
 msgid "Manufacturer:"
-msgstr ""
+msgstr "Produttore:"
 
 #: DeviceViewerPage.qml:156
 msgid "Model:"
-msgstr ""
+msgstr "Modello:"
 
 #: DeviceViewerPage.qml:163
 msgid "Firmware version:"
-msgstr ""
+msgstr "Versione firmware:"
 
 #: DeviceViewerPage.qml:170
 msgid "Serial number:"
-msgstr ""
+msgstr "Numero di serie:"
 
 #: DeviceViewerPage.qml:177
 msgid "Hardware identifier:"
-msgstr ""
+msgstr "Identificatore dell'hardware:"
 
 #: DeviceViewerPage.qml:197
 msgid ""
@@ -127,6 +132,10 @@ msgid ""
 "device is not loaded the next time you open this application. If you want to "
 "save this device, then you need to click the Save button."
 msgstr ""
+"Questa fotocamera è attualmente aperto solo come anteprima. Ciò significa "
+"che il dispositivo non viene caricato la prossima volta che si apre questa "
+"applicazione. Se si desidera salvare questo dispositivo, è necessario fare "
+"clic sul pulsante Salva."
 
 #: DeviceViewerPage.qml:222
 msgid ""
@@ -134,61 +143,70 @@ msgid ""
 "\n"
 "Technical details: %1\n"
 msgstr ""
+"Errore durante la comunicazione con la fotocamera.\n"
+"\n"
+"Dettagli tecnici: %1\n"
 
 #: OnvifCameraViewer.qml:29
 msgid "Loading…"
-msgstr ""
+msgstr "Caricamento…"
 
 #: OverviewPage.qml:24
 msgid "Overview"
-msgstr ""
+msgstr "Panoramica"
 
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
-msgstr ""
+msgstr "Informazioni su ONVIFViewer"
 
 #: OverviewPage.qml:59
 msgid "Add demonstation camera"
-msgstr ""
+msgstr "Aggiungi dimostrazione fotocamera"
 
 #: OverviewPage.qml:67
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
 msgstr ""
+"Queste videocamere in dimostrazione ti mostrano alcune delle capacità, senza "
+"possedere una videocamera."
 
 #: OverviewPage.qml:75
 msgid "Manually add camera"
-msgstr ""
+msgstr "Aggiungere manualmente la fotocamera"
 
 #: OverviewPage.qml:85
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
 msgstr ""
+"Aggiunta manuale di una macchina fotografica significa che è necessario "
+"fornire i parametri di connessione manualmente."
 
 #: OverviewPage.qml:108
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr ""
+"È possibile aggiungere una fotocamera facendo clic sul pulsante \"Aggiungi\" "
+"qui sotto."
 
 #: OverviewPage.qml:153
 msgid "An error occurred during communication with the camera."
-msgstr ""
+msgstr "Errore durante la comunicazione con la fotocamera."
 
 #: OverviewPage.qml:162
 msgid "The camera doesn't support the retrieval of snapshots."
-msgstr ""
+msgstr "La fotocamera non supporta il recupero delle istantanee."
 
 #: OverviewPage.qml:184
 msgctxt "Go to view a camera"
 msgid "View"
-msgstr ""
+msgstr "Visualizza"
 
 #: OverviewPage.qml:193
 msgctxt "Go to settings of a camera"
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #. (itstool) path: description/p
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:10
@@ -196,6 +214,8 @@ msgid ""
 "Use this open-source app to view your network cameras using the ONVIF "
 "protocol."
 msgstr ""
+"Utilizzare questa applicazione open source per visualizzare le telecamere di "
+"rete utilizzando il protocollo ONVIF."
 
 #. (itstool) path: description/p
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:11
@@ -203,6 +223,8 @@ msgid ""
 "The development of this app was started as part of the ONVIF Spotlight "
 "Challange."
 msgstr ""
+"Lo sviluppo di questa applicazione è stato avviato nell'ambito dell'ONVIF "
+"Spotlight Challange."
 
 #. (itstool) path: description/p
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:12
@@ -210,13 +232,15 @@ msgid ""
 "You can connect to your network camera and view the video of it. If the "
 "camera is controllable you can move it as well."
 msgstr ""
+"È possibile connettersi alla telecamera di rete e visualizzarne il video. Se "
+"la telecamera è controllabile è possibile spostarla."
 
 #. (itstool) path: screenshot/caption
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:22
 msgid "The camera overview page"
-msgstr ""
+msgstr "La pagina di panoramica della telecamera"
 
 #. (itstool) path: screenshot/caption
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:26
 msgid "The camera settings page"
-msgstr ""
+msgstr "La pagina di impostazioni della fotocamera"
