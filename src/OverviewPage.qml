@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+﻿/* Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,6 +54,24 @@ Kirigami.ScrollablePage {
         id: bottomDrawer
         edge: Qt.BottomEdge
         contentItem: ColumnLayout {
+            Controls.Button {
+                text: i18n("Automaticly discover camera")
+                Layout.fillWidth: true
+                onClicked: {
+                    pageStack.push(discoverCameraComponent);
+                    bottomDrawer.close();
+                }
+                visible: deviceDiscover.isAvailable
+            }
+            Controls.Label {
+                text: i18n("Automatically find a camera in your network.");
+                wrapMode: Text.WordWrap
+                horizontalAlignment: "AlignHCenter"
+                Layout.leftMargin: Kirigami.Units.gridUnit * 2
+                Layout.rightMargin: Kirigami.Units.gridUnit * 2
+                Layout.fillWidth: true
+                visible: deviceDiscover.isAvailable
+            }
             Controls.Button {
                 text: i18n("Add demonstation camera")
                 Layout.fillWidth: true

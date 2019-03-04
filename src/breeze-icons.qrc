@@ -18,4 +18,7 @@
         <file alias="view-preview.svg">../3rdparty/breeze-icons/icons/actions/24/view-preview.svg</file>
         <file alias="transform-move.svg">../3rdparty/breeze-icons/icons/actions/24/transform-move.svg</file>
     </qresource>
+    <qresource prefix="/icons/breeze/devices/22">
+        <file alias="camera-video.svg">../3rdparty/breeze-icons/icons/devices/22/camera-video.svg</file>
+    </qresource>
 </RCC>
