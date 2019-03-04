@@ -50,9 +50,8 @@ Kirigami.ScrollablePage {
         }
     }
 
-    Kirigami.OverlayDrawer {
+    Kirigami.OverlaySheet {
         id: bottomDrawer
-        edge: Qt.BottomEdge
         contentItem: ColumnLayout {
             Controls.Button {
                 text: i18n("Automaticly discover camera")
@@ -105,9 +104,6 @@ Kirigami.ScrollablePage {
                 Layout.leftMargin: Kirigami.Units.gridUnit * 2
                 Layout.rightMargin: Kirigami.Units.gridUnit * 2
                 Layout.fillWidth: true
-            }
-            Item {
-                Layout.minimumHeight: Kirigami.Units.gridUnit * 4
             }
         }
 
