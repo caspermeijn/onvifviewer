@@ -215,7 +215,7 @@ msgstr ""
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:11
 msgid ""
 "The development of this app was started as part of the ONVIF Spotlight "
-"Challange."
+"Challenge."
 msgstr ""
 "De ontwikkeling van deze applicatie is gestart als onderdeel van de ONVIF "
 "Spotlight Challange."
