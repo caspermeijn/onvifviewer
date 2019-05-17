@@ -219,7 +219,7 @@ Kirigami.Page {
             Layout.fillWidth: true
             Text {
                 id: errorText
-                text: i18n("An error occurred during communication with the camera.\n\nTechnical details: %1\n", selectedDevice.errorString)
+                text: selectedDevice.errorString ? i18n("An error occurred during communication with the camera.\n\nTechnical details: %1\n", selectedDevice.errorString) : ""
                 wrapMode: Text.Wrap
                 width: parent.width
             }

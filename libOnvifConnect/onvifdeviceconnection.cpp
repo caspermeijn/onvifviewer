@@ -298,6 +298,15 @@ void OnvifDeviceConnectionPrivate::updateUrlHost(QUrl *url)
 
 void OnvifDeviceConnectionPrivate::updateSoapCredentials(KDSoapClientInterface *clientInterface)
 {
+//TODO: One KDSoap 1.8 is released, KDSoapAuthentication can be used for UsernameToken auth
+//    if(isHttpDigestSupported || isUsernameTokenSupported) {
+//        KDSoapAuthentication auth;
+//        auth.setUser(username);
+//        auth.setPassword(password);
+//        auth.setUseWSUsernameToken(isUsernameTokenSupported);
+//        clientInterface->setAuthentication(auth);
+//    }
+
     if(isHttpDigestSupported)
         updateKDSoapAuthentication(clientInterface);
     else if(isUsernameTokenSupported)

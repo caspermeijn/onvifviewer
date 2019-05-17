@@ -153,6 +153,8 @@ Kirigami.ScrollablePage {
                 //NOTE: never put a Layout as contentItem as it will cause binding loops
                 //SEE: https://bugreports.qt.io/browse/QTBUG-66826
                 contentItem: Item {
+                    //TODO: This appears to create a binding loop
+//                    implicitWidth: 0
                     implicitHeight: delegateLayout.implicitHeight
                     GridLayout {
                         id: delegateLayout
@@ -184,7 +186,7 @@ Kirigami.ScrollablePage {
                             loadStream: false
                             visible: !model.errorString && model.supportsSnapshotUri
                             Layout.fillWidth: true
-                            Layout.preferredHeight: parent.width / viewerItem.aspectRatio
+                            Layout.preferredHeight: width / viewerItem.aspectRatio
                         }
                     }
                 }
