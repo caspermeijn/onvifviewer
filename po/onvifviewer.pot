@@ -16,25 +16,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: main.cpp:51 desktop.cpp:1
+#: main.cpp:52 desktop.cpp:1
 msgid "ONVIFViewer"
 msgstr ""
 
-#: main.cpp:52 main.cpp:66 desktop.cpp:2
+#: main.cpp:53 main.cpp:67 desktop.cpp:2
 msgid "View and control network cameras using the ONVIF protocol"
 msgstr ""
 
-#: main.cpp:57 rc.cpp:1
+#: main.cpp:58 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr ""
 
-#: main.cpp:58 rc.cpp:2
+#: main.cpp:59 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
 
-#: main.cpp:61
+#: main.cpp:62
 msgid "Main developer"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 msgid "Remove camera"
 msgstr ""
 
-#: DeviceViewerPage.qml:25 OverviewPage.qml:132
+#: DeviceViewerPage.qml:25 OverviewPage.qml:146
 msgid "Camera %1"
 msgstr ""
 
@@ -136,6 +136,18 @@ msgid ""
 "Technical details: %1\n"
 msgstr ""
 
+#: DiscoverCamera.qml:24
+msgid "Discover camera"
+msgstr ""
+
+#: DiscoverCamera.qml:32
+msgid "No camera discovered in the local network."
+msgstr ""
+
+#: DiscoverCamera.qml:40
+msgid "Click on a discovered camera to add it:"
+msgstr ""
+
 #: OnvifCameraViewer.qml:29
 msgid "Loading…"
 msgstr ""
@@ -149,44 +161,52 @@ msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
 msgstr ""
 
-#: OverviewPage.qml:58
-msgid "Add demonstation camera"
+#: OverviewPage.qml:57
+msgid "Automaticly discover camera"
 msgstr ""
 
 #: OverviewPage.qml:66
+msgid "Automatically find a camera in your network."
+msgstr ""
+
+#: OverviewPage.qml:75
+msgid "Add demonstation camera"
+msgstr ""
+
+#: OverviewPage.qml:83
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
 msgstr ""
 
-#: OverviewPage.qml:74
+#: OverviewPage.qml:91
 msgid "Manually add camera"
 msgstr ""
 
-#: OverviewPage.qml:84
+#: OverviewPage.qml:101
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
 msgstr ""
 
-#: OverviewPage.qml:107
+#: OverviewPage.qml:121
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr ""
 
-#: OverviewPage.qml:152
+#: OverviewPage.qml:168
 msgid "An error occurred during communication with the camera."
 msgstr ""
 
-#: OverviewPage.qml:160
+#: OverviewPage.qml:176
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr ""
 
-#: OverviewPage.qml:182
+#: OverviewPage.qml:198
 msgctxt "Go to view a camera"
 msgid "View"
 msgstr ""
 
-#: OverviewPage.qml:191
+#: OverviewPage.qml:207
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr ""

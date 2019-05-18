@@ -17,25 +17,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.3-dev\n"
 
-#: main.cpp:51 desktop.cpp:1
+#: main.cpp:52 desktop.cpp:1
 msgid "ONVIFViewer"
 msgstr "ONVIFViewer"
 
-#: main.cpp:52 main.cpp:66 desktop.cpp:2
+#: main.cpp:53 main.cpp:67 desktop.cpp:2
 msgid "View and control network cameras using the ONVIF protocol"
 msgstr "Bekijk en bestuur netwerkcamera's met behulp van het ONVIF protocol"
 
-#: main.cpp:57 rc.cpp:1
+#: main.cpp:58 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Casper Meijn"
 
-#: main.cpp:58 rc.cpp:2
+#: main.cpp:59 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "casper@meijn.net"
 
-#: main.cpp:61
+#: main.cpp:62
 msgid "Main developer"
 msgstr "Hoofdontwikkelaar"
 
@@ -91,7 +91,7 @@ msgstr "Camerabewegingen oplossing aanzetten"
 msgid "Remove camera"
 msgstr "Camera verwijderen"
 
-#: DeviceViewerPage.qml:25 OverviewPage.qml:132
+#: DeviceViewerPage.qml:25 OverviewPage.qml:146
 msgid "Camera %1"
 msgstr "Camera %1"
 
@@ -143,6 +143,18 @@ msgstr ""
 "\n"
 "Technische informatie: %1\n"
 
+#: DiscoverCamera.qml:24
+msgid "Discover camera"
+msgstr ""
+
+#: DiscoverCamera.qml:32
+msgid "No camera discovered in the local network."
+msgstr ""
+
+#: DiscoverCamera.qml:40
+msgid "Click on a discovered camera to add it:"
+msgstr ""
+
 #: OnvifCameraViewer.qml:29
 msgid "Loading…"
 msgstr "Laden…"
@@ -156,11 +168,19 @@ msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
 msgstr "Info over ONVIFViewer"
 
-#: OverviewPage.qml:58
+#: OverviewPage.qml:57
+msgid "Automaticly discover camera"
+msgstr ""
+
+#: OverviewPage.qml:66
+msgid "Automatically find a camera in your network."
+msgstr ""
+
+#: OverviewPage.qml:75
 msgid "Add demonstation camera"
 msgstr "Demonstratiecamera toevoegen"
 
-#: OverviewPage.qml:66
+#: OverviewPage.qml:83
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
@@ -168,11 +188,11 @@ msgstr ""
 "Met deze demonstratiecamera's kan je mogelijkheden zien, zonder een camera "
 "te bezitten."
 
-#: OverviewPage.qml:74
+#: OverviewPage.qml:91
 msgid "Manually add camera"
 msgstr "Handmatige camera toevoegen"
 
-#: OverviewPage.qml:84
+#: OverviewPage.qml:101
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
@@ -180,24 +200,24 @@ msgstr ""
 "Handmatige camera toevoegen betekent dat je zelf de verbindingsinstellingen "
 "opgeeft."
 
-#: OverviewPage.qml:107
+#: OverviewPage.qml:121
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr "Je kan een camera toevoegen met behulp van knop hieronder."
 
-#: OverviewPage.qml:152
+#: OverviewPage.qml:168
 msgid "An error occurred during communication with the camera."
 msgstr "Er is een fout opgetreden tijdens de communicatie met de camera."
 
-#: OverviewPage.qml:160
+#: OverviewPage.qml:176
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "Deze camera ondersteund het ophalen van momentopname's niet."
 
-#: OverviewPage.qml:182
+#: OverviewPage.qml:198
 msgctxt "Go to view a camera"
 msgid "View"
 msgstr "Bekijk"
 
-#: OverviewPage.qml:191
+#: OverviewPage.qml:207
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr "Instellingen"
