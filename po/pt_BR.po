@@ -155,11 +155,11 @@ msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
 msgstr "Sobre o ONVIFViewer"
 
-#: OverviewPage.qml:59
+#: OverviewPage.qml:58
 msgid "Add demonstation camera"
 msgstr "Adicionar câmara de demonstração"
 
-#: OverviewPage.qml:67
+#: OverviewPage.qml:66
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
@@ -167,11 +167,11 @@ msgstr ""
 "Estas câmeras de demonstração mostram algumas das capacidades do aplicativo, "
 "sem possuir uma câmera."
 
-#: OverviewPage.qml:75
+#: OverviewPage.qml:74
 msgid "Manually add camera"
 msgstr "Adicionar manualmente uma câmera"
 
-#: OverviewPage.qml:85
+#: OverviewPage.qml:84
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
@@ -179,24 +179,24 @@ msgstr ""
 "Adicionar manualmente uma câmera significa que você precisa fornecer os "
 "parâmetros de conexão."
 
-#: OverviewPage.qml:108
+#: OverviewPage.qml:107
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr "Você pode adicionar uma câmera clicando no botão \"Adicionar\" abaixo."
 
-#: OverviewPage.qml:153
+#: OverviewPage.qml:152
 msgid "An error occurred during communication with the camera."
 msgstr "Ocorreu um erro durante a comunicação com a câmera."
 
-#: OverviewPage.qml:162
+#: OverviewPage.qml:160
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "A câmera não suporta a recuperação de instantâneos."
 
-#: OverviewPage.qml:184
+#: OverviewPage.qml:182
 msgctxt "Go to view a camera"
 msgid "View"
 msgstr "Visão"
 
-#: OverviewPage.qml:193
+#: OverviewPage.qml:191
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr "Configurações"

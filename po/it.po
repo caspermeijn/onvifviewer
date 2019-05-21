@@ -160,11 +160,11 @@ msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
 msgstr "Informazioni su ONVIFViewer"
 
-#: OverviewPage.qml:59
+#: OverviewPage.qml:58
 msgid "Add demonstation camera"
 msgstr "Aggiungi dimostrazione fotocamera"
 
-#: OverviewPage.qml:67
+#: OverviewPage.qml:66
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
@@ -172,11 +172,11 @@ msgstr ""
 "Queste videocamere in dimostrazione ti mostrano alcune delle capacità, senza "
 "possedere una videocamera."
 
-#: OverviewPage.qml:75
+#: OverviewPage.qml:74
 msgid "Manually add camera"
 msgstr "Aggiungere manualmente la fotocamera"
 
-#: OverviewPage.qml:85
+#: OverviewPage.qml:84
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
@@ -184,26 +184,26 @@ msgstr ""
 "Aggiunta manuale di una macchina fotografica significa che è necessario "
 "fornire i parametri di connessione manualmente."
 
-#: OverviewPage.qml:108
+#: OverviewPage.qml:107
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr ""
 "È possibile aggiungere una fotocamera facendo clic sul pulsante \"Aggiungi\" "
 "qui sotto."
 
-#: OverviewPage.qml:153
+#: OverviewPage.qml:152
 msgid "An error occurred during communication with the camera."
 msgstr "Errore durante la comunicazione con la fotocamera."
 
-#: OverviewPage.qml:162
+#: OverviewPage.qml:160
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "La fotocamera non supporta il recupero delle istantanee."
 
-#: OverviewPage.qml:184
+#: OverviewPage.qml:182
 msgctxt "Go to view a camera"
 msgid "View"
 msgstr "Visualizza"
 
-#: OverviewPage.qml:193
+#: OverviewPage.qml:191
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr "Impostazioni"
@@ -221,7 +221,7 @@ msgstr ""
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.template:11
 msgid ""
 "The development of this app was started as part of the ONVIF Spotlight "
-"Challange."
+"Challenge."
 msgstr ""
 "Lo sviluppo di questa applicazione è stato avviato nell'ambito dell'ONVIF "
 "Spotlight Challange."
