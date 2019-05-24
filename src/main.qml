@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+﻿/* Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,6 +50,10 @@ Kirigami.ApplicationWindow {
     Component {
         id: addDemoCameraComponent
         AddDemoCamera{}
+    }
+    Component {
+        id: discoverCameraComponent
+        DiscoverCamera{}
     }
 }
 

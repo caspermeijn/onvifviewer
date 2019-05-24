@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+﻿/* Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,10 +50,27 @@ Kirigami.ScrollablePage {
         }
     }
 
-    Kirigami.OverlayDrawer {
+    Kirigami.OverlaySheet {
         id: bottomDrawer
-        edge: Qt.BottomEdge
         contentItem: ColumnLayout {
+            Controls.Button {
+                text: i18n("Automaticly discover camera")
+                Layout.fillWidth: true
+                onClicked: {
+                    pageStack.push(discoverCameraComponent);
+                    bottomDrawer.close();
+                }
+                visible: deviceDiscover.isAvailable
+            }
+            Controls.Label {
+                text: i18n("Automatically find a camera in your network.");
+                wrapMode: Text.WordWrap
+                horizontalAlignment: "AlignHCenter"
+                Layout.leftMargin: Kirigami.Units.gridUnit * 2
+                Layout.rightMargin: Kirigami.Units.gridUnit * 2
+                Layout.fillWidth: true
+                visible: deviceDiscover.isAvailable
+            }
             Controls.Button {
                 text: i18n("Add demonstation camera")
                 Layout.fillWidth: true
@@ -87,9 +104,6 @@ Kirigami.ScrollablePage {
                 Layout.leftMargin: Kirigami.Units.gridUnit * 2
                 Layout.rightMargin: Kirigami.Units.gridUnit * 2
                 Layout.fillWidth: true
-            }
-            Item {
-                Layout.minimumHeight: Kirigami.Units.gridUnit * 4
             }
         }
 
@@ -139,6 +153,8 @@ Kirigami.ScrollablePage {
                 //NOTE: never put a Layout as contentItem as it will cause binding loops
                 //SEE: https://bugreports.qt.io/browse/QTBUG-66826
                 contentItem: Item {
+                    //TODO: This appears to create a binding loop
+//                    implicitWidth: 0
                     implicitHeight: delegateLayout.implicitHeight
                     GridLayout {
                         id: delegateLayout
@@ -170,7 +186,7 @@ Kirigami.ScrollablePage {
                             loadStream: false
                             visible: !model.errorString && model.supportsSnapshotUri
                             Layout.fillWidth: true
-                            Layout.preferredHeight: parent.width / viewerItem.aspectRatio
+                            Layout.preferredHeight: width / viewerItem.aspectRatio
                         }
                     }
                 }

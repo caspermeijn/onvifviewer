@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+# Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,7 +47,8 @@ find_package(KF5 5.44 REQUIRED I18n)
 find_package(KF5Kirigami2 5.48.0 REQUIRED)
 find_package(Qt5 5.10.0 REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickControls2 Xml)
 set_package_properties(Qt5 PROPERTIES DESCRIPTION "The Qt5 framework" URL "http://www.qt.io" TYPE REQUIRED)
-
+find_package(KDSoapWSDiscoveryClient 0.1)
+set_package_properties(KDSoapWSDiscoveryClient PROPERTIES DESCRIPTION "KDSoap WS-Discovery client" URL "https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client" TYPE OPTIONAL)
 
 if(NOT ANDROID)
     find_package(KF5 5.44 REQUIRED CoreAddons XmlGui)

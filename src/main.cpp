@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+﻿/* Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include "onvifdevicediscover.h"
 #include "onvifdevicemanager.h"
 #include "onvifdevicemanagermodel.h"
 #include "onvifdevice.h"
@@ -79,6 +80,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qmlRegisterType<OnvifSnapshotDownloader>("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotDownloader");
     qmlRegisterType<OnvifSnapshotViewer>("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotViewer");
 
+    OnvifDeviceDiscover deviceDiscover;
+    deviceDiscover.start();
+    qmlRegisterType<OnvifDeviceDiscover>("net.meijn.onvifviewer", 1, 0, "OnvifDeviceDiscover");
+
 #ifdef USE_BREEZE_ICONS
 #if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
     QIcon::setFallbackThemeName("breeze");
@@ -92,6 +97,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.rootContext()->setContextObject(&localizedContext);
     engine.rootContext()->setContextProperty("deviceManagerModel", &deviceManagerModel);
     engine.rootContext()->setContextProperty("deviceManager", &deviceManager);
+    engine.rootContext()->setContextProperty("deviceDiscover", &deviceDiscover);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty()) {
