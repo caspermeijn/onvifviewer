@@ -1,7 +1,7 @@
 {
     "app-id": "net.meijn.onvifviewer",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.11",
+    "runtime-version": "5.12",
     "sdk": "org.kde.Sdk",
     "command": "onvifviewer",
     "finish-args": [
@@ -15,8 +15,8 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/caspermeijn/KDSoap.git",
-                    "branch": "master"
+                    "url": "https://github.com/KDAB/KDSoap.git",
+                    "branch": "kdsoap-1.8.0"
                 }
             ]
         },
