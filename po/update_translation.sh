@@ -33,7 +33,7 @@ xgettext --from-code=UTF-8 -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki1
         --files-from=infiles.list -D ${BASEDIR} -D ${WDIR} -o messages.pot
 
 # appdata file
-itstool -i ../desktop/appstream-metainfo.its -o appdata.pot ${APPDATA_FILE}.template
+xgettext -o appdata.pot ${APPDATA_FILE}.in
 msgcat --use-first messages.pot appdata.pot > ${PROJECT}.pot
 
 sed -i '/"POT-Creation-Date:/d' ${PROJECT}.pot

@@ -31,14 +31,14 @@ find_program(DESKTOP_FILE_VALIDATE_EXECUTABLE desktop-file-validate REQUIRED)
 add_test(NAME validate-desktop-file COMMAND ${DESKTOP_FILE_VALIDATE_EXECUTABLE} --warn-kde ${_desktopFile})
 
 # appstream metadata
-find_program(ITSTOOL_MERGE_EXECUTABLE itstool REQUIRED)
-set(_appDataTemplate net.meijn.onvifviewer.appdata.xml.template)
+find_package(Gettext REQUIRED)
+set(_appDataTemplate net.meijn.onvifviewer.appdata.xml.in)
 set(_appDataFile ${CMAKE_CURRENT_BINARY_DIR}/net.meijn.onvifviewer.appdata.xml)
 add_custom_command(
     OUTPUT ${_appDataFile}
-    COMMAND ${ITSTOOL_MERGE_EXECUTABLE} -i appstream-metainfo.its -j ${_appDataTemplate} -o ${_appDataFile} ${CMAKE_CURRENT_BINARY_DIR}/../po/*.mo
+    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check --use-fuzzy --xml --template ${_appDataTemplate} -o ${_appDataFile} -d ../po/
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    DEPENDS appstream-metainfo.its ${_appDataTemplate} translations)
+    DEPENDS ${_appDataTemplate} translations)
 add_custom_target(app-data ALL DEPENDS ${_appDataFile})
 install(FILES ${_appDataFile} DESTINATION ${KDE_INSTALL_METAINFODIR})
 
