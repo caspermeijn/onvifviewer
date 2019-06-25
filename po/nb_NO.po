@@ -18,11 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.2.1\n"
 
-#: main.cpp:54 desktop.cpp:1
+#: main.cpp:54
 msgid "ONVIFViewer"
 msgstr "ONVIFViewer"
 
-#: main.cpp:55 main.cpp:69 desktop.cpp:2
+#: main.cpp:55 main.cpp:69
 msgid "View and control network cameras using the ONVIF protocol"
 msgstr "Se på og kontroller nettverkskameraer som bruker ONVIF-protokollen"
 
@@ -226,6 +226,10 @@ msgstr "Vis"
 msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr "Innstillinger"
+
+#: ../desktop/net.meijn.onvifviewer.desktop.in:8
+msgid "net.meijn.onvifviewer"
+msgstr "net.meijn.onvifviewer"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:10
 #, fuzzy

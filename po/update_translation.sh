@@ -10,9 +10,6 @@ APPDATA_FILE="../desktop/net.meijn.onvifviewer.appdata.xml"
 
 echo "Preparing resource files"
 cd ${BASEDIR}
-# desktop file
-intltool-extract --quiet --type=gettext/ini ${DESKTOP_FILE}.template
-mv ${DESKTOP_FILE}.template.h ${WDIR}/desktop.cpp
 # additional string for KAboutData
 echo 'i18nc("NAME OF TRANSLATORS","Your names");' >> ${WDIR}/rc.cpp
 echo 'i18nc("EMAIL OF TRANSLATORS","Your emails");' >> ${WDIR}/rc.cpp
@@ -32,9 +29,10 @@ xgettext --from-code=UTF-8 -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki1
         --msgid-bugs-address="${BUGADDR}" \
         --files-from=infiles.list -D ${BASEDIR} -D ${WDIR} -o messages.pot
 
-# appdata file
+# metadata files
+xgettext -o desktop.pot ${DESKTOP_FILE}.in
 xgettext -o appdata.pot ${APPDATA_FILE}.in
-msgcat --use-first messages.pot appdata.pot > ${PROJECT}.pot
+msgcat --use-first messages.pot desktop.pot appdata.pot > ${PROJECT}.pot
 
 sed -i '/"POT-Creation-Date:/d' ${PROJECT}.pot
 echo "Done extracting messages"
@@ -53,6 +51,6 @@ echo "Done merging translations"
 echo "Cleaning up"
 cd ${WDIR}
 rm infiles.list
-rm rc.cpp desktop.cpp
-rm appdata.pot messages.pot
+rm rc.cpp
+rm appdata.pot desktop.pot messages.pot
 echo "Done"

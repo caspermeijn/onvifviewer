@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: main.cpp:54 desktop.cpp:1
+#: main.cpp:54
 msgid "ONVIFViewer"
 msgstr ""
 
-#: main.cpp:55 main.cpp:69 desktop.cpp:2
+#: main.cpp:55 main.cpp:69
 msgid "View and control network cameras using the ONVIF protocol"
 msgstr ""
 
@@ -209,6 +209,10 @@ msgstr ""
 #: OverviewPage.qml:207
 msgctxt "Go to settings of a camera"
 msgid "Settings"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.desktop.in:8
+msgid "net.meijn.onvifviewer"
 msgstr ""
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:10
