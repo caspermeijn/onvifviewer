@@ -18,11 +18,6 @@
 #include "onvifdeviceservice.h"
 #include "onvifmediaservice.h"
 
-#ifdef WITH_KF5_XML_GUI
-#include <KAboutApplicationDialog>
-#include <KAboutData>
-#endif
-#include <QDesktopServices>
 #include <QPointer>
 #include <QSettings>
 #include <QQmlContext>
@@ -111,18 +106,4 @@ int OnvifDeviceManager::indexOf(OnvifDevice *device)
 int OnvifDeviceManager::size()
 {
     return m_deviceList.size();
-}
-
-void OnvifDeviceManager::aboutApplication()
-{
-#ifdef WITH_KF5_XML_GUI
-    static QPointer<QDialog> dialog;
-    if (!dialog) {
-        dialog = new KAboutApplicationDialog(KAboutData::applicationData(), nullptr);
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-    }
-    dialog->show();
-#else
-    QDesktopServices::openUrl(QUrl("https://gitlab.com/caspermeijn/onvifviewer"));
-#endif
 }

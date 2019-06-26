@@ -32,10 +32,8 @@ endif()
 ecm_setup_version(PROJECT VERSION_HEADER version.h)
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_WSDL} ${${PROJECT_NAME}_BREEZE_ICONS})
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Svg Qt5::Quick KF5::Kirigami2 KF5::I18n KDSoap::kdsoap libOnvifConnect)
-if(KF5XmlGui_FOUND)
-    target_link_libraries(${PROJECT_NAME} KF5::XmlGui)
-endif()
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Svg Qt5::Quick KF5::CoreAddons KF5::Kirigami2 KF5::I18n KDSoap::kdsoap libOnvifConnect)
+
 if(KDSoapWSDiscoveryClient_FOUND)
     target_link_libraries(${PROJECT_NAME} KDSoap::WSDiscoveryClient)
     add_definitions(-DWITH_KDSOAP_WSDISCOVERY_CLIENT)

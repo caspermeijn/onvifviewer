@@ -13,9 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifdef WITH_KF5_XML_GUI
 #include <KAboutData>
-#endif
 #include <KLocalizedContext>
 #include <KLocalizedString>
 #include <QCommandLineParser>
@@ -50,11 +48,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion(onvifviewer_VERSION_STRING);
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("net.meijn.onvifviewer")));
 
-#ifdef WITH_KF5_XML_GUI
     KAboutData about("onvifviewer", i18n("ONVIFViewer"), onvifviewer_VERSION_STRING,
                      i18n("View and control network cameras using the ONVIF protocol"),
                      KAboutLicense::GPL_V3,
-                     "Copyright (C) 2018 Casper Meijn <casper@meijn.net>", "",
+                     "Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>", "",
                      "https://gitlab.com/caspermeijn/onvifviewer",
                      "https://gitlab.com/caspermeijn/onvifviewer/issues");
     about.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"),
@@ -63,7 +60,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     about.setDesktopFileName("net.meijn.onvifviewer");
     about.addAuthor("Casper Meijn", i18n("Main developer"), QStringLiteral("casper@meijn.net"));
     KAboutData::setApplicationData(about);
-#endif
 
     QCommandLineParser commandLineParser;
     commandLineParser.setApplicationDescription(i18n("View and control network cameras using the ONVIF protocol"));
@@ -106,6 +102,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("deviceManagerModel", &deviceManagerModel);
     engine.rootContext()->setContextProperty("deviceManager", &deviceManager);
     engine.rootContext()->setContextProperty("deviceDiscover", &deviceDiscover);
+    engine.rootContext()->setContextProperty(QStringLiteral("onvifviewerAboutData"), QVariant::fromValue(KAboutData::applicationData()));
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty()) {
