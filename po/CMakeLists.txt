@@ -15,7 +15,6 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-find_package(Gettext REQUIRED)
 file(GLOB PO_FILES *.po)
 SET(MO_FILES)
 foreach(_poFile ${PO_FILES})

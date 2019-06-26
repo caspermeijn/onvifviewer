@@ -22,7 +22,9 @@
 #include <QDebug>
 #include <QApplication>
 #include <QIcon>
+#include <QStringList>
 #include <QQmlApplicationEngine>
+#include <QQmlFileSelector>
 #include <QQmlContext>
 #include "onvifdevicediscover.h"
 #include "onvifdevicemanager.h"
@@ -93,6 +95,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     QQmlApplicationEngine engine;
+    QQmlFileSelector* selector = new QQmlFileSelector(&engine);
+#ifdef WITH_QTAV
+    selector->setExtraSelectors(QStringList() << "qtav");
+#else
+    Q_UNUSED(selector);
+#endif
     KLocalizedContext localizedContext;
     engine.rootContext()->setContextObject(&localizedContext);
     engine.rootContext()->setContextProperty("deviceManagerModel", &deviceManagerModel);

@@ -38,6 +38,8 @@ endif()
 
 include(FeatureSummary)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+find_package(Gettext 0.19 REQUIRED)
 find_package(ECM 5.44.0 REQUIRED NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://projects.kde.org/projects/kdesupport/extra-cmake-modules")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
@@ -49,6 +51,8 @@ find_package(Qt5 5.10.0 REQUIRED NO_MODULE COMPONENTS Core Svg Qml Quick QuickCo
 set_package_properties(Qt5 PROPERTIES DESCRIPTION "The Qt5 framework" URL "http://www.qt.io" TYPE REQUIRED)
 find_package(KDSoapWSDiscoveryClient 0.1)
 set_package_properties(KDSoapWSDiscoveryClient PROPERTIES DESCRIPTION "KDSoap WS-Discovery client" URL "https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client" TYPE OPTIONAL)
+find_package(QtAV 1.12.0)
+set_package_properties(QtAV PROPERTIES DESCRIPTION "QtAV Multimedia library" URL "https://github.com/wang-bin/QtAV" TYPE OPTIONAL)
 
 if(NOT ANDROID)
     find_package(KF5 5.44 REQUIRED CoreAddons XmlGui)

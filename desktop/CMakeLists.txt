@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+# Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,12 +16,11 @@
 cmake_minimum_required(VERSION 3.7)
 
 # desktop file
-find_program(INTLTOOL_MERGE_EXECUTABLE intltool-merge REQUIRED)
-set(_desktopTemplate net.meijn.onvifviewer.desktop.template)
+set(_desktopTemplate net.meijn.onvifviewer.desktop.in)
 set(_desktopFile ${CMAKE_CURRENT_BINARY_DIR}/net.meijn.onvifviewer.desktop)
 add_custom_command(
     OUTPUT ${_desktopFile}
-    COMMAND ${INTLTOOL_MERGE_EXECUTABLE} --quiet --desktop-style ../po/ ${_desktopTemplate} ${_desktopFile}
+    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check --use-fuzzy --desktop --template ${_desktopTemplate} -o ${_desktopFile} -d ../po/
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     DEPENDS ${_desktopTemplate} translations)
 add_custom_target(desktop-file ALL DEPENDS ${_desktopFile})
@@ -31,14 +30,13 @@ find_program(DESKTOP_FILE_VALIDATE_EXECUTABLE desktop-file-validate REQUIRED)
 add_test(NAME validate-desktop-file COMMAND ${DESKTOP_FILE_VALIDATE_EXECUTABLE} --warn-kde ${_desktopFile})
 
 # appstream metadata
-find_program(ITSTOOL_MERGE_EXECUTABLE itstool REQUIRED)
-set(_appDataTemplate net.meijn.onvifviewer.appdata.xml.template)
+set(_appDataTemplate net.meijn.onvifviewer.appdata.xml.in)
 set(_appDataFile ${CMAKE_CURRENT_BINARY_DIR}/net.meijn.onvifviewer.appdata.xml)
 add_custom_command(
     OUTPUT ${_appDataFile}
-    COMMAND ${ITSTOOL_MERGE_EXECUTABLE} -i appstream-metainfo.its -j ${_appDataTemplate} -o ${_appDataFile} ${CMAKE_CURRENT_BINARY_DIR}/../po/*.mo
+    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check --use-fuzzy --xml --template ${_appDataTemplate} -o ${_appDataFile} -d ../po/
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    DEPENDS appstream-metainfo.its ${_appDataTemplate} translations)
+    DEPENDS ${_appDataTemplate} translations)
 add_custom_target(app-data ALL DEPENDS ${_appDataFile})
 install(FILES ${_appDataFile} DESTINATION ${KDE_INSTALL_METAINFODIR})
 
