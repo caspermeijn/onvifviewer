@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import org.kde.kirigami 2.5 as Kirigami
+import org.kde.kirigami 2.6 as Kirigami
 import QtQml.Models 2.1
 import QtQuick 2.9
 import QtQuick.Controls 2.3 as Controls
@@ -36,7 +36,7 @@ Kirigami.ScrollablePage {
                 text: i18nc("opens the \"About\" menu", "About ONVIFViewer")
                 iconName: "help-about"
                 onTriggered: {
-                    deviceManager.aboutApplication()
+                    pageStack.push(aboutComponent);
                 }
             }
         ]

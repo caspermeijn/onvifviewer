@@ -37,7 +37,6 @@ public:
 
     OnvifDevice * createNewDevice();
 
-    Q_INVOKABLE void aboutApplication();
 signals:
     void deviceListChanged(const QList<OnvifDevice *> &deviceList);
 

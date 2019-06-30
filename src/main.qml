@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import org.kde.kirigami 2.3 as Kirigami
+import org.kde.kirigami 2.6 as Kirigami
 import QtQuick 2.9
 import net.meijn.onvifviewer 1.0
 
@@ -54,6 +54,11 @@ Kirigami.ApplicationWindow {
     Component {
         id: discoverCameraComponent
         DiscoverCamera{}
+    }
+    
+    Component {
+        id: aboutComponent
+        AboutPage{}
     }
 }
 

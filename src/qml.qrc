@@ -10,5 +10,6 @@
         <file>DeviceViewerPage.qml</file>
         <file>AddDemoCamera.qml</file>
         <file>DiscoverCamera.qml</file>
+        <file>AboutPage.qml</file>
     </qresource>
 </RCC>
