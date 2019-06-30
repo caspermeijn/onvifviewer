@@ -55,8 +55,6 @@ private:
     void getCapabilitiesError( const KDSoapMessage& fault );
 
     void checkServicesAvailable();
-    void updateUsernameToken(KDSoapClientInterface * clientInterface);
-    void updateKDSoapAuthentication(KDSoapClientInterface * clientInterface);
 
 public:
     void updateUrlHost(QUrl* url);

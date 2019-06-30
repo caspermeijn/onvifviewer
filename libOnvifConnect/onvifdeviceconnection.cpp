@@ -298,66 +298,14 @@ void OnvifDeviceConnectionPrivate::updateUrlHost(QUrl *url)
 
 void OnvifDeviceConnectionPrivate::updateSoapCredentials(KDSoapClientInterface *clientInterface)
 {
-//TODO: One KDSoap 1.8 is released, KDSoapAuthentication can be used for UsernameToken auth
-//    if(isHttpDigestSupported || isUsernameTokenSupported) {
-//        KDSoapAuthentication auth;
-//        auth.setUser(username);
-//        auth.setPassword(password);
-//        auth.setUseWSUsernameToken(isUsernameTokenSupported);
-//        clientInterface->setAuthentication(auth);
-//    }
-
-    if(isHttpDigestSupported)
-        updateKDSoapAuthentication(clientInterface);
-    else if(isUsernameTokenSupported)
-        updateUsernameToken(clientInterface);
+   if(isHttpDigestSupported || isUsernameTokenSupported) {
+       KDSoapAuthentication auth;
+       auth.setUser(username);
+       auth.setPassword(password);
+       auth.setUseWSUsernameToken(isUsernameTokenSupported);
+       clientInterface->setAuthentication(auth);
+   }
     // Some camera's don't require authentication and therefore don't ask for any
-}
-
-void OnvifDeviceConnectionPrivate::updateUsernameToken(KDSoapClientInterface *clientInterface)
-{
-    QByteArray nonce = "abc" + QByteArray::number(qrand());
-    KDSoapValue nonceValue("Nonce", nonce);
-    nonceValue.setNamespaceUri("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
-    nonceValue.childValues().attributes().append(KDSoapValue("EncodingType", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary"));
-
-    QString timestamp = QDateTime::currentDateTimeUtc().toString("yyyy-MM-ddTHH:mm:ssZ");
-    KDSoapValue createdValue("Created", timestamp);
-    createdValue.setNamespaceUri("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
-
-    QByteArray passwordConcat = nonce + timestamp.toUtf8() + password.toUtf8();
-    QByteArray passwordHash = QCryptographicHash::hash(passwordConcat, QCryptographicHash::Sha1);
-    KDSoapValue passwordValue ("Password", passwordHash);
-    passwordValue.setNamespaceUri("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
-    passwordValue.childValues().attributes().append(KDSoapValue("Type", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest"));
-
-    KDSoapValue usernameValue("Username", username);
-    usernameValue.setNamespaceUri("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
-
-    KDSoapValue usernameTokenValue("UsernameToken", QVariant());
-    usernameTokenValue.setNamespaceUri("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
-    usernameTokenValue.childValues().append(usernameValue);
-    usernameTokenValue.childValues().append(passwordValue);
-    usernameTokenValue.childValues().append(nonceValue);
-    usernameTokenValue.childValues().append(createdValue);
-
-    KDSoapValue securityValue("Security", QVariant());
-    securityValue.setNamespaceUri("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
-    securityValue.childValues().append(usernameTokenValue);
-
-    KDSoapMessage wsseHeader;
-    wsseHeader.setUse(KDSoapMessage::LiteralUse);
-    wsseHeader.childValues().append(securityValue);
-
-    clientInterface->setHeader("wsse", wsseHeader);
-}
-
-void OnvifDeviceConnectionPrivate::updateKDSoapAuthentication(KDSoapClientInterface *clientInterface)
-{
-    KDSoapAuthentication auth;
-    auth.setUser(username);
-    auth.setPassword(password);
-    clientInterface->setAuthentication(auth);
 }
 
 void OnvifDeviceConnectionPrivate::updateUrlCredentials(QUrl *url)
