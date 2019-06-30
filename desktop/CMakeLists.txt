@@ -26,8 +26,10 @@ add_custom_command(
 add_custom_target(desktop-file ALL DEPENDS ${_desktopFile})
 install(FILES ${_desktopFile} DESTINATION ${KDE_INSTALL_APPDIR})
 
-find_program(DESKTOP_FILE_VALIDATE_EXECUTABLE desktop-file-validate REQUIRED)
-add_test(NAME validate-desktop-file COMMAND ${DESKTOP_FILE_VALIDATE_EXECUTABLE} --warn-kde ${_desktopFile})
+find_program(DESKTOP_FILE_VALIDATE_EXECUTABLE desktop-file-validate)
+if(DESKTOP_FILE_VALIDATE_EXECUTABLE)
+    add_test(NAME validate-desktop-file COMMAND ${DESKTOP_FILE_VALIDATE_EXECUTABLE} --warn-kde ${_desktopFile})
+endif()
 
 # appstream metadata
 set(_appDataTemplate net.meijn.onvifviewer.appdata.xml.in)
@@ -40,8 +42,10 @@ add_custom_command(
 add_custom_target(app-data ALL DEPENDS ${_appDataFile})
 install(FILES ${_appDataFile} DESTINATION ${KDE_INSTALL_METAINFODIR})
 
-find_program(APPSTREAM_UTIL_EXECUTABLE appstream-util REQUIRED)
-add_test(NAME validate-appdata COMMAND ${APPSTREAM_UTIL_EXECUTABLE} validate-strict ${_appDataFile})
+find_program(APPSTREAM_UTIL_EXECUTABLE appstream-util)
+if(APPSTREAM_UTIL_EXECUTABLE)
+    add_test(NAME validate-appdata COMMAND ${APPSTREAM_UTIL_EXECUTABLE} validate-strict ${_appDataFile})
+endif()
 
 # icons
 install(FILES ApplicationIcon.svg DESTINATION ${KDE_INSTALL_ICONDIR}/hicolor/scalable/apps RENAME net.meijn.onvifviewer.svg)
