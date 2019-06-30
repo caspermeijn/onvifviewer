@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
 "POT-Creation-Date: 2018-08-03 17:51+0200\n"
-"PO-Revision-Date: 2019-06-18 19:06+0000\n"
+"PO-Revision-Date: 2019-06-30 10:40+0000\n"
 "Last-Translator: Casper Meijn <casper@meijn.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/nl/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: main.cpp:54
 msgid "ONVIFViewer"
@@ -270,94 +270,101 @@ msgstr "De camera-instellingen pagina"
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:92
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:103
 msgid "This is a minor release, with the following improvements:"
-msgstr ""
+msgstr "Dit is een kleine versieophoging, met de volgende verbeteringen:"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:43
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:54
 msgid "Improved support for older devices"
-msgstr ""
+msgstr "Verbetering in de ondersteuning van ouder apparaten"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
 msgid "Show multiple cameras if room available"
-msgstr ""
+msgstr "Toon meerdere camera's als er voldoende ruimte is"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Improved translations and added new langagues"
-msgstr ""
+msgstr "Vertalingen verbeterd en nieuwe talen toegevoegd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:56
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:97
 msgid "Several internal improvements"
-msgstr ""
+msgstr "Een aantal interne verbeteringen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:55
 msgid "Fixed a potential crash"
-msgstr ""
+msgstr "Mogelijke crash opgelost"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:64
 msgid "Added donation instructions"
-msgstr ""
+msgstr "Donatie instructies toegevoegd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:65
 msgid "Use breeze icons as fallback theme"
-msgstr ""
+msgstr "Gebruik breeze icons als terugval thema"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:73
 msgid "Added opening cameras by URL"
-msgstr ""
+msgstr "Camera's openen door middel van URL toegevoegd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:74
 msgid "Improved snapshot downloading"
-msgstr ""
+msgstr "Momentopname download verbeterd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:75
 msgid "Improved translations and added Norwegian"
-msgstr ""
+msgstr "Vertalingen verbeterd en Noors toegevoegd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:83
 msgid "Improved UI style by using Kirigami cards"
-msgstr ""
+msgstr "UI verbeterd door middel van Kirigami cards"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:84
 msgid "Improved translations by supporting Weblate"
-msgstr ""
+msgstr "Vertalingen verbeterd door Weblate te ondersteunen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:85
 msgid "Made demo cameras optional, by moving them to the add camera button"
 msgstr ""
+"Demonstratie camera's optioneel gemaakt door de naar een toevoegen knop te "
+"verplaatsen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:86
 msgid "Some small improvements"
-msgstr ""
+msgstr "Enkele kleine verbeteringen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:94
 msgid ""
 "Renamed internal application name. Note: this causes the configuration file "
 "to reset"
 msgstr ""
+"Interne applicatie naam hernoemd. Let op: hierdoor wordt het configuratie "
+"bestand verwijderd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:95
 msgid ""
 "Added internationalization support with Brazilian and Dutch translations"
 msgstr ""
+"Vertalingen mogelijk gemaakt inclusief Braziliaans en Nederlandse vertalingen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:96
 msgid "Replaced demo cameras"
-msgstr ""
+msgstr "Demonstratie camera's vervangen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:105
 msgid ""
 "Added workaround for cameras that don't support relative movement properly"
 msgstr ""
+"Tijdelijke oplossing toegevoegd voor camera's die relatieve bewegingen niet "
+"ondersteunen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:106
 msgid "Added support for zoom'ing"
-msgstr ""
+msgstr "Ondersteuning voor zoomen toegevoegd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:107
 msgid "Improved build system"
-msgstr ""
+msgstr "Bouwsysteem verbeterd"
 
 #~ msgid "Settings"
 #~ msgstr "Instellingen"
