@@ -6,16 +6,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
 "POT-Creation-Date: 2018-08-03 17:51+0200\n"
-"PO-Revision-Date: 2018-11-20 22:07+0000\n"
+"PO-Revision-Date: 2019-06-18 19:06+0000\n"
 "Last-Translator: Casper Meijn <casper@meijn.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/nl/>\n"
-"Language: nl\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.7\n"
 
 #: main.cpp:54
 msgid "ONVIFViewer"
@@ -145,15 +145,15 @@ msgstr ""
 
 #: DiscoverCamera.qml:24
 msgid "Discover camera"
-msgstr ""
+msgstr "Camera zoeken"
 
 #: DiscoverCamera.qml:32
 msgid "No camera discovered in the local network."
-msgstr ""
+msgstr "Geen camera gevonden in het lokale netwerk."
 
 #: DiscoverCamera.qml:40
 msgid "Click on a discovered camera to add it:"
-msgstr ""
+msgstr "Klik op een gevonden camera om deze toe te voegen:"
 
 #: OnvifCameraViewer.qml:29
 msgid "Loading…"
@@ -170,11 +170,11 @@ msgstr "Info over ONVIFViewer"
 
 #: OverviewPage.qml:57
 msgid "Automaticly discover camera"
-msgstr ""
+msgstr "Automatisch gevonden camera"
 
 #: OverviewPage.qml:66
 msgid "Automatically find a camera in your network."
-msgstr ""
+msgstr "Automatisch zoeken naar camera's in je netwerk."
 
 #: OverviewPage.qml:75
 msgid "Add demonstation camera"

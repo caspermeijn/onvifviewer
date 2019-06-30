@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-05-15 08:49+0000\n"
-"Last-Translator: CurlingTongs <o11577482@nwytg.net>\n"
+"PO-Revision-Date: 2019-05-27 10:22+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/de/>\n"
 "Language: de\n"
@@ -146,15 +146,15 @@ msgstr ""
 
 #: DiscoverCamera.qml:24
 msgid "Discover camera"
-msgstr ""
+msgstr "Kamera entdecken"
 
 #: DiscoverCamera.qml:32
 msgid "No camera discovered in the local network."
-msgstr ""
+msgstr "Keine Kamera im lokalen Netzwerk gefunden."
 
 #: DiscoverCamera.qml:40
 msgid "Click on a discovered camera to add it:"
-msgstr ""
+msgstr "Klicken Sie auf eine entdeckte Kamera, um sie hinzuzufügen:"
 
 #: OnvifCameraViewer.qml:29
 msgid "Loading…"
@@ -171,11 +171,11 @@ msgstr "Info über ONVIFViewer"
 
 #: OverviewPage.qml:57
 msgid "Automaticly discover camera"
-msgstr ""
+msgstr "Automatische Erkennung der Kamera"
 
 #: OverviewPage.qml:66
 msgid "Automatically find a camera in your network."
-msgstr ""
+msgstr "Findet automatisch eine Kamera in Ihrem Netzwerk."
 
 #: OverviewPage.qml:75
 msgid "Add demonstation camera"
