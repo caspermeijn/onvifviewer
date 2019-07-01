@@ -2,9 +2,9 @@ flatpak:
     image: registry.gitlab.com/caspermeijn/docker-images/flatpak-kde:latest
     stage: build
     script:
-        - flatpak-builder --repo=repo build-dir --keep-build-dirs flatpak/net.meijn.onvifviewer.json
-        - flatpak build-bundle repo onvifviewer.flatpak net.meijn.onvifviewer
-        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak-builder --run build-dir flatpak/net.meijn.onvifviewer.json ninja -C .flatpak-builder/build/onvifviewer test
+        - flatpak-builder --repo=flatpak/repo flatpak/build --keep-build-dirs flatpak/net.meijn.onvifviewer.json
+        - flatpak build-bundle flatpak/repo onvifviewer.flatpak net.meijn.onvifviewer
+        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak-builder --run flatpak/build flatpak/net.meijn.onvifviewer.json ninja -C .flatpak-builder/build/onvifviewer test
     artifacts:
         paths:
             - onvifviewer.flatpak
