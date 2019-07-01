@@ -58,3 +58,8 @@ CMakeLists.txt.user*
 
 # fastlane
 fastlane/api-*.json
+
+# Flatpak
+.flatpak-builder
+flatpak/build
+flatpak/repo
