@@ -36,6 +36,17 @@
     <content_attribute id="social-info">none</content_attribute>
   </content_rating>
   <releases>
+    <release version="0.12-SNAPSHOT" type="development" date="2019-06-06">
+      <description>
+        <p>This is a minor release, with the following improvements:</p>
+        <ul>
+          <li>Added support for camera discovery</li>
+          <li>Fixed video viewer for Android</li>
+          <li>Improved translations</li>
+          <li>Some small improvements</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.11" date="2019-05-24">
       <description>
         <p>This is a minor release, with the following improvements:</p>
