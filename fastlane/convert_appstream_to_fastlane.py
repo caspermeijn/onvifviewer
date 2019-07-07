@@ -15,8 +15,13 @@ if not fastlane_path.exists():
 
 def get_lang_from_attib(tag):
     lang = tag.attrib.get('{http://www.w3.org/XML/1998/namespace}lang', 'en-GB')
+    lang = lang.replace('_', '-')
     if lang == 'nb-NO':
         lang = 'no-NO'
+    if lang == 'de':
+        lang = 'de-DE'
+    if lang == 'it':
+        lang = 'it-IT'
     return lang
 
 tree = ET.parse(args.appstream)
@@ -49,7 +54,6 @@ for lang, text in description_map.items():
     lang_dir = fastlane_path.joinpath(lang)
     lang_dir.mkdir(0o755, True, True)
     desc_file = lang_dir.joinpath('full_description.txt')
-    text += '\nNOTE: The video codec of Android doesn\'t support all types of RTSP streams. Therefore currently the video is not a live stream, but a series of snapshots.'
     desc_file.write_text(text)
 
 lang = 'en-GB'
@@ -63,10 +67,14 @@ for release in root.findall('./releases/release'):
     text = ""
     for paragraph in release.findall('./description/*'):
         if paragraph.tag == 'p':
-            text += paragraph.text + '\n'
+            paragraph_lang = get_lang_from_attib(paragraph)
+            if paragraph_lang == lang:
+                text += paragraph.text + '\n'
         else:
             for listitem in paragraph.findall('li'):
-                text += '- ' + listitem.text + '\n'
+                paragraph_lang = get_lang_from_attib(listitem)
+                if paragraph_lang == lang:
+                    text += '- ' + listitem.text + '\n'
 
     lang_dir = fastlane_path.joinpath(lang)
     changelog_dir = lang_dir.joinpath('changelogs')

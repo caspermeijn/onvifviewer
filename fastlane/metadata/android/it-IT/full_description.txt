@@ -1,0 +1,5 @@
+Utilizzare questa applicazione open source per visualizzare le telecamere di rete utilizzando il protocollo ONVIF.
+
+Lo sviluppo di questa applicazione è stato avviato nell'ambito dell'ONVIF Spotlight Challange.
+
+È possibile connettersi alla telecamera di rete e visualizzarne il video. Se la telecamera è controllabile è possibile spostarla.

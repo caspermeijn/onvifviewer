@@ -1,0 +1,5 @@
+This is a minor release, with the following improvements:
+- Improved support for older devices
+- Show multiple cameras if room available
+- Improved translations and added new langagues
+- Several internal improvements
