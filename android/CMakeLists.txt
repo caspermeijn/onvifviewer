@@ -16,8 +16,11 @@
 cmake_minimum_required(VERSION 3.7)
 
 # Android manifest
-math(EXPR DEFAULT_ANDROID_VERSION_CODE "${PROJECT_VERSION_MAJOR} * 10000 + ${PROJECT_VERSION_MINOR} * 100")  
-set(ANDROID_VERSION_CODE "${DEFAULT_ANDROID_VERSION_CODE}" CACHE STRING "The version code to be used when building for Android")
+if(${PROJECT_VERSION_MINOR} GREATER_EQUAL 100 OR ${PROJECT_VERSION_PATCH} GREATER_EQUAL 100)
+    message(FATAL_ERROR "Project version is too high, which causes the Android version code to be not ascending")
+endif()
+math(EXPR DEFAULT_ANDROID_VERSION_CODE "${PROJECT_VERSION_MAJOR} * 10000 + ${PROJECT_VERSION_MINOR} * 100 + ${PROJECT_VERSION_PATCH}")  
+set(ANDROID_VERSION_CODE "${DEFAULT_ANDROID_VERSION_CODE}" CACHE STRING "The version code to be used when building for Android" FORCE)
 configure_file(AndroidManifest.xml.in ${CMAKE_CURRENT_BINARY_DIR}/AndroidManifest.xml)
 
 # resources
