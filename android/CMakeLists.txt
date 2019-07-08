@@ -15,12 +15,12 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-set(ANDROID_APK_DIR ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
-
 # Android manifest
 math(EXPR DEFAULT_ANDROID_VERSION_CODE "${PROJECT_VERSION_MAJOR} * 10000 + ${PROJECT_VERSION_MINOR} * 100")  
 set(ANDROID_VERSION_CODE "${DEFAULT_ANDROID_VERSION_CODE}" CACHE STRING "The version code to be used when building for Android")
-configure_file(AndroidManifest.xml.in ${ANDROID_APK_DIR}/AndroidManifest.xml)
+configure_file(AndroidManifest.xml.in ${CMAKE_CURRENT_BINARY_DIR}/AndroidManifest.xml)
 
 # resources
-configure_file(res ${ANDROID_APK_DIR}/ COPYONLY)
+file(COPY res DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
+
+set(ANDROID_APK_DIR ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
