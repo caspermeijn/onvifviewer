@@ -1,10 +1,15 @@
+stages:
+    - build
+    - test
+    - alpha
+
 flatpak:
     image: registry.gitlab.com/caspermeijn/docker-images/flatpak-kde:latest
     stage: build
     script:
-        - flatpak-builder --repo=flatpak/repo flatpak/build --keep-build-dirs flatpak/net.meijn.onvifviewer.json
-        - flatpak build-bundle flatpak/repo onvifviewer.flatpak net.meijn.onvifviewer
-        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak-builder --run flatpak/build flatpak/net.meijn.onvifviewer.json ninja -C .flatpak-builder/build/onvifviewer test
+        - 'flatpak-builder --repo=flatpak/repo flatpak/build --keep-build-dirs flatpak/net.meijn.onvifviewer.json'
+        - 'flatpak build-bundle flatpak/repo onvifviewer.flatpak net.meijn.onvifviewer'
+        - 'xvfb-run -a -s "-screen 0 1024x768x24" flatpak-builder --run flatpak/build flatpak/net.meijn.onvifviewer.json ninja -C .flatpak-builder/build/onvifviewer test'
     artifacts:
         paths:
             - onvifviewer.flatpak
@@ -23,22 +28,22 @@ fedora:
         - make
         - make install
         - cd ..
-        - mkdir build-onvifviewer/
-        - cd build-onvifviewer/
-        - cmake ..
-        - make
-        - xvfb-run -a -s "-screen 0 1024x768x24" make test
-        - make install
+        - 'mkdir build-onvifviewer/'
+        - 'cd build-onvifviewer/'
+        - 'cmake ..'
+        - 'make'
+        - 'xvfb-run -a -s "-screen 0 1024x768x24" make test'
+        - 'make install'
 
-android:
+android-debug:
     image: registry.gitlab.com/caspermeijn/docker-images/android-build-onvifviewer:latest
     stage: build
     script:
-        - ln -sv $PWD /home/user/src/onvifviewer
-        - cd 3rdparty && git clone https://github.com/KDE/breeze-icons.git && cd breeze-icons && git checkout v5.58.0
-        - cd && export PERSIST=1 && /opt/helpers/build-cmake onvifviewer invalid-git-repo -DCMAKE_CXX_FLAGS=-isystem/opt/kdeandroid-deps/include -DKDSOAP_KDWSDL2CPP_COMPILER=/usr/local/bin/kdwsdl2cpp -DANDROID_APK_DIR=/home/user/src/onvifviewer/android -DQTANDROID_EXPORTED_TARGET=onvifviewer -DWITH_BREEZE_ICONS=ON
-        - cd build/onvifviewer/ && make create-apk
-        - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/debug/onvifviewer_build_apk-debug.apk /home/user/src/onvifviewer
+        - 'ln -sv $PWD /home/user/src/onvifviewer'
+        - 'cd 3rdparty && git clone https://github.com/KDE/breeze-icons.git && cd breeze-icons && git checkout v5.58.0'
+        - 'cd && export PERSIST=1 && /opt/helpers/build-cmake onvifviewer invalid-git-repo -DCMAKE_CXX_FLAGS=-isystem/opt/kdeandroid-deps/include -DKDSOAP_KDWSDL2CPP_COMPILER=/usr/local/bin/kdwsdl2cpp -DQTANDROID_EXPORTED_TARGET=onvifviewer -DWITH_BREEZE_ICONS=ON'
+        - 'cd build/onvifviewer/ && make create-apk'
+        - 'cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/debug/onvifviewer_build_apk-debug.apk /home/user/src/onvifviewer'
     artifacts:
         paths:
             - onvifviewer_build_apk-debug.apk
@@ -47,12 +52,12 @@ test-translations:
     image: registry.gitlab.com/caspermeijn/docker-images/fedora-build-onvifviewer:latest
     stage: test
     script:
-        - git config diff.podiff.textconv "msgcat --no-location --sort-output"
-        - mkdir -p .git/info && echo "*.po diff=podiff" >> .git/info/attributes && echo "*.pot diff=podiff" >> .git/info/attributes
-        - cd po && ./update_translation.sh
-        - mkdir build && cmake .. && cmake --build . --target fastlane-metadata
-# --ignore-space-change is a workaround, as --exit-code doesn't work properly without it. See http://git.661346.n2.nabble.com/git-diff-exit-code-does-not-honour-textconv-setting-tp7651075.html
-        - git diff --ignore-space-change --exit-code
+        - 'git config diff.podiff.textconv "msgcat --no-location --sort-output"'
+        - 'mkdir -p .git/info && echo "*.po diff=podiff" >> .git/info/attributes && echo "*.pot diff=podiff" >> .git/info/attributes'
+        - 'cd po && ./update_translation.sh'
+        - 'mkdir build && cmake .. && cmake --build . --target fastlane-metadata'
+        # --ignore-space-change is a workaround, as --exit-code doesn't work properly without it. See http://git.661346.n2.nabble.com/git-diff-exit-code-does-not-honour-textconv-setting-tp7651075.html
+        - 'git diff --ignore-space-change --exit-code'
     artifacts:
         paths:
             - po/onvifviewer.pot
@@ -68,10 +73,29 @@ sast:
         - docker:stable-dind
     script:
         - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
-        - docker run 
+        - 'docker run 
             --env SAST_CONFIDENCE_LEVEL="${SAST_CONFIDENCE_LEVEL:-3}"
             --volume "$PWD:/code"
             --volume /var/run/docker.sock:/var/run/docker.sock
-            "registry.gitlab.com/gitlab-org/security-products/sast:$SP_VERSION" /app/bin/run /code
+            "registry.gitlab.com/gitlab-org/security-products/sast:$SP_VERSION" /app/bin/run /code'
     artifacts:
         paths: [gl-sast-report.json]
+
+android-alpha:
+    image: registry.gitlab.com/caspermeijn/docker-images/android-build-onvifviewer:latest
+    stage: alpha
+    when: manual
+    before_script:
+        - echo "${ANDROID_KEYSTORE_HEX}" | xxd -r -p - > /home/user/onvifviewer.jks
+        - keytool -list -keystore /home/user/onvifviewer.jks -storepass ${ANDROID_KEYSTORE_PASSWORD}
+    script:
+        - ln -sv $PWD /home/user/src/onvifviewer
+        - cd 3rdparty && git clone https://github.com/KDE/breeze-icons.git && cd breeze-icons && git checkout v5.58.0
+        - cd && export PERSIST=1 && /opt/helpers/build-cmake onvifviewer invalid-git-repo -DCMAKE_CXX_FLAGS=-isystem/opt/kdeandroid-deps/include -DKDSOAP_KDWSDL2CPP_COMPILER=/usr/local/bin/kdwsdl2cpp -DQTANDROID_EXPORTED_TARGET=onvifviewer -DWITH_BREEZE_ICONS=ON
+        - cd build/onvifviewer/ && make create-apk ARGS="--sign /home/user/onvifviewer.jks release --storepass ${ANDROID_KEYSTORE_PASSWORD}"
+        - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/onvifviewer_build_apk-release-signed.apk /home/user/src/onvifviewer
+    after_script:
+        - rm /home/user/onvifviewer.jks
+    artifacts:
+        paths:
+            - onvifviewer_build_apk-release-signed.apk

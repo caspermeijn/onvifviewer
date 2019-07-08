@@ -16,6 +16,22 @@
 cmake_minimum_required(VERSION 3.7)
 
 project(onvifviewer VERSION "0.11")
+
+# Find the number of commits since the last release and use this as version patch number
+find_package(Git)
+if(GIT_FOUND)
+   execute_process(
+        COMMAND "${GIT_EXECUTABLE}" rev-list v${PROJECT_VERSION}...HEAD
+        COMMAND wc -l
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+        RESULT_VARIABLE result OUTPUT_VARIABLE output 
+        ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
+    if(result EQUAL 0)
+        message("Number of commits since last git tag: ${output}")
+        project(${PROJECT_NAME} VERSION "${PROJECT_VERSION}.${output}")
+    endif()
+endif()
+
 SET(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -72,6 +88,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 ##ecm_find_qmlmodule(QtQuick.Controls.Material 2.3 REQUIRED)
 #ecm_find_qmlmodule(QtQuick.Layouts 1.3 REQUIRED)
 
+add_subdirectory(android)
 add_subdirectory(libOnvifConnect)
 add_subdirectory(src)
 add_subdirectory(desktop)

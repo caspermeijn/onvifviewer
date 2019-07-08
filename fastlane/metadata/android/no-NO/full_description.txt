@@ -3,5 +3,3 @@ Bruk dette friprogprogrammet for å vise dine nettverkskamera som bruker ONVIF-p
 Utviklingen av dette programmet ble startet som del av ONVIF Spotlight-utfordringen.
 
 Du kan koble til ditt nettverkskamera og vise videostrømmen fra det. Hvis kameraet er kontrollerbart kan du bevege det også.
-
-NOTE: The video codec of Android doesn't support all types of RTSP streams. Therefore currently the video is not a live stream, but a series of snapshots.

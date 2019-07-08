@@ -3,5 +3,3 @@ Use este aplicativo open-source para visualizar suas câmeras de rede usando o p
 O desenvolvimento deste aplicativo foi iniciado como parte do ONVIF Spotlight Desafio.
 
 Você pode se conectar à sua câmera de rede e ver o vídeo dela. Se a a câmera é controlável, você pode movê-la também.
-
-NOTE: The video codec of Android doesn't support all types of RTSP streams. Therefore currently the video is not a live stream, but a series of snapshots.
