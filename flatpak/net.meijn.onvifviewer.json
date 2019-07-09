@@ -21,6 +21,26 @@
             ]
         },
         {
+            "name": "kdsoap-ws-discovery-client",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DKDSOAP_PATH=KDSoap"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client.git",
+                    "branch": "master"
+                },
+                {
+                    "type": "git",
+                    "url": "https://github.com/KDAB/KDSoap.git",
+                    "branch": "kdsoap-1.8.0",
+                    "dest": "KDSoap"
+                }
+            ]
+        },
+        {
             "name": "onvifviewer",
             "buildsystem": "cmake-ninja",
             "config-opts": [
