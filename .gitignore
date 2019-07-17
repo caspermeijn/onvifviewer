@@ -63,3 +63,6 @@ fastlane/api-*.json
 .flatpak-builder
 flatpak/build
 flatpak/repo
+
+# Android 
+android/AndroidManifest.xml
