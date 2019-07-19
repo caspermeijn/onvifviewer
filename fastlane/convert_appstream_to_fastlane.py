@@ -1,5 +1,20 @@
 #!/usr/bin/env python3
 
+# Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import xml.etree.ElementTree as ET
 import argparse
 from pathlib import Path
@@ -10,8 +25,7 @@ parser.add_argument('--fastlane', required=True, help='path to the fastlane meta
 args = parser.parse_args()
 
 fastlane_path = Path(args.fastlane)
-if not fastlane_path.exists():
-    sys.exit("fastlane path doesn't exist")
+fastlane_path.mkdir(0o755, True, True)
 
 def get_lang_from_attib(tag):
     lang = tag.attrib.get('{http://www.w3.org/XML/1998/namespace}lang', 'en-GB')

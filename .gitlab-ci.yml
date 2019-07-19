@@ -77,18 +77,21 @@ sast:
 android-alpha:
     image: registry.gitlab.com/caspermeijn/docker-images/android-build-onvifviewer:latest
     stage: alpha
-    when: manual
+    only: 
+        - master
     before_script:
         - echo "${ANDROID_KEYSTORE_HEX}" | xxd -r -p - > /home/user/onvifviewer.jks
         - keytool -list -keystore /home/user/onvifviewer.jks -storepass ${ANDROID_KEYSTORE_PASSWORD}
+        - echo "${GOOGLE_PLAY_API_KEY}" > fastlane/api_key.json
     script:
         - ln -sv $PWD /home/user/src/onvifviewer
         - cd 3rdparty && git clone https://github.com/KDE/breeze-icons.git && cd breeze-icons && git checkout v5.58.0
         - cd && export PERSIST=1 && /opt/helpers/build-cmake onvifviewer invalid-git-repo -DCMAKE_CXX_FLAGS=-isystem/opt/kdeandroid-deps/include -DKDSOAP_KDWSDL2CPP_COMPILER=/usr/local/bin/kdwsdl2cpp -DANDROID_APK_DIR=/home/user/src/onvifviewer/android -DQTANDROID_EXPORTED_TARGET=onvifviewer -DWITH_BREEZE_ICONS=ON
         - cd build/onvifviewer/ && make create-apk ARGS="--sign /home/user/onvifviewer.jks release --storepass ${ANDROID_KEYSTORE_PASSWORD}"
         - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/release/onvifviewer_build_apk-release-signed.apk /home/user/src/onvifviewer
+        - cd /home/user/src/onvifviewer && APK_PATH=/home/user/src/onvifviewer/onvifviewer_build_apk-release-signed.apk fastlane upload_alpha
     after_script:
-        - rm /home/user/onvifviewer.jks
+        - rm /home/user/onvifviewer.jks fastlane/api_key.json
     artifacts:
         paths:
             - onvifviewer_build_apk-release-signed.apk
