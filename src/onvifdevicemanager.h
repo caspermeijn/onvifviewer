@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,26 +26,26 @@ class OnvifDeviceManager : public QObject
     Q_PROPERTY(QList<OnvifDevice*> deviceList READ deviceList NOTIFY deviceListChanged)
     Q_PROPERTY(int size READ size NOTIFY deviceListChanged)
 public:
-    explicit OnvifDeviceManager(QObject *parent = nullptr);
+    explicit OnvifDeviceManager(QObject* parent = nullptr);
 
     QList<OnvifDevice*> deviceList() const;
     Q_INVOKABLE OnvifDevice* at(int i);
     Q_INVOKABLE int appendDevice();
     Q_INVOKABLE void removeDevice(int i);
-    Q_INVOKABLE int indexOf(OnvifDevice * device);
+    Q_INVOKABLE int indexOf(OnvifDevice* device);
     int size();
 
-    OnvifDevice * createNewDevice();
+    OnvifDevice* createNewDevice();
 
 signals:
-    void deviceListChanged(const QList<OnvifDevice *> &deviceList);
+    void deviceListChanged(const QList<OnvifDevice*>& deviceList);
 
 public slots:
     void loadDevices();
     void saveDevices();
 
 private:
-    QList<OnvifDevice *> m_deviceList;
+    QList<OnvifDevice*> m_deviceList;
 };
 
 #endif // ONVIFDEVICEMANAGER_H

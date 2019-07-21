@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ class ONVIFCONNECT_EXPORT OnvifDeviceService : public QObject
     Q_DECLARE_PRIVATE(OnvifDeviceService)
     QScopedPointer<OnvifDeviceServicePrivate> const d_ptr;
 public:
-    explicit OnvifDeviceService(const QString& soapEndpoint, OnvifDeviceConnection *parent);
+    explicit OnvifDeviceService(const QString& soapEndpoint, OnvifDeviceConnection* parent);
     ~OnvifDeviceService();
 
     void connectToService();

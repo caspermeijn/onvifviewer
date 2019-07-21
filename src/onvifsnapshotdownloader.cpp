@@ -15,7 +15,7 @@
  */
 #include "onvifsnapshotdownloader.h"
 
-OnvifSnapshotDownloader::OnvifSnapshotDownloader(QObject *parent) : QObject(parent)
+OnvifSnapshotDownloader::OnvifSnapshotDownloader(QObject* parent) : QObject(parent)
 {
     m_downloadTimer.setInterval(1000);
     m_downloadTimer.setSingleShot(true);
@@ -23,7 +23,7 @@ OnvifSnapshotDownloader::OnvifSnapshotDownloader(QObject *parent) : QObject(pare
     connect(&m_networkAccessManager, &QNetworkAccessManager::finished, this, &OnvifSnapshotDownloader::networkRequestFinished);
 }
 
-void OnvifSnapshotDownloader::setSnapshotUri(const QUrl &snapshotUri)
+void OnvifSnapshotDownloader::setSnapshotUri(const QUrl& snapshotUri)
 {
     m_snapshotUri = snapshotUri;
     startDownload();
@@ -31,20 +31,20 @@ void OnvifSnapshotDownloader::setSnapshotUri(const QUrl &snapshotUri)
 
 void OnvifSnapshotDownloader::startDownload()
 {
-    if(m_networkReply) {
+    if (m_networkReply) {
         m_networkReply->abort();
     }
     QNetworkRequest request(m_snapshotUri);
     m_networkReply = m_networkAccessManager.get(request);
 }
 
-void OnvifSnapshotDownloader::networkRequestFinished(QNetworkReply *reply)
+void OnvifSnapshotDownloader::networkRequestFinished(QNetworkReply* reply)
 {
     //TODO: detect abort
-    if(reply->error() == QNetworkReply::NoError) {
+    if (reply->error() == QNetworkReply::NoError) {
         auto downloadedData = reply->readAll();
         bool result = m_snapshot.loadFromData(downloadedData);
-        if(!result) {
+        if (!result) {
             setError("Failed to load snapshot");
         }
         emit snapshotChanged(m_snapshot);
@@ -60,23 +60,23 @@ QString OnvifSnapshotDownloader::error() const
     return m_error;
 }
 
-void OnvifSnapshotDownloader::setInterval(QObject *key, int interval)
+void OnvifSnapshotDownloader::setInterval(QObject* key, int interval)
 {
-    if(interval != -1) {
+    if (interval != -1) {
         m_intervalMap.insert(key, interval);
     } else {
         m_intervalMap.remove(key);
     }
     int minInterval = std::numeric_limits<int>::max();
-    for(auto interval : qAsConst(m_intervalMap)) {
+    for (auto interval : qAsConst(m_intervalMap)) {
         minInterval = qMin(interval, minInterval);
     }
-    if(m_downloadTimer.interval() != minInterval) {
+    if (m_downloadTimer.interval() != minInterval) {
         m_downloadTimer.setInterval(minInterval);
     }
 }
 
-void OnvifSnapshotDownloader::setError(const QString &error)
+void OnvifSnapshotDownloader::setError(const QString& error)
 {
     m_error = error;
     emit errorChanged(m_error);

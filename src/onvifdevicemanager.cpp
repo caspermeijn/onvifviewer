@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +22,10 @@
 #include <QSettings>
 #include <QQmlContext>
 
-OnvifDeviceManager::OnvifDeviceManager(QObject *parent) :
+OnvifDeviceManager::OnvifDeviceManager(QObject* parent) :
     QObject(parent)
 {
-    qRegisterMetaType<QList<OnvifDevice*>>("QList<OnvifDevice*>");
+    qRegisterMetaType<QList<OnvifDevice*>> ("QList<OnvifDevice*>");
 }
 
 void OnvifDeviceManager::loadDevices()
@@ -34,9 +34,9 @@ void OnvifDeviceManager::loadDevices()
 
     QSettings settings;
     int size = settings.beginReadArray("devices");
-    for(int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         settings.setArrayIndex(i);
-        OnvifDevice * device = createNewDevice();
+        OnvifDevice* device = createNewDevice();
         device->setDeviceName(settings.value("deviceName").toString());
         device->setHostName(settings.value("hostName").toString());
         device->setUserName(settings.value("userName").toString());
@@ -53,7 +53,7 @@ void OnvifDeviceManager::saveDevices()
 {
     QSettings settings;
     settings.beginWriteArray("devices");
-    for(int i = 0; i < m_deviceList.count(); i++) {
+    for (int i = 0; i < m_deviceList.count(); i++) {
         auto device = m_deviceList.at(i);
         settings.setArrayIndex(i);
         settings.setValue("deviceName", device->deviceName());
@@ -66,21 +66,21 @@ void OnvifDeviceManager::saveDevices()
     settings.endArray();
 }
 
-OnvifDevice *OnvifDeviceManager::createNewDevice()
+OnvifDevice* OnvifDeviceManager::createNewDevice()
 {
-    auto * device = new OnvifDevice(this);
+    auto* device = new OnvifDevice(this);
 
     m_deviceList.append(device);
     emit deviceListChanged(m_deviceList);
     return device;
 }
 
-QList<OnvifDevice *> OnvifDeviceManager::deviceList() const
+QList<OnvifDevice*> OnvifDeviceManager::deviceList() const
 {
     return m_deviceList;
 }
 
-OnvifDevice *OnvifDeviceManager::at(int i)
+OnvifDevice* OnvifDeviceManager::at(int i)
 {
     return m_deviceList.at(i);
 }
@@ -93,12 +93,12 @@ int OnvifDeviceManager::appendDevice()
 
 void OnvifDeviceManager::removeDevice(int i)
 {
-    OnvifDevice * device = m_deviceList.takeAt(i);
+    OnvifDevice* device = m_deviceList.takeAt(i);
     emit deviceListChanged(m_deviceList);
     device->deleteLater();
 }
 
-int OnvifDeviceManager::indexOf(OnvifDevice *device)
+int OnvifDeviceManager::indexOf(OnvifDevice* device)
 {
     return m_deviceList.indexOf(device);
 }

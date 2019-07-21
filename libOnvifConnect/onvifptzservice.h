@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,10 +21,12 @@
 
 class OnvifDeviceConnection;
 class OnvifMediaProfile;
-namespace OnvifSoapDevicemgmt {
+namespace OnvifSoapDevicemgmt
+{
 class TT__PTZCapabilities;
 }
-namespace OnvifSoapPtz {
+namespace OnvifSoapPtz
+{
 class TPTZ__Capabilities;
 }
 
@@ -35,7 +37,7 @@ class ONVIFCONNECT_EXPORT OnvifPtzService : public QObject
     Q_DECLARE_PRIVATE(OnvifPtzService)
     QScopedPointer<OnvifPtzServicePrivate> const d_ptr;
 public:
-    explicit OnvifPtzService(const QString& endpointAddress, OnvifDeviceConnection *parent);
+    explicit OnvifPtzService(const QString& endpointAddress, OnvifDeviceConnection* parent);
     ~OnvifPtzService();
 
     void connectToService();
@@ -45,22 +47,22 @@ public:
     void setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilities& capabilities);
     void setServiceCapabilities(const OnvifSoapDevicemgmt::TT__PTZCapabilities& capabilities);
 
-    void absoluteMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
+    void absoluteMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction);
 
-    bool isRelativeMoveSupported(const OnvifMediaProfile &profile) const;
-    void relativeMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
+    bool isRelativeMoveSupported(const OnvifMediaProfile& profile) const;
+    void relativeMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction);
 
-    bool isContinuousMoveSupported(const OnvifMediaProfile &profile) const;
-    void continuousMove(const OnvifMediaProfile &profile, qreal xFraction, qreal yFraction);
+    bool isContinuousMoveSupported(const OnvifMediaProfile& profile) const;
+    void continuousMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction);
 
-    bool isRelativeZoomSupported(const OnvifMediaProfile &profile) const;
-    void relativeZoom(const OnvifMediaProfile &profile, qreal zoomFraction);
+    bool isRelativeZoomSupported(const OnvifMediaProfile& profile) const;
+    void relativeZoom(const OnvifMediaProfile& profile, qreal zoomFraction);
 
-    bool isHomeSupported(const OnvifMediaProfile &profile) const;
-    void goToHome(const OnvifMediaProfile &profile);
-    void saveHomePosition(const OnvifMediaProfile &profile);
+    bool isHomeSupported(const OnvifMediaProfile& profile) const;
+    void goToHome(const OnvifMediaProfile& profile);
+    void saveHomePosition(const OnvifMediaProfile& profile);
 
-    void stopMovement(const OnvifMediaProfile &profile);
+    void stopMovement(const OnvifMediaProfile& profile);
 };
 
 

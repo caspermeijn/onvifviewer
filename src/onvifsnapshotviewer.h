@@ -24,16 +24,16 @@ class QPainter;
 class OnvifSnapshotViewer : public QQuickPaintedItem
 {
     Q_OBJECT
-    Q_PROPERTY(OnvifSnapshotDownloader * downloader READ downloader WRITE setDownloader)
+    Q_PROPERTY(OnvifSnapshotDownloader* downloader READ downloader WRITE setDownloader)
     Q_PROPERTY(int interval READ interval WRITE setInterval)
     Q_PROPERTY(qreal aspectRatio READ aspectRatio NOTIFY aspectRatioChanged)
     Q_PROPERTY(bool isSnapShotAvailable READ isSnapShotAvailable NOTIFY isSnapShotAvailableChanged)
 public:
-    OnvifSnapshotViewer(QQuickItem *parent = Q_NULLPTR);
+    OnvifSnapshotViewer(QQuickItem* parent = Q_NULLPTR);
     virtual ~OnvifSnapshotViewer();
 
-    OnvifSnapshotDownloader *downloader() const;
-    void setDownloader(OnvifSnapshotDownloader *downloader);
+    OnvifSnapshotDownloader* downloader() const;
+    void setDownloader(OnvifSnapshotDownloader* downloader);
 
     int interval() const;
     void setInterval(int interval);
@@ -43,18 +43,18 @@ public:
     bool isSnapShotAvailable() const;
 
 signals:
-    void aspectRatioChanged(const qreal &aspectRatio);
+    void aspectRatioChanged(const qreal& aspectRatio);
     void isSnapShotAvailableChanged();
 
 protected:
-    virtual void paint(QPainter *painter) Q_DECL_OVERRIDE;
+    virtual void paint(QPainter* painter) Q_DECL_OVERRIDE;
 
 private slots:
-    void snapshotChanged(const QPixmap &snapshot);
+    void snapshotChanged(const QPixmap& snapshot);
 
 private:
-    void updateAspectRatio(const QPixmap &pixmap);
-    void updateAspectRatio(const qreal &aspectRatio);
+    void updateAspectRatio(const QPixmap& pixmap);
+    void updateAspectRatio(const qreal& aspectRatio);
 
 private:
     QPointer<OnvifSnapshotDownloader> m_downloader;

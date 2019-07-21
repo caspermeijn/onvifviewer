@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,12 @@
 #include "onvifconnect_export.h"
 #include <QSharedDataPointer>
 
-namespace OnvifSoapMedia {
+namespace OnvifSoapMedia
+{
 class TT__Profile;
 }
-namespace OnvifSoapMedia2 {
+namespace OnvifSoapMedia2
+{
 class TR2__MediaProfile;
 }
 
@@ -31,18 +33,18 @@ class ONVIFCONNECT_EXPORT OnvifMediaProfile
 {
 public:
     OnvifMediaProfile();
-    OnvifMediaProfile( const OnvifMediaProfile &other );
+    OnvifMediaProfile(const OnvifMediaProfile& other);
     OnvifMediaProfile(const OnvifSoapMedia::TT__Profile& profile);
     OnvifMediaProfile(const OnvifSoapMedia2::TR2__MediaProfile& profile);
     ~OnvifMediaProfile();
 
-    OnvifMediaProfile &operator=(const OnvifMediaProfile &other);
+    OnvifMediaProfile& operator= (const OnvifMediaProfile& other);
 
     QString name() const;
-    void setName(const QString &name);
+    void setName(const QString& name);
 
     QString token() const;
-    void setToken(const QString &token);
+    void setToken(const QString& token);
 
     bool fixed() const;
     void setFixed(bool fixed);
@@ -54,6 +56,6 @@ public:
 private:
     QSharedDataPointer<OnvifMediaProfilePrivate> d;
 };
-QDebug operator<<(QDebug debug, const OnvifMediaProfile &d);
+QDebug operator<< (QDebug debug, const OnvifMediaProfile& d);
 
 #endif // ONVIFMEDIAPROFILE_H

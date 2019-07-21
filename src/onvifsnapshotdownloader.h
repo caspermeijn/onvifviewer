@@ -30,26 +30,26 @@ class OnvifSnapshotDownloader : public QObject
     Q_PROPERTY(QPixmap snapshot READ snapshot NOTIFY snapshotChanged)
     Q_PROPERTY(QString error READ error NOTIFY errorChanged)
 public:
-    explicit OnvifSnapshotDownloader(QObject *parent = nullptr);
+    explicit OnvifSnapshotDownloader(QObject* parent = nullptr);
 
     QPixmap snapshot() const;
     QString error() const;
 
-    void setInterval(QObject * key, int interval);
+    void setInterval(QObject* key, int interval);
 
 signals:
     void snapshotChanged(const QPixmap& snapshot);
     void errorChanged(const QString& error);
 
 public slots:
-    void setSnapshotUri(const QUrl &snapshotUri);
+    void setSnapshotUri(const QUrl& snapshotUri);
 
 private slots:
     void startDownload();
-    void networkRequestFinished(QNetworkReply *reply);
+    void networkRequestFinished(QNetworkReply* reply);
 
 private:
-    void setError(const QString &error);
+    void setError(const QString& error);
 
 private:
     QUrl m_snapshotUri;
@@ -58,7 +58,7 @@ private:
     QPointer<QNetworkReply> m_networkReply;
     QPixmap m_snapshot;
     QString m_error;
-    QMap<QObject *, int> m_intervalMap;
+    QMap<QObject*, int> m_intervalMap;
 };
 
 #endif // ONVIFSNAPSHOTDOWNLOADER_H
