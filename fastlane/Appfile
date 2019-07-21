@@ -1,2 +1,3 @@
 app_identifier "net.meijn.onvifviewer"
 package_name "net.meijn.onvifviewer"
+json_key_file "fastlane/api_key.json"

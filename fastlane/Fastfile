@@ -1,0 +1,4 @@
+lane :upload_alpha do
+  sh("./prepare_metadata_for_alpha.py", "--manifest=../android/AndroidManifest.xml", "--fastlane=metadata")
+  upload_to_play_store(track: 'alpha', apk: ENV["APK_PATH"], check_superseded_tracks: true)
+end
