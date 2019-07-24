@@ -185,6 +185,7 @@ Kirigami.ScrollablePage {
                             loadStream: false
                             visible: !model.errorString && model.supportsSnapshotUri
                             Layout.fillWidth: true
+                            //TODO: This appears to create a binding loop
                             Layout.preferredHeight: width / viewerItem.aspectRatio
                         }
                     }

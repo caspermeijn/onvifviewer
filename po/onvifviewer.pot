@@ -90,46 +90,56 @@ msgstr ""
 msgid "Remove camera"
 msgstr ""
 
-#: DeviceViewerPage.qml:25 OverviewPage.qml:146
+#: DeviceViewerPage.qml:25 OverviewPage.qml:145
 msgid "Camera %1"
 msgstr ""
 
-#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
+#: DeviceViewerPage.qml:28
+msgctxt "opens pan/tilt/zoom overlay"
+msgid "Move"
+msgstr ""
+
+#: DeviceViewerPage.qml:36
+msgctxt "opens device information overlay"
 msgid "Device information"
 msgstr ""
 
-#: DeviceViewerPage.qml:88
+#: DeviceViewerPage.qml:87
 msgid "Saving current position as home"
 msgstr ""
 
-#: DeviceViewerPage.qml:149
+#: DeviceViewerPage.qml:142
+msgid "Device information"
+msgstr ""
+
+#: DeviceViewerPage.qml:148
 msgid "Manufacturer:"
 msgstr ""
 
-#: DeviceViewerPage.qml:156
+#: DeviceViewerPage.qml:155
 msgid "Model:"
 msgstr ""
 
-#: DeviceViewerPage.qml:163
+#: DeviceViewerPage.qml:162
 msgid "Firmware version:"
 msgstr ""
 
-#: DeviceViewerPage.qml:170
+#: DeviceViewerPage.qml:169
 msgid "Serial number:"
 msgstr ""
 
-#: DeviceViewerPage.qml:177
+#: DeviceViewerPage.qml:176
 msgid "Hardware identifier:"
 msgstr ""
 
-#: DeviceViewerPage.qml:197
+#: DeviceViewerPage.qml:196
 msgid ""
 "This camera is currently only opened as a preview. This means that the "
 "device is not loaded the next time you open this application. If you want to "
 "save this device, then you need to click the Save button."
 msgstr ""
 
-#: DeviceViewerPage.qml:222
+#: DeviceViewerPage.qml:221
 msgid ""
 "An error occurred during communication with the camera.\n"
 "\n"
@@ -156,48 +166,53 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: OverviewPage.qml:36
-msgctxt "opens the \"About\" menu"
-msgid "About ONVIFViewer"
+#: OverviewPage.qml:29
+msgctxt "adds a new camera"
+msgid "Add"
 msgstr ""
 
-#: OverviewPage.qml:57
+#: OverviewPage.qml:36
+msgctxt "opens the \"About\" menu"
+msgid "About"
+msgstr ""
+
+#: OverviewPage.qml:56
 msgid "Automaticly discover camera"
 msgstr ""
 
-#: OverviewPage.qml:66
+#: OverviewPage.qml:65
 msgid "Automatically find a camera in your network."
 msgstr ""
 
-#: OverviewPage.qml:75
+#: OverviewPage.qml:74
 msgid "Add demonstation camera"
 msgstr ""
 
-#: OverviewPage.qml:83
+#: OverviewPage.qml:82
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
 msgstr ""
 
-#: OverviewPage.qml:91
+#: OverviewPage.qml:90
 msgid "Manually add camera"
 msgstr ""
 
-#: OverviewPage.qml:101
+#: OverviewPage.qml:100
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
 msgstr ""
 
-#: OverviewPage.qml:121
+#: OverviewPage.qml:120
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr ""
 
-#: OverviewPage.qml:168
+#: OverviewPage.qml:167
 msgid "An error occurred during communication with the camera."
 msgstr ""
 
-#: OverviewPage.qml:176
+#: OverviewPage.qml:175
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr ""
 

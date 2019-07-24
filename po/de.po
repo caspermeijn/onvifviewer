@@ -92,39 +92,49 @@ msgstr "Kamerabewegungskorrektur aktivieren"
 msgid "Remove camera"
 msgstr "Kamera entfernen"
 
-#: DeviceViewerPage.qml:25 OverviewPage.qml:146
+#: DeviceViewerPage.qml:25 OverviewPage.qml:145
 msgid "Camera %1"
 msgstr "Kamera %1"
 
-#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
+#: DeviceViewerPage.qml:28
+msgctxt "opens pan/tilt/zoom overlay"
+msgid "Move"
+msgstr ""
+
+#: DeviceViewerPage.qml:36
+msgctxt "opens device information overlay"
 msgid "Device information"
 msgstr "Geräteinformation"
 
-#: DeviceViewerPage.qml:88
+#: DeviceViewerPage.qml:87
 msgid "Saving current position as home"
 msgstr "Aktuelle Position als Basis speichern"
 
-#: DeviceViewerPage.qml:149
+#: DeviceViewerPage.qml:142
+msgid "Device information"
+msgstr "Geräteinformation"
+
+#: DeviceViewerPage.qml:148
 msgid "Manufacturer:"
 msgstr "Hersteller:"
 
-#: DeviceViewerPage.qml:156
+#: DeviceViewerPage.qml:155
 msgid "Model:"
 msgstr "Modell:"
 
-#: DeviceViewerPage.qml:163
+#: DeviceViewerPage.qml:162
 msgid "Firmware version:"
 msgstr "Firmware-Version:"
 
-#: DeviceViewerPage.qml:170
+#: DeviceViewerPage.qml:169
 msgid "Serial number:"
 msgstr "Seriennummer:"
 
-#: DeviceViewerPage.qml:177
+#: DeviceViewerPage.qml:176
 msgid "Hardware identifier:"
 msgstr "Hardwarebezeichner:"
 
-#: DeviceViewerPage.qml:197
+#: DeviceViewerPage.qml:196
 msgid ""
 "This camera is currently only opened as a preview. This means that the "
 "device is not loaded the next time you open this application. If you want to "
@@ -134,7 +144,7 @@ msgstr ""
 "wird beim nächsten Start dieser Anwendung nicht geladen. Wenn dieses Gerät "
 "gespeichert werden soll, muss die Schaltfläche Speichern gedrückt werden."
 
-#: DeviceViewerPage.qml:222
+#: DeviceViewerPage.qml:221
 msgid ""
 "An error occurred during communication with the camera.\n"
 "\n"
@@ -164,24 +174,29 @@ msgstr "Wird geladen …"
 msgid "Overview"
 msgstr "Übersicht"
 
+#: OverviewPage.qml:29
+msgctxt "adds a new camera"
+msgid "Add"
+msgstr ""
+
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
-msgid "About ONVIFViewer"
-msgstr "Info über ONVIFViewer"
+msgid "About"
+msgstr ""
 
-#: OverviewPage.qml:57
+#: OverviewPage.qml:56
 msgid "Automaticly discover camera"
 msgstr "Automatische Erkennung der Kamera"
 
-#: OverviewPage.qml:66
+#: OverviewPage.qml:65
 msgid "Automatically find a camera in your network."
 msgstr "Findet automatisch eine Kamera in Ihrem Netzwerk."
 
-#: OverviewPage.qml:75
+#: OverviewPage.qml:74
 msgid "Add demonstation camera"
 msgstr "Demonstationskamera hinzufügen"
 
-#: OverviewPage.qml:83
+#: OverviewPage.qml:82
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
@@ -189,11 +204,11 @@ msgstr ""
 "Diese Demonstrationskamera zeigt einige Funktionen, ohne eine Kamera zu "
 "besitzen."
 
-#: OverviewPage.qml:91
+#: OverviewPage.qml:90
 msgid "Manually add camera"
 msgstr "Manuell Kamera hinzufügen"
 
-#: OverviewPage.qml:101
+#: OverviewPage.qml:100
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
@@ -201,17 +216,17 @@ msgstr ""
 "Manuell eine Kamera hinzuzufügen bedeutet, dass die Verbindungsparameter per "
 "Hand eingegeben werden müssen."
 
-#: OverviewPage.qml:121
+#: OverviewPage.qml:120
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr ""
 "Eine Kamera kann hinzugefügt werden, indem unten auf die Schaltfläche "
 "„Hinzufügen“ geklickt wird."
 
-#: OverviewPage.qml:168
+#: OverviewPage.qml:167
 msgid "An error occurred during communication with the camera."
 msgstr "Bei der Kommunikation mit der Kamera ist ein Fehler aufgetreten."
 
-#: OverviewPage.qml:176
+#: OverviewPage.qml:175
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "Die Kamera unterstützt den Abruf von Schnappschüssen nicht."
 
@@ -375,3 +390,7 @@ msgstr ""
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:118
 msgid "Improved build system"
 msgstr ""
+
+#~ msgctxt "opens the \"About\" menu"
+#~ msgid "About ONVIFViewer"
+#~ msgstr "Info über ONVIFViewer"
