@@ -26,20 +26,19 @@ Kirigami.ScrollablePage {
 
     actions {
         main: Kirigami.Action {
+            text: i18nc("adds a new camera", "Add")
             iconName: "list-add"
             onTriggered: {
                 bottomDrawer.open()
             }
         }
-        contextualActions: [
-            Kirigami.Action {
-                text: i18nc("opens the \"About\" menu", "About ONVIFViewer")
-                iconName: "help-about"
-                onTriggered: {
-                    pageStack.push(aboutComponent);
-                }
+        right: Kirigami.Action {
+            text: i18nc("opens the \"About\" menu", "About")
+            iconName: "help-about"
+            onTriggered: {
+                pageStack.push(aboutComponent);
             }
-        ]
+        }
     }
 
     //Close the drawer with the back button
