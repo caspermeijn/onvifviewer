@@ -7,126 +7,129 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-08-05 23:58+0000\n"
+"Last-Translator: TaroWL <harry1211_wl@outlook.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"onvifviewer/translations/zh_HANS-CN/>\n"
 "Language: zh_HANS-CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: main.cpp:51
 msgid "ONVIFViewer"
-msgstr ""
+msgstr "ONVIFViewer"
 
 #: main.cpp:52 main.cpp:65
 msgid "View and control network cameras using the ONVIF protocol"
-msgstr ""
+msgstr "使用ONVIF协议观看和控制网络摄像头"
 
 #: main.cpp:57 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "姓名"
 
 #: main.cpp:58 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "邮箱"
 
 #: main.cpp:61
 msgid "Main developer"
-msgstr ""
+msgstr "主要开发者"
 
 #: AddDemoCamera.qml:22
 msgid "Add demo camera"
-msgstr ""
+msgstr "添加演示摄像头"
 
 #: DeviceSettingsPage.qml:28
 msgid "New manual device"
-msgstr ""
+msgstr "新手动设备"
 
 #: DeviceSettingsPage.qml:28
 msgid "Device settings"
-msgstr ""
+msgstr "设备设置"
 
 #: DeviceSettingsPage.qml:57
 msgid "Connection settings"
-msgstr ""
+msgstr "连接设置"
 
 #: DeviceSettingsPage.qml:60
 msgid "Camera name:"
-msgstr ""
+msgstr "摄像头名字："
 
 #: DeviceSettingsPage.qml:61
 msgid "e.g. Backyard"
-msgstr ""
+msgstr "例如 Backyard"
 
 #: DeviceSettingsPage.qml:69
 msgid "Hostname:"
-msgstr ""
+msgstr "主机名："
 
 #: DeviceSettingsPage.qml:70
 msgid "e.g. ipcam.local or 192.168.0.12"
-msgstr ""
+msgstr "例如 ipcam.local 或者 192.168.0.12"
 
 #: DeviceSettingsPage.qml:78
 msgid "Username:"
-msgstr ""
+msgstr "用户名:"
 
 #: DeviceSettingsPage.qml:86
 msgid "Password:"
-msgstr ""
+msgstr "密码:"
 
 #: DeviceSettingsPage.qml:96
 msgid "Camera properties"
-msgstr ""
+msgstr "摄像头属性"
 
 #: DeviceSettingsPage.qml:99
 msgid "Enable camera movement fix"
-msgstr ""
+msgstr "启用摄像头移动与固定"
 
 #: DeviceSettingsPage.qml:108
 msgid "Remove camera"
-msgstr ""
+msgstr "移除摄像头"
 
 #: DeviceViewerPage.qml:25 OverviewPage.qml:146
 msgid "Camera %1"
-msgstr ""
+msgstr "摄像头 %1"
 
 #: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
 msgid "Device information"
-msgstr ""
+msgstr "设备信息"
 
 #: DeviceViewerPage.qml:88
 msgid "Saving current position as home"
-msgstr ""
+msgstr "保存当前位置为主要位置"
 
 #: DeviceViewerPage.qml:149
 msgid "Manufacturer:"
-msgstr ""
+msgstr "制造商:"
 
 #: DeviceViewerPage.qml:156
 msgid "Model:"
-msgstr ""
+msgstr "型号:"
 
 #: DeviceViewerPage.qml:163
 msgid "Firmware version:"
-msgstr ""
+msgstr "固件版本:"
 
 #: DeviceViewerPage.qml:170
 msgid "Serial number:"
-msgstr ""
+msgstr "序列号:"
 
 #: DeviceViewerPage.qml:177
 msgid "Hardware identifier:"
-msgstr ""
+msgstr "硬件标识符:"
 
 #: DeviceViewerPage.qml:197
 msgid ""
 "This camera is currently only opened as a preview. This means that the "
 "device is not loaded the next time you open this application. If you want to "
 "save this device, then you need to click the Save button."
-msgstr ""
+msgstr "此摄像头当前仅作为预览打开，下次打开此应用程序时不会加载设备。如果要保存此设备，需要单击“保存”按钮。"
 
 #: DeviceViewerPage.qml:222
 msgid ""
@@ -134,115 +137,118 @@ msgid ""
 "\n"
 "Technical details: %1\n"
 msgstr ""
+"与摄像头通讯时发生错误。\n"
+"\n"
+"技术细节: %1\n"
 
 #: DiscoverCamera.qml:24
 msgid "Discover camera"
-msgstr ""
+msgstr "发现摄像头"
 
 #: DiscoverCamera.qml:32
 msgid "No camera discovered in the local network."
-msgstr ""
+msgstr "本地网络中未发现摄像头。"
 
 #: DiscoverCamera.qml:40
 msgid "Click on a discovered camera to add it:"
-msgstr ""
+msgstr "单击发现的摄像头以添加它："
 
 #: OnvifCameraViewer.qml:29
 msgid "Loading…"
-msgstr ""
+msgstr "正在加载…"
 
 #: OverviewPage.qml:24
 msgid "Overview"
-msgstr ""
+msgstr "概观"
 
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
 msgid "About ONVIFViewer"
-msgstr ""
+msgstr "关于 ONVIFViewer"
 
 #: OverviewPage.qml:57
 msgid "Automaticly discover camera"
-msgstr ""
+msgstr "自动发现摄像头"
 
 #: OverviewPage.qml:66
 msgid "Automatically find a camera in your network."
-msgstr ""
+msgstr "在网络中找到一个摄像头。"
 
 #: OverviewPage.qml:75
 msgid "Add demonstation camera"
-msgstr ""
+msgstr "添加演示摄像头"
 
 #: OverviewPage.qml:83
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
-msgstr ""
+msgstr "这些样例摄像头向您展示了一些功能，而不需要拥有一个摄像头。"
 
 #: OverviewPage.qml:91
 msgid "Manually add camera"
-msgstr ""
+msgstr "手动添加摄像头"
 
 #: OverviewPage.qml:101
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
-msgstr ""
+msgstr "手动添加摄像头需要您自己提供连接参数。"
 
 #: OverviewPage.qml:121
 msgid "You can add a camera by clicking the \"Add\" button below."
-msgstr ""
+msgstr "您可以通过单击下面的“添加”按钮添加摄像头。"
 
 #: OverviewPage.qml:168
 msgid "An error occurred during communication with the camera."
-msgstr ""
+msgstr "与摄像头通信时发生错误。"
 
 #: OverviewPage.qml:176
 msgid "The camera doesn't support the retrieval of snapshots."
-msgstr ""
+msgstr "摄像头不支持快照检索。"
 
 #: OverviewPage.qml:198
 msgctxt "Go to view a camera"
 msgid "View"
-msgstr ""
+msgstr "观看"
 
 #: OverviewPage.qml:207
 msgctxt "Go to settings of a camera"
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: ../desktop/net.meijn.onvifviewer.desktop.in:8
 msgid "net.meijn.onvifviewer"
-msgstr ""
+msgstr "net.meijn.onvifviewer"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:10
 msgid ""
 "Use this open-source app to view your network cameras using the ONVIF "
 "protocol."
-msgstr ""
+msgstr "通过此开源应用查看和控制你的使用ONVIF协议的网络摄像头。"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:11
 msgid ""
 "The development of this app was started as part of the ONVIF Spotlight "
 "Challenge."
-msgstr ""
+msgstr "该应用程序的开发是作为ONVIF Spotlight Challenge的一部分开始的。"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:12
 msgid ""
 "You can connect to your network camera and view the video of it. If the "
 "camera is controllable you can move it as well."
-msgstr ""
+msgstr "您可以连接到网络摄像头并查看视频。如果摄像头是可控的，您也可以移动它。"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:14
 msgid "Casper Meijn"
-msgstr ""
+msgstr "卡斯帕·梅金"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:22
 msgid "The camera overview page"
-msgstr ""
+msgstr "摄像头概述页"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:26
 msgid "The camera settings page"
-msgstr ""
+msgstr "摄像头设置页"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:41
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:52
@@ -253,104 +259,104 @@ msgstr ""
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:103
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:114
 msgid "This is a minor release, with the following improvements:"
-msgstr ""
+msgstr "这是一个次要版本，具有以下改进："
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:43
 msgid "Added support for camera discovery"
-msgstr ""
+msgstr "增加了对摄像头发现的支持"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
 msgid "Fixed video viewer for Android"
-msgstr ""
+msgstr "修复了Android的视频查看器"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Improved translations"
-msgstr ""
+msgstr "改进了翻译"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:97
 msgid "Some small improvements"
-msgstr ""
+msgstr "一些小的改进"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:54
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:65
 msgid "Improved support for older devices"
-msgstr ""
+msgstr "改进了对旧设备的支持"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:55
 msgid "Show multiple cameras if room available"
-msgstr ""
+msgstr "如果剩余内存可利用，则显示多个摄像头"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:56
 msgid "Improved translations and added new langagues"
-msgstr ""
+msgstr "改进了翻译并添加了新语言"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:57
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:67
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:108
 msgid "Several internal improvements"
-msgstr ""
+msgstr "一些内部改进"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:66
 msgid "Fixed a potential crash"
-msgstr ""
+msgstr "修复了潜在的崩溃"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:75
 msgid "Added donation instructions"
-msgstr ""
+msgstr "添加了捐赠说明"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:76
 msgid "Use breeze icons as fallback theme"
-msgstr ""
+msgstr "使用清风图标作为后备主题"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:84
 msgid "Added opening cameras by URL"
-msgstr ""
+msgstr "添加了通过URL打开摄像头"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:85
 msgid "Improved snapshot downloading"
-msgstr ""
+msgstr "改进了快照下载"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:86
 msgid "Improved translations and added Norwegian"
-msgstr ""
+msgstr "改进了翻译并添加了挪威语"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:94
 msgid "Improved UI style by using Kirigami cards"
-msgstr ""
+msgstr "使用折纸卡改进了用户界面风格"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:95
 msgid "Improved translations by supporting Weblate"
-msgstr ""
+msgstr "通过支持Weblate改进了翻译"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:96
 msgid "Made demo cameras optional, by moving them to the add camera button"
-msgstr ""
+msgstr "通过将演示摄像机移动到“添加摄像机”按钮，使其成为可选的"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:105
 msgid ""
 "Renamed internal application name. Note: this causes the configuration file "
 "to reset"
-msgstr ""
+msgstr "重命名了内部应用程序名称。注意：这会导致配置文件重置"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:106
 msgid ""
 "Added internationalization support with Brazilian and Dutch translations"
-msgstr ""
+msgstr "增加了巴西和荷兰翻译的国际化支持"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:107
 msgid "Replaced demo cameras"
-msgstr ""
+msgstr "更换了演示摄像头"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:116
 msgid ""
 "Added workaround for cameras that don't support relative movement properly"
-msgstr ""
+msgstr "为不支持相对移动的摄像头添加了解决方案"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:117
 msgid "Added support for zoom'ing"
-msgstr ""
+msgstr "增加了对缩放的支持"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:118
 msgid "Improved build system"
-msgstr ""
+msgstr "改进了构建系统"
