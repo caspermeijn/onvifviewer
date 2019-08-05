@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,8 @@
 #include <QObject>
 
 class OnvifDeviceConnection;
-namespace OnvifSoapMedia2 {
+namespace OnvifSoapMedia2
+{
 class TR2__Capabilities2;
 }
 
@@ -33,7 +34,7 @@ class ONVIFCONNECT_EXPORT OnvifMedia2Service : public QObject
     QScopedPointer<OnvifMedia2ServicePrivate> const d_ptr;
 public:
     //TODO: Move capabilities to setServiceCapabilities in private class
-    explicit OnvifMedia2Service(const QString& endpointAddress, const OnvifSoapMedia2::TR2__Capabilities2& capabilities, OnvifDeviceConnection *parent);
+    explicit OnvifMedia2Service(const QString& endpointAddress, const OnvifSoapMedia2::TR2__Capabilities2& capabilities, OnvifDeviceConnection* parent);
     ~OnvifMedia2Service();
 
     void connectToService();

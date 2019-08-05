@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,10 +21,12 @@
 #include <QObject>
 
 class OnvifDeviceConnection;
-namespace OnvifSoapDevicemgmt {
+namespace OnvifSoapDevicemgmt
+{
 class TT__MediaCapabilities;
 }
-namespace OnvifSoapMedia {
+namespace OnvifSoapMedia
+{
 class TRT__Capabilities;
 }
 
@@ -35,7 +37,7 @@ class ONVIFCONNECT_EXPORT OnvifMediaService : public QObject
     Q_DECLARE_PRIVATE(OnvifMediaService)
     QScopedPointer<OnvifMediaServicePrivate> const d_ptr;
 public:
-    explicit OnvifMediaService(const QString& endpointAddress, OnvifDeviceConnection *parent);
+    explicit OnvifMediaService(const QString& endpointAddress, OnvifDeviceConnection* parent);
     ~OnvifMediaService();
 
     void connectToService();

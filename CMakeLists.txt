@@ -88,6 +88,9 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 ##ecm_find_qmlmodule(QtQuick.Controls.Material 2.3 REQUIRED)
 #ecm_find_qmlmodule(QtQuick.Layouts 1.3 REQUIRED)
 
+# Enable extra warnings
+add_compile_options(-pedantic-errors -Wconversion -Wsign-conversion)
+
 add_subdirectory(android)
 add_subdirectory(libOnvifConnect)
 add_subdirectory(src)

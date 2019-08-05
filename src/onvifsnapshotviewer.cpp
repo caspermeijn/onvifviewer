@@ -18,25 +18,25 @@
 #include <QPainter>
 #include <QPixmap>
 
-OnvifSnapshotViewer::OnvifSnapshotViewer(QQuickItem *parent) :
-    QQuickPaintedItem (parent)
+OnvifSnapshotViewer::OnvifSnapshotViewer(QQuickItem* parent) :
+    QQuickPaintedItem(parent)
 {
 }
 
 OnvifSnapshotViewer::~OnvifSnapshotViewer()
 {
-    if(m_downloader) {
+    if (m_downloader) {
         m_downloader->setInterval(this, -1);
     }
 }
 
-void OnvifSnapshotViewer::paint(QPainter *painter)
+void OnvifSnapshotViewer::paint(QPainter* painter)
 {
-    if(m_downloader) {
+    if (m_downloader) {
         const QPixmap& snapshot = m_downloader->snapshot();
-        int heightPixmap = width() / aspectRatio();
-        int y = (height() - heightPixmap) / 2;
-        painter->drawPixmap(0, y, width(), heightPixmap, snapshot);
+        int heightPixmap = (int)(width() / aspectRatio());
+        int y = ((int)height() - heightPixmap) / 2;
+        painter->drawPixmap(0, y, (int)width(), heightPixmap, snapshot);
     }
 }
 
@@ -52,16 +52,16 @@ qreal OnvifSnapshotViewer::aspectRatio() const
     return m_aspectRatio;
 }
 
-void OnvifSnapshotViewer::updateAspectRatio(const QPixmap &pixmap)
+void OnvifSnapshotViewer::updateAspectRatio(const QPixmap& pixmap)
 {
     qreal height = pixmap.height();
     qreal width = pixmap.width();
     updateAspectRatio(width / height);
 }
 
-void OnvifSnapshotViewer::updateAspectRatio(const qreal &aspectRatio)
+void OnvifSnapshotViewer::updateAspectRatio(const qreal& aspectRatio)
 {
-    if(m_aspectRatio != aspectRatio) {
+    if (m_aspectRatio != aspectRatio) {
         m_aspectRatio = aspectRatio;
         emit aspectRatioChanged(m_aspectRatio);
     }
@@ -80,25 +80,25 @@ int OnvifSnapshotViewer::interval() const
 void OnvifSnapshotViewer::setInterval(int interval)
 {
     m_interval = interval;
-    if(m_downloader) {
+    if (m_downloader) {
         m_downloader->setInterval(this, m_interval);
     }
 }
 
-OnvifSnapshotDownloader *OnvifSnapshotViewer::downloader() const
+OnvifSnapshotDownloader* OnvifSnapshotViewer::downloader() const
 {
     return m_downloader;
 }
 
-void OnvifSnapshotViewer::setDownloader(OnvifSnapshotDownloader *downloader)
+void OnvifSnapshotViewer::setDownloader(OnvifSnapshotDownloader* downloader)
 {
-    if(m_downloader) {
+    if (m_downloader) {
         m_downloader->setInterval(this, -1);
         disconnect(m_downloader, nullptr, this, nullptr);
     }
     m_downloader = downloader;
-    if(m_downloader) {
-        if(!m_downloader->snapshot().isNull()) {
+    if (m_downloader) {
+        if (!m_downloader->snapshot().isNull()) {
             snapshotChanged(m_downloader->snapshot());
         }
         connect(m_downloader, &OnvifSnapshotDownloader::snapshotChanged, this, &OnvifSnapshotViewer::snapshotChanged);

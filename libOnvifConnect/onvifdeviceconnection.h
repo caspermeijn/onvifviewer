@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ class ONVIFCONNECT_EXPORT OnvifDeviceConnection : public QObject
     friend class OnvifPtzServicePrivate;
     QScopedPointer<OnvifDeviceConnectionPrivate> const d_ptr;
 public:
-    explicit OnvifDeviceConnection(QObject *parent = nullptr);
+    explicit OnvifDeviceConnection(QObject* parent = nullptr);
     ~OnvifDeviceConnection();
 
     void setHostname(const QString& hostname);
@@ -50,10 +50,10 @@ public:
     void connectToDevice();
     void disconnectFromDevice();
 
-    OnvifDeviceService *getDeviceService() const;
-    OnvifMediaService *getMediaService() const;
-    OnvifMedia2Service *getMedia2Service() const;
-    OnvifPtzService *getPtzService() const;
+    OnvifDeviceService* getDeviceService() const;
+    OnvifMediaService* getMediaService() const;
+    OnvifMedia2Service* getMedia2Service() const;
+    OnvifPtzService* getPtzService() const;
 
 signals:
     void servicesAvailable();

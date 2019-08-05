@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include <QMetaProperty>
 #include <QDebug>
 
-OnvifDeviceManagerModel::OnvifDeviceManagerModel(const OnvifDeviceManager *deviceManager, QObject *parent) :
+OnvifDeviceManagerModel::OnvifDeviceManagerModel(const OnvifDeviceManager* deviceManager, QObject* parent) :
     QAbstractListModel(parent),
     m_deviceManager(deviceManager)
 {
@@ -28,29 +28,26 @@ OnvifDeviceManagerModel::OnvifDeviceManagerModel(const OnvifDeviceManager *devic
     deviceListChanged();
 }
 
-int OnvifDeviceManagerModel::rowCount(const QModelIndex &) const
+int OnvifDeviceManagerModel::rowCount(const QModelIndex&) const
 {
     return m_deviceManager->deviceList().count();
 }
 
-QVariant OnvifDeviceManagerModel::data(const QModelIndex &index, int role) const
+QVariant OnvifDeviceManagerModel::data(const QModelIndex& index, int role) const
 {
     Q_ASSERT(index.row() < m_deviceManager->deviceList().size());
-    OnvifDevice * device = m_deviceManager->deviceList().value(index.row());
-    if(!device)
-    {
+    OnvifDevice* device = m_deviceManager->deviceList().value(index.row());
+    if (!device) {
         qDebug() << "OnvifDeviceManagerModel" << "Invalid index" << index;
         return QVariant();
     }
 
-    if(role == Qt::DisplayRole)
-    {
+    if (role == Qt::DisplayRole) {
         return QVariant::fromValue(device);
     }
 
     const QMetaObject* metaObject = device->metaObject();
-    if(role >= Qt::UserRole && role < Qt::UserRole + metaObject->propertyCount())
-    {
+    if (role >= Qt::UserRole && role < Qt::UserRole + metaObject->propertyCount()) {
         const QMetaProperty& prop = metaObject->property(role - Qt::UserRole);
         return device->property(prop.name());
     }
@@ -69,8 +66,7 @@ QHash<int, QByteArray> OnvifDeviceManagerModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[Qt::DisplayRole] = "device";
     const QMetaObject& metaObject = OnvifDevice::staticMetaObject;
-    for(int i = 0; i < metaObject.propertyCount(); i++)
-    {
+    for (int i = 0; i < metaObject.propertyCount(); i++) {
         roles[Qt::UserRole + i] = QByteArray(metaObject.property(i).name());
     }
     return roles;
@@ -84,12 +80,13 @@ void OnvifDeviceManagerModel::deviceListChanged()
 
     beginResetModel();
     const auto& deviceList = m_deviceManager->deviceList();
-    for(auto& device : deviceList) {
+    for (auto& device : deviceList) {
         const QMetaObject* metaObject = device->metaObject();
-        for(int i = 0; i < metaObject->propertyCount(); i++) {
+        for (int i = 0; i < metaObject->propertyCount(); i++) {
             const QMetaProperty& prop = metaObject->property(i);
-            if(prop.hasNotifySignal())
+            if (prop.hasNotifySignal()) {
                 connect(device, prop.notifySignal(), this, targetSlot);
+            }
         }
     }
     endResetModel();
@@ -97,9 +94,9 @@ void OnvifDeviceManagerModel::deviceListChanged()
 
 void OnvifDeviceManagerModel::deviceChanged()
 {
-    auto * device = qobject_cast<OnvifDevice*>(sender());
+    auto* device = qobject_cast<OnvifDevice*> (sender());
     Q_ASSERT(device);
 
     int i = m_deviceManager->deviceList().indexOf(device);
-    emit dataChanged(index(i),index(i));
+    emit dataChanged(index(i), index(i));
 }

@@ -92,39 +92,49 @@ msgstr "Skru på kamerabevegelsesfiks"
 msgid "Remove camera"
 msgstr "Fjern kamera"
 
-#: DeviceViewerPage.qml:25 OverviewPage.qml:146
+#: DeviceViewerPage.qml:25 OverviewPage.qml:145
 msgid "Camera %1"
 msgstr "Kamera %1"
 
-#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
+#: DeviceViewerPage.qml:28
+msgctxt "opens pan/tilt/zoom overlay"
+msgid "Move"
+msgstr ""
+
+#: DeviceViewerPage.qml:36
+msgctxt "opens device information overlay"
 msgid "Device information"
 msgstr "Enhetsinformasjon"
 
-#: DeviceViewerPage.qml:88
+#: DeviceViewerPage.qml:87
 msgid "Saving current position as home"
 msgstr "Lagrer nåværende posisjon som hjem"
 
-#: DeviceViewerPage.qml:149
+#: DeviceViewerPage.qml:142
+msgid "Device information"
+msgstr "Enhetsinformasjon"
+
+#: DeviceViewerPage.qml:148
 msgid "Manufacturer:"
 msgstr "Fabrikant:"
 
-#: DeviceViewerPage.qml:156
+#: DeviceViewerPage.qml:155
 msgid "Model:"
 msgstr "Modell:"
 
-#: DeviceViewerPage.qml:163
+#: DeviceViewerPage.qml:162
 msgid "Firmware version:"
 msgstr "Fastvareversjon:"
 
-#: DeviceViewerPage.qml:170
+#: DeviceViewerPage.qml:169
 msgid "Serial number:"
 msgstr "Serienummer:"
 
-#: DeviceViewerPage.qml:177
+#: DeviceViewerPage.qml:176
 msgid "Hardware identifier:"
 msgstr "Maskinvareidentifikator:"
 
-#: DeviceViewerPage.qml:197
+#: DeviceViewerPage.qml:196
 msgid ""
 "This camera is currently only opened as a preview. This means that the "
 "device is not loaded the next time you open this application. If you want to "
@@ -134,7 +144,7 @@ msgstr ""
 "innlastes neste gang du åpner programmet. Hvis du ønsker å lagre denne "
 "enheten, må du klikke \"Lagre\"."
 
-#: DeviceViewerPage.qml:222
+#: DeviceViewerPage.qml:221
 msgid ""
 "An error occurred during communication with the camera.\n"
 "\n"
@@ -164,24 +174,29 @@ msgstr "Laster…"
 msgid "Overview"
 msgstr "Oversikt"
 
+#: OverviewPage.qml:29
+msgctxt "adds a new camera"
+msgid "Add"
+msgstr ""
+
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
-msgid "About ONVIFViewer"
-msgstr "Om ONVIFViewer"
+msgid "About"
+msgstr ""
 
-#: OverviewPage.qml:57
+#: OverviewPage.qml:56
 msgid "Automaticly discover camera"
 msgstr "Oppdag kamera automatisk"
 
-#: OverviewPage.qml:66
+#: OverviewPage.qml:65
 msgid "Automatically find a camera in your network."
 msgstr "Finn et kamera i nettverket ditt automatisk."
 
-#: OverviewPage.qml:75
+#: OverviewPage.qml:74
 msgid "Add demonstation camera"
 msgstr "Legg til demonstrasjonskamera"
 
-#: OverviewPage.qml:83
+#: OverviewPage.qml:82
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
@@ -189,11 +204,11 @@ msgstr ""
 "Disse demonstrasjonskameraene viser deg noen av mulighetene, uten at du eier "
 "et kamera."
 
-#: OverviewPage.qml:91
+#: OverviewPage.qml:90
 msgid "Manually add camera"
 msgstr "Legg til kamera manuelt"
 
-#: OverviewPage.qml:101
+#: OverviewPage.qml:100
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
@@ -201,15 +216,15 @@ msgstr ""
 "Å legge til et kamera manuelt betyr at du vil måtte angi "
 "tilkoblingsparameterne selv."
 
-#: OverviewPage.qml:121
+#: OverviewPage.qml:120
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr "Du kan legge til et kamera ved å trykke \"Legg til\"-knappen nedenfor."
 
-#: OverviewPage.qml:168
+#: OverviewPage.qml:167
 msgid "An error occurred during communication with the camera."
 msgstr "En feil inntraff under kommunikasjon med kameraet."
 
-#: OverviewPage.qml:176
+#: OverviewPage.qml:175
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "Kameraet har ikke støtte for å hente skjermavbildninger."
 
@@ -377,3 +392,7 @@ msgstr "Støtte for forstørrelse"
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:118
 msgid "Improved build system"
 msgstr "Forbedret byggsystem"
+
+#~ msgctxt "opens the \"About\" menu"
+#~ msgid "About ONVIFViewer"
+#~ msgstr "Om ONVIFViewer"

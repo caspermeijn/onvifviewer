@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ class OnvifDevice : public QObject
     Q_PROPERTY(bool isZoomSupported READ isZoomSupported)
     Q_PROPERTY(OnvifSnapshotDownloader* snapshotDownloader READ snapshotDownloader NOTIFY snapshotDownloaderChanged)
 public:
-    explicit OnvifDevice(QObject *parent = nullptr);
+    explicit OnvifDevice(QObject* parent = nullptr);
 
     Q_INVOKABLE void connectToDevice();
     Q_INVOKABLE void reconnectToDevice();
@@ -57,16 +57,16 @@ public:
     QString errorString() const;
 
     QString deviceName() const;
-    void setDeviceName(const QString &deviceName);
+    void setDeviceName(const QString& deviceName);
 
     QString hostName() const;
-    void setHostName(const QString &hostName);
+    void setHostName(const QString& hostName);
 
     QString userName() const;
-    void setUserName(const QString &userName);
+    void setUserName(const QString& userName);
 
     QString password() const;
-    void setPassword(const QString &password);
+    void setPassword(const QString& password);
 
     bool isPanTiltSupported() const;
     bool isPtzHomeSupported() const;
@@ -76,7 +76,7 @@ public:
     void setPreferContinuousMove(bool preferContinuousMove);
 
     QString preferredVideoStreamProtocol() const;
-    void setPreferredVideoStreamProtocol(const QString &preferredVideoStreamProtocol);
+    void setPreferredVideoStreamProtocol(const QString& preferredVideoStreamProtocol);
 
     void initByUrl(const QUrl& url);
 
@@ -88,7 +88,7 @@ signals:
     void preferContinuousMoveChanged(bool preferContinuousMove);
     void preferredVideoStreamProtocolChanged(const QString& preferredVideoStreamProtocol);
     void errorStringChanged(const QString& errorString);
-    void deviceInformationChanged(OnvifDeviceInformation * deviceInformation);
+    void deviceInformationChanged(OnvifDeviceInformation* deviceInformation);
     void supportsSnapshotUriChanged(bool supportsSnapshotUri);
     void snapshotUriChanged(const QUrl& url);
     void streamUriChanged(const QUrl& url);
@@ -99,7 +99,7 @@ public slots:
     void ptzDown();
     void ptzLeft();
     void ptzRight();
-    void ptzMove(qreal xFraction, qreal yFraction);
+    void ptzMove(float xFraction, float yFraction);
     void ptzHome();
     void ptzSaveHomePosition();
     void ptzStop();

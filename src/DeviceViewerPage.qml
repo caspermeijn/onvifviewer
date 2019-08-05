@@ -25,21 +25,20 @@ Kirigami.Page {
     title: selectedDevice.deviceName || i18n("Camera %1", selectedIndex + 1)
     actions {
         main: Kirigami.Action {
+            text: i18nc("opens pan/tilt/zoom overlay", "Move")
             visible: selectedDevice.isPanTiltSupported || selectedDevice.isZoomSupported
             iconName: "transform-move"
             onTriggered: {
                 ptzOverlay.sheetOpen = !ptzOverlay.sheetOpen
             }
         }
-        contextualActions: [
-            Kirigami.Action {
-                text: i18n("Device information")
-                iconName: "help-about"
-                onTriggered: {
-                    deviceInformation.sheetOpen = !deviceInformation.sheetOpen
-                }
+        right: Kirigami.Action {
+            text: i18nc("opens device information overlay", "Device information")
+            iconName: "help-about"
+            onTriggered: {
+                deviceInformation.sheetOpen = !deviceInformation.sheetOpen
             }
-        ]
+        }
     }
     Kirigami.OverlaySheet {
         id: ptzOverlay

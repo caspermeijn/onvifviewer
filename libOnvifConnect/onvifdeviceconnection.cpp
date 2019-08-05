@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,23 +35,31 @@ using namespace OnvifSoapDevicemgmt;
 
 const QString OnvifDeviceConnectionPrivate::c_baseEndpointURI = QLatin1String("http://%1/onvif/device_service");
 
-OnvifDeviceConnectionPrivate::OnvifDeviceConnectionPrivate(OnvifDeviceConnection *connection) :
+OnvifDeviceConnectionPrivate::OnvifDeviceConnectionPrivate(OnvifDeviceConnection* connection) :
     q_ptr(connection)
 {;}
 
-OnvifDeviceConnection::OnvifDeviceConnection(QObject *parent) :
+OnvifDeviceConnection::OnvifDeviceConnection(QObject* parent) :
     QObject(parent),
     d_ptr(new OnvifDeviceConnectionPrivate(this))
 {
     Q_D(OnvifDeviceConnection);
     connect(&d->soapService, &DeviceBindingService::getServicesDone,
-            [d](const OnvifSoapDevicemgmt::TDS__GetServicesResponse& parameters){d->getServicesDone(parameters);});
+    [d](const OnvifSoapDevicemgmt::TDS__GetServicesResponse & parameters) {
+        d->getServicesDone(parameters);
+    });
     connect(&d->soapService, &DeviceBindingService::getServicesError,
-            [d](const KDSoapMessage& fault){d->getServicesError(fault);});
+    [d](const KDSoapMessage & fault) {
+        d->getServicesError(fault);
+    });
     connect(&d->soapService, &DeviceBindingService::getCapabilitiesDone,
-            [d](const OnvifSoapDevicemgmt::TDS__GetCapabilitiesResponse& parameters){d->getCapabilitiesDone(parameters);});
+    [d](const OnvifSoapDevicemgmt::TDS__GetCapabilitiesResponse & parameters) {
+        d->getCapabilitiesDone(parameters);
+    });
     connect(&d->soapService, &DeviceBindingService::getCapabilitiesError,
-            [d](const KDSoapMessage& fault){d->getCapabilitiesError(fault);});
+    [d](const KDSoapMessage & fault) {
+        d->getCapabilitiesError(fault);
+    });
 }
 
 OnvifDeviceConnection::~OnvifDeviceConnection() = default;
@@ -63,7 +71,7 @@ void OnvifDeviceConnection::setHostname(const QString& hostname)
     d->soapService.setEndPoint(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(hostname));
 }
 
-void OnvifDeviceConnection::setCredentials(const QString &username, const QString &password)
+void OnvifDeviceConnection::setCredentials(const QString& username, const QString& password)
 {
     Q_D(OnvifDeviceConnection);
     d->username = username;
@@ -104,34 +112,36 @@ void OnvifDeviceConnection::disconnectFromDevice()
     d->isGetCapabilitiesFinished = false;
     d->isGetServicesFinished = false;
 
-    if(d->deviceService)
+    if (d->deviceService) {
         d->deviceService->deleteLater();
+    }
     d->deviceService = nullptr;
 
-    if(d->mediaService)
+    if (d->mediaService) {
         d->mediaService->deleteLater();
+    }
     d->mediaService = nullptr;
 
-    if(d->media2Service)
+    if (d->media2Service) {
         d->media2Service->deleteLater();
+    }
     d->media2Service = nullptr;
 
-    if(d->ptzService)
+    if (d->ptzService) {
         d->ptzService->deleteLater();
+    }
     d->ptzService = nullptr;
 }
 
-void OnvifDeviceConnectionPrivate::getServicesDone(const TDS__GetServicesResponse &parameters)
+void OnvifDeviceConnectionPrivate::getServicesDone(const TDS__GetServicesResponse& parameters)
 {
     Q_Q(OnvifDeviceConnection);
     const auto& serviceList = parameters.service();
-    for(auto& service : serviceList)
-    {
+    for (auto& service : serviceList) {
         QUrl xAddrUrl(service.xAddr());
         updateUrlHost(&xAddrUrl);
-        if(service.namespace_() == "http://www.onvif.org/ver10/device/wsdl")
-        {
-            if(QUrl(service.xAddr()) != QUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(hostname))) {
+        if (service.namespace_() == "http://www.onvif.org/ver10/device/wsdl") {
+            if (QUrl(service.xAddr()) != QUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(hostname))) {
                 qWarning() << "Warning: The recieved address of the device service doesn't match the address of the initial connection.";
                 qWarning() << "Recieved address:" << QUrl(service.xAddr()).toString();
                 qWarning() << "Initial connection:" << QUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(hostname)).toString();
@@ -140,34 +150,24 @@ void OnvifDeviceConnectionPrivate::getServicesDone(const TDS__GetServicesRespons
             capabilities.deserialize(service.capabilities().any());
             isUsernameTokenSupported = capabilities.security().usernameToken();
             isHttpDigestSupported = capabilities.security().httpDigest();
-            if(!deviceService)
-            {
+            if (!deviceService) {
                 deviceService = new OnvifDeviceService(xAddrUrl.toString(), q);
             }
-        }
-        else if(service.namespace_() == "http://www.onvif.org/ver10/media/wsdl")
-        {
-            if(!mediaService)
-            {
+        } else if (service.namespace_() == "http://www.onvif.org/ver10/media/wsdl") {
+            if (!mediaService) {
                 mediaService = new OnvifMediaService(xAddrUrl.toString(), q);
             }
             OnvifSoapMedia::TRT__Capabilities capabilities;
             capabilities.deserialize(service.capabilities().any());
             mediaService->setServiceCapabilities(capabilities);
-        }
-        else if(service.namespace_() == "http://www.onvif.org/ver20/media/wsdl")
-        {
-            if(!media2Service)
-            {
+        } else if (service.namespace_() == "http://www.onvif.org/ver20/media/wsdl") {
+            if (!media2Service) {
                 OnvifSoapMedia2::TR2__Capabilities2 capabilities;
                 capabilities.deserialize(service.capabilities().any());
                 media2Service = new OnvifMedia2Service(xAddrUrl.toString(), capabilities, q);
             }
-        }
-        else if(service.namespace_() == "http://www.onvif.org/ver20/ptz/wsdl")
-        {
-            if(!ptzService)
-            {
+        } else if (service.namespace_() == "http://www.onvif.org/ver20/ptz/wsdl") {
+            if (!ptzService) {
                 ptzService = new OnvifPtzService(xAddrUrl.toString(), q);
             }
             OnvifSoapPtz::TPTZ__Capabilities capabilities;
@@ -180,7 +180,7 @@ void OnvifDeviceConnectionPrivate::getServicesDone(const TDS__GetServicesRespons
     checkServicesAvailable();
 }
 
-void OnvifDeviceConnectionPrivate::getServicesError(const KDSoapMessage &fault)
+void OnvifDeviceConnectionPrivate::getServicesError(const KDSoapMessage& fault)
 {
     // Some older devices don't support the GetServices call, only the GetCapabilities call
     // Therefore we mark the service finished and ignore any error
@@ -189,45 +189,36 @@ void OnvifDeviceConnectionPrivate::getServicesError(const KDSoapMessage &fault)
     checkServicesAvailable();
 }
 
-void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitiesResponse &parameters)
+void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitiesResponse& parameters)
 {
     Q_Q(OnvifDeviceConnection);
-    if(parameters.capabilities().analytics().xAddr().size())
-    {
+    if (parameters.capabilities().analytics().xAddr().size()) {
         // Not yet supported
     }
-    if(parameters.capabilities().device().xAddr().size())
-    {
-        if(!deviceService)
-        {
+    if (parameters.capabilities().device().xAddr().size()) {
+        if (!deviceService) {
             QUrl xAddrUrl(parameters.capabilities().device().xAddr());
             updateUrlHost(&xAddrUrl);
             deviceService = new OnvifDeviceService(xAddrUrl.toString(), q);
         }
         // isUsernameTokenSupported and isHttpDigestSupported are not reported by the GetCapabilities call
     }
-    if(parameters.capabilities().events().xAddr().size())
-    {
+    if (parameters.capabilities().events().xAddr().size()) {
         // Not yet supported
     }
-    if(parameters.capabilities().imaging().xAddr().size())
-    {
+    if (parameters.capabilities().imaging().xAddr().size()) {
         // Not yet supported
     }
-    if(parameters.capabilities().media().xAddr().size())
-    {
-        if(!mediaService)
-        {
+    if (parameters.capabilities().media().xAddr().size()) {
+        if (!mediaService) {
             QUrl xAddrUrl(parameters.capabilities().media().xAddr());
             updateUrlHost(&xAddrUrl);
             mediaService = new OnvifMediaService(xAddrUrl.toString(), q);
         }
         mediaService->setServiceCapabilities(parameters.capabilities().media());
     }
-    if(parameters.capabilities().pTZ().xAddr().size())
-    {
-        if(!ptzService)
-        {
+    if (parameters.capabilities().pTZ().xAddr().size()) {
+        if (!ptzService) {
             QUrl xAddrUrl(parameters.capabilities().pTZ().xAddr());
             updateUrlHost(&xAddrUrl);
             ptzService = new OnvifPtzService(xAddrUrl.toString(), q);
@@ -239,7 +230,7 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitie
     checkServicesAvailable();
 }
 
-void OnvifDeviceConnectionPrivate::getCapabilitiesError(const KDSoapMessage &fault)
+void OnvifDeviceConnectionPrivate::getCapabilitiesError(const KDSoapMessage& fault)
 {
     handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
@@ -247,89 +238,89 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesError(const KDSoapMessage &fau
 void OnvifDeviceConnectionPrivate::checkServicesAvailable()
 {
     Q_Q(OnvifDeviceConnection);
-    if(isGetServicesFinished && isGetCapabilitiesFinished)
-    {
-        if (deviceService)
+    if (isGetServicesFinished && isGetCapabilitiesFinished) {
+        if (deviceService) {
             deviceService->connectToService();
-        if (mediaService)
+        }
+        if (mediaService) {
             mediaService->connectToService();
-        if (media2Service)
+        }
+        if (media2Service) {
             media2Service->connectToService();
-        if (ptzService)
+        }
+        if (ptzService) {
             ptzService->connectToService();
+        }
         emit q->servicesAvailable();
     }
 }
 
-OnvifDeviceService *OnvifDeviceConnection::getDeviceService() const
+OnvifDeviceService* OnvifDeviceConnection::getDeviceService() const
 {
     Q_D(const OnvifDeviceConnection);
     return d->deviceService;
 }
 
-OnvifMediaService *OnvifDeviceConnection::getMediaService() const
+OnvifMediaService* OnvifDeviceConnection::getMediaService() const
 {
     Q_D(const OnvifDeviceConnection);
     return d->mediaService;
 }
 
-OnvifMedia2Service *OnvifDeviceConnection::getMedia2Service() const
+OnvifMedia2Service* OnvifDeviceConnection::getMedia2Service() const
 {
     Q_D(const OnvifDeviceConnection);
     return d->media2Service;
 }
 
-OnvifPtzService *OnvifDeviceConnection::getPtzService() const
+OnvifPtzService* OnvifDeviceConnection::getPtzService() const
 {
     Q_D(const OnvifDeviceConnection);
     return d->ptzService;
 }
 
-void OnvifDeviceConnectionPrivate::updateUrlHost(QUrl *url)
+void OnvifDeviceConnectionPrivate::updateUrlHost(QUrl* url)
 {
-    if(url->scheme() == "http") {
+    if (url->scheme() == "http") {
         QUrl origUrl(OnvifDeviceConnectionPrivate::c_baseEndpointURI.arg(hostname));
-        if(url->host() != origUrl.host()) {
+        if (url->host() != origUrl.host()) {
             url->setHost(origUrl.host());
             url->setPort(origUrl.port());
         }
     }
 }
 
-void OnvifDeviceConnectionPrivate::updateSoapCredentials(KDSoapClientInterface *clientInterface)
+void OnvifDeviceConnectionPrivate::updateSoapCredentials(KDSoapClientInterface* clientInterface)
 {
-   if(isHttpDigestSupported || isUsernameTokenSupported) {
-       KDSoapAuthentication auth;
-       auth.setUser(username);
-       auth.setPassword(password);
-       auth.setUseWSUsernameToken(isUsernameTokenSupported);
-       clientInterface->setAuthentication(auth);
-   }
+    if (isHttpDigestSupported || isUsernameTokenSupported) {
+        KDSoapAuthentication auth;
+        auth.setUser(username);
+        auth.setPassword(password);
+        auth.setUseWSUsernameToken(isUsernameTokenSupported);
+        clientInterface->setAuthentication(auth);
+    }
     // Some camera's don't require authentication and therefore don't ask for any
 }
 
-void OnvifDeviceConnectionPrivate::updateUrlCredentials(QUrl *url)
+void OnvifDeviceConnectionPrivate::updateUrlCredentials(QUrl* url)
 {
     Q_ASSERT(url);
     url->setUserName(username);
     url->setPassword(password);
 }
 
-void OnvifDeviceConnectionPrivate::handleSoapError(const KDSoapMessage &fault, const QString &location)
+void OnvifDeviceConnectionPrivate::handleSoapError(const KDSoapMessage& fault, const QString& location)
 {
     Q_Q(OnvifDeviceConnection);
     errorString = "";
-    if(fault.childValues().child(QLatin1String("faultcode")).value().toInt() == QNetworkReply::OperationCanceledError) {
+    if (fault.childValues().child(QLatin1String("faultcode")).value().toInt() == QNetworkReply::OperationCanceledError) {
         errorString = "A possible authentication error. Please install a more recent version of KDSoap for more detailed error message.";
-    }
-    else if(fault.childValues().child(QLatin1String("faultcode")).value().toInt() == QNetworkReply::AuthenticationRequiredError) {
+    } else if (fault.childValues().child(QLatin1String("faultcode")).value().toInt() == QNetworkReply::AuthenticationRequiredError) {
         errorString = "Authentication error occured. Credentials are probably incorrect.";
-        if(!isHttpDigestSupported && !isUsernameTokenSupported)
-        {
+        if (!isHttpDigestSupported && !isUsernameTokenSupported) {
             errorString = "None of the authentication methods are available";
         }
-    }
-    else {
+    } else {
         errorString = location + ": " + fault.faultAsString();
     }
     qCritical() << errorString;

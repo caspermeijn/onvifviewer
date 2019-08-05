@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
 #include "onvifsnapshotviewer.h"
 #include "version.h"
 
-Q_DECL_EXPORT int main(int argc, char *argv[])
+Q_DECL_EXPORT int main(int argc, char* argv[])
 {
 #if defined(Q_OS_WIN)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -73,14 +73,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     OnvifDeviceManagerModel deviceManagerModel(&deviceManager);
 
-    qmlRegisterType<OnvifDevice>("net.meijn.onvifviewer", 1, 0, "OnvifDevice");
-    qmlRegisterType<OnvifDeviceInformation>("net.meijn.onvifviewer", 1, 0, "OnvifDeviceInformation");
-    qmlRegisterType<OnvifSnapshotDownloader>("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotDownloader");
-    qmlRegisterType<OnvifSnapshotViewer>("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotViewer");
+    qmlRegisterType<OnvifDevice> ("net.meijn.onvifviewer", 1, 0, "OnvifDevice");
+    qmlRegisterType<OnvifDeviceInformation> ("net.meijn.onvifviewer", 1, 0, "OnvifDeviceInformation");
+    qmlRegisterType<OnvifSnapshotDownloader> ("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotDownloader");
+    qmlRegisterType<OnvifSnapshotViewer> ("net.meijn.onvifviewer", 1, 0, "OnvifSnapshotViewer");
 
     OnvifDeviceDiscover deviceDiscover;
     deviceDiscover.start();
-    qmlRegisterType<OnvifDeviceDiscover>("net.meijn.onvifviewer", 1, 0, "OnvifDeviceDiscover");
+    qmlRegisterType<OnvifDeviceDiscover> ("net.meijn.onvifviewer", 1, 0, "OnvifDeviceDiscover");
 
 #ifdef USE_BREEZE_ICONS
 #if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
@@ -109,9 +109,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         return 12;
     }
 
-    if(commandLineParser.isSet("test")) {
+    if (commandLineParser.isSet("test")) {
         QString testOption = commandLineParser.value("test");
-        if(testOption == "startup") {
+        if (testOption == "startup") {
             qDebug() << "Startup test activated, therefore the application will close automatically";
             QTimer::singleShot(0, &app, &QGuiApplication::quit);
         } else {
@@ -119,13 +119,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         }
     }
 
-    if(!commandLineParser.positionalArguments().isEmpty()) {
+    if (!commandLineParser.positionalArguments().isEmpty()) {
         auto url = QUrl(commandLineParser.positionalArguments().constFirst());
-        if(url.isValid()) {
-            OnvifDevice * device = deviceManager.createNewDevice();
+        if (url.isValid()) {
+            OnvifDevice* device = deviceManager.createNewDevice();
             device->initByUrl(url);
             device->connectToDevice();
-            QVariant variantDevice = QVariant::fromValue<OnvifDevice*>(device);
+            QVariant variantDevice = QVariant::fromValue<OnvifDevice*> (device);
             engine.rootObjects().constFirst()->setProperty("previewDevice", variantDevice);
         }
     }

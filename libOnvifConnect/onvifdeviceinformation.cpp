@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ public:
     OnvifDeviceInformationPrivate()
     {;}
 
-    OnvifDeviceInformationPrivate(const TDS__GetDeviceInformationResponse &deviceInformationResponse) :
+    OnvifDeviceInformationPrivate(const TDS__GetDeviceInformationResponse& deviceInformationResponse) :
         manufacturer(deviceInformationResponse.manufacturer()),
         model(deviceInformationResponse.model()),
         firmwareVersion(deviceInformationResponse.firmwareVersion()),
@@ -42,19 +42,19 @@ public:
     QString hardwareId;
 };
 
-OnvifDeviceInformation::OnvifDeviceInformation(QObject *parent) :
+OnvifDeviceInformation::OnvifDeviceInformation(QObject* parent) :
     QObject(parent),
     d(new OnvifDeviceInformationPrivate())
 {
 }
 
-OnvifDeviceInformation::OnvifDeviceInformation(const OnvifDeviceInformation &other, QObject *parent) :
+OnvifDeviceInformation::OnvifDeviceInformation(const OnvifDeviceInformation& other, QObject* parent) :
     QObject(parent),
     d(other.d)
 {
 }
 
-OnvifDeviceInformation::OnvifDeviceInformation(const TDS__GetDeviceInformationResponse &profile, QObject *parent) :
+OnvifDeviceInformation::OnvifDeviceInformation(const TDS__GetDeviceInformationResponse& profile, QObject* parent) :
     QObject(parent),
     d(new OnvifDeviceInformationPrivate(profile))
 {
@@ -62,7 +62,7 @@ OnvifDeviceInformation::OnvifDeviceInformation(const TDS__GetDeviceInformationRe
 
 OnvifDeviceInformation::~OnvifDeviceInformation() = default;
 
-OnvifDeviceInformation &OnvifDeviceInformation::operator=(const OnvifDeviceInformation &other)
+OnvifDeviceInformation& OnvifDeviceInformation::operator= (const OnvifDeviceInformation& other)
 {
     if (this != &other) {
         OnvifDeviceInformation copy(other);
@@ -96,7 +96,7 @@ QString OnvifDeviceInformation::hardwareId() const
     return d->hardwareId;
 }
 
-QDebug operator<<(QDebug debug, const OnvifDeviceInformation &d)
+QDebug operator<< (QDebug debug, const OnvifDeviceInformation& d)
 {
     QDebugStateSaver saver(debug);
     debug.nospace() << "(Manufacturer: " << d.manufacturer()

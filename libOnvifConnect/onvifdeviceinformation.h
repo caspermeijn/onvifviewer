@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,8 @@
 #include <QSharedDataPointer>
 #include <QObject>
 
-namespace OnvifSoapDevicemgmt {
+namespace OnvifSoapDevicemgmt
+{
 class TDS__GetDeviceInformationResponse;
 }
 
@@ -35,11 +36,11 @@ class ONVIFCONNECT_EXPORT OnvifDeviceInformation : public QObject
     Q_PROPERTY(QString hardwareId READ hardwareId NOTIFY hardwareIdChanged)
 public:
     OnvifDeviceInformation(QObject* parent = nullptr);
-    OnvifDeviceInformation(const OnvifDeviceInformation &other, QObject* parent = nullptr);
+    OnvifDeviceInformation(const OnvifDeviceInformation& other, QObject* parent = nullptr);
     OnvifDeviceInformation(const OnvifSoapDevicemgmt::TDS__GetDeviceInformationResponse& deviceInformationResponse, QObject* parent = nullptr);
     ~OnvifDeviceInformation();
 
-    OnvifDeviceInformation &operator=(const OnvifDeviceInformation &other);
+    OnvifDeviceInformation& operator= (const OnvifDeviceInformation& other);
 
     QString manufacturer() const;
     QString model() const;
@@ -58,6 +59,6 @@ private:
     QSharedDataPointer<OnvifDeviceInformationPrivate> d;
 };
 
-QDebug operator<<(QDebug debug, const OnvifDeviceInformation &d);
+QDebug operator<< (QDebug debug, const OnvifDeviceInformation& d);
 
 #endif // ONVIFDEVICEINFORMATION_H

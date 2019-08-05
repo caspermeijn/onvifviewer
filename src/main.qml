@@ -30,7 +30,6 @@ Kirigami.ApplicationWindow {
         }
     }
 
-    header: Kirigami.ApplicationHeader {}
     contextDrawer: Kirigami.ContextDrawer {
         id: contextDrawer
     }

@@ -23,10 +23,10 @@
 #include <QSharedPointer>
 #endif
 
-OnvifDeviceDiscover::OnvifDeviceDiscover(QObject *parent) :
+OnvifDeviceDiscover::OnvifDeviceDiscover(QObject* parent) :
     QObject(parent)
 {
-    qRegisterMetaType<QObjectList>("QObjectList");
+    qRegisterMetaType<QObjectList> ("QObjectList");
 
 #ifdef WITH_KDSOAP_WSDISCOVERY_CLIENT
     m_client = new WSDiscoveryClient(this);
@@ -51,7 +51,7 @@ bool OnvifDeviceDiscover::isAvailable()
 QObjectList OnvifDeviceDiscover::matchList() const
 {
     QObjectList list;
-    for(auto match : m_matchMap.values()) {
+    for (auto match : m_matchMap.values()) {
         list.append(match);
     }
     return list;
@@ -65,27 +65,27 @@ void OnvifDeviceDiscover::start()
 #endif
 }
 
-void OnvifDeviceDiscover::matchReceived(const QSharedPointer<WSDiscoveryTargetService> &matchedService)
+void OnvifDeviceDiscover::matchReceived(const QSharedPointer<WSDiscoveryTargetService>& matchedService)
 {
 #ifdef WITH_KDSOAP_WSDISCOVERY_CLIENT
-    OnvifDeviceDiscoverMatch * deviceMatch = m_matchMap.value(matchedService->endpointReference());
-    if(deviceMatch == nullptr) {
+    OnvifDeviceDiscoverMatch* deviceMatch = m_matchMap.value(matchedService->endpointReference());
+    if (deviceMatch == nullptr) {
         deviceMatch = new OnvifDeviceDiscoverMatch();
     }
     deviceMatch->m_endpoint = matchedService->endpointReference();
-    for(auto& scope : matchedService->scopeList()) {
-        if(scope.scheme() == "onvif" &&
+    for (auto& scope : matchedService->scopeList()) {
+        if (scope.scheme() == "onvif" &&
                 scope.authority().toLower() == "www.onvif.org") {
             auto splitPath = scope.path().split("/", QString::SkipEmptyParts);
-            if(splitPath[0].toLower() == "name") {
+            if (splitPath[0].toLower() == "name") {
                 deviceMatch->m_name = splitPath[1];
             }
-            if(splitPath[0].toLower() == "hardware") {
+            if (splitPath[0].toLower() == "hardware") {
                 deviceMatch->m_hardware = splitPath[1];
             }
         }
     }
-    for(auto& xAddr : matchedService->xAddrList()) {
+    for (auto& xAddr : matchedService->xAddrList()) {
         deviceMatch->m_xAddr = xAddr;
     }
     deviceMatch->m_lastSeen = matchedService->lastSeen();

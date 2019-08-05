@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,13 +25,13 @@ class OnvifDeviceManagerModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit OnvifDeviceManagerModel(const OnvifDeviceManager* deviceManager, QObject *parent = nullptr);
+    explicit OnvifDeviceManagerModel(const OnvifDeviceManager* deviceManager, QObject* parent = nullptr);
 
 public:
-    int rowCount(const QModelIndex &parent) const;
-    QVariant data(const QModelIndex &index, int role) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-    QHash<int, QByteArray> roleNames() const;
+    int rowCount(const QModelIndex& parent) const override;
+    QVariant data(const QModelIndex& index, int role) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
+    QHash<int, QByteArray> roleNames() const override;
 
 private slots:
     void deviceListChanged();

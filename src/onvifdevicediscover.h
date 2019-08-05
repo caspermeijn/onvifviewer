@@ -25,7 +25,8 @@ class WSDiscoveryClient;
 class WSDiscoveryProbeJob;
 class WSDiscoveryTargetService;
 
-class OnvifDeviceDiscoverMatch : public QObject {
+class OnvifDeviceDiscoverMatch : public QObject
+{
     Q_OBJECT
     Q_PROPERTY(QString name READ getName CONSTANT)
     Q_PROPERTY(QString hardware READ getHardware CONSTANT)
@@ -55,7 +56,7 @@ class OnvifDeviceDiscover : public QObject
     Q_PROPERTY(bool isAvailable READ isAvailable CONSTANT)
     Q_PROPERTY(QObjectList matchList READ matchList NOTIFY matchListChanged)
 public:
-    explicit OnvifDeviceDiscover(QObject *parent = nullptr);
+    explicit OnvifDeviceDiscover(QObject* parent = nullptr);
     bool isAvailable();
     QObjectList matchList() const;
 
@@ -69,9 +70,9 @@ private slots:
     void matchReceived(const QSharedPointer<WSDiscoveryTargetService>& matchedService);
 
 private:
-    WSDiscoveryClient * m_client;
-    WSDiscoveryProbeJob * m_probeJob;
-    QMap<QString, OnvifDeviceDiscoverMatch *> m_matchMap;
+    WSDiscoveryClient* m_client;
+    WSDiscoveryProbeJob* m_probeJob;
+    QMap<QString, OnvifDeviceDiscoverMatch*> m_matchMap;
 };
 
 #endif // ONVIFDEVICEDISCOVER_H

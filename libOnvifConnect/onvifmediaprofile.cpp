@@ -1,4 +1,4 @@
-﻿/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2018 Casper Meijn <casper@meijn.net>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ class OnvifMediaProfilePrivate : public QSharedData
 public:
     OnvifMediaProfilePrivate() {;}
 
-    OnvifMediaProfilePrivate(const OnvifSoapMedia::TT__Profile &profile) :
+    OnvifMediaProfilePrivate(const OnvifSoapMedia::TT__Profile& profile) :
         fixed(profile.fixed()),
         name(profile.name()),
         token(profile.token().value()),
@@ -45,11 +45,11 @@ public:
         }
     }
 
-    OnvifMediaProfilePrivate(const OnvifSoapMedia2::TR2__MediaProfile &profile) :
+    OnvifMediaProfilePrivate(const OnvifSoapMedia2::TR2__MediaProfile& profile) :
         fixed(profile.fixed()),
         name(profile.name()),
         token(profile.token().value()),
-        ptzNodeToken( profile.configurations().pTZ().nodeToken()),
+        ptzNodeToken(profile.configurations().pTZ().nodeToken()),
         videoEncoding(profile.configurations().videoEncoder().encoding()),
         resolutionPixels(profile.configurations().videoEncoder().resolution().height() * profile.configurations().videoEncoder().resolution().width())
     {
@@ -69,21 +69,21 @@ OnvifMediaProfile::OnvifMediaProfile() :
 {
 }
 
-OnvifMediaProfile::OnvifMediaProfile(const OnvifMediaProfile &other) = default;
+OnvifMediaProfile::OnvifMediaProfile(const OnvifMediaProfile& other) = default;
 
-OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia::TT__Profile &profile) :
+OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia::TT__Profile& profile) :
     d(new OnvifMediaProfilePrivate(profile))
 {
 }
 
-OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia2::TR2__MediaProfile &profile) :
+OnvifMediaProfile::OnvifMediaProfile(const OnvifSoapMedia2::TR2__MediaProfile& profile) :
     d(new OnvifMediaProfilePrivate(profile))
 {
 }
 
 OnvifMediaProfile::~OnvifMediaProfile() = default;
 
-OnvifMediaProfile &OnvifMediaProfile::operator=(const OnvifMediaProfile &other)
+OnvifMediaProfile& OnvifMediaProfile::operator= (const OnvifMediaProfile& other)
 {
     if (this != &other) {
         OnvifMediaProfile copy(other);
@@ -97,7 +97,7 @@ QString OnvifMediaProfile::name() const
     return d->name;
 }
 
-void OnvifMediaProfile::setName(const QString &name)
+void OnvifMediaProfile::setName(const QString& name)
 {
     d->name = name;
 }
@@ -107,7 +107,7 @@ QString OnvifMediaProfile::token() const
     return d->token;
 }
 
-void OnvifMediaProfile::setToken(const QString &token)
+void OnvifMediaProfile::setToken(const QString& token)
 {
     d->token = token;
 }
@@ -137,13 +137,13 @@ long OnvifMediaProfile::resolutionPixels() const
     return d->resolutionPixels;
 }
 
-QDebug operator<<(QDebug debug, const OnvifMediaProfile &p)
+QDebug operator<< (QDebug debug, const OnvifMediaProfile& p)
 {
     QDebugStateSaver saver(debug);
     debug.nospace() << "(Fixed: " << p.fixed()
                     << ", Name: " << p.name()
                     << ", Token: " << p.token()
                     << ", VideoEncoding: " << p.videoEncoding()
-                    << ", ResolutionPixels: " << p.resolutionPixels()<< ')';
+                    << ", ResolutionPixels: " << p.resolutionPixels() << ')';
     return debug;
 }

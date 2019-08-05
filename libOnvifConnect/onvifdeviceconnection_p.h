@@ -27,13 +27,13 @@ class OnvifDeviceConnectionPrivate
 private:
     OnvifDeviceConnectionPrivate(OnvifDeviceConnection* connection);
 
-    OnvifDeviceConnection * const q_ptr;
+    OnvifDeviceConnection* const q_ptr;
 
     OnvifSoapDevicemgmt::DeviceBindingService soapService;
-    OnvifDeviceService * deviceService = nullptr;
-    OnvifMediaService * mediaService = nullptr;
-    OnvifMedia2Service * media2Service = nullptr;
-    OnvifPtzService * ptzService = nullptr;
+    OnvifDeviceService* deviceService = nullptr;
+    OnvifMediaService* mediaService = nullptr;
+    OnvifMedia2Service* media2Service = nullptr;
+    OnvifPtzService* ptzService = nullptr;
 
     QString hostname;
     QString username;
@@ -49,16 +49,16 @@ private:
 
     static const QString c_baseEndpointURI;
 
-    void getServicesDone( const OnvifSoapDevicemgmt::TDS__GetServicesResponse& parameters );
-    void getServicesError( const KDSoapMessage& fault );
-    void getCapabilitiesDone( const OnvifSoapDevicemgmt::TDS__GetCapabilitiesResponse& parameters );
-    void getCapabilitiesError( const KDSoapMessage& fault );
+    void getServicesDone(const OnvifSoapDevicemgmt::TDS__GetServicesResponse& parameters);
+    void getServicesError(const KDSoapMessage& fault);
+    void getCapabilitiesDone(const OnvifSoapDevicemgmt::TDS__GetCapabilitiesResponse& parameters);
+    void getCapabilitiesError(const KDSoapMessage& fault);
 
     void checkServicesAvailable();
 
 public:
     void updateUrlHost(QUrl* url);
-    void updateSoapCredentials(KDSoapClientInterface * clientInterface);
+    void updateSoapCredentials(KDSoapClientInterface* clientInterface);
     void updateUrlCredentials(QUrl* url);
     void handleSoapError(const KDSoapMessage& fault, const QString& location);
 };
