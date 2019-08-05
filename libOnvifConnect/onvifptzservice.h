@@ -47,16 +47,16 @@ public:
     void setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilities& capabilities);
     void setServiceCapabilities(const OnvifSoapDevicemgmt::TT__PTZCapabilities& capabilities);
 
-    void absoluteMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction);
+    void absoluteMove(const OnvifMediaProfile& profile, float xFraction, float yFraction);
 
     bool isRelativeMoveSupported(const OnvifMediaProfile& profile) const;
-    void relativeMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction);
+    void relativeMove(const OnvifMediaProfile& profile, float xFraction, float yFraction);
 
     bool isContinuousMoveSupported(const OnvifMediaProfile& profile) const;
-    void continuousMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction);
+    void continuousMove(const OnvifMediaProfile& profile, float xFraction, float yFraction);
 
     bool isRelativeZoomSupported(const OnvifMediaProfile& profile) const;
-    void relativeZoom(const OnvifMediaProfile& profile, qreal zoomFraction);
+    void relativeZoom(const OnvifMediaProfile& profile, float zoomFraction);
 
     bool isHomeSupported(const OnvifMediaProfile& profile) const;
     void goToHome(const OnvifMediaProfile& profile);

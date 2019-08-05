@@ -34,9 +34,9 @@ void OnvifSnapshotViewer::paint(QPainter* painter)
 {
     if (m_downloader) {
         const QPixmap& snapshot = m_downloader->snapshot();
-        int heightPixmap = width() / aspectRatio();
-        int y = (height() - heightPixmap) / 2;
-        painter->drawPixmap(0, y, width(), heightPixmap, snapshot);
+        int heightPixmap = (int)(width() / aspectRatio());
+        int y = ((int)height() - heightPixmap) / 2;
+        painter->drawPixmap(0, y, (int)width(), heightPixmap, snapshot);
     }
 }
 

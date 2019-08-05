@@ -99,7 +99,7 @@ public slots:
     void ptzDown();
     void ptzLeft();
     void ptzRight();
-    void ptzMove(qreal xFraction, qreal yFraction);
+    void ptzMove(float xFraction, float yFraction);
     void ptzHome();
     void ptzSaveHomePosition();
     void ptzStop();

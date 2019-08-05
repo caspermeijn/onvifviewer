@@ -184,13 +184,12 @@ void OnvifPtzService::setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilit
     //TODO: Use capabilities
 }
 
-void OnvifPtzService::setServiceCapabilities(const OnvifSoapDevicemgmt::TT__PTZCapabilities& capabilities)
+void OnvifPtzService::setServiceCapabilities(const OnvifSoapDevicemgmt::TT__PTZCapabilities& /*capabilities*/)
 {
-    Q_D(OnvifPtzService);
     // No useful capabilities are defines
 }
 
-void OnvifPtzService::absoluteMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction)
+void OnvifPtzService::absoluteMove(const OnvifMediaProfile& profile, float xFraction, float yFraction)
 {
     Q_D(OnvifPtzService);
     Q_ASSERT(-1.0 <= xFraction && xFraction <= 1.0);
@@ -212,7 +211,7 @@ void OnvifPtzService::absoluteMove(const OnvifMediaProfile& profile, qreal xFrac
     d->soapService.asyncAbsoluteMove(request);
 }
 
-void OnvifPtzService::relativeMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction)
+void OnvifPtzService::relativeMove(const OnvifMediaProfile& profile, float xFraction, float yFraction)
 {
     Q_D(OnvifPtzService);
     Q_ASSERT(-1.0 <= xFraction && xFraction <= 1.0);
@@ -245,7 +244,7 @@ bool OnvifPtzService::isContinuousMoveSupported(const OnvifMediaProfile& profile
     return false;
 }
 
-void OnvifPtzService::continuousMove(const OnvifMediaProfile& profile, qreal xFraction, qreal yFraction)
+void OnvifPtzService::continuousMove(const OnvifMediaProfile& profile, float xFraction, float yFraction)
 {
     Q_D(OnvifPtzService);
     Q_ASSERT(-1.0 <= xFraction && xFraction <= 1.0);
@@ -278,7 +277,7 @@ bool OnvifPtzService::isRelativeZoomSupported(const OnvifMediaProfile& profile) 
     return false;
 }
 
-void OnvifPtzService::relativeZoom(const OnvifMediaProfile& profile, qreal zoomFraction)
+void OnvifPtzService::relativeZoom(const OnvifMediaProfile& profile, float zoomFraction)
 {
     Q_D(OnvifPtzService);
     Q_ASSERT(-1.0 <= zoomFraction && zoomFraction <= 1.0);

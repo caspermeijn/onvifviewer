@@ -350,25 +350,25 @@ void OnvifDevice::setHostName(const QString& hostName)
 
 void OnvifDevice::ptzUp()
 {
-    ptzMove(0, 0.1);
+    ptzMove(0, 0.1f);
 }
 
 void OnvifDevice::ptzDown()
 {
-    ptzMove(0, -0.1);
+    ptzMove(0, -0.1f);
 }
 
 void OnvifDevice::ptzLeft()
 {
-    ptzMove(-0.1, 0);
+    ptzMove(-0.1f, 0);
 }
 
 void OnvifDevice::ptzRight()
 {
-    ptzMove(0.1, 0);
+    ptzMove(0.1f, 0);
 }
 
-void OnvifDevice::ptzMove(qreal xFraction, qreal yFraction)
+void OnvifDevice::ptzMove(float xFraction, float yFraction)
 {
     OnvifPtzService* ptzService = m_connection.getPtzService();
     Q_ASSERT(ptzService);
@@ -406,12 +406,12 @@ void OnvifDevice::ptzZoomIn()
 {
     OnvifPtzService* ptzService = m_connection.getPtzService();
     Q_ASSERT(ptzService);
-    ptzService->relativeZoom(m_selectedMediaProfile, 0.1);
+    ptzService->relativeZoom(m_selectedMediaProfile, 0.1f);
 }
 
 void OnvifDevice::ptzZoomOut()
 {
     OnvifPtzService* ptzService = m_connection.getPtzService();
     Q_ASSERT(ptzService);
-    ptzService->relativeZoom(m_selectedMediaProfile, -0.1);
+    ptzService->relativeZoom(m_selectedMediaProfile, -0.1f);
 }
