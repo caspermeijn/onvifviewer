@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-07-09 15:01+0000\n"
+"PO-Revision-Date: 2019-08-07 01:23+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/nb_NO/>\n"
@@ -108,7 +108,7 @@ msgstr "Kamera %1"
 #: DeviceViewerPage.qml:28
 msgctxt "opens pan/tilt/zoom overlay"
 msgid "Move"
-msgstr ""
+msgstr "Flytt"
 
 #: DeviceViewerPage.qml:36
 msgctxt "opens device information overlay"
@@ -186,12 +186,12 @@ msgstr "Oversikt"
 #: OverviewPage.qml:29
 msgctxt "adds a new camera"
 msgid "Add"
-msgstr ""
+msgstr "Legg til"
 
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
 msgid "About"
-msgstr ""
+msgstr "Om"
 
 #: OverviewPage.qml:56
 msgid "Automaticly discover camera"
