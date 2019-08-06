@@ -1,12 +1,23 @@
-# Copyright (C) 2018 Casper Meijn <casper@meijn.net>
-# This file is distributed under the same license as the onvifviewer package.
+# Copyright (C) 2018-2019 Casper Meijn <casper@meijn.net>
 #
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
 "POT-Creation-Date: 2018-08-03 17:51+0200\n"
-"PO-Revision-Date: 2019-06-30 10:40+0000\n"
+"PO-Revision-Date: 2019-07-09 15:01+0000\n"
 "Last-Translator: Casper Meijn <casper@meijn.net>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/nl/>\n"
@@ -15,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: main.cpp:51
 msgid "ONVIFViewer"
@@ -290,11 +301,11 @@ msgstr "Dit is een kleine versieophoging, met de volgende verbeteringen:"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:43
 msgid "Added support for camera discovery"
-msgstr ""
+msgstr "Automatische ontdekking van camera's toegevoegd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
 msgid "Fixed video viewer for Android"
-msgstr ""
+msgstr "Video in Android verbeterd"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Improved translations"
