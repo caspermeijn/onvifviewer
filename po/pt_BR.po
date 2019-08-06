@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-06-28 21:01+0000\n"
+"PO-Revision-Date: 2019-07-20 20:07+0000\n"
 "Last-Translator: Leandro Stanger <leandrostanger@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/pt_BR/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: main.cpp:51
 msgid "ONVIFViewer"
@@ -289,15 +289,15 @@ msgstr "Esta é uma versão menor, com os seguintes aprimoramentos:"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:43
 msgid "Added support for camera discovery"
-msgstr ""
+msgstr "Adicionado suporte para descoberta de câmera"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
 msgid "Fixed video viewer for Android"
-msgstr ""
+msgstr "Visualizador de vídeo fixo para Android"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Improved translations"
-msgstr ""
+msgstr "Traduções aprimoradas"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:97

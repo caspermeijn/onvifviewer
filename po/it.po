@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-02-28 20:18+0000\n"
+"PO-Revision-Date: 2019-07-09 15:01+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/it/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.8-dev\n"
 
 #: main.cpp:51
 msgid "ONVIFViewer"
@@ -94,49 +94,39 @@ msgstr "Abilita la correzione del movimento della telecamera"
 msgid "Remove camera"
 msgstr "rimuovi la telecamera"
 
-#: DeviceViewerPage.qml:25 OverviewPage.qml:145
+#: DeviceViewerPage.qml:25 OverviewPage.qml:146
 msgid "Camera %1"
 msgstr "Fotocamera %1"
 
-#: DeviceViewerPage.qml:28
-msgctxt "opens pan/tilt/zoom overlay"
-msgid "Move"
-msgstr ""
-
-#: DeviceViewerPage.qml:36
-msgctxt "opens device information overlay"
+#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
 msgid "Device information"
 msgstr "Informazioni sul dispositivo"
 
-#: DeviceViewerPage.qml:87
+#: DeviceViewerPage.qml:88
 msgid "Saving current position as home"
 msgstr "Salvare la posizione corrente come casa"
 
-#: DeviceViewerPage.qml:142
-msgid "Device information"
-msgstr "Informazioni sul dispositivo"
-
-#: DeviceViewerPage.qml:148
+#: DeviceViewerPage.qml:149
 msgid "Manufacturer:"
 msgstr "Produttore:"
 
-#: DeviceViewerPage.qml:155
+#: DeviceViewerPage.qml:156
 msgid "Model:"
 msgstr "Modello:"
 
-#: DeviceViewerPage.qml:162
+#: DeviceViewerPage.qml:163
 msgid "Firmware version:"
 msgstr "Versione firmware:"
 
-#: DeviceViewerPage.qml:169
+#: DeviceViewerPage.qml:170
 msgid "Serial number:"
 msgstr "Numero di serie:"
 
-#: DeviceViewerPage.qml:176
+#: DeviceViewerPage.qml:177
 msgid "Hardware identifier:"
 msgstr "Identificatore dell'hardware:"
 
-#: DeviceViewerPage.qml:196
+#: DeviceViewerPage.qml:197
 msgid ""
 "This camera is currently only opened as a preview. This means that the "
 "device is not loaded the next time you open this application. If you want to "
@@ -147,7 +137,7 @@ msgstr ""
 "applicazione. Se si desidera salvare questo dispositivo, è necessario fare "
 "clic sul pulsante Salva."
 
-#: DeviceViewerPage.qml:221
+#: DeviceViewerPage.qml:222
 msgid ""
 "An error occurred during communication with the camera.\n"
 "\n"
@@ -159,15 +149,15 @@ msgstr ""
 
 #: DiscoverCamera.qml:24
 msgid "Discover camera"
-msgstr ""
+msgstr "Trova camera"
 
 #: DiscoverCamera.qml:32
 msgid "No camera discovered in the local network."
-msgstr ""
+msgstr "Nessuna telecamera trovata nella rete locale."
 
 #: DiscoverCamera.qml:40
 msgid "Click on a discovered camera to add it:"
-msgstr ""
+msgstr "Fai clic su una telecamera rilevata per aggiungerla:"
 
 #: OnvifCameraViewer.qml:29
 msgid "Loading…"
@@ -177,29 +167,24 @@ msgstr "Caricamento…"
 msgid "Overview"
 msgstr "Panoramica"
 
-#: OverviewPage.qml:29
-msgctxt "adds a new camera"
-msgid "Add"
-msgstr ""
-
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
-msgid "About"
-msgstr ""
+msgid "About ONVIFViewer"
+msgstr "Informazioni su ONVIFViewer"
 
-#: OverviewPage.qml:56
+#: OverviewPage.qml:57
 msgid "Automaticly discover camera"
-msgstr ""
+msgstr "Trova la telecamera automaticamente"
 
-#: OverviewPage.qml:65
+#: OverviewPage.qml:66
 msgid "Automatically find a camera in your network."
-msgstr ""
+msgstr "Trova una telecamera sulla tua rete automaticamente."
 
-#: OverviewPage.qml:74
+#: OverviewPage.qml:75
 msgid "Add demonstation camera"
 msgstr "Aggiungi dimostrazione fotocamera"
 
-#: OverviewPage.qml:82
+#: OverviewPage.qml:83
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
@@ -207,11 +192,11 @@ msgstr ""
 "Queste videocamere in dimostrazione ti mostrano alcune delle capacità, senza "
 "possedere una videocamera."
 
-#: OverviewPage.qml:90
+#: OverviewPage.qml:91
 msgid "Manually add camera"
 msgstr "Aggiungere manualmente la fotocamera"
 
-#: OverviewPage.qml:100
+#: OverviewPage.qml:101
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
@@ -219,17 +204,17 @@ msgstr ""
 "Aggiunta manuale di una macchina fotografica significa che è necessario "
 "fornire i parametri di connessione manualmente."
 
-#: OverviewPage.qml:120
+#: OverviewPage.qml:121
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr ""
 "È possibile aggiungere una fotocamera facendo clic sul pulsante \"Aggiungi\" "
 "qui sotto."
 
-#: OverviewPage.qml:167
+#: OverviewPage.qml:168
 msgid "An error occurred during communication with the camera."
 msgstr "Errore durante la comunicazione con la fotocamera."
 
-#: OverviewPage.qml:175
+#: OverviewPage.qml:176
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "La fotocamera non supporta il recupero delle istantanee."
 
@@ -292,108 +277,113 @@ msgstr "La pagina di impostazioni della fotocamera"
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:103
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:114
 msgid "This is a minor release, with the following improvements:"
-msgstr ""
+msgstr "Questa è una versione minore, con i seguenti miglioramenti:"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:43
 msgid "Added support for camera discovery"
-msgstr ""
+msgstr "Aggiunto supporto per la scoperta della telecamera"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
 msgid "Fixed video viewer for Android"
-msgstr ""
+msgstr "Risolto il visore video per Android"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Improved translations"
-msgstr ""
+msgstr "Traduzioni migliorate"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:97
 msgid "Some small improvements"
-msgstr ""
+msgstr "Alcuni piccoli miglioramenti"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:54
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:65
 msgid "Improved support for older devices"
-msgstr ""
+msgstr "Supporto migliorato per vecchi dispositivi"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:55
 msgid "Show multiple cameras if room available"
-msgstr ""
+msgstr "Mostra più telecamere se stanza disponibile"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:56
 msgid "Improved translations and added new langagues"
-msgstr ""
+msgstr "Traduzioni migliorate e nuove lingue aggiunte"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:57
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:67
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:108
 msgid "Several internal improvements"
-msgstr ""
+msgstr "Diversi miglioramenti interni"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:66
 msgid "Fixed a potential crash"
-msgstr ""
+msgstr "Risolto un potenziale crash"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:75
 msgid "Added donation instructions"
-msgstr ""
+msgstr "Aggiunte istruzioni per la donazione"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:76
 msgid "Use breeze icons as fallback theme"
-msgstr ""
+msgstr "Usa le icone di Breeze come tema di fallback"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:84
 msgid "Added opening cameras by URL"
-msgstr ""
+msgstr "Aggiunte telecamere di apertura per URL"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:85
 msgid "Improved snapshot downloading"
-msgstr ""
+msgstr "Miglioramento del download di istantanee"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:86
 msgid "Improved translations and added Norwegian"
-msgstr ""
+msgstr "Traduzioni migliorate e aggiunta  lingua norvegese"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:94
 msgid "Improved UI style by using Kirigami cards"
 msgstr ""
+"Miglioramento dello stile dell'interfaccia utente usando le carte Kirigami"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:95
 msgid "Improved translations by supporting Weblate"
-msgstr ""
+msgstr "Traduzioni migliorate supportando Weblate"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:96
 msgid "Made demo cameras optional, by moving them to the add camera button"
 msgstr ""
+"Realizzate telecamere dimostrative opzionali, spostandole sul pulsante "
+"Aggiungi telecamera"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:105
 msgid ""
 "Renamed internal application name. Note: this causes the configuration file "
 "to reset"
 msgstr ""
+"Nome dell'applicazione interna rinominata. Nota: ciò causa il reset del file "
+"di configurazione"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:106
 msgid ""
 "Added internationalization support with Brazilian and Dutch translations"
 msgstr ""
+"Aggiunto supporto per l'internazionalizzazione con traduzioni brasiliane e "
+"olandesi"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:107
 msgid "Replaced demo cameras"
-msgstr ""
+msgstr "Sostituite le telecamere demo"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:116
 msgid ""
 "Added workaround for cameras that don't support relative movement properly"
 msgstr ""
+"Aggiunta soluzione alternativa per le telecamere che non supportano "
+"correttamente il relativo movimento"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:117
 msgid "Added support for zoom'ing"
-msgstr ""
+msgstr "Aggiunto supporto per lo zoom"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:118
 msgid "Improved build system"
-msgstr ""
-
-#~ msgctxt "opens the \"About\" menu"
-#~ msgid "About ONVIFViewer"
-#~ msgstr "Informazioni su ONVIFViewer"
+msgstr "Migliorato sistema di compilazione"
