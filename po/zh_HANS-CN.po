@@ -1,8 +1,17 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the onvifviewer package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (C) 2019 TaroWL <harry1211_wl@outlook.com>
 #
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
@@ -92,46 +101,59 @@ msgstr "启用摄像头移动与固定"
 msgid "Remove camera"
 msgstr "移除摄像头"
 
-#: DeviceViewerPage.qml:25 OverviewPage.qml:146
+#: DeviceViewerPage.qml:25 OverviewPage.qml:145
 msgid "Camera %1"
 msgstr "摄像头 %1"
 
-#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
+#: DeviceViewerPage.qml:28
+msgctxt "opens pan/tilt/zoom overlay"
+msgid "Move"
+msgstr ""
+
+#: DeviceViewerPage.qml:36
+#, fuzzy
+msgctxt "opens device information overlay"
 msgid "Device information"
 msgstr "设备信息"
 
-#: DeviceViewerPage.qml:88
+#: DeviceViewerPage.qml:87
 msgid "Saving current position as home"
 msgstr "保存当前位置为主要位置"
 
-#: DeviceViewerPage.qml:149
+#: DeviceViewerPage.qml:142
+msgid "Device information"
+msgstr "设备信息"
+
+#: DeviceViewerPage.qml:148
 msgid "Manufacturer:"
 msgstr "制造商:"
 
-#: DeviceViewerPage.qml:156
+#: DeviceViewerPage.qml:155
 msgid "Model:"
 msgstr "型号:"
 
-#: DeviceViewerPage.qml:163
+#: DeviceViewerPage.qml:162
 msgid "Firmware version:"
 msgstr "固件版本:"
 
-#: DeviceViewerPage.qml:170
+#: DeviceViewerPage.qml:169
 msgid "Serial number:"
 msgstr "序列号:"
 
-#: DeviceViewerPage.qml:177
+#: DeviceViewerPage.qml:176
 msgid "Hardware identifier:"
 msgstr "硬件标识符:"
 
-#: DeviceViewerPage.qml:197
+#: DeviceViewerPage.qml:196
 msgid ""
 "This camera is currently only opened as a preview. This means that the "
 "device is not loaded the next time you open this application. If you want to "
 "save this device, then you need to click the Save button."
-msgstr "此摄像头当前仅作为预览打开，下次打开此应用程序时不会加载设备。如果要保存此设备，需要单击“保存”按钮。"
+msgstr ""
+"此摄像头当前仅作为预览打开，下次打开此应用程序时不会加载设备。如果要保存此设"
+"备，需要单击“保存”按钮。"
 
-#: DeviceViewerPage.qml:222
+#: DeviceViewerPage.qml:221
 msgid ""
 "An error occurred during communication with the camera.\n"
 "\n"
@@ -161,48 +183,53 @@ msgstr "正在加载…"
 msgid "Overview"
 msgstr "概观"
 
+#: OverviewPage.qml:29
+msgctxt "adds a new camera"
+msgid "Add"
+msgstr ""
+
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
-msgid "About ONVIFViewer"
-msgstr "关于 ONVIFViewer"
+msgid "About"
+msgstr ""
 
-#: OverviewPage.qml:57
+#: OverviewPage.qml:56
 msgid "Automaticly discover camera"
 msgstr "自动发现摄像头"
 
-#: OverviewPage.qml:66
+#: OverviewPage.qml:65
 msgid "Automatically find a camera in your network."
 msgstr "在网络中找到一个摄像头。"
 
-#: OverviewPage.qml:75
+#: OverviewPage.qml:74
 msgid "Add demonstation camera"
 msgstr "添加演示摄像头"
 
-#: OverviewPage.qml:83
+#: OverviewPage.qml:82
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
 msgstr "这些样例摄像头向您展示了一些功能，而不需要拥有一个摄像头。"
 
-#: OverviewPage.qml:91
+#: OverviewPage.qml:90
 msgid "Manually add camera"
 msgstr "手动添加摄像头"
 
-#: OverviewPage.qml:101
+#: OverviewPage.qml:100
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
 msgstr "手动添加摄像头需要您自己提供连接参数。"
 
-#: OverviewPage.qml:121
+#: OverviewPage.qml:120
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr "您可以通过单击下面的“添加”按钮添加摄像头。"
 
-#: OverviewPage.qml:168
+#: OverviewPage.qml:167
 msgid "An error occurred during communication with the camera."
 msgstr "与摄像头通信时发生错误。"
 
-#: OverviewPage.qml:176
+#: OverviewPage.qml:175
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "摄像头不支持快照检索。"
 
@@ -360,3 +387,7 @@ msgstr "增加了对缩放的支持"
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:118
 msgid "Improved build system"
 msgstr "改进了构建系统"
+
+#~ msgctxt "opens the \"About\" menu"
+#~ msgid "About ONVIFViewer"
+#~ msgstr "关于 ONVIFViewer"

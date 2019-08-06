@@ -1,8 +1,17 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the onvifviewer package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (C) 2018-2019 albanobattistella <albano_battistella@hotmail.com>
 #
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
@@ -94,39 +103,50 @@ msgstr "Abilita la correzione del movimento della telecamera"
 msgid "Remove camera"
 msgstr "rimuovi la telecamera"
 
-#: DeviceViewerPage.qml:25 OverviewPage.qml:146
+#: DeviceViewerPage.qml:25 OverviewPage.qml:145
 msgid "Camera %1"
 msgstr "Fotocamera %1"
 
-#: DeviceViewerPage.qml:36 DeviceViewerPage.qml:143
+#: DeviceViewerPage.qml:28
+msgctxt "opens pan/tilt/zoom overlay"
+msgid "Move"
+msgstr ""
+
+#: DeviceViewerPage.qml:36
+#, fuzzy
+msgctxt "opens device information overlay"
 msgid "Device information"
 msgstr "Informazioni sul dispositivo"
 
-#: DeviceViewerPage.qml:88
+#: DeviceViewerPage.qml:87
 msgid "Saving current position as home"
 msgstr "Salvare la posizione corrente come casa"
 
-#: DeviceViewerPage.qml:149
+#: DeviceViewerPage.qml:142
+msgid "Device information"
+msgstr "Informazioni sul dispositivo"
+
+#: DeviceViewerPage.qml:148
 msgid "Manufacturer:"
 msgstr "Produttore:"
 
-#: DeviceViewerPage.qml:156
+#: DeviceViewerPage.qml:155
 msgid "Model:"
 msgstr "Modello:"
 
-#: DeviceViewerPage.qml:163
+#: DeviceViewerPage.qml:162
 msgid "Firmware version:"
 msgstr "Versione firmware:"
 
-#: DeviceViewerPage.qml:170
+#: DeviceViewerPage.qml:169
 msgid "Serial number:"
 msgstr "Numero di serie:"
 
-#: DeviceViewerPage.qml:177
+#: DeviceViewerPage.qml:176
 msgid "Hardware identifier:"
 msgstr "Identificatore dell'hardware:"
 
-#: DeviceViewerPage.qml:197
+#: DeviceViewerPage.qml:196
 msgid ""
 "This camera is currently only opened as a preview. This means that the "
 "device is not loaded the next time you open this application. If you want to "
@@ -137,7 +157,7 @@ msgstr ""
 "applicazione. Se si desidera salvare questo dispositivo, è necessario fare "
 "clic sul pulsante Salva."
 
-#: DeviceViewerPage.qml:222
+#: DeviceViewerPage.qml:221
 msgid ""
 "An error occurred during communication with the camera.\n"
 "\n"
@@ -167,24 +187,29 @@ msgstr "Caricamento…"
 msgid "Overview"
 msgstr "Panoramica"
 
+#: OverviewPage.qml:29
+msgctxt "adds a new camera"
+msgid "Add"
+msgstr ""
+
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
-msgid "About ONVIFViewer"
-msgstr "Informazioni su ONVIFViewer"
+msgid "About"
+msgstr ""
 
-#: OverviewPage.qml:57
+#: OverviewPage.qml:56
 msgid "Automaticly discover camera"
 msgstr "Trova la telecamera automaticamente"
 
-#: OverviewPage.qml:66
+#: OverviewPage.qml:65
 msgid "Automatically find a camera in your network."
 msgstr "Trova una telecamera sulla tua rete automaticamente."
 
-#: OverviewPage.qml:75
+#: OverviewPage.qml:74
 msgid "Add demonstation camera"
 msgstr "Aggiungi dimostrazione fotocamera"
 
-#: OverviewPage.qml:83
+#: OverviewPage.qml:82
 msgid ""
 "These demonstation cameras show you some on the capabilities, without owning "
 "a camera."
@@ -192,11 +217,11 @@ msgstr ""
 "Queste videocamere in dimostrazione ti mostrano alcune delle capacità, senza "
 "possedere una videocamera."
 
-#: OverviewPage.qml:91
+#: OverviewPage.qml:90
 msgid "Manually add camera"
 msgstr "Aggiungere manualmente la fotocamera"
 
-#: OverviewPage.qml:101
+#: OverviewPage.qml:100
 msgid ""
 "Manually adding a camera means that you need to provide the connection "
 "parameters yourself."
@@ -204,17 +229,17 @@ msgstr ""
 "Aggiunta manuale di una macchina fotografica significa che è necessario "
 "fornire i parametri di connessione manualmente."
 
-#: OverviewPage.qml:121
+#: OverviewPage.qml:120
 msgid "You can add a camera by clicking the \"Add\" button below."
 msgstr ""
 "È possibile aggiungere una fotocamera facendo clic sul pulsante \"Aggiungi\" "
 "qui sotto."
 
-#: OverviewPage.qml:168
+#: OverviewPage.qml:167
 msgid "An error occurred during communication with the camera."
 msgstr "Errore durante la comunicazione con la fotocamera."
 
-#: OverviewPage.qml:176
+#: OverviewPage.qml:175
 msgid "The camera doesn't support the retrieval of snapshots."
 msgstr "La fotocamera non supporta il recupero delle istantanee."
 
@@ -387,3 +412,7 @@ msgstr "Aggiunto supporto per lo zoom"
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:118
 msgid "Improved build system"
 msgstr "Migliorato sistema di compilazione"
+
+#~ msgctxt "opens the \"About\" menu"
+#~ msgid "About ONVIFViewer"
+#~ msgstr "Informazioni su ONVIFViewer"
