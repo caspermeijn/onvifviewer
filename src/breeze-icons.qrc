@@ -11,6 +11,7 @@
         <file alias="settings-configure.svg">../3rdparty/breeze-icons/icons/actions/32/settings-configure.svg</file>
         <file alias="zoom-in.svg">../3rdparty/breeze-icons/icons/actions/32/zoom-in.svg</file>
         <file alias="zoom-out.svg">../3rdparty/breeze-icons/icons/actions/32/zoom-out.svg</file>
+        <file alias="help-about.svg">../3rdparty/breeze-icons/icons/actions/32/help-about.svg</file>
     </qresource>
     <qresource prefix="/icons/breeze/actions/24">
         <file alias="go-home.svg">../3rdparty/breeze-icons/icons/actions/24/go-home.svg</file>
