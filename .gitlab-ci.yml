@@ -28,18 +28,18 @@ fedora:
         - xvfb-run -a -s "-screen 0 1024x768x24" make test
         - make install
 
-android-debug:
-    image: registry.gitlab.com/caspermeijn/docker-images/android-build-onvifviewer:latest
+android-debug-arm:
+    image: registry.gitlab.com/caspermeijn/docker-images/android-arm-build-onvifviewer:latest
     stage: build
     script:
         - ln -sv $PWD /home/user/src/onvifviewer
         - cd 3rdparty && git clone https://github.com/KDE/breeze-icons.git && cd breeze-icons && git checkout v5.58.0
         - cd && export PERSIST=1 && /opt/helpers/build-cmake onvifviewer invalid-git-repo -DCMAKE_CXX_FLAGS=-isystem/opt/kdeandroid-deps/include -DKDSOAP_KDWSDL2CPP_COMPILER=/usr/local/bin/kdwsdl2cpp -DANDROID_APK_DIR=/home/user/src/onvifviewer/android -DQTANDROID_EXPORTED_TARGET=onvifviewer -DWITH_BREEZE_ICONS=ON
         - cd build/onvifviewer/ && make create-apk
-        - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/debug/onvifviewer_build_apk-debug.apk /home/user/src/onvifviewer
+        - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/debug/onvifviewer_build_apk-debug.apk /home/user/src/onvifviewer/onvifviewer_build_apk-debug-arm.apk
     artifacts:
         paths:
-            - onvifviewer_build_apk-debug.apk
+            - onvifviewer_build_apk-debug-arm.apk
 
 test-translations:
     image: registry.gitlab.com/caspermeijn/docker-images/fedora-build-onvifviewer:latest
@@ -74,8 +74,8 @@ sast:
     artifacts:
         paths: [gl-sast-report.json]
 
-android-alpha:
-    image: registry.gitlab.com/caspermeijn/docker-images/android-build-onvifviewer:latest
+android-alpha-arm:
+    image: registry.gitlab.com/caspermeijn/docker-images/android-arm-build-onvifviewer:latest
     stage: alpha
     only: 
         - master
@@ -89,9 +89,9 @@ android-alpha:
         - cd && export PERSIST=1 && /opt/helpers/build-cmake onvifviewer invalid-git-repo -DCMAKE_CXX_FLAGS=-isystem/opt/kdeandroid-deps/include -DKDSOAP_KDWSDL2CPP_COMPILER=/usr/local/bin/kdwsdl2cpp -DANDROID_APK_DIR=/home/user/src/onvifviewer/android -DQTANDROID_EXPORTED_TARGET=onvifviewer -DWITH_BREEZE_ICONS=ON
         - cd build/onvifviewer/ && make create-apk ARGS="--sign /home/user/onvifviewer.jks release --storepass ${ANDROID_KEYSTORE_PASSWORD}"
         - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/release/onvifviewer_build_apk-release-signed.apk /home/user/src/onvifviewer
-        - cd /home/user/src/onvifviewer && APK_PATH=/home/user/src/onvifviewer/onvifviewer_build_apk-release-signed.apk fastlane upload_alpha
+        - cp /home/user/build/onvifviewer/onvifviewer_build_apk/build/outputs/apk/release/onvifviewer_build_apk-release-signed.apk /home/user/src/onvifviewer/onvifviewer_build_apk-release-signed-arm.apk
     after_script:
         - rm /home/user/onvifviewer.jks fastlane/api_key.json
     artifacts:
         paths:
-            - onvifviewer_build_apk-release-signed.apk
+            - onvifviewer_build_apk-release-signed-arm.apk
