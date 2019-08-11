@@ -73,11 +73,11 @@ for lang, text in description_map.items():
 lang = 'en-GB'
 for release in root.findall('./releases/release'):
     version = release.attrib.get('version')
-    versioncode = 0
+    base_versioncode = 0
     for version_part in version.split('.'):
-        versioncode = int(version_part) + versioncode * 100
-    versioncode *= 100
-
+        base_versioncode = int(version_part) + base_versioncode * 100
+    base_versioncode *= 100
+        
     text = ""
     for paragraph in release.findall('./description/*'):
         if paragraph.tag == 'p':
@@ -93,7 +93,15 @@ for release in root.findall('./releases/release'):
     lang_dir = fastlane_path.joinpath(lang)
     changelog_dir = lang_dir.joinpath('changelogs')
     changelog_dir.mkdir(0o755, True, True)
-    changelog_file = changelog_dir.joinpath(str(versioncode) + '.txt')
-    changelog_file.write_text(text)
+    
+    # From version 0.12, multiple APKs are made; 0 = base APK, 1 = armv7, 2 = aarch64
+    if base_versioncode >= 1200:
+        versioncode = base_versioncode * 10
+        versioncodelist = [versioncode, versioncode + 1, versioncode + 2]   
+    else:
+        versioncodelist = [base_versioncode]  
+    for versioncode in versioncodelist:
+        changelog_file = changelog_dir.joinpath(str(versioncode) + '.txt')
+        changelog_file.write_text(text)
 
 fastlane_path.touch()
