@@ -70,7 +70,6 @@ set_package_properties(KDSoapWSDiscoveryClient PROPERTIES DESCRIPTION "KDSoap WS
 find_package(QtAV 1.12.0)
 set_package_properties(QtAV PROPERTIES DESCRIPTION "QtAV Multimedia library" URL "https://github.com/wang-bin/QtAV" TYPE OPTIONAL)
 
-set(ENABLE_CLAZY TRUE)
 include(ECMQMLModules)
 include(ECMSetupVersion)
 include(KDEInstallDirs)
