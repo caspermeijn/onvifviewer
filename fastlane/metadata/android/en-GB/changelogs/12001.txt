@@ -1,0 +1,5 @@
+This is a minor release, with the following improvements:
+- Added support for camera discovery
+- Fixed video viewer for Android
+- Improved translations
+- Some small improvements

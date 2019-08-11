@@ -1,4 +1,5 @@
 lane :upload_alpha do
-  sh("./prepare_metadata_for_alpha.py", "--manifest=../android/AndroidManifest.xml", "--fastlane=metadata")
-  upload_to_play_store(track: 'alpha', apk: ENV["APK_PATH"], check_superseded_tracks: true)
+  sh("./prepare_metadata_for_alpha.py", "--manifest=" + ENV["APK_PATH"] + "/AndroidManifest-arm.xml", "--fastlane=metadata")
+  sh("./prepare_metadata_for_alpha.py", "--manifest=" + ENV["APK_PATH"] + "/AndroidManifest-aarch64.xml", "--fastlane=metadata")
+  upload_to_play_store(track: 'alpha', apk_paths: [ ENV["APK_PATH"] + "/onvifviewer_build_apk-release-signed-arm.apk", ENV["APK_PATH"] + "/onvifviewer_build_apk-release-signed-aarch64.apk" ], check_superseded_tracks: true)
 end
