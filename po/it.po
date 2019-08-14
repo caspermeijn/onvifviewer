@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-07-09 15:01+0000\n"
+"PO-Revision-Date: 2019-08-15 20:23+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/it/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 3.8\n"
 
 #: main.cpp:51
 msgid "ONVIFViewer"
@@ -110,10 +110,9 @@ msgstr "Fotocamera %1"
 #: DeviceViewerPage.qml:28
 msgctxt "opens pan/tilt/zoom overlay"
 msgid "Move"
-msgstr ""
+msgstr "Muovi"
 
 #: DeviceViewerPage.qml:36
-#, fuzzy
 msgctxt "opens device information overlay"
 msgid "Device information"
 msgstr "Informazioni sul dispositivo"
@@ -190,12 +189,12 @@ msgstr "Panoramica"
 #: OverviewPage.qml:29
 msgctxt "adds a new camera"
 msgid "Add"
-msgstr ""
+msgstr "Aggiungi"
 
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
 msgid "About"
-msgstr ""
+msgstr "Informazioni su"
 
 #: OverviewPage.qml:56
 msgid "Automaticly discover camera"
