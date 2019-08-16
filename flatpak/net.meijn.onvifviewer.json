@@ -16,7 +16,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/KDAB/KDSoap.git",
-                    "branch": "kdsoap-1.8.0"
+                    "commit": "5371072f6cb5f9e7575ff213b9ab8d98ecd30e2b",
+                    "comment": "Using this specific commit, because kdsoap-ws-discovery-client needs the WS-Addressing changes in KDSoap master"
                 }
             ]
         },
