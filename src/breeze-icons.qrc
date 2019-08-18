@@ -12,12 +12,21 @@
         <file alias="zoom-in.svg">../3rdparty/breeze-icons/icons/actions/32/zoom-in.svg</file>
         <file alias="zoom-out.svg">../3rdparty/breeze-icons/icons/actions/32/zoom-out.svg</file>
         <file alias="help-about.svg">../3rdparty/breeze-icons/icons/actions/32/help-about.svg</file>
+        <file alias="overflow-menu.svg">../3rdparty/breeze-icons/icons/actions/32/overflow-menu.svg</file>
+        <file alias="view-left-close.svg">../3rdparty/breeze-icons/icons/actions/32/view-left-close.svg</file>
+        <file alias="view-right-close.svg">../3rdparty/breeze-icons/icons/actions/32/view-right-close.svg</file>
     </qresource>
     <qresource prefix="/icons/breeze-internal/actions/24">
         <file alias="go-home.svg">../3rdparty/breeze-icons/icons/actions/24/go-home.svg</file>
         <file alias="list-add.svg">../3rdparty/breeze-icons/icons/actions/24/list-add.svg</file>
         <file alias="view-preview.svg">../3rdparty/breeze-icons/icons/actions/24/view-preview.svg</file>
         <file alias="transform-move.svg">../3rdparty/breeze-icons/icons/actions/24/transform-move.svg</file>
+    </qresource>
+    <qresource prefix="/icons/breeze-internal/actions/22">
+        <file alias="handle-sort.svg">../3rdparty/breeze-icons/icons/actions/22/handle-sort.svg</file>
+        <file alias="overflow-menu-left.svg">../3rdparty/breeze-icons/icons/actions/22/overflow-menu-left.svg</file>
+        <file alias="overflow-menu-right.svg">../3rdparty/breeze-icons/icons/actions/22/overflow-menu-right.svg</file>
+        <file alias="user.svg">../3rdparty/breeze-icons/icons/actions/22/user.svg</file>
     </qresource>
     <qresource prefix="/icons/breeze-internal/devices/22">
         <file alias="camera-video.svg">../3rdparty/breeze-icons/icons/devices/22/camera-video.svg</file>
