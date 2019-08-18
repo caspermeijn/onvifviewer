@@ -84,9 +84,9 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
 
 #ifdef USE_BREEZE_ICONS
 #if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
-    QIcon::setFallbackThemeName("breeze");
+    QIcon::setFallbackThemeName("breeze-internal");
 #else
-    QIcon::setThemeName("breeze");
+    QIcon::setThemeName("breeze-internal");
 #endif
 #endif
 
