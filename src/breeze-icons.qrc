@@ -31,4 +31,7 @@
     <qresource prefix="/icons/breeze-internal/devices/22">
         <file alias="camera-video.svg">../3rdparty/breeze-icons/icons/devices/22/camera-video.svg</file>
     </qresource>
+    <qresource prefix="/icons/breeze-internal/apps/48">
+        <file alias="net.meijn.onvifviewer.svg">../desktop/ApplicationIcon.svg</file>
+    </qresource>
 </RCC>

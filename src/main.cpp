@@ -40,6 +40,14 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
 #endif
 
     QApplication app(argc, argv);
+    
+#ifdef USE_BREEZE_ICONS
+#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
+    QIcon::setFallbackThemeName("breeze-internal");
+#else
+    QIcon::setThemeName("breeze-internal");
+#endif
+#endif
 
     KLocalizedString::setApplicationDomain("onvifviewer");
     QCoreApplication::setOrganizationName("CasperMeijn");
@@ -58,6 +66,8 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
                         i18nc("EMAIL OF TRANSLATORS", "Your emails"));
     about.setOrganizationDomain("meijn.net");
     about.setDesktopFileName("net.meijn.onvifviewer");
+    //TODO: setProgramLogo is needed, because Kirigami doesn't show the QApplication::windowIcon
+    about.setProgramLogo(app.windowIcon());  
     about.addAuthor("Casper Meijn", i18n("Main developer"), QStringLiteral("casper@meijn.net"));
     KAboutData::setApplicationData(about);
 
@@ -81,14 +91,6 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
     OnvifDeviceDiscover deviceDiscover;
     deviceDiscover.start();
     qmlRegisterType<OnvifDeviceDiscover> ("net.meijn.onvifviewer", 1, 0, "OnvifDeviceDiscover");
-
-#ifdef USE_BREEZE_ICONS
-#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
-    QIcon::setFallbackThemeName("breeze-internal");
-#else
-    QIcon::setThemeName("breeze-internal");
-#endif
-#endif
 
     QQmlApplicationEngine engine;
     QQmlFileSelector* selector = new QQmlFileSelector(&engine);
