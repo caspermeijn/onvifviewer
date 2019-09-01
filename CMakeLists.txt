@@ -70,6 +70,11 @@ set_package_properties(KDSoapWSDiscoveryClient PROPERTIES DESCRIPTION "KDSoap WS
 find_package(QtAV 1.12.0)
 set_package_properties(QtAV PROPERTIES DESCRIPTION "QtAV Multimedia library" URL "https://github.com/wang-bin/QtAV" TYPE OPTIONAL)
 
+if(NOT ANDROID)
+    find_package(KF5 5.44 REQUIRED XmlGui)
+    add_definitions(-DWITH_KF5_XML_GUI)
+endif()
+
 include(ECMQMLModules)
 include(ECMSetupVersion)
 include(KDEInstallDirs)

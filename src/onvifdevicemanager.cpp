@@ -18,6 +18,10 @@
 #include "onvifdeviceservice.h"
 #include "onvifmediaservice.h"
 
+#ifdef WITH_KF5_XML_GUI
+#include <KAboutApplicationDialog>
+#include <KAboutData>
+#endif
 #include <QPointer>
 #include <QSettings>
 #include <QQmlContext>
@@ -107,3 +111,11 @@ int OnvifDeviceManager::size()
 {
     return m_deviceList.size();
 }
+
+#ifdef WITH_KF5_XML_GUI
+void iconLoaderWorkaround()
+{
+    //TODO: For some reason it is needed to link the KF5::XmlGui library for the theme icons to be loaded correctly in flatpak
+    new KAboutApplicationDialog(KAboutData::applicationData(), nullptr);
+}
+#endif
