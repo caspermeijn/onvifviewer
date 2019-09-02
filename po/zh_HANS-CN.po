@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-08-05 23:58+0000\n"
-"Last-Translator: TaroWL <harry1211_wl@outlook.com>\n"
+"PO-Revision-Date: 2019-09-03 23:25+0000\n"
+"Last-Translator: 陈宇航 <xiaocunzhangh@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/zh_HANS-CN/>\n"
 "Language: zh_HANS-CN\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 3.9-dev\n"
 
 #: main.cpp:51
 msgid "ONVIFViewer"
@@ -108,10 +108,9 @@ msgstr "摄像头 %1"
 #: DeviceViewerPage.qml:28
 msgctxt "opens pan/tilt/zoom overlay"
 msgid "Move"
-msgstr ""
+msgstr "移动"
 
 #: DeviceViewerPage.qml:36
-#, fuzzy
 msgctxt "opens device information overlay"
 msgid "Device information"
 msgstr "设备信息"
@@ -186,12 +185,12 @@ msgstr "概观"
 #: OverviewPage.qml:29
 msgctxt "adds a new camera"
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 #: OverviewPage.qml:36
 msgctxt "opens the \"About\" menu"
 msgid "About"
-msgstr ""
+msgstr "关于"
 
 #: OverviewPage.qml:56
 msgid "Automaticly discover camera"
