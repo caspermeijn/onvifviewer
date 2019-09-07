@@ -15,7 +15,7 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-project(onvifviewer VERSION "0.11")
+project(onvifviewer VERSION "0.12")
 
 # Find the number of commits since the last release and use this as version patch number
 find_package(Git)
