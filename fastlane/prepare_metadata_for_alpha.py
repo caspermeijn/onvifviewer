@@ -53,4 +53,8 @@ for entry in os.scandir(str(changelog_dir.resolve())):
 
 
 print("Copying", best_changelog_path, "to", current_changelog_path)
-shutil.copyfile(str(best_changelog_path), str(current_changelog_path))
+try:
+    shutil.copyfile(str(best_changelog_path), str(current_changelog_path))
+except (shutil.SameFileError):
+    pass
+
