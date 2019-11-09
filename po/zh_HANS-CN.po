@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-09-03 23:25+0000\n"
-"Last-Translator: 陈宇航 <xiaocunzhangh@outlook.com>\n"
+"PO-Revision-Date: 2019-11-10 07:04+0000\n"
+"Last-Translator: TaroWL <harry1211_wl@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/zh_HANS-CN/>\n"
 "Language: zh_HANS-CN\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9-dev\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: main.cpp:51
 msgid "ONVIFViewer"
@@ -38,12 +38,12 @@ msgstr "使用ONVIF协议观看和控制网络摄像头"
 #: main.cpp:57 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "姓名"
+msgstr "TaroWL"
 
 #: main.cpp:58 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "邮箱"
+msgstr "harry1211_wl@outlook.com"
 
 #: main.cpp:61
 msgid "Main developer"
@@ -71,7 +71,7 @@ msgstr "摄像头名字："
 
 #: DeviceSettingsPage.qml:61
 msgid "e.g. Backyard"
-msgstr "例如 Backyard"
+msgstr "例如后院"
 
 #: DeviceSettingsPage.qml:69
 msgid "Hostname:"
