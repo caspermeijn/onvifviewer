@@ -24,8 +24,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/KDAB/KDSoap.git",
-                    "commit": "5371072f6cb5f9e7575ff213b9ab8d98ecd30e2b",
-                    "comment": "Using this specific commit, because kdsoap-ws-discovery-client needs the WS-Addressing changes in KDSoap master"
+                    "commit": "9916aaf185c0f37ccb7324fa8aa11c69946b850c",
+                    "comment": "Using this specific commit, because kdsoap-ws-discovery-client needs the KDSoapUdpClient in KDSoap master"
                 }
             ]
         },
@@ -41,12 +41,6 @@
                     "type": "git",
                     "url": "https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client.git",
                     "branch": "master"
-                },
-                {
-                    "type": "git",
-                    "url": "https://github.com/KDAB/KDSoap.git",
-                    "branch": "kdsoap-1.8.0",
-                    "dest": "KDSoap"
                 }
             ]
         },
