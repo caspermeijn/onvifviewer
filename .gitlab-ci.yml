@@ -13,7 +13,7 @@ flatpak:
     script:
         - flatpak-builder --repo=flatpak/repo flatpak/build --keep-build-dirs flatpak/net.meijn.onvifviewer.json
         - flatpak build-bundle flatpak/repo onvifviewer.flatpak net.meijn.onvifviewer
-        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak-builder --run flatpak/build flatpak/net.meijn.onvifviewer.json ninja -C .flatpak-builder/build/onvifviewer test
+        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak-builder --run flatpak/build flatpak/net.meijn.onvifviewer.json ninja -C .flatpak-builder/build/onvifviewer/_flatpak_build test
     artifacts:
         paths:
             - onvifviewer.flatpak
