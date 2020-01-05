@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-09-05 19:34+0000\n"
+"PO-Revision-Date: 2019-09-11 22:40+0000\n"
 "Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/it/>\n"
@@ -168,15 +168,15 @@ msgstr ""
 
 #: DiscoverCamera.qml:24
 msgid "Discover camera"
-msgstr "Trova camera"
+msgstr "Cerca una telecamera"
 
 #: DiscoverCamera.qml:32
 msgid "No camera discovered in the local network."
-msgstr "Nessuna telecamera trovata nella rete locale."
+msgstr "Nessuna telecamera trovata sulla rete locale."
 
 #: DiscoverCamera.qml:40
 msgid "Click on a discovered camera to add it:"
-msgstr "Fai clic su una telecamera rilevata per aggiungerla:"
+msgstr "Clicca su una telecamera trovata per aggiungerla:"
 
 #: OnvifCameraViewer.qml:29
 msgid "Loading…"
