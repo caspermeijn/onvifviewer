@@ -7,129 +7,133 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-01-11 22:21+0000\n"
+"Last-Translator: Éfrit <Efrit@posteo.net>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/onvifviewer/"
+"translations/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10.1\n"
 
 #: main.cpp:51
 msgid "ONVIFViewer"
-msgstr ""
+msgstr "Visionneuse ONVIF"
 
 #: main.cpp:52 main.cpp:65
 msgid "View and control network cameras using the ONVIF protocol"
 msgstr ""
+"Afficher et contrôler les caméras en réseau utilisant le protocole ONVIF"
 
 #: main.cpp:57 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Vos noms"
 
 #: main.cpp:58 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "Vos adresses électroniques"
 
 #: main.cpp:61
 msgid "Main developer"
-msgstr ""
+msgstr "Développeur principal"
 
 #: AddDemoCamera.qml:22
 msgid "Add demo camera"
-msgstr ""
+msgstr "Ajouter une caméra démo"
 
 #: DeviceSettingsPage.qml:28
 msgid "New manual device"
-msgstr ""
+msgstr "Nouveau périphérique manuel"
 
 #: DeviceSettingsPage.qml:28
 msgid "Device settings"
-msgstr ""
+msgstr "Paramètres du périphérique"
 
 #: DeviceSettingsPage.qml:57
 msgid "Connection settings"
-msgstr ""
+msgstr "Paramètres de connexion"
 
 #: DeviceSettingsPage.qml:60
 msgid "Camera name:"
-msgstr ""
+msgstr "Nom de la caméra :"
 
 #: DeviceSettingsPage.qml:61
 msgid "e.g. Backyard"
-msgstr ""
+msgstr "p. ex. Arrière-cour"
 
 #: DeviceSettingsPage.qml:69
 msgid "Hostname:"
-msgstr ""
+msgstr "Nom d’hôte :"
 
 #: DeviceSettingsPage.qml:70
 msgid "e.g. ipcam.local or 192.168.0.12"
-msgstr ""
+msgstr "p. ex. ipcam.local ou 192.168.0.12"
 
 #: DeviceSettingsPage.qml:78
 msgid "Username:"
-msgstr ""
+msgstr "Nom d’utilisateur :"
 
 #: DeviceSettingsPage.qml:86
 msgid "Password:"
-msgstr ""
+msgstr "Mot de passe :"
 
 #: DeviceSettingsPage.qml:96
 msgid "Camera properties"
-msgstr ""
+msgstr "Propriétés de la caméra"
 
 #: DeviceSettingsPage.qml:99
 msgid "Enable camera movement fix"
-msgstr ""
+msgstr "Activer les ajustements des mouvements de caméra"
 
 #: DeviceSettingsPage.qml:108
 msgid "Remove camera"
-msgstr ""
+msgstr "Supprimer la caméra"
 
 #: DeviceViewerPage.qml:25 OverviewPage.qml:145
 msgid "Camera %1"
-msgstr ""
+msgstr "Caméra %1"
 
 #: DeviceViewerPage.qml:28
 msgctxt "opens pan/tilt/zoom overlay"
 msgid "Move"
-msgstr ""
+msgstr "Déplacer"
 
 #: DeviceViewerPage.qml:36
 msgctxt "opens device information overlay"
 msgid "Device information"
-msgstr ""
+msgstr "Information du périphérique"
 
 #: DeviceViewerPage.qml:87
 msgid "Saving current position as home"
-msgstr ""
+msgstr "Enregistrer la position actuelle comme celle de la maison"
 
 #: DeviceViewerPage.qml:142
 msgid "Device information"
-msgstr ""
+msgstr "Information du périphérique"
 
 #: DeviceViewerPage.qml:148
 msgid "Manufacturer:"
-msgstr ""
+msgstr "Fabricant :"
 
 #: DeviceViewerPage.qml:155
 msgid "Model:"
-msgstr ""
+msgstr "Modèle :"
 
 #: DeviceViewerPage.qml:162
 msgid "Firmware version:"
-msgstr ""
+msgstr "Version du micrologiciel :"
 
 #: DeviceViewerPage.qml:169
 msgid "Serial number:"
-msgstr ""
+msgstr "Numéro de série :"
 
 #: DeviceViewerPage.qml:176
 msgid "Hardware identifier:"
-msgstr ""
+msgstr "Identifiant matériel :"
 
 #: DeviceViewerPage.qml:196
 msgid ""
@@ -137,6 +141,10 @@ msgid ""
 "device is not loaded the next time you open this application. If you want to "
 "save this device, then you need to click the Save button."
 msgstr ""
+"Cette caméra est actuellement uniquement activée comme un aperçu. Cela "
+"signifie que ce périphérique ne sera pas chargé la prochaine fois que vous "
+"lancerez l’application. Si vous souhaitez enregistrer le périphérique, "
+"cliquez sur le bouton Enregistrer."
 
 #: DeviceViewerPage.qml:221
 msgid ""
