@@ -1,0 +1,371 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the onvifviewer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: onvifviewer\n"
+"Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: main.cpp:51
+msgid "ONVIFViewer"
+msgstr ""
+
+#: main.cpp:52 main.cpp:65
+msgid "View and control network cameras using the ONVIF protocol"
+msgstr ""
+
+#: main.cpp:57 rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#: main.cpp:58 rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#: main.cpp:61
+msgid "Main developer"
+msgstr ""
+
+#: AddDemoCamera.qml:22
+msgid "Add demo camera"
+msgstr ""
+
+#: DeviceSettingsPage.qml:28
+msgid "New manual device"
+msgstr ""
+
+#: DeviceSettingsPage.qml:28
+msgid "Device settings"
+msgstr ""
+
+#: DeviceSettingsPage.qml:57
+msgid "Connection settings"
+msgstr ""
+
+#: DeviceSettingsPage.qml:60
+msgid "Camera name:"
+msgstr ""
+
+#: DeviceSettingsPage.qml:61
+msgid "e.g. Backyard"
+msgstr ""
+
+#: DeviceSettingsPage.qml:69
+msgid "Hostname:"
+msgstr ""
+
+#: DeviceSettingsPage.qml:70
+msgid "e.g. ipcam.local or 192.168.0.12"
+msgstr ""
+
+#: DeviceSettingsPage.qml:78
+msgid "Username:"
+msgstr ""
+
+#: DeviceSettingsPage.qml:86
+msgid "Password:"
+msgstr ""
+
+#: DeviceSettingsPage.qml:96
+msgid "Camera properties"
+msgstr ""
+
+#: DeviceSettingsPage.qml:99
+msgid "Enable camera movement fix"
+msgstr ""
+
+#: DeviceSettingsPage.qml:108
+msgid "Remove camera"
+msgstr ""
+
+#: DeviceViewerPage.qml:25 OverviewPage.qml:145
+msgid "Camera %1"
+msgstr ""
+
+#: DeviceViewerPage.qml:28
+msgctxt "opens pan/tilt/zoom overlay"
+msgid "Move"
+msgstr ""
+
+#: DeviceViewerPage.qml:36
+msgctxt "opens device information overlay"
+msgid "Device information"
+msgstr ""
+
+#: DeviceViewerPage.qml:87
+msgid "Saving current position as home"
+msgstr ""
+
+#: DeviceViewerPage.qml:142
+msgid "Device information"
+msgstr ""
+
+#: DeviceViewerPage.qml:148
+msgid "Manufacturer:"
+msgstr ""
+
+#: DeviceViewerPage.qml:155
+msgid "Model:"
+msgstr ""
+
+#: DeviceViewerPage.qml:162
+msgid "Firmware version:"
+msgstr ""
+
+#: DeviceViewerPage.qml:169
+msgid "Serial number:"
+msgstr ""
+
+#: DeviceViewerPage.qml:176
+msgid "Hardware identifier:"
+msgstr ""
+
+#: DeviceViewerPage.qml:196
+msgid ""
+"This camera is currently only opened as a preview. This means that the "
+"device is not loaded the next time you open this application. If you want to "
+"save this device, then you need to click the Save button."
+msgstr ""
+
+#: DeviceViewerPage.qml:221
+msgid ""
+"An error occurred during communication with the camera.\n"
+"\n"
+"Technical details: %1\n"
+msgstr ""
+
+#: DiscoverCamera.qml:24
+msgid "Discover camera"
+msgstr ""
+
+#: DiscoverCamera.qml:32
+msgid "No camera discovered in the local network."
+msgstr ""
+
+#: DiscoverCamera.qml:40
+msgid "Click on a discovered camera to add it:"
+msgstr ""
+
+#: OnvifCameraViewer.qml:29
+msgid "Loading…"
+msgstr ""
+
+#: OverviewPage.qml:24
+msgid "Overview"
+msgstr ""
+
+#: OverviewPage.qml:29
+msgctxt "adds a new camera"
+msgid "Add"
+msgstr ""
+
+#: OverviewPage.qml:36
+msgctxt "opens the \"About\" menu"
+msgid "About"
+msgstr ""
+
+#: OverviewPage.qml:56
+msgid "Automaticly discover camera"
+msgstr ""
+
+#: OverviewPage.qml:65
+msgid "Automatically find a camera in your network."
+msgstr ""
+
+#: OverviewPage.qml:74
+msgid "Add demonstation camera"
+msgstr ""
+
+#: OverviewPage.qml:82
+msgid ""
+"These demonstation cameras show you some on the capabilities, without owning "
+"a camera."
+msgstr ""
+
+#: OverviewPage.qml:90
+msgid "Manually add camera"
+msgstr ""
+
+#: OverviewPage.qml:100
+msgid ""
+"Manually adding a camera means that you need to provide the connection "
+"parameters yourself."
+msgstr ""
+
+#: OverviewPage.qml:120
+msgid "You can add a camera by clicking the \"Add\" button below."
+msgstr ""
+
+#: OverviewPage.qml:167
+msgid "An error occurred during communication with the camera."
+msgstr ""
+
+#: OverviewPage.qml:175
+msgid "The camera doesn't support the retrieval of snapshots."
+msgstr ""
+
+#: OverviewPage.qml:198
+msgctxt "Go to view a camera"
+msgid "View"
+msgstr ""
+
+#: OverviewPage.qml:207
+msgctxt "Go to settings of a camera"
+msgid "Settings"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.desktop.in:8
+msgid "net.meijn.onvifviewer"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:10
+msgid ""
+"Use this open-source app to view your network cameras using the ONVIF "
+"protocol."
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:11
+msgid ""
+"The development of this app was started as part of the ONVIF Spotlight "
+"Challenge."
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:12
+msgid ""
+"You can connect to your network camera and view the video of it. If the "
+"camera is controllable you can move it as well."
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:14
+msgid "Casper Meijn"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:22
+msgid "The camera overview page"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:26
+msgid "The camera settings page"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:41
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:52
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:63
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:73
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:82
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:92
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:103
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:114
+msgid "This is a minor release, with the following improvements:"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:43
+msgid "Added support for camera discovery"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
+msgid "Fixed video viewer for Android"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
+msgid "Improved translations"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:97
+msgid "Some small improvements"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:54
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:65
+msgid "Improved support for older devices"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:55
+msgid "Show multiple cameras if room available"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:56
+msgid "Improved translations and added new langagues"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:57
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:67
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:108
+msgid "Several internal improvements"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:66
+msgid "Fixed a potential crash"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:75
+msgid "Added donation instructions"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:76
+msgid "Use breeze icons as fallback theme"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:84
+msgid "Added opening cameras by URL"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:85
+msgid "Improved snapshot downloading"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:86
+msgid "Improved translations and added Norwegian"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:94
+msgid "Improved UI style by using Kirigami cards"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:95
+msgid "Improved translations by supporting Weblate"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:96
+msgid "Made demo cameras optional, by moving them to the add camera button"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:105
+msgid ""
+"Renamed internal application name. Note: this causes the configuration file "
+"to reset"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:106
+msgid ""
+"Added internationalization support with Brazilian and Dutch translations"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:107
+msgid "Replaced demo cameras"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:116
+msgid ""
+"Added workaround for cameras that don't support relative movement properly"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:117
+msgid "Added support for zoom'ing"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:118
+msgid "Improved build system"
+msgstr ""
