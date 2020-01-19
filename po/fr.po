@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2020-01-19 14:48+0000\n"
+"PO-Revision-Date: 2020-01-19 14:52+0000\n"
 "Last-Translator: Casper Meijn <casper@meijn.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/fr/>\n"
@@ -28,16 +28,14 @@ msgstr ""
 "Afficher et contrôler les caméras en réseau utilisant le protocole ONVIF"
 
 #: main.cpp:57 rc.cpp:1
-#, fuzzy
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Vos noms"
+msgstr "Éfrit"
 
 #: main.cpp:58 rc.cpp:2
-#, fuzzy
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "Vos adresses électroniques"
+msgstr "Efrit@posteo.net"
 
 #: main.cpp:61
 msgid "Main developer"
