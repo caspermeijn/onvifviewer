@@ -1,5 +1,9 @@
 #!/bin/sh
 set -eu
+# Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 BASEDIR="../src/"	# root of translatable sources
 PROJECT="onvifviewer"	# project name
 BUGADDR="https://gitlab.com/caspermeijn/onvifviewer/issues"	# MSGID-Bugs

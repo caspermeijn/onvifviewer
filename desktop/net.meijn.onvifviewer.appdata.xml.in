@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2018-2019 Casper Meijn <casper@meijn.net> -->
+<!-- SPDX-License-Identifier: CC0-1.0 -->
 <component type="desktop-application">
   <id>net.meijn.onvifviewer.desktop</id>
-  <metadata_license>FSFAP</metadata_license>
+  <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>ONVIFViewer</name>
   <summary>View and control network cameras using the ONVIF protocol</summary>

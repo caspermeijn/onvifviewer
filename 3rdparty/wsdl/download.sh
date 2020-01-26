@@ -1,4 +1,9 @@
 #!/bin/sh
+set -eu
+# Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 rm -rf docs.oasis-open.org www.onvif.org www.w3.org
 wget -r --accept wsdl,xsd -I specs,ver10,ver20 https://www.onvif.org/profiles/specifications/
 wget -r http://www.w3.org/2005/05/xmlmime
