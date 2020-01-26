@@ -1,5 +1,7 @@
 #!/bin/sh
 set -eu
+# Copyright 2019 Casper Meijn <casper@meijn.net>
+# SPDX-License-Identifier: CC0-1.0
 
 generate_application_icon() {
   SIZE=$1

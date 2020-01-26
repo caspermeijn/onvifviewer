@@ -1,3 +1,6 @@
+# Copyright 2018-2019 Casper Meijn <casper@meijn.net>
+# SPDX-License-Identifier: CC0-1.0
+
 @PACKAGE_INIT@
 
 find_dependency(Qt5Core @REQUIRED_QT_VERSION@)
