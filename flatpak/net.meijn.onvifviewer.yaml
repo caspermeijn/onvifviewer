@@ -1,0 +1,48 @@
+# Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+---
+app-id: net.meijn.onvifviewer
+runtime: org.kde.Platform
+runtime-version: '5.12'
+sdk: org.kde.Sdk
+command: onvifviewer
+tags:
+- nightly
+desktop-file-name-suffix: " (Nightly)"
+finish-args:
+- "--share=ipc"
+- "--socket=x11"
+- "--socket=wayland"
+- "--device=dri"
+- "--share=network"
+separate-locales: false
+modules:
+- name: kdsoap
+  buildsystem: cmake-ninja
+  builddir: true
+  sources:
+  - type: git
+    url: https://github.com/KDAB/KDSoap.git
+    commit: 9916aaf185c0f37ccb7324fa8aa11c69946b850c
+    comment: Using this specific commit, because kdsoap-ws-discovery-client needs
+      the KDSoapUdpClient in KDSoap master
+- name: kdsoap-ws-discovery-client
+  buildsystem: cmake-ninja
+  builddir: true
+  config-opts:
+  - "-DKDSOAP_PATH=KDSoap"
+  sources:
+  - type: git
+    url: https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client.git
+    branch: master
+- name: onvifviewer
+  buildsystem: cmake-ninja
+  builddir: true
+  config-opts:
+  - "-DUSE_BREEZE_ICONS=ON"
+  sources:
+  - type: dir
+    path: ".."
+    skip:
+    - ".git"
