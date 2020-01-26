@@ -62,6 +62,12 @@ android-debug-aarch64:
         paths:
             - onvifviewer_build_apk-debug-aarch64.apk
 
+reuse:
+  image: fsfe/reuse:latest
+  stage: test
+  script:
+    - reuse lint || echo "Always report as successful. For now this is a informational test"
+            
 test-translations:
     image: registry.gitlab.com/caspermeijn/docker-images/fedora-build-onvifviewer:latest
     stage: test
