@@ -27,8 +27,8 @@
 OnvifDevice::OnvifDevice(QObject* parent) :
     QObject(parent),
     m_preferContinuousMove(false),
-    m_cachedDeviceInformation(new OnvifDeviceInformation()),
-    m_cachedSnapshotDownloader(new OnvifSnapshotDownloader())
+    m_cachedDeviceInformation(new OnvifDeviceInformation(this)),
+    m_cachedSnapshotDownloader(new OnvifSnapshotDownloader(this))
 {
     connect(&m_connection, &OnvifDeviceConnection::servicesAvailable,
             this, &OnvifDevice::servicesAvailable);
