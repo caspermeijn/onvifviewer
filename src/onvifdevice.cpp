@@ -194,16 +194,16 @@ void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile>& profileLi
     Q_ASSERT(mediaService || media2Service);
 
     Q_ASSERT(profileList.size());
-    //TODO: Add a proper profile selection
-    auto sortedProfileList = profileList;
-    qSort(sortedProfileList.begin(), sortedProfileList.end(), mediaProfileLessThan);
-    m_selectedMediaProfile = sortedProfileList.first();
-
-    if (media2Service) {
-        media2Service->selectProfile(m_selectedMediaProfile);
-    } else if (mediaService) {
-        mediaService->selectProfile(m_selectedMediaProfile);
+    
+    m_sortedProfileList = profileList;
+    qSort(m_sortedProfileList.begin(), m_sortedProfileList.end(), mediaProfileLessThan);
+    m_profileNames.clear();
+    for(auto profile: m_sortedProfileList)
+    {
+        m_profileNames << profile.name();
     }
+    emit profileNamesChanged(m_profileNames);
+    selectMediaProfile(0);
 }
 
 QString OnvifDevice::preferredVideoStreamProtocol() const
@@ -234,6 +234,11 @@ void OnvifDevice::initByUrl(const QUrl& url)
             setDeviceName(urlQuery.queryItemValue("name"));
         }
     }
+}
+
+QStringList OnvifDevice::profileNames() const
+{
+    return m_profileNames;
 }
 
 bool OnvifDevice::preferContinuousMove() const
@@ -415,4 +420,20 @@ void OnvifDevice::ptzZoomOut()
     OnvifPtzService* ptzService = m_connection.getPtzService();
     Q_ASSERT(ptzService);
     ptzService->relativeZoom(m_selectedMediaProfile, -0.1f);
+}
+
+void OnvifDevice::selectMediaProfile(int index)
+{
+    OnvifMedia2Service* media2Service = m_connection.getMedia2Service();
+    OnvifMediaService* mediaService = m_connection.getMediaService();
+
+    if (m_selectedMediaProfile.name() != m_sortedProfileList[index].name())
+    {
+        m_selectedMediaProfile = m_sortedProfileList[index];
+
+        if(media2Service)
+            media2Service->selectProfile(m_selectedMediaProfile);
+        else if(mediaService)
+            mediaService->selectProfile(m_selectedMediaProfile);
+    }
 }

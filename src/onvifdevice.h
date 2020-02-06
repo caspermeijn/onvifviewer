@@ -44,6 +44,7 @@ class OnvifDevice : public QObject
     Q_PROPERTY(bool isPtzHomeSupported READ isPtzHomeSupported)
     Q_PROPERTY(bool isZoomSupported READ isZoomSupported)
     Q_PROPERTY(OnvifSnapshotDownloader* snapshotDownloader READ snapshotDownloader NOTIFY snapshotDownloaderChanged)
+    Q_PROPERTY(QStringList profileNames READ profileNames NOTIFY profileNamesChanged)
 public:
     explicit OnvifDevice(QObject* parent = nullptr);
 
@@ -80,6 +81,8 @@ public:
     void setPreferredVideoStreamProtocol(const QString& preferredVideoStreamProtocol);
 
     void initByUrl(const QUrl& url);
+    
+    QStringList profileNames() const;
 
 signals:
     void deviceNameChanged(const QString& deviceName);
@@ -94,6 +97,7 @@ signals:
     void snapshotUriChanged(const QUrl& url);
     void streamUriChanged(const QUrl& url);
     void snapshotDownloaderChanged(OnvifSnapshotDownloader* snapshotDownloader);
+    void profileNamesChanged(const QStringList& profileNames);
 
 public slots:
     void ptzUp();
@@ -106,6 +110,7 @@ public slots:
     void ptzStop();
     void ptzZoomIn();
     void ptzZoomOut();
+    void selectMediaProfile(int index);
 
 private slots:
     void servicesAvailable();
@@ -124,6 +129,8 @@ private:
     OnvifDeviceInformation* m_cachedDeviceInformation;
     QTimer m_ptzStopTimer;
     OnvifSnapshotDownloader* m_cachedSnapshotDownloader;
+    QStringList m_profileNames;
+    QList<OnvifMediaProfile> m_sortedProfileList;
 };
 
 #endif // ONVIFDEVICE_H
