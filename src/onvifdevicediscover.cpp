@@ -66,6 +66,13 @@ void OnvifDeviceDiscover::start()
 #endif
 }
 
+void OnvifDeviceDiscover::stop()
+{
+#ifdef WITH_KDSOAP_WSDISCOVERY_CLIENT
+    m_probeJob->stop();
+#endif
+}
+
 void OnvifDeviceDiscover::matchReceived(const QSharedPointer<WSDiscoveryTargetService>& matchedService)
 {
 #ifdef WITH_KDSOAP_WSDISCOVERY_CLIENT
@@ -86,8 +93,10 @@ void OnvifDeviceDiscover::matchReceived(const QSharedPointer<WSDiscoveryTargetSe
             }
         }
     }
+    deviceMatch->m_xAddr = matchedService->xAddrList();
+    deviceMatch->m_host.clear();
     for (auto& xAddr : matchedService->xAddrList()) {
-        deviceMatch->m_xAddr = xAddr;
+        deviceMatch->m_host << xAddr.authority();
     }
     deviceMatch->m_lastSeen = matchedService->lastSeen();
 
@@ -106,14 +115,14 @@ QString OnvifDeviceDiscoverMatch::getEndpoint() const
     return m_endpoint;
 }
 
-QUrl OnvifDeviceDiscoverMatch::getXAddr() const
+QList<QUrl> OnvifDeviceDiscoverMatch::getXAddr() const
 {
     return m_xAddr;
 }
 
-QString OnvifDeviceDiscoverMatch::getHost() const
+QStringList OnvifDeviceDiscoverMatch::getHost() const
 {
-    return m_xAddr.authority();
+    return m_host;
 }
 
 QString OnvifDeviceDiscoverMatch::getName() const
