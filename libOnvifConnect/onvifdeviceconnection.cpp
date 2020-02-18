@@ -329,6 +329,17 @@ void OnvifDeviceConnectionPrivate::handleSoapError(const KDSoapMessage& fault, c
         if (!isHttpDigestSupported && !isUsernameTokenSupported) {
             errorString = "None of the authentication methods are available";
         }
+    } else if (location.contains("OnvifPtzServicePrivate::getServiceCapabilitiesError") &&
+               fault.faultAsString().contains("not implemented")) {
+        // Some older devices report having PTZ service but fail with "not implemented" when getServiceCapabilities is called
+        // Therefore we disable the service and ignore any error
+        qDebug() << "The PTZ GetServicesCapabilities call failed; this is expected for older ONVIF devices:" << fault.faultAsString();
+        if (ptzService) {
+            ptzService->disconnectFromService();
+            ptzService->deleteLater();
+        }
+        ptzService = nullptr;
+        return;
     } else {
         errorString = location + ": " + fault.faultAsString();
     }
