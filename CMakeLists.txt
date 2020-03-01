@@ -96,9 +96,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 # Enable extra warnings
 add_compile_options(-pedantic-errors -Wconversion -Wsign-conversion)
 
-if(ANDROID)
-    add_subdirectory(android)
-endif()
+add_subdirectory(android)
 add_subdirectory(libOnvifConnect)
 add_subdirectory(src)
 add_subdirectory(desktop)

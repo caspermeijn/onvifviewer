@@ -16,6 +16,11 @@
 
 cmake_minimum_required(VERSION 3.7)
 
+# Make sure that PROJECT_VERSION_PATCH is set in this scope, as this code assumes that it is set.
+if(NOT PROJECT_VERSION_PATCH) 
+    set(PROJECT_VERSION_PATCH 0)
+endif()
+
 # Android manifest
 if(${PROJECT_VERSION_MINOR} GREATER_EQUAL 100 OR ${PROJECT_VERSION_PATCH} GREATER_EQUAL 100)
     message(FATAL_ERROR "Project version is too high, which causes the Android version code to be not ascending")
