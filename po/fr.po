@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2020-02-18 19:33+0000\n"
-"Last-Translator: Eddy MERCIER <eddy.mercier@gmail.com>\n"
+"PO-Revision-Date: 2020-03-18 00:36+0000\n"
+"Last-Translator: Éfrit <Efrit@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.11\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: main.cpp:59
 msgid "ONVIFViewer"
@@ -46,7 +46,7 @@ msgstr "Vos noms"
 #: main.cpp:66 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "Vos emails"
+msgstr "Vos adresses électroniques"
 
 #: main.cpp:71
 msgid "Main developer"
