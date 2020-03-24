@@ -185,13 +185,13 @@ msgid "Automatically find a camera in your network."
 msgstr ""
 
 #: OverviewPage.qml:75
-msgid "Add demonstation camera"
+msgid "Add demonstration camera"
 msgstr ""
 
 #: OverviewPage.qml:83
 msgid ""
-"These demonstation cameras show you some on the capabilities, without owning "
-"a camera."
+"These demonstration cameras show you some on the capabilities, without "
+"owning a camera."
 msgstr ""
 
 #: OverviewPage.qml:91

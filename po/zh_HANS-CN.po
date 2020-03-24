@@ -202,13 +202,15 @@ msgid "Automatically find a camera in your network."
 msgstr "在网络中找到一个摄像头。"
 
 #: OverviewPage.qml:75
-msgid "Add demonstation camera"
+#, fuzzy
+msgid "Add demonstration camera"
 msgstr "添加演示摄像头"
 
 #: OverviewPage.qml:83
+#, fuzzy
 msgid ""
-"These demonstation cameras show you some on the capabilities, without owning "
-"a camera."
+"These demonstration cameras show you some on the capabilities, without "
+"owning a camera."
 msgstr "这些样例摄像头向您展示了一些功能，而不需要拥有一个摄像头。"
 
 #: OverviewPage.qml:91

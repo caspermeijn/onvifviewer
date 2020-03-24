@@ -72,7 +72,7 @@ Kirigami.ScrollablePage {
                 visible: deviceDiscover.isAvailable
             }
             Controls.Button {
-                text: i18n("Add demonstation camera")
+                text: i18n("Add demonstration camera")
                 Layout.fillWidth: true
                 onClicked: {
                     pageStack.push(addDemoCameraComponent);
@@ -80,7 +80,7 @@ Kirigami.ScrollablePage {
                 }
             }
             Controls.Label {
-                text: i18n("These demonstation cameras show you some on the capabilities, without owning a camera.");
+                text: i18n("These demonstration cameras show you some on the capabilities, without owning a camera.");
                 wrapMode: Text.WordWrap
                 horizontalAlignment: "AlignHCenter"
                 Layout.leftMargin: Kirigami.Units.gridUnit * 2
