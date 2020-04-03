@@ -4,7 +4,7 @@
 ---
 app-id: net.meijn.onvifviewer
 runtime: org.kde.Platform
-runtime-version: '5.13'
+runtime-version: '5.14'
 sdk: org.kde.Sdk
 command: onvifviewer
 tags:
