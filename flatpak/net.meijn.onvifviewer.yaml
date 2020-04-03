@@ -4,7 +4,7 @@
 ---
 app-id: net.meijn.onvifviewer
 runtime: org.kde.Platform
-runtime-version: '5.13'
+runtime-version: '5.14'
 sdk: org.kde.Sdk
 command: onvifviewer
 tags:
@@ -36,7 +36,8 @@ modules:
   sources:
   - type: git
     url: https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client.git
-    branch: master
+    # Use older version as the api has recently changed
+    commit: 1bd4aaae286b1fc48dd087e224d4f37cf284108c
     
 - name: onvifviewer
   buildsystem: cmake-ninja
