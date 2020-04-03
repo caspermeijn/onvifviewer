@@ -42,13 +42,7 @@ Q_DECL_EXPORT int main(int argc, char* argv[])
 
     QApplication app(argc, argv);
     
-#ifdef USE_BREEZE_ICONS
-#if (QT_VERSION >= QT_VERSION_CHECK(5,12,0))
-    QIcon::setFallbackThemeName("breeze-internal");
-#else
-    QIcon::setThemeName("breeze-internal");
-#endif
-#endif
+    QIcon::setFallbackThemeName("breeze");
 
     KLocalizedString::setApplicationDomain("onvifviewer");
     QCoreApplication::setOrganizationName("CasperMeijn");
