@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2020-02-29 16:33+0000\n"
+"PO-Revision-Date: 2020-04-04 10:12+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/sv/>\n"
@@ -203,12 +203,10 @@ msgid "Automatically find a camera in your network."
 msgstr "Hitta en kamera automatiskt i ditt nätverk."
 
 #: OverviewPage.qml:75
-#, fuzzy
 msgid "Add demonstration camera"
 msgstr "Lägg till demonstrationskamera"
 
 #: OverviewPage.qml:83
-#, fuzzy
 msgid ""
 "These demonstration cameras show you some on the capabilities, without "
 "owning a camera."
@@ -290,7 +288,6 @@ msgid "The camera settings page"
 msgstr "Kamerainställningssidan"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:42
-#, fuzzy
 msgid "This is a minor release, with the following changes:"
 msgstr "Detta är en mindre versionsuppgradering, med följande förbättringar:"
 
@@ -302,13 +299,15 @@ msgstr "Några små förbättringar"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Increase required Qt version to 5.12"
-msgstr ""
+msgstr "Utöka nödvändig Qt-version till 5.12"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 msgid ""
 "Removed option for including breeze icons in the binary, however is it "
 "configured as fallback theme"
 msgstr ""
+"Tog bort alternativet för att inkludera breeze-ikoner i binären, det är dock "
+"konfigurerat som reservtema"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:52
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:63
