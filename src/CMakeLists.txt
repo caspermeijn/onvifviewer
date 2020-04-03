@@ -26,10 +26,6 @@ set(${PROJECT_NAME}_SRCS
     "qml.qrc"
 )
 
-if(WITH_BREEZE_ICONS)
-    set(${PROJECT_NAME}_BREEZE_ICONS "breeze-icons.qrc")
-endif()
-
 ecm_setup_version(PROJECT VERSION_HEADER version.h)
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS} ${${PROJECT_NAME}_WSDL} ${${PROJECT_NAME}_BREEZE_ICONS})
 

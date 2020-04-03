@@ -6,7 +6,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 # ONVIFViewer
 
-**ONVIF camera viewer for Android, Plasma Mobile and Linux desktop**
+**ONVIF camera viewer for Plasma Mobile and Linux desktop**
 
 The goal of this project is to replace the proprietary app that was needed to configure and view my IP camera. The ONVIF protocol can be used to view and configure many types of camera's and is a open standard that can be implemented using standard SOAP libraries. Using Qt5 for the back-end and Kirigami UI framework makes this application a cross-platform solution. The primary focus is Plasma mobile and the Linux desktop, but an Android build is also available. 
 
@@ -21,13 +21,6 @@ On most Linux desktops you can install the application using Flatpak.
 2) Then you can install the application from the [ONVIFViewer flathub page](https://flathub.org/apps/details/net.meijn.onvifviewer).
 
 [<img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/>](https://flathub.org/apps/details/net.meijn.onvifviewer)
-
-## Android
-The application is available via the [Google Play Store] (https://play.google.com/apps/testing/net.meijn.onvifviewer).
-
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-      alt="Get it on Google Play"
-      height="80">](https://play.google.com/apps/testing/net.meijn.onvifviewer)
       
 ## Translations
 You can help translating this application using [Weblate](https://hosted.weblate.org/engage/onvifviewer/). You can login on the website and translate the texts to your language. The translations will be included in the next release.
