@@ -29,25 +29,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.8-dev\n"
 
-#: main.cpp:60
+#: main.cpp:54
 msgid "ONVIFViewer"
 msgstr "ONVIFViewer"
 
-#: main.cpp:61 main.cpp:76
+#: main.cpp:55 main.cpp:70
 msgid "View and control network cameras using the ONVIF protocol"
 msgstr "Bekijk en bestuur netwerkcamera's met behulp van het ONVIF protocol"
 
-#: main.cpp:66 rc.cpp:1
+#: main.cpp:60 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Casper Meijn"
 
-#: main.cpp:67 rc.cpp:2
+#: main.cpp:61 rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "casper@meijn.net"
 
-#: main.cpp:72
+#: main.cpp:66
 msgid "Main developer"
 msgstr "Hoofdontwikkelaar"
 
@@ -292,93 +292,107 @@ msgid "The camera settings page"
 msgstr "De camera-instellingen pagina"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:42
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:50
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:61
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:72
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:82
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:91
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:101
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:112
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:123
-msgid "This is a minor release, with the following improvements:"
+#, fuzzy
+msgid "This is a minor release, with the following changes:"
 msgstr "Dit is een kleine versieophoging, met de volgende verbeteringen:"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:55
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:106
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:57
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:108
 msgid "Some small improvements"
 msgstr "Enkele kleine verbeteringen"
 
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
+msgid "Increase required Qt version to 5.12"
+msgstr ""
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
+msgid ""
+"Removed option for including breeze icons in the binary, however is it "
+"configured as fallback theme"
+msgstr ""
+
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:52
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:63
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:74
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:84
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:93
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:103
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:114
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:125
+msgid "This is a minor release, with the following improvements:"
+msgstr "Dit is een kleine versieophoging, met de volgende verbeteringen:"
+
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:54
 msgid "Added support for camera discovery"
 msgstr "Automatische ontdekking van camera's toegevoegd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:53
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:55
 msgid "Fixed video viewer for Android"
 msgstr "Video in Android verbeterd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:54
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:56
 msgid "Improved translations"
 msgstr "Vertalingen verbeterd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:63
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:74
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:65
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:76
 msgid "Improved support for older devices"
 msgstr "Verbetering in de ondersteuning van ouder apparaten"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:64
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:66
 msgid "Show multiple cameras if room available"
 msgstr "Toon meerdere camera's als er voldoende ruimte is"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:65
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:67
 msgid "Improved translations and added new langagues"
 msgstr "Vertalingen verbeterd en nieuwe talen toegevoegd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:66
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:76
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:117
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:68
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:78
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:119
 msgid "Several internal improvements"
 msgstr "Een aantal interne verbeteringen"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:75
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:77
 msgid "Fixed a potential crash"
 msgstr "Mogelijke crash opgelost"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:84
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:86
 msgid "Added donation instructions"
 msgstr "Donatie instructies toegevoegd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:85
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:87
 msgid "Use breeze icons as fallback theme"
 msgstr "Gebruik breeze icons als terugval thema"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:93
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:95
 msgid "Added opening cameras by URL"
 msgstr "Camera's openen door middel van URL toegevoegd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:94
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:96
 msgid "Improved snapshot downloading"
 msgstr "Momentopname download verbeterd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:95
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:97
 msgid "Improved translations and added Norwegian"
 msgstr "Vertalingen verbeterd en Noors toegevoegd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:103
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:105
 msgid "Improved UI style by using Kirigami cards"
 msgstr "UI verbeterd door middel van Kirigami cards"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:104
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:106
 msgid "Improved translations by supporting Weblate"
 msgstr "Vertalingen verbeterd door Weblate te ondersteunen"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:105
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:107
 msgid "Made demo cameras optional, by moving them to the add camera button"
 msgstr ""
 "Demonstratie camera's optioneel gemaakt door de naar een toevoegen knop te "
 "verplaatsen"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:114
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:116
 msgid ""
 "Renamed internal application name. Note: this causes the configuration file "
 "to reset"
@@ -386,28 +400,28 @@ msgstr ""
 "Interne applicatie naam hernoemd. Let op: hierdoor wordt het configuratie "
 "bestand verwijderd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:115
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:117
 msgid ""
 "Added internationalization support with Brazilian and Dutch translations"
 msgstr ""
 "Vertalingen mogelijk gemaakt inclusief Braziliaans en Nederlandse vertalingen"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:116
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:118
 msgid "Replaced demo cameras"
 msgstr "Demonstratie camera's vervangen"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:125
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:127
 msgid ""
 "Added workaround for cameras that don't support relative movement properly"
 msgstr ""
 "Tijdelijke oplossing toegevoegd voor camera's die relatieve bewegingen niet "
 "ondersteunen"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:126
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:128
 msgid "Added support for zoom'ing"
 msgstr "Ondersteuning voor zoomen toegevoegd"
 
-#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:127
+#: ../desktop/net.meijn.onvifviewer.appdata.xml.in:129
 msgid "Improved build system"
 msgstr "Bouwsysteem verbeterd"
 
