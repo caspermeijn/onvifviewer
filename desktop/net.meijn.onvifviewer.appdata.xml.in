@@ -42,6 +42,7 @@
         <p>This is a minor release, with the following changes:</p>
         <ul>
           <li>Some small improvements</li>
+          <li>Increase required Qt version to 5.12</li>
           <li>Removed option for including breeze icons in the binary, however is it configured as fallback theme</li>
         </ul>
       </description>
