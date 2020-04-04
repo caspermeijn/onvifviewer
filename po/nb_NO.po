@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2019-08-07 01:23+0000\n"
+"PO-Revision-Date: 2020-04-04 10:12+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "onvifviewer/translations/nb_NO/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8-dev\n"
+"X-Generator: Weblate 4.0-dev\n"
 
 #: main.cpp:54
 msgid "ONVIFViewer"
@@ -303,13 +303,15 @@ msgstr "Noen mindre forbedringer"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Increase required Qt version to 5.12"
-msgstr ""
+msgstr "Krever nå Qt versjon 5.12"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 msgid ""
 "Removed option for including breeze icons in the binary, however is it "
 "configured as fallback theme"
 msgstr ""
+"Fjernet alternativ for bruk av bris-ikoner i binærfilen, dog er det satt opp "
+"som tilbakefallsdrakt"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:52
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:63
