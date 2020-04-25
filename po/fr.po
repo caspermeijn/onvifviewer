@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2020-04-23 01:11+0000\n"
-"Last-Translator: Jeannette L <j.lavoie@net-c.ca>\n"
+"PO-Revision-Date: 2020-04-26 17:11+0000\n"
+"Last-Translator: Éfrit <efrit@posteo.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/fr/>\n"
 "Language: fr\n"
@@ -210,13 +210,12 @@ msgid "Add demonstration camera"
 msgstr "Ajouter une caméra de démonstration"
 
 #: OverviewPage.qml:83
-#, fuzzy
 msgid ""
 "These demonstration cameras show you some on the capabilities, without "
 "owning a camera."
 msgstr ""
-"Ces caméras de démonstration vous montrent certaines des capacités, sans "
-"être en possession de cette caméra."
+"Ces caméras de démonstration vous montrent certaines capacités sans posséder "
+"une caméra."
 
 #: OverviewPage.qml:91
 msgid "Manually add camera"
@@ -307,13 +306,15 @@ msgstr "Quelques petites améliorations"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Increase required Qt version to 5.12"
-msgstr ""
+msgstr "Augmente la version de Qt requise à 5.12"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 msgid ""
 "Removed option for including breeze icons in the binary, however is it "
 "configured as fallback theme"
 msgstr ""
+"Suppression de l’option pour inclure les icônes breeze dans le binaire, "
+"néanmoins le thème breeze est configuré comme thème de repli"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:52
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:63
