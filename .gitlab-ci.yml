@@ -37,7 +37,9 @@ fedora:
         - make install
 
 reuse:
-  image: fsfe/reuse:latest
+  image:     
+    name: fsfe/reuse:latest
+    entrypoint: [""]
   stage: test
   script:
     - reuse lint || echo "Always report as successful. For now this is a informational test"
