@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2020-04-04 10:12+0000\n"
+"PO-Revision-Date: 2020-05-07 19:12+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/sv/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: main.cpp:54
 msgid "ONVIFViewer"
@@ -295,7 +295,7 @@ msgstr "Några små förbättringar"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Now requires Qt 5.12"
-msgstr ""
+msgstr "Kräver nu Qt 5.12"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 msgid ""
