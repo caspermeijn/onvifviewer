@@ -245,10 +245,6 @@ msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr "设置"
 
-#: ../desktop/net.meijn.onvifviewer.desktop.in:8
-msgid "net.meijn.onvifviewer"
-msgstr "net.meijn.onvifviewer"
-
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:11
 msgid ""
 "Use this open-source app to view your network cameras using the ONVIF "
@@ -291,7 +287,7 @@ msgid "Some small improvements"
 msgstr "一些小的改进"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
-msgid "Increase required Qt version to 5.12"
+msgid "Now requires Qt 5.12"
 msgstr ""
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
@@ -405,6 +401,9 @@ msgstr "增加了对缩放的支持"
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:129
 msgid "Improved build system"
 msgstr "改进了构建系统"
+
+#~ msgid "net.meijn.onvifviewer"
+#~ msgstr "net.meijn.onvifviewer"
 
 #~ msgctxt "opens the \"About\" menu"
 #~ msgid "About ONVIFViewer"

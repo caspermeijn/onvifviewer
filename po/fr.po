@@ -254,10 +254,6 @@ msgctxt "Go to settings of a camera"
 msgid "Settings"
 msgstr "Réglages"
 
-#: ../desktop/net.meijn.onvifviewer.desktop.in:8
-msgid "net.meijn.onvifviewer"
-msgstr "net.meijn.onvifviewer"
-
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:11
 msgid ""
 "Use this open-source app to view your network cameras using the ONVIF "
@@ -305,8 +301,8 @@ msgid "Some small improvements"
 msgstr "Quelques petites améliorations"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
-msgid "Increase required Qt version to 5.12"
-msgstr "Augmente la version de Qt requise à 5.12"
+msgid "Now requires Qt 5.12"
+msgstr ""
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 msgid ""
@@ -430,3 +426,9 @@ msgstr "Ajout de la prise en charge du zoom"
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:129
 msgid "Improved build system"
 msgstr "Amélioration du système de compilation"
+
+#~ msgid "net.meijn.onvifviewer"
+#~ msgstr "net.meijn.onvifviewer"
+
+#~ msgid "Increase required Qt version to 5.12"
+#~ msgstr "Augmente la version de Qt requise à 5.12"
