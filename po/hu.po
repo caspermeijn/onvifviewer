@@ -7,17 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-07-25 07:41+0000\n"
+"Last-Translator: Miklós Márton <martonmiklosqdev@gmail.com>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/onvifviewer/"
+"translations/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.2-dev\n"
 
 #: main.cpp:54
 msgid "ONVIFViewer"
-msgstr ""
+msgstr "ONVIFViewer"
 
 #: main.cpp:55 main.cpp:70
 msgid "View and control network cameras using the ONVIF protocol"
@@ -35,11 +38,11 @@ msgstr ""
 
 #: main.cpp:66
 msgid "Main developer"
-msgstr ""
+msgstr "Fő fejlesztő"
 
 #: AddDemoCamera.qml:23
 msgid "Add demo camera"
-msgstr ""
+msgstr "Demo kamera hozzáadása"
 
 #: DeviceSettingsPage.qml:29
 msgid "New manual device"
