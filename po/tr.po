@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2020-03-14 13:37+0000\n"
-"Last-Translator: Özgür Karter <ozgurkarter@gmail.com>\n"
+"PO-Revision-Date: 2020-06-14 10:41+0000\n"
+"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/tr/>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.0-dev\n"
+"X-Generator: Weblate 4.1-dev\n"
 
 #: main.cpp:54
 msgid "ONVIFViewer"
@@ -203,17 +203,15 @@ msgid "Automatically find a camera in your network."
 msgstr "Ağında otomatik olarak bir kamera bul."
 
 #: OverviewPage.qml:75
-#, fuzzy
 msgid "Add demonstration camera"
-msgstr "Sunum kamerası ekle"
+msgstr "Tanıtım kamerası ekle"
 
 #: OverviewPage.qml:83
-#, fuzzy
 msgid ""
 "These demonstration cameras show you some on the capabilities, without "
 "owning a camera."
 msgstr ""
-"Bu sunum kameraları size kamera sahibi olmadan bazı özellikleri gösterir."
+"Bu tanıtım kameraları size kamera sahibi olmadan bazı özellikleri gösterir."
 
 #: OverviewPage.qml:91
 msgid "Manually add camera"
@@ -285,9 +283,8 @@ msgid "The camera settings page"
 msgstr "Kamera ayar sayfası"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:42
-#, fuzzy
 msgid "This is a minor release, with the following changes:"
-msgstr "Bu minör bir sunumdur. Aşağıdaki geliştirmeler yapılmıştır:"
+msgstr "Bu, aşağıdaki değişiklikleri içeren küçük bir sürümdür:"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:57
@@ -297,13 +294,15 @@ msgstr "Bazı küçük geliştirmeler"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Now requires Qt 5.12"
-msgstr ""
+msgstr "Artık Qt 5.12 gerektirir"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 msgid ""
 "Removed option for including breeze icons in the binary, however is it "
 "configured as fallback theme"
 msgstr ""
+"İkili dosyada breeze simgelerini dahil etme seçeneği kaldırıldı, ancak yedek "
+"tema olarak yapılandırıldı"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:52
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:63
