@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2020-01-24 06:21+0000\n"
-"Last-Translator: CurlingTongs <jobiwaff@googlemail.com>\n"
+"PO-Revision-Date: 2020-11-12 23:28+0000\n"
+"Last-Translator: mv87 <mv87@dismail.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/de/>\n"
 "Language: de\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11-dev\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: main.cpp:54
 msgid "ONVIFViewer"
@@ -203,18 +203,16 @@ msgid "Automatically find a camera in your network."
 msgstr "Findet automatisch eine Kamera in Ihrem Netzwerk."
 
 #: OverviewPage.qml:75
-#, fuzzy
 msgid "Add demonstration camera"
-msgstr "Demonstationskamera hinzufügen"
+msgstr "Demonstrationskamera hinzufügen"
 
 #: OverviewPage.qml:83
-#, fuzzy
 msgid ""
 "These demonstration cameras show you some on the capabilities, without "
 "owning a camera."
 msgstr ""
-"Diese Demonstrationskamera zeigt einige Funktionen, ohne eine Kamera zu "
-"besitzen."
+"Diese Demonstrationskameras zeigen Ihnen einige der Möglichkeiten, ohne eine "
+"Kamera zu besitzen."
 
 #: OverviewPage.qml:91
 msgid "Manually add camera"
@@ -289,9 +287,8 @@ msgid "The camera settings page"
 msgstr "Die Seite der Kameraeinstellungen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:42
-#, fuzzy
 msgid "This is a minor release, with the following changes:"
-msgstr "Dies ist ein neue Unterversion mit folgenden Verbesserungen:"
+msgstr "Dies ist eine Zwischenversion mit den folgenden Änderungen:"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:44
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:57
@@ -301,13 +298,15 @@ msgstr "Einige kleine Verbesserungen"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:45
 msgid "Now requires Qt 5.12"
-msgstr ""
+msgstr "Benötigt jetzt Qt 5.12"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:46
 msgid ""
 "Removed option for including breeze icons in the binary, however is it "
 "configured as fallback theme"
 msgstr ""
+"Die Option zum Einfügen von Breeze-Symbolen in die Datei wurde entfernt, ist "
+"jedoch als Fallback-Thema konfiguriert"
 
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:52
 #: ../desktop/net.meijn.onvifviewer.appdata.xml.in:63
