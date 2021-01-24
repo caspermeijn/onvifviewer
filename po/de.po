@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: onvifviewer\n"
 "Report-Msgid-Bugs-To: https://gitlab.com/caspermeijn/onvifviewer/issues\n"
-"PO-Revision-Date: 2020-12-18 13:29+0000\n"
+"PO-Revision-Date: 2021-01-25 08:32+0000\n"
 "Last-Translator: Masowick <d651483@nwytg.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/onvifviewer/"
 "translations/de/>\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: main.cpp:54
 msgid "ONVIFViewer"
@@ -196,7 +196,7 @@ msgstr "Über"
 
 #: OverviewPage.qml:57
 msgid "Automaticly discover camera"
-msgstr "Automatisch Kamera erkennen"
+msgstr "Kamera automatisch erkennen"
 
 #: OverviewPage.qml:66
 msgid "Automatically find a camera in your network."
