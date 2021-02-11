@@ -4,7 +4,7 @@
 ---
 app-id: net.meijn.onvifviewer
 runtime: org.kde.Platform
-runtime-version: '5.12'
+runtime-version: '5.14'
 sdk: org.kde.Sdk
 command: onvifviewer
 tags:
@@ -18,29 +18,29 @@ finish-args:
 - "--share=network"
 separate-locales: false
 modules:
+
 - name: kdsoap
   buildsystem: cmake-ninja
   builddir: true
+  config-opts:
+  - "-DKDSoap_EXAMPLES=false"
   sources:
   - type: git
     url: https://github.com/KDAB/KDSoap.git
-    commit: 9916aaf185c0f37ccb7324fa8aa11c69946b850c
-    comment: Using this specific commit, because kdsoap-ws-discovery-client needs
-      the KDSoapUdpClient in KDSoap master
+    tag: kdsoap-1.9.0
+    commit: fb0e905e242c2044fd25683a406eb6d369db052f
+
 - name: kdsoap-ws-discovery-client
   buildsystem: cmake-ninja
   builddir: true
-  config-opts:
-  - "-DKDSOAP_PATH=KDSoap"
   sources:
   - type: git
     url: https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client.git
     branch: master
+    
 - name: onvifviewer
   buildsystem: cmake-ninja
   builddir: true
-  config-opts:
-  - "-DUSE_BREEZE_ICONS=ON"
   sources:
   - type: dir
     path: ".."

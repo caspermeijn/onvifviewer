@@ -73,15 +73,15 @@ void OnvifDeviceDiscover::stop()
 #endif
 }
 
-void OnvifDeviceDiscover::matchReceived(const QSharedPointer<WSDiscoveryTargetService>& matchedService)
+void OnvifDeviceDiscover::matchReceived(const WSDiscoveryTargetService& matchedService)
 {
 #ifdef WITH_KDSOAP_WSDISCOVERY_CLIENT
-    OnvifDeviceDiscoverMatch* deviceMatch = m_matchMap.value(matchedService->endpointReference());
+    OnvifDeviceDiscoverMatch* deviceMatch = m_matchMap.value(matchedService.endpointReference());
     if (deviceMatch == nullptr) {
         deviceMatch = new OnvifDeviceDiscoverMatch();
     }
-    deviceMatch->m_endpoint = matchedService->endpointReference();
-    for (auto& scope : matchedService->scopeList()) {
+    deviceMatch->m_endpoint = matchedService.endpointReference();
+    for (auto& scope : matchedService.scopeList()) {
         if (scope.scheme() == "onvif" &&
                 scope.authority().toLower() == "www.onvif.org") {
             auto splitPath = scope.path().split("/", QString::SkipEmptyParts);
@@ -93,12 +93,13 @@ void OnvifDeviceDiscover::matchReceived(const QSharedPointer<WSDiscoveryTargetSe
             }
         }
     }
-    deviceMatch->m_xAddr = matchedService->xAddrList();
+
+    deviceMatch->m_xAddr = matchedService.xAddrList();
     deviceMatch->m_host.clear();
-    for (auto& xAddr : matchedService->xAddrList()) {
+    for (auto& xAddr : matchedService.xAddrList()) {
         deviceMatch->m_host << xAddr.authority();
     }
-    deviceMatch->m_lastSeen = matchedService->lastSeen();
+    deviceMatch->m_lastSeen = matchedService.lastSeen();
 
     m_matchMap.insert(deviceMatch->m_endpoint, deviceMatch);
     emit matchListChanged(matchList());

@@ -71,7 +71,7 @@ public slots:
     void stop();
 
 private slots:
-    void matchReceived(const QSharedPointer<WSDiscoveryTargetService>& matchedService);
+    void matchReceived(const WSDiscoveryTargetService& matchedService);
 
 private:
     WSDiscoveryClient* m_client;
