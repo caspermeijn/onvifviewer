@@ -95,7 +95,6 @@ void OnvifDeviceConnection::connectToDevice()
 
     d->isGetCapabilitiesFinished = false;
     d->isGetServicesFinished = false;
-    d->retryGetCapabilities = false;
 
     TDS__GetServices request;
     request.setIncludeCapability(true);
@@ -234,13 +233,6 @@ void OnvifDeviceConnectionPrivate::getCapabilitiesDone(const TDS__GetCapabilitie
 
 void OnvifDeviceConnectionPrivate::getCapabilitiesError(const KDSoapMessage& fault)
 {
-    if (!retryGetCapabilities && fault.faultAsString().contains("NotAuthorized"))
-    {
-        updateSoapCredentials(soapService.clientInterface());
-        soapService.asyncGetCapabilities(TDS__GetCapabilities());
-        retryGetCapabilities = true;
-        return;
-    }
     handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 

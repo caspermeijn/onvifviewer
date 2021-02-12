@@ -47,7 +47,6 @@ private:
 
     bool isGetServicesFinished = false;
     bool isGetCapabilitiesFinished = false;
-    bool retryGetCapabilities = false;
 
     static const QString c_baseEndpointURI;
 
