@@ -64,7 +64,42 @@ public:
     void saveHomePosition(const OnvifMediaProfile& profile);
 
     void stopMovement(const OnvifMediaProfile& profile);
-};
 
+    void getStatus(const OnvifMediaProfile& profile);
+
+    void setConfiguration(const QString& configuration);
+
+    enum PTZSpaces {
+        AbsolutePanTiltPositionSpace,
+        AbsoluteZoomPositionSpace,
+        RelativePanTiltTranslationSpace,
+        RelativeZoomTranslationSpace,
+        ContinuousPanTiltVelocitySpace,
+        ContinuousZoomVelocitySpace,
+        PanTiltSpeedSpace,
+        ZoomSpeedSpace
+    };
+    Q_ENUM(PTZSpaces)
+
+    bool isSpaceSupported(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const;
+
+    qreal panSpaceMax(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const;
+
+    qreal panSpaceMin(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const;
+
+    qreal tiltSpaceMax(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const;
+
+    qreal tiltSpaceMin(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const;
+
+    qreal zoomSpaceMax(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const;
+
+    qreal zoomSpaceMin(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const;
+
+signals:
+    void configurationsChanged(const QStringList&);
+    void panChanged(qreal);
+    void tiltChanged(qreal);
+    void zoomChanged(qreal);
+};
 
 #endif // ONVIFPTZSERVICE_H

@@ -28,7 +28,11 @@ OnvifDevice::OnvifDevice(QObject* parent) :
     QObject(parent),
     m_preferContinuousMove(false),
     m_cachedDeviceInformation(new OnvifDeviceInformation(this)),
-    m_cachedSnapshotDownloader(new OnvifSnapshotDownloader(this))
+    m_cachedSnapshotDownloader(new OnvifSnapshotDownloader(this)),
+    m_pan(std::numeric_limits<qreal>::quiet_NaN()),
+    m_tilt(std::numeric_limits<qreal>::quiet_NaN()),
+    m_zoom(std::numeric_limits<qreal>::quiet_NaN()),
+    m_getPTZStatusInterval(-1)
 {
     connect(&m_connection, &OnvifDeviceConnection::servicesAvailable,
             this, &OnvifDevice::servicesAvailable);
@@ -38,6 +42,10 @@ OnvifDevice::OnvifDevice(QObject* parent) :
     m_ptzStopTimer.setSingleShot(true);
     connect(&m_ptzStopTimer, &QTimer::timeout,
             this, &OnvifDevice::ptzStop);
+
+    m_getPTZStatusTimer.setInterval(std::numeric_limits<int>::max());
+    connect(&m_getPTZStatusTimer, &QTimer::timeout,
+            this, &OnvifDevice::getPTZStatus);
 
     // TODO: Figure out why qRegisterMetaType is needed, when we already called Q_DECLARE_METATYPE
     qRegisterMetaType<OnvifDeviceInformation> ("OnvifDeviceInformation");
@@ -130,6 +138,7 @@ void OnvifDevice::servicesAvailable()
 
     OnvifMediaService* mediaService = device->getMediaService();
     OnvifMedia2Service* media2Service = device->getMedia2Service();
+    OnvifPtzService* ptzService = device->getPtzService();
     if (media2Service) {
         media2Service->setPreferredVideoStreamProtocol(preferredVideoStreamProtocol());
         connect(media2Service, &OnvifMedia2Service::profileListAvailable,
@@ -154,6 +163,16 @@ void OnvifDevice::servicesAvailable()
                 this, &OnvifDevice::snapshotUriChanged);
         connect(mediaService, &OnvifMediaService::snapshotUriAvailable,
                 m_cachedSnapshotDownloader, &OnvifSnapshotDownloader::setSnapshotUri);
+    }
+    if (ptzService) {
+        connect(ptzService, &OnvifPtzService::configurationsChanged,
+                this, &OnvifDevice::ptzConfigurationsAvailable);
+        connect(ptzService, &OnvifPtzService::panChanged,
+                this, &OnvifDevice::setPan);
+        connect(ptzService, &OnvifPtzService::tiltChanged,
+                this, &OnvifDevice::setTilt);
+        connect(ptzService, &OnvifPtzService::zoomChanged,
+                this, &OnvifDevice::setZoom);
     }
 }
 
@@ -204,6 +223,50 @@ void OnvifDevice::profileListAvailable(const QList<OnvifMediaProfile>& profileLi
     }
     emit profileNamesChanged(m_profileNames);
     selectMediaProfile(0);
+}
+
+void OnvifDevice::getPTZStatus()
+{
+    OnvifPtzService* ptzService = m_connection.getPtzService();
+    if (ptzService) {
+        ptzService->getStatus(m_selectedMediaProfile);
+    }
+}
+
+void OnvifDevice::setPan(qreal pan)
+{
+    if (pan == m_pan) {
+        return;
+    }
+    m_pan = pan;
+    emit panChanged(m_pan);
+}
+
+void OnvifDevice::setTilt(qreal tilt)
+{
+    if (tilt == m_tilt) {
+        return;
+    }
+    m_tilt = tilt;
+    emit tiltChanged(m_tilt);
+}
+
+void OnvifDevice::setZoom(qreal zoom)
+{
+    if (zoom == m_zoom) {
+        return;
+    }
+    m_zoom = zoom;
+    emit zoomChanged(m_zoom);
+}
+
+void OnvifDevice::ptzConfigurationsAvailable(const QStringList& configurationNames)
+{
+    if (m_ptzConfigurationNames == configurationNames) {
+        return;
+    }
+    m_ptzConfigurationNames = configurationNames;
+    emit ptzConfigurationNamesChanged(m_ptzConfigurationNames);
 }
 
 QString OnvifDevice::preferredVideoStreamProtocol() const
@@ -325,6 +388,100 @@ bool OnvifDevice::isZoomSupported() const
     return false;
 }
 
+qreal OnvifDevice::pan() const
+{
+    return m_pan;
+}
+
+qreal OnvifDevice::tilt() const
+{
+    return m_tilt;
+}
+
+qreal OnvifDevice::zoom() const
+{
+    return m_zoom;
+}
+
+int OnvifDevice::getPTZStatusInterval() const
+{
+    return m_getPTZStatusInterval;
+}
+
+QStringList OnvifDevice::ptzConfigurationNames() const
+{
+    return m_ptzConfigurationNames;
+}
+
+bool OnvifDevice::isPtzSpaceSupported(int space, const QString& uri) const
+{
+    const OnvifPtzService* ptzService = m_connection.getPtzService();
+    if (ptzService) {
+        return ptzService->isSpaceSupported(m_selectedMediaProfile, static_cast<OnvifPtzService::PTZSpaces>(space), uri);
+    }
+    return false;
+}
+
+qreal OnvifDevice::panSpaceMax(int space, const QString& uri) const
+{
+    qreal max = std::numeric_limits<qreal>::quiet_NaN();
+    const OnvifPtzService* ptzService = m_connection.getPtzService();
+    if (ptzService) {
+        return ptzService->panSpaceMax(m_selectedMediaProfile, static_cast<OnvifPtzService::PTZSpaces>(space), uri);
+    }
+    return max;
+}
+
+qreal OnvifDevice::panSpaceMin(int space, const QString& uri) const
+{
+    qreal min = std::numeric_limits<qreal>::quiet_NaN();
+    const OnvifPtzService* ptzService = m_connection.getPtzService();
+    if (ptzService) {
+        return ptzService->panSpaceMin(m_selectedMediaProfile, static_cast<OnvifPtzService::PTZSpaces>(space), uri);
+    }
+    return min;
+}
+
+qreal OnvifDevice::tiltSpaceMax(int space, const QString& uri) const
+{
+    qreal max = std::numeric_limits<qreal>::quiet_NaN();
+    const OnvifPtzService* ptzService = m_connection.getPtzService();
+    if (ptzService) {
+        return ptzService->tiltSpaceMax(m_selectedMediaProfile, static_cast<OnvifPtzService::PTZSpaces>(space), uri);
+    }
+    return max;
+}
+
+qreal OnvifDevice::tiltSpaceMin(int space, const QString& uri) const
+{
+    qreal min = std::numeric_limits<qreal>::quiet_NaN();
+    const OnvifPtzService* ptzService = m_connection.getPtzService();
+    if (ptzService) {
+        return ptzService->tiltSpaceMin(m_selectedMediaProfile, static_cast<OnvifPtzService::PTZSpaces>(space), uri);
+    }
+    return min;
+}
+
+qreal OnvifDevice::zoomSpaceMax(int space, const QString& uri) const
+{
+    qreal max = std::numeric_limits<qreal>::quiet_NaN();
+    const OnvifPtzService* ptzService = m_connection.getPtzService();
+    if (ptzService) {
+        return ptzService->zoomSpaceMax(m_selectedMediaProfile, static_cast<OnvifPtzService::PTZSpaces>(space), uri);
+    }
+    return max;
+}
+
+qreal OnvifDevice::zoomSpaceMin(int space, const QString& uri) const
+{
+    qreal min = std::numeric_limits<qreal>::quiet_NaN();
+    const OnvifPtzService* ptzService = m_connection.getPtzService();
+    if (ptzService) {
+        return ptzService->zoomSpaceMin(m_selectedMediaProfile, static_cast<OnvifPtzService::PTZSpaces>(space), uri);
+    }
+    return min;
+}
+
 QString OnvifDevice::userName() const
 {
     return m_userName;
@@ -435,5 +592,28 @@ void OnvifDevice::selectMediaProfile(int index)
             media2Service->selectProfile(m_selectedMediaProfile);
         else if(mediaService)
             mediaService->selectProfile(m_selectedMediaProfile);
+
+        m_getPTZStatusTimer.start();
     }
+}
+
+void OnvifDevice::setGetPTZStatusInterval(int interval)
+{
+    if (m_getPTZStatusInterval == interval) {
+        return;
+    }
+    m_getPTZStatusInterval = interval;
+    emit getPTZStatusIntervalChanged(m_getPTZStatusInterval);
+    int minInterval = std::numeric_limits<int>::max();
+    if (interval != -1) {
+        minInterval = interval;
+    }
+    m_getPTZStatusTimer.setInterval(minInterval);
+}
+
+void OnvifDevice::selectPTZConfiguration(const QString& configurationName)
+{
+    OnvifPtzService* ptzService = m_connection.getPtzService();
+    Q_ASSERT(ptzService);
+    ptzService->setConfiguration(configurationName);
 }
