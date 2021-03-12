@@ -21,6 +21,7 @@
 #include <QDebug>
 #include <QUrl>
 #include "wsdl_ptz.h"
+#include <cmath>
 
 using namespace OnvifSoapPtz;
 
@@ -504,7 +505,7 @@ qreal OnvifPtzService::panSpaceMax(const OnvifMediaProfile &profile, PTZSpaces s
         default:
             continue;
         }
-        if (!isnan(max)) {
+        if (!std::isnan(max)) {
             break;
         }
     }
@@ -568,7 +569,7 @@ qreal OnvifPtzService::panSpaceMin(const OnvifMediaProfile &profile, PTZSpaces s
         default:
             continue;
         }
-        if (!isnan(min)) {
+        if (!std::isnan(min)) {
             break;
         }
     }
@@ -632,7 +633,7 @@ qreal OnvifPtzService::tiltSpaceMax(const OnvifMediaProfile& profile, PTZSpaces 
         default:
             continue;
         }
-        if (!isnan(max)) {
+        if (!std::isnan(max)) {
             break;
         }
     }
@@ -696,7 +697,7 @@ qreal OnvifPtzService::tiltSpaceMin(const OnvifMediaProfile& profile, PTZSpaces 
         default:
             continue;
         }
-        if (!isnan(min)) {
+        if (!std::isnan(min)) {
             break;
         }
     }
@@ -760,7 +761,7 @@ qreal OnvifPtzService::zoomSpaceMax(const OnvifMediaProfile& profile, PTZSpaces 
         default:
             continue;
         }
-        if (!isnan(max)) {
+        if (!std::isnan(max)) {
             break;
         }
     }
@@ -824,7 +825,7 @@ qreal OnvifPtzService::zoomSpaceMin(const OnvifMediaProfile& profile, PTZSpaces 
         default:
             continue;
         }
-        if (!isnan(min)) {
+        if (!std::isnan(min)) {
             break;
         }
     }
