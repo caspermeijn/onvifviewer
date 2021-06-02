@@ -14,6 +14,16 @@ This project was started as part of the [ONVIF Open Source Spotlight Challange](
 Before this project started, there was no open-source application for viewing ONVIF cameras for Plasma Mobile and Linux desktop. Neither is there a simple to use open-source C++ library to communicate with ONVIF cameras. The communication with the camera is implemented from scratch (using KDSoap) and modular designed, so that it can be separated into a reusable library at a later stage.
 
 
+## Current state
+
+I stopped development on this project. I was fun to create this application, but I don't have a usecase for my camera anymore. Therefore I have lost interest in adding new features. 
+
+I also found out that most bugs reported are from cameras that don't comply to the ONVIF specification. As I don't have such camera available it is not possible to fix that issue. This left multiple issue unsolved. This is not motivating me.
+
+Also I had difficulties releasing this as full free software, because of the non-free license of the ONVIF specification itself. 
+
+Feel free to send in merge request for your own developments.
+
 ## Flatpak
 On most Linux desktops you can install the application using Flatpak. 
 
