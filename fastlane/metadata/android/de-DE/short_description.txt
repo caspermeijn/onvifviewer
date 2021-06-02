@@ -1,1 +1,1 @@
-Netzwerk-Kameras mittels ONTIV-Protokoll ansehen und steuern
+Netzwerkkameras mittels ONVIF-Protokoll ansehen und steuern

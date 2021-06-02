@@ -1,0 +1,5 @@
+Use esta app open-source para visualizar as suas câmaras de rede a usar o protocolo ONVIF.
+
+O desenvolvimento desta app foi iniciado como parte do ONVIF Spotlight Desafio.
+
+Pode conectar-se à sua câmara de rede e ver o vídeo dela. Se a a câmara é controlável, pode movê-la também.

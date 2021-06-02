@@ -1,0 +1,1 @@
+ONVIF protokolünü kullanarak ağ kameralarını görüntüleyin ve denetleyin

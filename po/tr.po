@@ -34,7 +34,8 @@ msgstr "ONVIFViewer"
 
 #: main.cpp:55 main.cpp:70
 msgid "View and control network cameras using the ONVIF protocol"
-msgstr "ONVIF protokolünü kullanarak ağ kameralarını görüntüleyin ve denetleyin"
+msgstr ""
+"ONVIF protokolünü kullanarak ağ kameralarını görüntüleyin ve denetleyin"
 
 #: main.cpp:60 rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"

@@ -1,0 +1,5 @@
+Använd det här öppen-källkodsprogrammet för att visa dina nätverkskameror med ONVIF-protokollet.
+
+Utvecklingen av denna app startades som en del av ONVIF Spotlight Challenge.
+
+Du kan ansluta till din nätverkskamera och visa videon från den. Om kameran är styrbar kan du flytta den också.
