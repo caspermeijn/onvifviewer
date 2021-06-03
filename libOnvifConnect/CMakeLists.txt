@@ -27,7 +27,7 @@ include(ECMGenerateHeaders)
 # endif()
 
 set(GLOBAL_KSWSDL2CPP_OPTION)
-if(KDSoap_VERSION GREATER_EQUAL 1.8.0)
+if(KDSoap_VERSION VERSION_GREATER_EQUAL 1.8.0)
     get_filename_component(KDWSDL_IMPORT_PATH ../3rdparty/wsdl/ ABSOLUTE)
     set(GLOBAL_KSWSDL2CPP_OPTION -import-path ${KDWSDL_IMPORT_PATH} -use-local-files-only)
 endif()
