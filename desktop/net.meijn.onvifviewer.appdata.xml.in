@@ -37,7 +37,7 @@
     <content_attribute id="social-info">none</content_attribute>
   </content_rating>
   <releases>
-    <release version="0.13" type="development" date="2019-11-24">
+    <release version="0.13" date="2021-06-03">
       <description>
         <p>This is a minor release, with the following changes:</p>
         <ul>
