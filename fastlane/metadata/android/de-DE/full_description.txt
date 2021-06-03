@@ -2,4 +2,4 @@ Diese quelloffenen App ermöglicht das Anschauen der eigenen Netzwerkkameras mit
 
 Die Entwicklung dieser App wurde als Teil der ONVIF Spotlight Challenge gestartet.
 
-Die eigene Kamera anschließen und deren Video ansehen. Sollte die Kamera steuerbar sein, lässt sie sich auch bewegen.
+Mit der eigene Netzwerkkamera verbinden und deren Video ansehen. Sollte die Kamera steuerbar sein, lässt sie sich auch bewegen.

@@ -1,0 +1,5 @@
+ONVIF protokolünü kullanarak ağ kameralarınızı görüntülemek için bu açık kaynaklı uygulamayı kullanın.
+
+Bu uygulamanın geliştirilmesine ONVIF Spotlight Challenge'ın bir parçası olarak başlandı.
+
+Ağ kameranıza bağlanabilir ve videosunu görüntüleyebilirsiniz. Kamera denetlenebilir ise, onu hareket de ettirebilirsiniz.

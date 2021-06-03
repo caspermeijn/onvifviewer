@@ -1,0 +1,5 @@
+Utilisez cette application open-source pour visualiser vos caméras IP à l'aide du protocole ONVIF.
+
+Le développement de cette application a été lancé dans le cadre du Spotlight ONVIF Challenge.
+
+Vous pouvez vous connecter à votre caméra réseau et visionner la vidéo de celle-ci. Si la caméra est contrôlable, vous pouvez également la déplacer.
