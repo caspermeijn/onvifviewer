@@ -56,8 +56,8 @@ Kirigami.ScrollablePage {
                     selectedIndex = deviceManager.appendDevice()
                     var newDevice = deviceManager.at(selectedIndex)
                     newDevice.deviceName = modelData.name;
-                    console.log(modelData.xAddr)
-                    newDevice.hostName = modelData.host;
+                    console.log(modelData.xAddr[0])
+                    newDevice.hostName = modelData.host[0];
                     newDevice.connectToDevice();
                     deviceManager.saveDevices()
 

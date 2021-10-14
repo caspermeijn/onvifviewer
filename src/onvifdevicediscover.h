@@ -18,6 +18,7 @@
 #define ONVIFDEVICEDISCOVER_H
 
 #include <QMap>
+#include <QList>
 #include <QObject>
 #include <QUrl>
 #include <QDateTime>
@@ -32,20 +33,21 @@ class OnvifDeviceDiscoverMatch : public QObject
     Q_PROPERTY(QString name READ getName CONSTANT)
     Q_PROPERTY(QString hardware READ getHardware CONSTANT)
     Q_PROPERTY(QString endpoint READ getEndpoint CONSTANT)
-    Q_PROPERTY(QUrl xAddr READ getXAddr CONSTANT)
-    Q_PROPERTY(QString host READ getHost CONSTANT)
+    Q_PROPERTY(QList<QUrl> xAddr READ getXAddr CONSTANT)
+    Q_PROPERTY(QStringList host READ getHost CONSTANT)
 public:
     QString getName() const;
     QString getHardware() const;
     QString getEndpoint() const;
-    QUrl getXAddr() const;
-    QString getHost() const;
+    QList<QUrl> getXAddr() const;
+    QStringList getHost() const;
 
 protected:
     QString m_name;
     QString m_hardware;
     QString m_endpoint;
-    QUrl m_xAddr;
+    QList<QUrl> m_xAddr;
+    QStringList m_host;
     QDateTime m_lastSeen;
 
     friend class OnvifDeviceDiscover;
@@ -66,6 +68,7 @@ signals:
 
 public slots:
     void start();
+    void stop();
 
 private slots:
     void matchReceived(const WSDiscoveryTargetService& matchedService);

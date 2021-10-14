@@ -20,6 +20,8 @@
 
 #include "onvifdeviceconnection.h"
 #include "wsdl_devicemgmt.h"
+#include <QElapsedTimer>
+#include <functional>
 
 class OnvifDeviceConnectionPrivate
 {
@@ -42,6 +44,9 @@ private:
 
     QString errorString;
 
+    QDateTime deviceDateAndTime;
+    QElapsedTimer elapsedTime;
+
     bool isUsernameTokenSupported = false;
     bool isHttpDigestSupported = false;
 
@@ -50,6 +55,11 @@ private:
 
     static const QString c_baseEndpointURI;
 
+    std::function<void()> systemDateAndTimeResumeFunction;
+
+    void getServicesAndCapabilities();
+    void getSystemDateAndTimeDone(const OnvifSoapDevicemgmt::TDS__GetSystemDateAndTimeResponse &parameters);
+    void getSystemDateAndTimeError(const KDSoapMessage& fault);
     void getServicesDone(const OnvifSoapDevicemgmt::TDS__GetServicesResponse& parameters);
     void getServicesError(const KDSoapMessage& fault);
     void getCapabilitiesDone(const OnvifSoapDevicemgmt::TDS__GetCapabilitiesResponse& parameters);
@@ -60,6 +70,8 @@ private:
 public:
     void updateUrlHost(QUrl* url);
     void updateSoapCredentials(KDSoapClientInterface* clientInterface);
+    void clearSoapCredentials();
+    void getSystemDateAndTime(std::function<void()> resumeFunction);
     void updateUrlCredentials(QUrl* url);
     void handleSoapError(const KDSoapMessage& fault, const QString& location);
 };

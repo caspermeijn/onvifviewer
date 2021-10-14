@@ -49,6 +49,7 @@ private:
     QUrl streamUri;
     QString preferredVideoStreamProtocol;
 
+    void selectProfile();
     void getServiceCapabilitiesDone(const OnvifSoapMedia::TRT__GetServiceCapabilitiesResponse& parameters);
     void getServiceCapabilitiesError(const KDSoapMessage& fault);
     void getProfilesDone(const OnvifSoapMedia::TRT__GetProfilesResponse& parameters);
@@ -134,39 +135,7 @@ void OnvifMediaService::selectProfile(const OnvifMediaProfile& profile)
     Q_D(OnvifMediaService);
     d->selectedProfile = profile;
 
-    OnvifSoapMedia::TRT__GetSnapshotUri requestSnapshot;
-    requestSnapshot.setProfileToken(d->selectedProfile.token());
-    d->device->d_ptr->updateSoapCredentials(d->soapService.clientInterface());
-    d->soapService.asyncGetSnapshotUri(requestSnapshot);
-
-    OnvifSoapMedia::TRT__GetStreamUri requestStream;
-    requestStream.setProfileToken(d->selectedProfile.token());
-    if (d->preferredVideoStreamProtocol == "RtspOverHttp") {
-        OnvifSoapMedia::TT__StreamSetup streamSetup;
-        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
-        OnvifSoapMedia::TT__Transport transport;
-        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::HTTP);
-        streamSetup.setTransport(transport);
-        requestStream.setStreamSetup(streamSetup);
-    } else if (d->preferredVideoStreamProtocol == "RtspUnicast") {
-        OnvifSoapMedia::TT__StreamSetup streamSetup;
-        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
-        OnvifSoapMedia::TT__Transport transport;
-        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::UDP);
-        streamSetup.setTransport(transport);
-        requestStream.setStreamSetup(streamSetup);
-    } else if (d->preferredVideoStreamProtocol == "RTSP") {
-        OnvifSoapMedia::TT__StreamSetup streamSetup;
-        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
-        OnvifSoapMedia::TT__Transport transport;
-        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::RTSP);
-        streamSetup.setTransport(transport);
-        requestStream.setStreamSetup(streamSetup);
-    } else if (!d->preferredVideoStreamProtocol.isEmpty()) {
-        qWarning() << "Warning: unknown preferredVideoStreamProtocol" << d->preferredVideoStreamProtocol;
-    }
-    d->device->d_ptr->updateSoapCredentials(d->soapService.clientInterface());
-    d->soapService.asyncGetStreamUri(requestStream);
+    d->device->d_ptr->getSystemDateAndTime(std::bind(&OnvifMediaServicePrivate::selectProfile, d));
 }
 
 bool OnvifMediaService::supportsSnapshotUri() const
@@ -208,6 +177,43 @@ void OnvifMediaService::setPreferredVideoStreamProtocol(const QString& preferred
 {
     Q_D(OnvifMediaService);
     d->preferredVideoStreamProtocol = preferredVideoStreamProtocol;
+}
+
+void OnvifMediaServicePrivate::selectProfile()
+{
+    OnvifSoapMedia::TRT__GetSnapshotUri requestSnapshot;
+    requestSnapshot.setProfileToken(selectedProfile.token());
+    device->d_ptr->updateSoapCredentials(soapService.clientInterface());
+    soapService.asyncGetSnapshotUri(requestSnapshot);
+
+    OnvifSoapMedia::TRT__GetStreamUri requestStream;
+    requestStream.setProfileToken(selectedProfile.token());
+    if (preferredVideoStreamProtocol == "RtspOverHttp") {
+        OnvifSoapMedia::TT__StreamSetup streamSetup;
+        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
+        OnvifSoapMedia::TT__Transport transport;
+        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::HTTP);
+        streamSetup.setTransport(transport);
+        requestStream.setStreamSetup(streamSetup);
+    } else if (preferredVideoStreamProtocol == "RtspUnicast") {
+        OnvifSoapMedia::TT__StreamSetup streamSetup;
+        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
+        OnvifSoapMedia::TT__Transport transport;
+        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::UDP);
+        streamSetup.setTransport(transport);
+        requestStream.setStreamSetup(streamSetup);
+    } else if (preferredVideoStreamProtocol == "RTSP") {
+        OnvifSoapMedia::TT__StreamSetup streamSetup;
+        streamSetup.setStream(OnvifSoapMedia::TT__StreamType::RTP_Unicast);
+        OnvifSoapMedia::TT__Transport transport;
+        transport.setProtocol(OnvifSoapMedia::TT__TransportProtocol::RTSP);
+        streamSetup.setTransport(transport);
+        requestStream.setStreamSetup(streamSetup);
+    } else if (!preferredVideoStreamProtocol.isEmpty()) {
+        qWarning() << "Warning: unknown preferredVideoStreamProtocol" << preferredVideoStreamProtocol;
+    }
+    device->d_ptr->updateSoapCredentials(soapService.clientInterface());
+    soapService.asyncGetStreamUri(requestStream);
 }
 
 void OnvifMediaServicePrivate::getServiceCapabilitiesDone(const TRT__GetServiceCapabilitiesResponse& parameters)
@@ -262,7 +268,10 @@ void OnvifMediaServicePrivate::getSnapshotUriDone(const OnvifSoapMedia::TRT__Get
 
 void OnvifMediaServicePrivate::getSnapshotUriError(const KDSoapMessage& fault)
 {
-    device->d_ptr->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
+    Q_Q(OnvifMediaService);
+    qDebug() << "The GetSnapshotUri call failed:" << fault.faultAsString();
+    supportsSnapshotUri = false;
+    emit q->supportsSnapshotUriAvailable(supportsSnapshotUri);
 }
 
 void OnvifMediaServicePrivate::getStreamUriDone(const OnvifSoapMedia::TRT__GetStreamUriResponse& parameters)

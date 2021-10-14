@@ -45,6 +45,14 @@ OnvifDeviceConnection::OnvifDeviceConnection(QObject* parent) :
     d_ptr(new OnvifDeviceConnectionPrivate(this))
 {
     Q_D(OnvifDeviceConnection);
+    connect(&d->soapService, &DeviceBindingService::getSystemDateAndTimeDone,
+    [d](const OnvifSoapDevicemgmt::TDS__GetSystemDateAndTimeResponse & parameters) {
+        d->getSystemDateAndTimeDone(parameters);
+    });
+    connect(&d->soapService, &DeviceBindingService::getSystemDateAndTimeError,
+    [d](const KDSoapMessage & fault) {
+        d->getSystemDateAndTimeError(fault);
+    });
     connect(&d->soapService, &DeviceBindingService::getServicesDone,
     [d](const OnvifSoapDevicemgmt::TDS__GetServicesResponse & parameters) {
         d->getServicesDone(parameters);
@@ -96,12 +104,7 @@ void OnvifDeviceConnection::connectToDevice()
     d->isGetCapabilitiesFinished = false;
     d->isGetServicesFinished = false;
 
-    TDS__GetServices request;
-    request.setIncludeCapability(true);
-    // Access level pre-auth => no credentials needes
-    d->soapService.asyncGetServices(request);
-    // Access level pre-auth => no credentials needes
-    d->soapService.asyncGetCapabilities(TDS__GetCapabilities());
+    d->getSystemDateAndTime(std::bind(&OnvifDeviceConnectionPrivate::getServicesAndCapabilities, d));
 
     d->errorString.clear();
     emit errorStringChanged(d->errorString);
@@ -112,6 +115,8 @@ void OnvifDeviceConnection::disconnectFromDevice()
     Q_D(OnvifDeviceConnection);
     d->isGetCapabilitiesFinished = false;
     d->isGetServicesFinished = false;
+    d->deviceDateAndTime = QDateTime();
+    d->elapsedTime.invalidate();
 
     if (d->deviceService) {
         d->deviceService->deleteLater();
@@ -132,6 +137,41 @@ void OnvifDeviceConnection::disconnectFromDevice()
         d->ptzService->deleteLater();
     }
     d->ptzService = nullptr;
+}
+
+void OnvifDeviceConnectionPrivate::getServicesAndCapabilities()
+{
+    updateSoapCredentials(soapService.clientInterface());
+    TDS__GetServices request;
+    request.setIncludeCapability(true);
+    // Access level pre-auth => no credentials needed
+    soapService.asyncGetServices(request);
+    // Access level pre-auth => no credentials needed
+    soapService.asyncGetCapabilities(TDS__GetCapabilities());
+}
+
+void OnvifDeviceConnectionPrivate::getSystemDateAndTimeDone(const OnvifSoapDevicemgmt::TDS__GetSystemDateAndTimeResponse& parameters)
+{
+    if (parameters.systemDateAndTime().hasValueForUTCDateTime()) {
+        const QString dateTime = QString("%1-%2-%3 %4:%5:%6").arg(parameters.systemDateAndTime().uTCDateTime().date().year())
+                .arg(parameters.systemDateAndTime().uTCDateTime().date().month(), 2, 10, QLatin1Char('0'))
+                .arg(parameters.systemDateAndTime().uTCDateTime().date().day(), 2, 10, QLatin1Char('0'))
+                .arg(parameters.systemDateAndTime().uTCDateTime().time().hour(), 2, 10, QLatin1Char('0'))
+                .arg(parameters.systemDateAndTime().uTCDateTime().time().minute(), 2, 10, QLatin1Char('0'))
+                .arg(parameters.systemDateAndTime().uTCDateTime().time().second(), 2, 10, QLatin1Char('0'));
+        deviceDateAndTime = QDateTime::fromString(dateTime, QString("yyyy-MM-dd HH:mm:ss"));
+    }
+    if (systemDateAndTimeResumeFunction) {
+        systemDateAndTimeResumeFunction();
+    }
+}
+
+void OnvifDeviceConnectionPrivate::getSystemDateAndTimeError(const KDSoapMessage& fault)
+{
+    qDebug() << "The GetSystemDateAndTime call failed; using client date and time:" << fault.faultAsString();
+    if (systemDateAndTimeResumeFunction) {
+        systemDateAndTimeResumeFunction();
+    }
 }
 
 void OnvifDeviceConnectionPrivate::getServicesDone(const TDS__GetServicesResponse& parameters)
@@ -298,9 +338,31 @@ void OnvifDeviceConnectionPrivate::updateSoapCredentials(KDSoapClientInterface* 
         auth.setUser(username);
         auth.setPassword(password);
         auth.setUseWSUsernameToken(isUsernameTokenSupported);
+        if (deviceDateAndTime.isValid()) {
+            if(elapsedTime.isValid()){
+                deviceDateAndTime = deviceDateAndTime.addMSecs(elapsedTime.elapsed());
+            } else {
+                elapsedTime.start();
+            }
+            auth.setOverrideWSUsernameCreatedTime(deviceDateAndTime);
+        }
         clientInterface->setAuthentication(auth);
     }
     // Some camera's don't require authentication and therefore don't ask for any
+}
+
+void OnvifDeviceConnectionPrivate::clearSoapCredentials()
+{
+    deviceDateAndTime = QDateTime();
+    elapsedTime.invalidate();
+    soapService.clientInterface()->setAuthentication(KDSoapAuthentication());
+}
+
+void OnvifDeviceConnectionPrivate::getSystemDateAndTime(std::function<void()> resumeFunction)
+{
+    systemDateAndTimeResumeFunction = resumeFunction;
+    clearSoapCredentials();
+    soapService.asyncGetSystemDateAndTime(TDS__GetSystemDateAndTime());
 }
 
 void OnvifDeviceConnectionPrivate::updateUrlCredentials(QUrl* url)
@@ -321,6 +383,17 @@ void OnvifDeviceConnectionPrivate::handleSoapError(const KDSoapMessage& fault, c
         if (!isHttpDigestSupported && !isUsernameTokenSupported) {
             errorString = "None of the authentication methods are available";
         }
+    } else if (location.contains("OnvifPtzServicePrivate::getServiceCapabilitiesError") &&
+               (fault.faultAsString().contains("not implemented") || fault.faultAsString().contains("Action failed"))) {
+        // Some devices report having PTZ service but fail with "not implemented" or "Action failed" when getServiceCapabilities is called
+        // Therefore we disable the service and ignore any error
+        qDebug() << "The PTZ GetServicesCapabilities call failed; this is expected for some ONVIF devices:" << fault.faultAsString();
+        if (ptzService) {
+            ptzService->disconnectFromService();
+            ptzService->deleteLater();
+        }
+        ptzService = nullptr;
+        return;
     } else {
         errorString = location + ": " + fault.faultAsString();
     }

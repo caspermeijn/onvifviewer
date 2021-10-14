@@ -21,6 +21,7 @@
 #include <QDebug>
 #include <QUrl>
 #include "wsdl_ptz.h"
+#include <cmath>
 
 using namespace OnvifSoapPtz;
 
@@ -42,6 +43,9 @@ private:
     OnvifDeviceConnection* device;
     OnvifSoapPtz::PTZBindingService soapService;
     QList< OnvifSoapPtz::TT__PTZNode > nodeList;
+    QList< OnvifSoapPtz::TT__PTZConfiguration > configurationList;
+    QList< OnvifSoapPtz::TT__PTZConfigurationOptions > configurationOptionsList;
+    QStringList configurationNameList;
     bool recievedServiceCapabilities;
 
     void getServiceCapabilitiesDone(const OnvifSoapPtz::TPTZ__GetServiceCapabilitiesResponse& parameters);
@@ -64,6 +68,8 @@ private:
     void setHomePositionError(const KDSoapMessage& fault);
     void stopDone(const OnvifSoapPtz::TPTZ__StopResponse& parameters);
     void stopError(const KDSoapMessage& fault);
+    void setConfigurationDone(const OnvifSoapPtz::TPTZ__SetConfigurationResponse& parameters);
+    void setConfigurationError(const KDSoapMessage& fault);
 };
 
 OnvifPtzService::OnvifPtzService(const QString& endpointAddress, OnvifDeviceConnection* parent) :
@@ -153,6 +159,14 @@ OnvifPtzService::OnvifPtzService(const QString& endpointAddress, OnvifDeviceConn
     [d](const KDSoapMessage & fault) {
         d->stopError(fault);
     });
+    connect(&d->soapService, &PTZBindingService::setConfigurationDone,
+    [d](const OnvifSoapPtz::TPTZ__SetConfigurationResponse & parameters) {
+        d->setConfigurationDone(parameters);
+    });
+    connect(&d->soapService, &PTZBindingService::setConfigurationError,
+    [d](const KDSoapMessage & fault) {
+        d->setConfigurationError(fault);
+    });
 }
 
 OnvifPtzService::~OnvifPtzService() = default;
@@ -187,7 +201,7 @@ void OnvifPtzService::setServiceCapabilities(const OnvifSoapPtz::TPTZ__Capabilit
 
 void OnvifPtzService::setServiceCapabilities(const OnvifSoapDevicemgmt::TT__PTZCapabilities& /*capabilities*/)
 {
-    // No useful capabilities are defines
+    // No useful capabilities are defined
 }
 
 void OnvifPtzService::absoluteMove(const OnvifMediaProfile& profile, float xFraction, float yFraction)
@@ -310,6 +324,515 @@ void OnvifPtzService::stopMovement(const OnvifMediaProfile& profile)
     d->soapService.asyncStop(request);
 }
 
+void OnvifPtzService::getStatus(const OnvifMediaProfile& profile)
+{
+    Q_D(OnvifPtzService);
+    OnvifSoapPtz::TPTZ__GetStatus request;
+    request.setProfileToken(profile.token());
+
+    d->device->d_ptr->updateSoapCredentials(d->soapService.clientInterface());
+    d->soapService.asyncGetStatus(request);
+}
+
+void OnvifPtzService::setConfiguration(const QString& configuration)
+{
+    Q_D(OnvifPtzService);
+    OnvifSoapPtz::TPTZ__SetConfiguration request;
+    for (auto& config : d->configurationList) {
+        if (config.name().value() == configuration) {
+            request.setPTZConfiguration(config);
+            break;
+        }
+    }
+
+    d->device->d_ptr->updateSoapCredentials(d->soapService.clientInterface());
+    d->soapService.asyncSetConfiguration(request);
+}
+
+bool OnvifPtzService::isSpaceSupported(const OnvifMediaProfile &profile, PTZSpaces space, const QString& uri) const
+{
+    bool found = false;
+    Q_D(const OnvifPtzService);
+    for(auto& node : d->nodeList) {
+        if (node.name().value() != profile.ptzNodeToken()) {
+            continue;
+        }
+        switch(space) {
+        case AbsolutePanTiltPositionSpace:
+            if (node.supportedPTZSpaces().hasValueForAbsolutePanTiltPositionSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().absolutePanTiltPositionSpace()) {
+                    found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+            break;
+        case AbsoluteZoomPositionSpace:
+            if (node.supportedPTZSpaces().hasValueForAbsoluteZoomPositionSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().absoluteZoomPositionSpace()) {
+                    found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+            break;
+        case RelativePanTiltTranslationSpace:
+            if (node.supportedPTZSpaces().hasValueForRelativePanTiltTranslationSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().relativePanTiltTranslationSpace()) {
+                    found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+            break;
+        case RelativeZoomTranslationSpace:
+            if (node.supportedPTZSpaces().hasValueForRelativeZoomTranslationSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().relativeZoomTranslationSpace()) {
+                    found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+            break;
+        case ContinuousPanTiltVelocitySpace:
+            if (node.supportedPTZSpaces().hasValueForContinuousPanTiltVelocitySpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().continuousPanTiltVelocitySpace()) {
+                    found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+            break;
+        case ContinuousZoomVelocitySpace:
+            if (node.supportedPTZSpaces().hasValueForContinuousZoomVelocitySpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().continuousZoomVelocitySpace()) {
+                    found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+            break;
+        case PanTiltSpeedSpace:
+            if (node.supportedPTZSpaces().hasValueForPanTiltSpeedSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().panTiltSpeedSpace()) {
+                    found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+            break;
+        case ZoomSpeedSpace:
+            if (node.supportedPTZSpaces().hasValueForZoomSpeedSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().zoomSpeedSpace()) {
+                    found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        break;
+                    }
+                }
+            }
+            break;
+        default:
+            continue;
+        }
+        if (found) {
+            break;
+        }
+    }
+
+    return found;
+}
+
+qreal OnvifPtzService::panSpaceMax(const OnvifMediaProfile &profile, PTZSpaces space, const QString& uri) const
+{
+    qreal max = std::numeric_limits<qreal>::quiet_NaN();
+    Q_D(const OnvifPtzService);
+    for(auto& node : d->nodeList) {
+        if (node.name().value() != profile.ptzNodeToken()) {
+            continue;
+        }
+        switch(space) {
+        case AbsolutePanTiltPositionSpace:
+            if (node.supportedPTZSpaces().hasValueForAbsolutePanTiltPositionSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().absolutePanTiltPositionSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case RelativePanTiltTranslationSpace:
+            if (node.supportedPTZSpaces().hasValueForRelativePanTiltTranslationSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().relativePanTiltTranslationSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case ContinuousPanTiltVelocitySpace:
+            if (node.supportedPTZSpaces().hasValueForContinuousPanTiltVelocitySpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().continuousPanTiltVelocitySpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case PanTiltSpeedSpace:
+            if (node.supportedPTZSpaces().hasValueForPanTiltSpeedSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().panTiltSpeedSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        default:
+            continue;
+        }
+        if (!std::isnan(max)) {
+            break;
+        }
+    }
+
+    return max;
+}
+
+qreal OnvifPtzService::panSpaceMin(const OnvifMediaProfile &profile, PTZSpaces space, const QString& uri) const
+{
+    qreal min = std::numeric_limits<qreal>::quiet_NaN();
+    Q_D(const OnvifPtzService);
+    for(auto& node : d->nodeList) {
+        if (node.name().value() != profile.ptzNodeToken()) {
+            continue;
+        }
+        switch(space) {
+        case AbsolutePanTiltPositionSpace:
+            if (node.supportedPTZSpaces().hasValueForAbsolutePanTiltPositionSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().absolutePanTiltPositionSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case RelativePanTiltTranslationSpace:
+            if (node.supportedPTZSpaces().hasValueForRelativePanTiltTranslationSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().relativePanTiltTranslationSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case ContinuousPanTiltVelocitySpace:
+            if (node.supportedPTZSpaces().hasValueForContinuousPanTiltVelocitySpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().continuousPanTiltVelocitySpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case PanTiltSpeedSpace:
+            if (node.supportedPTZSpaces().hasValueForPanTiltSpeedSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().panTiltSpeedSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        default:
+            continue;
+        }
+        if (!std::isnan(min)) {
+            break;
+        }
+    }
+
+    return min;
+}
+
+qreal OnvifPtzService::tiltSpaceMax(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const
+{
+    qreal max = std::numeric_limits<qreal>::quiet_NaN();
+    Q_D(const OnvifPtzService);
+    for(auto& node : d->nodeList) {
+        if (node.name().value() != profile.ptzNodeToken()) {
+            continue;
+        }
+        switch(space) {
+        case AbsolutePanTiltPositionSpace:
+            if (node.supportedPTZSpaces().hasValueForAbsolutePanTiltPositionSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().absolutePanTiltPositionSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.yRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case RelativePanTiltTranslationSpace:
+            if (node.supportedPTZSpaces().hasValueForRelativePanTiltTranslationSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().relativePanTiltTranslationSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.yRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case ContinuousPanTiltVelocitySpace:
+            if (node.supportedPTZSpaces().hasValueForContinuousPanTiltVelocitySpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().continuousPanTiltVelocitySpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.yRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case PanTiltSpeedSpace:
+            if (node.supportedPTZSpaces().hasValueForPanTiltSpeedSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().panTiltSpeedSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        default:
+            continue;
+        }
+        if (!std::isnan(max)) {
+            break;
+        }
+    }
+
+    return max;
+}
+
+qreal OnvifPtzService::tiltSpaceMin(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const
+{
+    qreal min = std::numeric_limits<qreal>::quiet_NaN();
+    Q_D(const OnvifPtzService);
+    for(auto& node : d->nodeList) {
+        if (node.name().value() != profile.ptzNodeToken()) {
+            continue;
+        }
+        switch(space) {
+        case AbsolutePanTiltPositionSpace:
+            if (node.supportedPTZSpaces().hasValueForAbsolutePanTiltPositionSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().absolutePanTiltPositionSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.yRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case RelativePanTiltTranslationSpace:
+            if (node.supportedPTZSpaces().hasValueForRelativePanTiltTranslationSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().relativePanTiltTranslationSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.yRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case ContinuousPanTiltVelocitySpace:
+            if (node.supportedPTZSpaces().hasValueForContinuousPanTiltVelocitySpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().continuousPanTiltVelocitySpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.yRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case PanTiltSpeedSpace:
+            if (node.supportedPTZSpaces().hasValueForPanTiltSpeedSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().panTiltSpeedSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        default:
+            continue;
+        }
+        if (!std::isnan(min)) {
+            break;
+        }
+    }
+
+    return min;
+}
+
+qreal OnvifPtzService::zoomSpaceMax(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const
+{
+    qreal max = std::numeric_limits<qreal>::quiet_NaN();
+    Q_D(const OnvifPtzService);
+    for(auto& node : d->nodeList) {
+        if (node.name().value() != profile.ptzNodeToken()) {
+            continue;
+        }
+        switch(space) {
+        case AbsoluteZoomPositionSpace:
+            if (node.supportedPTZSpaces().hasValueForAbsoluteZoomPositionSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().absoluteZoomPositionSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case RelativeZoomTranslationSpace:
+            if (node.supportedPTZSpaces().hasValueForRelativeZoomTranslationSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().relativeZoomTranslationSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case ContinuousZoomVelocitySpace:
+            if (node.supportedPTZSpaces().hasValueForContinuousZoomVelocitySpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().continuousZoomVelocitySpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        case ZoomSpeedSpace:
+            if (node.supportedPTZSpaces().hasValueForZoomSpeedSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().zoomSpeedSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        max = ptzSpace.xRange().max();
+                        break;
+                    }
+                }
+            }
+            break;
+        default:
+            continue;
+        }
+        if (!std::isnan(max)) {
+            break;
+        }
+    }
+
+    return max;
+}
+
+qreal OnvifPtzService::zoomSpaceMin(const OnvifMediaProfile& profile, PTZSpaces space, const QString& uri) const
+{
+    qreal min = std::numeric_limits<qreal>::quiet_NaN();
+    Q_D(const OnvifPtzService);
+    for(auto& node : d->nodeList) {
+        if (node.name().value() != profile.ptzNodeToken()) {
+            continue;
+        }
+        switch(space) {
+        case AbsoluteZoomPositionSpace:
+            if (node.supportedPTZSpaces().hasValueForAbsoluteZoomPositionSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().absoluteZoomPositionSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case RelativeZoomTranslationSpace:
+            if (node.supportedPTZSpaces().hasValueForRelativeZoomTranslationSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().relativeZoomTranslationSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case ContinuousZoomVelocitySpace:
+            if (node.supportedPTZSpaces().hasValueForContinuousZoomVelocitySpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().continuousZoomVelocitySpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        case ZoomSpeedSpace:
+            if (node.supportedPTZSpaces().hasValueForZoomSpeedSpace()) {
+                for (auto& ptzSpace : node.supportedPTZSpaces().zoomSpeedSpace()) {
+                    const bool found = ptzSpace.uRI().contains(uri);
+                    if (found) {
+                        min = ptzSpace.xRange().min();
+                        break;
+                    }
+                }
+            }
+            break;
+        default:
+            continue;
+        }
+        if (!std::isnan(min)) {
+            break;
+        }
+    }
+
+    return min;
+}
+
 bool OnvifPtzService::isHomeSupported(const OnvifMediaProfile& profile) const
 {
     Q_D(const OnvifPtzService);
@@ -371,9 +894,17 @@ void OnvifPtzServicePrivate::getNodesError(const KDSoapMessage& fault)
     device->d_ptr->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
-void OnvifPtzServicePrivate::getConfigurationsDone(const TPTZ__GetConfigurationsResponse& /*parameters*/)
+void OnvifPtzServicePrivate::getConfigurationsDone(const TPTZ__GetConfigurationsResponse& parameters)
 {
-    // TODO: What can we do with the the PTZ configuration
+    configurationList = parameters.pTZConfiguration();
+    configurationNameList.clear();
+    configurationOptionsList.clear();
+    for (const auto& config : configurationList) {
+        configurationNameList << config.name().value();
+    }
+    if (!configurationNameList.isEmpty()) {
+        emit q_ptr->configurationsChanged(configurationNameList);
+    }
 }
 
 void OnvifPtzServicePrivate::getConfigurationsError(const KDSoapMessage& fault)
@@ -381,9 +912,17 @@ void OnvifPtzServicePrivate::getConfigurationsError(const KDSoapMessage& fault)
     device->d_ptr->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }
 
-void OnvifPtzServicePrivate::getStatusDone(const OnvifSoapPtz::TPTZ__GetStatusResponse& /*parameters*/)
+void OnvifPtzServicePrivate::getStatusDone(const OnvifSoapPtz::TPTZ__GetStatusResponse& parameters)
 {
-    //TODO: What can we do with the PTZ status?
+    if(parameters.pTZStatus().hasValueForPosition()) {
+        if (parameters.pTZStatus().position().hasValueForPanTilt()) {
+            q_ptr->panChanged(parameters.pTZStatus().position().panTilt().x());
+            q_ptr->tiltChanged(parameters.pTZStatus().position().panTilt().y());
+        }
+        if (parameters.pTZStatus().position().hasValueForZoom()) {
+            q_ptr->zoomChanged(parameters.pTZStatus().position().zoom().x());
+        }
+    }
 }
 
 void OnvifPtzServicePrivate::getStatusError(const KDSoapMessage& fault)
@@ -446,6 +985,15 @@ void OnvifPtzServicePrivate::stopDone(const TPTZ__StopResponse& /*parameters*/)
 }
 
 void OnvifPtzServicePrivate::stopError(const KDSoapMessage& fault)
+{
+    device->d_ptr->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
+}
+
+void OnvifPtzServicePrivate::setConfigurationDone(const OnvifSoapPtz::TPTZ__SetConfigurationResponse& /*parameters*/)
+{
+}
+
+void OnvifPtzServicePrivate::setConfigurationError(const KDSoapMessage& fault)
 {
     device->d_ptr->handleSoapError(fault, Q_FUNC_INFO_AS_STRING);
 }

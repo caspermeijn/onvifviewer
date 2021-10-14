@@ -47,6 +47,7 @@ private:
     QUrl streamUri;
     QString preferredVideoStreamProtocol;
 
+    void selectProfile();
     void getProfilesDone(const OnvifSoapMedia2::TR2__GetProfilesResponse& parameters);
     void getProfilesError(const KDSoapMessage& fault);
     void getSnapshotUriDone(const OnvifSoapMedia2::TR2__GetSnapshotUriResponse& parameters);
@@ -123,20 +124,7 @@ void OnvifMedia2Service::selectProfile(const OnvifMediaProfile& profile)
     Q_D(OnvifMedia2Service);
     d->selectedProfile = profile;
 
-    if (d->supportsSnapshotUri) {
-        TR2__GetSnapshotUri requestSnapshot;
-        requestSnapshot.setProfileToken(d->selectedProfile.token());
-        d->device->d_ptr->updateSoapCredentials(d->soapService.clientInterface());
-        d->soapService.asyncGetSnapshotUri(requestSnapshot);
-    }
-
-    TR2__GetStreamUri requestStream;
-    requestStream.setProfileToken(d->selectedProfile.token());
-    if (!d->preferredVideoStreamProtocol.isEmpty()) {
-        requestStream.setProtocol(d->preferredVideoStreamProtocol);
-    }
-    d->device->d_ptr->updateSoapCredentials(d->soapService.clientInterface());
-    d->soapService.asyncGetStreamUri(requestStream);
+    d->device->d_ptr->getSystemDateAndTime(std::bind(&OnvifMedia2ServicePrivate::selectProfile, d));
 }
 
 bool OnvifMedia2Service::supportsSnapshotUri() const
@@ -161,6 +149,24 @@ void OnvifMedia2Service::setPreferredVideoStreamProtocol(const QString& preferre
 {
     Q_D(OnvifMedia2Service);
     d->preferredVideoStreamProtocol = preferredVideoStreamProtocol;
+}
+
+void OnvifMedia2ServicePrivate::selectProfile()
+{
+    if (supportsSnapshotUri) {
+        TR2__GetSnapshotUri requestSnapshot;
+        requestSnapshot.setProfileToken(selectedProfile.token());
+        device->d_ptr->updateSoapCredentials(soapService.clientInterface());
+        soapService.asyncGetSnapshotUri(requestSnapshot);
+    }
+
+    TR2__GetStreamUri requestStream;
+    requestStream.setProfileToken(selectedProfile.token());
+    if (!preferredVideoStreamProtocol.isEmpty()) {
+        requestStream.setProtocol(preferredVideoStreamProtocol);
+    }
+    device->d_ptr->updateSoapCredentials(soapService.clientInterface());
+    soapService.asyncGetStreamUri(requestStream);
 }
 
 void OnvifMedia2ServicePrivate::getProfilesDone(const TR2__GetProfilesResponse& parameters)
